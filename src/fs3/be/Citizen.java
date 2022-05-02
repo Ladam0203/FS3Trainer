@@ -16,15 +16,15 @@ public class Citizen {
         generalInformation = new SimpleObjectProperty<>();
     }
 
-    public void setIdProperty(int id) {
+    public void setId(int id) {
         this.id.set(id);
     }
 
-    public int getIdProperty() {
+    public int getId() {
         return id.get();
     }
 
-    public void setPersonalInformationProperty(PersonalInformation personalInformation) {
+    public void setPersonalInformation(PersonalInformation personalInformation) {
         this.personalInformation.set(personalInformation);
     }
 
