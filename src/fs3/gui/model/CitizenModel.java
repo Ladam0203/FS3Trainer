@@ -17,7 +17,7 @@ public class CitizenModel {
         allCitizens = FXCollections.observableList(citizenLogic.getAllCitizens());
     }
 
-    public Optional<Citizen> getCitizen(int id){return citizenLogic.getCitizen(id);}
+    public Optional<Citizen> getCitizen(int id) throws Exception {return citizenLogic.getCitizen(id);}
 
     public ObservableList<Citizen> getAllCitizens() throws Exception {
         return allCitizens;

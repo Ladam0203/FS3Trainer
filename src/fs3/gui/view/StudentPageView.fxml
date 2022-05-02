@@ -169,7 +169,7 @@
                         </VBox>
                     </content>
                   </ScrollPane>
-                  <ScrollPane fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" HBox.hgrow="ALWAYS">
+                  <ScrollPane fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" HBox.hgrow="ALWAYS">
                      <content>
                         <VBox spacing="20.0">
                            <padding>
@@ -178,11 +178,15 @@
                            <children>
                               <AnchorPane prefHeight="250.0" style="-fx-background-color: AAA;">
                                  <children>
-                                    <Label layoutX="151.0" text="Sub category 1" AnchorPane.topAnchor="0.0">
-                                       <font>
-                                          <Font size="30.0" />
-                                       </font>
-                                    </Label>
+                                    <HBox layoutX="151.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Sub category 1" HBox.hgrow="ALWAYS">
+                                             <font>
+                                                <Font size="30.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
                                     <VBox layoutY="175.0" spacing="4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                        <padding>
                                           <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
@@ -197,11 +201,15 @@
                               </AnchorPane>
                               <AnchorPane prefHeight="250.0" style="-fx-background-color: AAA;">
                                  <children>
-                                    <Label layoutX="151.0" text="Sub category 2" AnchorPane.topAnchor="0.0">
-                                       <font>
-                                          <Font size="30.0" />
-                                       </font>
-                                    </Label>
+                                    <HBox layoutX="151.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Sub category 1" HBox.hgrow="ALWAYS">
+                                             <font>
+                                                <Font size="30.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
                                     <VBox layoutY="175.0" spacing="4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                        <padding>
                                           <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
@@ -216,11 +224,15 @@
                               </AnchorPane>
                               <AnchorPane prefHeight="250.0" style="-fx-background-color: AAA;">
                                  <children>
-                                    <Label layoutX="151.0" text="Sub category 3" AnchorPane.topAnchor="0.0">
-                                       <font>
-                                          <Font size="30.0" />
-                                       </font>
-                                    </Label>
+                                    <HBox layoutX="151.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Sub category 1" HBox.hgrow="ALWAYS">
+                                             <font>
+                                                <Font size="30.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
                                     <VBox layoutY="175.0" spacing="4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                        <padding>
                                           <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
@@ -235,11 +247,38 @@
                               </AnchorPane>
                               <AnchorPane prefHeight="250.0" style="-fx-background-color: AAA;">
                                  <children>
-                                    <Label layoutX="151.0" text="Sub category 4" AnchorPane.topAnchor="0.0">
-                                       <font>
-                                          <Font size="30.0" />
-                                       </font>
-                                    </Label>
+                                    <HBox layoutX="151.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Sub category 1" HBox.hgrow="ALWAYS">
+                                             <font>
+                                                <Font size="30.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                    <VBox layoutY="175.0" spacing="4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                       <padding>
+                                          <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                       </padding>
+                                       <children>
+                                          <TextArea prefHeight="50.0" VBox.vgrow="NEVER" />
+                                          <TextArea prefHeight="50.0" VBox.vgrow="NEVER" />
+                                          <TextArea prefHeight="50.0" VBox.vgrow="NEVER" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="250.0" style="-fx-background-color: AAA;">
+                                 <children>
+                                    <HBox layoutX="151.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Sub category 1" HBox.hgrow="ALWAYS">
+                                             <font>
+                                                <Font size="30.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </HBox>
                                     <VBox layoutY="175.0" spacing="4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                        <padding>
                                           <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
