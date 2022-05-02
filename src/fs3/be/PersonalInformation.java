@@ -4,27 +4,17 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class PersonalInformation {
-    private StringProperty firstName;
-    private StringProperty lastName;
-    
+    private StringProperty name;
+
     public PersonalInformation() {
-        firstName = new SimpleStringProperty();
-        lastName = new SimpleStringProperty();
+        name = new SimpleStringProperty();
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName.set(firstName);
+    public void setName(String name) {
+        this.name.set(name);
     }
 
-    public String getFirstName() {
-        return firstName.get();
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName.set(lastName);
-    }
-
-    public String getLastName() {
-        return lastName.get();
+    public String getName() {
+        return name.get();
     }
 }

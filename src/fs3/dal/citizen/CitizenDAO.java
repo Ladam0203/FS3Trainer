@@ -17,11 +17,11 @@ public class CitizenDAO implements DAO<Citizen> {
     private final DAO<PersonalInformation> personalInformationDAO = new PersonalInformationDAO();
 
     String tableName = "Citizens";
-    String[] columns = {"id", "name"};
+    String[] columns = {"id"};
 
     String read = "SELECT * FROM" + tableName + " WHERE " + columns[0] + " = ?";
     String readAll = "SELECT * FROM " + tableName;
-    String create = "INSERT INTO " + tableName + " (" + columns[0] + ", " + columns[1] + ") VALUES (?, ?)";
+    String create = "INSERT INTO " + tableName + " DEFAULT VALUES";
     String update = "UPDATE " + tableName + " SET " + columns[0] + " = ?, " + columns[1] + " = ? WHERE " + columns[0] + " = ?";
     String delete = "DELETE FROM " + tableName + " WHERE " + columns[0] + " = ?";
 
