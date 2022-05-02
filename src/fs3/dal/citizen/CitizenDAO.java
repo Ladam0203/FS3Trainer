@@ -23,12 +23,12 @@ public class CitizenDAO implements DAO<Citizen> {
     String delete = "DELETE FROM " + tableName + " WHERE " + columns[0] + " = ?";
 
     @Override
-    public Optional<Citizen> get(int id) {
+    public Optional<Citizen> read(int id) {
         return Optional.empty();
     }
 
     @Override
-    public List<Citizen> getAll() throws Exception {
+    public List<Citizen> readAll() throws Exception {
         List<Citizen> citizens = new ArrayList<>();
 
         ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
@@ -45,8 +45,8 @@ public class CitizenDAO implements DAO<Citizen> {
     }
 
     @Override
-    public void save(Citizen citizen) {
-
+    public Optional<Citizen> create(Citizen citizen) {
+        return Optional.empty();
     }
 
     @Override
@@ -62,7 +62,7 @@ public class CitizenDAO implements DAO<Citizen> {
     public Optional<Citizen> constructObject(ResultSet rs) throws Exception {
         Citizen citizen = new Citizen();
         citizen.setId(rs.getInt(columns[0]));
-        citizen.setName(rs.getString(columns[1]));
+        //citizen.setName(rs.getString(columns[1]));
         return Optional.of(citizen);
     }
 }

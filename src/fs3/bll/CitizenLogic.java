@@ -1,8 +1,8 @@
 package fs3.bll;
 
 import fs3.be.Citizen;
-import fs3.dal.CitizenDAO;
 import fs3.dal.DAO;
+import fs3.dal.citizen.CitizenDAO;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,5 +14,5 @@ public class CitizenLogic {
 
     public Optional<Citizen> getCitizen(int id){ return citizenDAO.read(id);}
 
-    public List<Citizen> getAllCitizens(){return citizenDAO.readAll();}
+    public List<Citizen> getAllCitizens() throws Exception {return citizenDAO.readAll();}
 }
