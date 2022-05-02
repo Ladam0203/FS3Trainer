@@ -1,5 +1,6 @@
 package fs3.gui.controller;
 
+import fs3.be.Citizen;
 import fs3.gui.model.CitizenModel;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -10,7 +11,7 @@ import java.util.ResourceBundle;
 
 public class StudentPageController implements Initializable {
     @FXML
-    private ListView ltvAssignedCitizen;
+    private ListView<Citizen> ltvAssignedCitizen;
 
     private CitizenModel citizenModel;
 
