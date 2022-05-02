@@ -24,4 +24,8 @@ public class CitizenModel {
     }
 
     public Optional<Citizen> createCitizen(Citizen citizen){ return citizenLogic.createCitizen(citizen);}
+
+    public void updateCitizen(Citizen citizen) throws Exception {citizenLogic.updateCitizen(citizen);}
+
+     public void deleteCitizen(Citizen citizen) throws Exception{citizenLogic.deleteCitizen(citizen);}
 }
