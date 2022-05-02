@@ -5,7 +5,6 @@ import fs3.bll.CitizenLogic;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.util.List;
 import java.util.Optional;
 
 public class CitizenModel {
