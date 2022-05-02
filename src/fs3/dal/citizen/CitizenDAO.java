@@ -63,8 +63,8 @@ public class CitizenDAO implements DAO<Citizen> {
 
     public Optional<Citizen> constructObject(ResultSet rs) throws Exception {
         Citizen citizen = new Citizen();
-        citizen.setId(rs.getInt(columns[0]));
-        citizen.setPersonalInformation(personalInformationDAO.read(rs.getInt(columns[0])).get());
+        citizen.setIdProperty(rs.getInt(columns[0]));
+        citizen.setPersonalInformationProperty(personalInformationDAO.read(rs.getInt(columns[0])).get());
         return Optional.of(citizen);
     }
 }

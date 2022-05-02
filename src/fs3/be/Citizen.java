@@ -14,24 +14,24 @@ public class Citizen {
         personalInformation = new SimpleObjectProperty<>();
     }
 
-    public void setId(int id) {
+    public void setIdProperty(int id) {
         this.id.set(id);
     }
 
-    public int getId() {
+    public int getIdProperty() {
         return id.get();
     }
 
-    public void setPersonalInformation(PersonalInformation personalInformation) {
+    public void setPersonalInformationProperty(PersonalInformation personalInformation) {
         this.personalInformation.set(personalInformation);
     }
 
-    public PersonalInformation getPersonalInformation() {
+    public PersonalInformation getPersonalInformationProperty() {
         return personalInformation.get();
     }
 
     @Override
     public String toString(){
-        return this.personalInformation.getName();
+        return this.personalInformation.get().getNameProperty() + " (" + this.getIdProperty() + ")";
     }
 }

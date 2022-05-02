@@ -10,9 +10,9 @@ public class PersonalInformation {
         name = new SimpleStringProperty();
     }
 
-    public void setName(String name) {this.name.set(name);}
+    public void setNameProperty(String name) {this.name.set(name);}
 
-    public String getName() {
+    public String getNameProperty() {
         return name.get();
     }
 }

@@ -1,6 +1,5 @@
 package fs3.dal.citizen;
 
-import fs3.be.Citizen;
 import fs3.be.PersonalInformation;
 import fs3.dal.ConnectionManager;
 import fs3.dal.ConnectionManagerPool;
@@ -63,7 +62,7 @@ public class PersonalInformationDAO implements DAO<PersonalInformation> {
     @Override
     public Optional<PersonalInformation> constructObject(ResultSet rs) throws Exception {
         PersonalInformation personalInformation = new PersonalInformation();
-        personalInformation.setName(rs.getString(columns[1]));
+        personalInformation.setNameProperty(rs.getString(columns[1]));
         return Optional.of(personalInformation);
     }
 }

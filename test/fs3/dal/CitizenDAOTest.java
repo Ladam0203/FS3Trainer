@@ -19,7 +19,7 @@ public class CitizenDAOTest {
         DAO<Citizen> citizenDAO = new CitizenDAO();
         Citizen citizen = citizenDAO.readAll().get(0);
 
-        Assertions.assertEquals(1, citizen.getId());
-        Assertions.assertEquals("Romi", citizen.getPersonalInformation().getName());
+        Assertions.assertEquals(1, citizen.getIdProperty());
+        Assertions.assertEquals("Romi", citizen.getPersonalInformationProperty().getNameProperty());
     }
 }

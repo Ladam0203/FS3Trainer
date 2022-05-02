@@ -20,7 +20,6 @@ public class StudentPageController implements Initializable {
         try {
             citizenModel = new CitizenModel();
             ltvAssignedCitizen.setItems(citizenModel.getAllCitizens());
-            System.out.println(citizenModel.getCitizen(1).get().getPersonalInformation().getName());
         } catch (Exception e) {
             e.printStackTrace();
         }
