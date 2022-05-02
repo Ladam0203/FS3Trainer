@@ -15,4 +15,10 @@ public class CitizenLogic {
     public Optional<Citizen> getCitizen(int id){ return citizenDAO.read(id);}
 
     public List<Citizen> getAllCitizens() throws Exception {return citizenDAO.readAll();}
+
+    public Optional<Citizen> createCitizen(Citizen citizen){ return citizenDAO.create(citizen);}
+
+    public void updateCitizen (Citizen citizen) throws Exception{ citizenDAO.update(citizen);}
+
+    public void deleteCitizen(Citizen citizen) throws Exception{citizenDAO.delete(citizen);}
 }
