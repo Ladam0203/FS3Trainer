@@ -20,7 +20,7 @@ public class ConnectionManager {
         ds.setPassword("CSe21B_1");
     }
 
-    public Connection getConnection() throws SQLServerException
+    public java.sql.Connection getConnection() throws SQLServerException
     {
         return ds.getConnection();
     }
