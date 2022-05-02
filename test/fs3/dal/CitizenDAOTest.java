@@ -20,6 +20,6 @@ public class CitizenDAOTest {
         Citizen citizen = citizenDAO.readAll().get(0);
 
         Assertions.assertEquals(1, citizen.getIdProperty());
-        Assertions.assertEquals("Romi", citizen.getPersonalInformationProperty().getNameProperty());
+        Assertions.assertEquals("Romi", citizen.getPersonalInformation().getName());
     }
 }

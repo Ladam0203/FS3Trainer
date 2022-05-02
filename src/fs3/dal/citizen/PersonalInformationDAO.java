@@ -62,7 +62,7 @@ public class PersonalInformationDAO implements DAO<PersonalInformation> {
     @Override
     public Optional<PersonalInformation> constructObject(ResultSet rs) throws Exception {
         PersonalInformation personalInformation = new PersonalInformation();
-        personalInformation.setNameProperty(rs.getString(columns[1]));
+        personalInformation.setName(rs.getString(columns[1]));
         return Optional.of(personalInformation);
     }
 }

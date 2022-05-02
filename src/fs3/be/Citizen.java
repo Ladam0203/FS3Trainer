@@ -28,7 +28,7 @@ public class Citizen {
         this.personalInformation.set(personalInformation);
     }
 
-    public PersonalInformation getPersonalInformationProperty() {
+    public PersonalInformation getPersonalInformation() {
         return personalInformation.get();
     }
 
@@ -42,6 +42,6 @@ public class Citizen {
 
     @Override
     public String toString(){
-        return this.personalInformation.get().getNameProperty() + " (" + this.getIdProperty() + ")";
+        return this.getPersonalInformation().getName() + " (" + this.id.get() + ")";
     }
 }
