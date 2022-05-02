@@ -19,6 +19,7 @@ public class StudentPageController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         try {
             citizenModel = new CitizenModel();
+            ltvAssignedCitizen.setItems(citizenModel.getAllCitizens());
         } catch (Exception e) {
             e.printStackTrace();
         }

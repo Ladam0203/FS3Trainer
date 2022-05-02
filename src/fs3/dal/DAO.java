@@ -1,8 +1,5 @@
 package fs3.dal;
 
-import com.microsoft.sqlserver.jdbc.SQLServerException;
-import fs3.be.Citizen;
-
 import java.sql.ResultSet;
 import java.util.List;
 import java.util.Optional;
