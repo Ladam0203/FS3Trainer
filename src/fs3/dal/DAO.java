@@ -1,5 +1,6 @@
 package fs3.dal;
 
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import fs3.be.Citizen;
 
 import java.sql.ResultSet;
@@ -7,13 +8,16 @@ import java.util.List;
 import java.util.Optional;
 
 public interface DAO<T> {
-    Optional<T> get(int id) throws Exception;
 
-    List<T> getAll() throws Exception;
 
-    void save(T t) throws Exception;
+    Optional<T> read(int id);
+
+    List<T> readAll() throws Exception;
+
+    Optional<T> create(T t);
 
     void update(T t, String[] params) throws Exception;
+
 
     void delete(T t) throws Exception;
 
