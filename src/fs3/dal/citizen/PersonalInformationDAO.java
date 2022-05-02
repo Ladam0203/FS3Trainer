@@ -1,6 +1,5 @@
 package fs3.dal.citizen;
 
-import fs3.be.Citizen;
 import fs3.be.PersonalInformation;
 import fs3.dal.ConnectionManager;
 import fs3.dal.ConnectionManagerPool;
@@ -14,7 +13,7 @@ import java.util.Optional;
 
 public class PersonalInformationDAO implements DAO<PersonalInformation> {
     private String tableName = "PersonalInformations";
-    private String[] columns = {"citizenId", "[name]"};
+    private String[] columns = {"citizenId", "name"};
 
     private String read = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ?";
     private String readAll = "SELECT * FROM " + tableName;
@@ -23,7 +22,7 @@ public class PersonalInformationDAO implements DAO<PersonalInformation> {
 
     @Override
     public Optional<PersonalInformation> read(int citizenId) throws Exception {
-        PersonalInformation personalInformation;
+        PersonalInformation personalInformation = null;
 
         ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
         try (Connection con = cm.getConnection()) {
@@ -31,7 +30,9 @@ public class PersonalInformationDAO implements DAO<PersonalInformation> {
             ps.setInt(1, citizenId);
             ResultSet rs = ps.executeQuery();
 
-            personalInformation = constructObject(rs).get();
+            if (rs.next()) {
+                personalInformation = constructObject(rs).get();
+            }
         }
         ConnectionManagerPool.getInstance().returnConnectionManager(cm);
 

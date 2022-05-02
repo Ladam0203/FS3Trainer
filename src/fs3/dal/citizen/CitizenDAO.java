@@ -1,6 +1,7 @@
 package fs3.dal.citizen;
 
 import fs3.be.Citizen;
+import fs3.be.GeneralInformation;
 import fs3.be.PersonalInformation;
 import fs3.dal.ConnectionManager;
 import fs3.dal.ConnectionManagerPool;
@@ -15,6 +16,7 @@ import java.util.Optional;
 
 public class CitizenDAO implements DAO<Citizen> {
     private final DAO<PersonalInformation> personalInformationDAO = new PersonalInformationDAO();
+    private final DAO<GeneralInformation> generalInformationDAO = new GeneralInformationDAO();
 
     String tableName = "Citizens";
     String[] columns = {"id"};
@@ -22,7 +24,6 @@ public class CitizenDAO implements DAO<Citizen> {
     String read = "SELECT * FROM" + tableName + " WHERE " + columns[0] + " = ?";
     String readAll = "SELECT * FROM " + tableName;
     String create = "INSERT INTO " + tableName + " DEFAULT VALUES";
-    String update = "UPDATE " + tableName + " SET " + columns[0] + " = ?, " + columns[1] + " = ? WHERE " + columns[0] + " = ?";
     String delete = "DELETE FROM " + tableName + " WHERE " + columns[0] + " = ?";
 
     @Override
@@ -64,8 +65,10 @@ public class CitizenDAO implements DAO<Citizen> {
 
     public Optional<Citizen> constructObject(ResultSet rs) throws Exception {
         Citizen citizen = new Citizen();
-        citizen.setId(rs.getInt(columns[0]));
-        citizen.setPersonalInformation(personalInformationDAO.read(rs.getInt(columns[0])).get());
+        int citizenId = rs.getInt("id");
+        citizen.setId(citizenId);
+        citizen.setPersonalInformation(personalInformationDAO.read(citizenId).get());
+        citizen.setGeneralInformation(generalInformationDAO.read(citizenId).get());
         return Optional.of(citizen);
     }
 }

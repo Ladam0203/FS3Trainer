@@ -7,10 +7,20 @@ import org.junit.jupiter.api.Test;
 
 public class CitizenDAOTest {
     @Test
-    public void testGetAll() throws Exception {
+    public void testGetAllFirstNotNull() throws Exception {
         DAO<Citizen> citizenDAO = new CitizenDAO();
         Citizen citizen = citizenDAO.readAll().get(0);
 
         Assertions.assertNotNull(citizen);
+    }
+
+    @Test
+    public void testGetAllAllData() throws Exception {
+        DAO<Citizen> citizenDAO = new CitizenDAO();
+        Citizen citizen = citizenDAO.readAll().get(0);
+
+        Assertions.assertEquals(1, citizen.getId());
+        Assertions.assertEquals("Romi", citizen.getPersonalInformation().getName());
+        Assertions.assertEquals("a", citizen.getGeneralInformation().getCoping());
     }
 }
