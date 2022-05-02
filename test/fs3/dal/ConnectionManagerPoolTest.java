@@ -6,6 +6,6 @@ import org.junit.jupiter.api.Test;
 public class ConnectionManagerPoolTest {
     @Test
     public void testGetConnection() {
-        Assertions.assertNotNull(ConnectionManagerPool.getInstance().getConnection());
+        Assertions.assertNotNull(ConnectionManagerPool.getInstance().getConnectionManager());
     }
 }

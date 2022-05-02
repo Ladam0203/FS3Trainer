@@ -10,7 +10,7 @@ import java.util.Properties;
 
 public class ConnectionManager {
     private final SQLServerDataSource ds;
-    public ConnectionManager()
+    protected ConnectionManager()
     {
         ds = new SQLServerDataSource();
         ds.setServerName("10.176.111.31");
@@ -20,7 +20,7 @@ public class ConnectionManager {
         ds.setPassword("CSe21B_1");
     }
 
-    public java.sql.Connection getConnection() throws SQLServerException
+    public Connection getConnection() throws SQLServerException
     {
         return ds.getConnection();
     }

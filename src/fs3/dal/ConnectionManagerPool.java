@@ -17,7 +17,7 @@ public class ConnectionManagerPool {
         return instance;
     }
 
-    public ConnectionManager getConnection() {
+    public ConnectionManager getConnectionManager() {
         if (pool.empty()) {
             return new ConnectionManager();
         } else {
@@ -25,7 +25,7 @@ public class ConnectionManagerPool {
         }
     }
 
-    public void returnConnection(ConnectionManager connection) {
+    public void returnConnectionManager(ConnectionManager connection) {
         pool.push(connection);
     }
 }
