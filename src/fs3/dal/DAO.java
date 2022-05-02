@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface DAO<T> {
 
 
-    Optional<T> read(int id);
+    Optional<T> read(int id) throws Exception;
 
     List<T> readAll() throws Exception;
 
@@ -21,5 +21,5 @@ public interface DAO<T> {
 
     void delete(T t) throws Exception;
 
-    Optional<Citizen> constructObject(ResultSet rs) throws Exception;
+    Optional<T> constructObject(ResultSet rs) throws Exception;
 }
