@@ -8,10 +8,12 @@ import javafx.beans.property.SimpleObjectProperty;
 public class Citizen {
     private IntegerProperty id;
     private ObjectProperty<PersonalInformation> personalInformation;
+    private ObjectProperty<GeneralInformation> generalInformation;
 
     public Citizen() {
         id = new SimpleIntegerProperty();
         personalInformation = new SimpleObjectProperty<>();
+        generalInformation = new SimpleObjectProperty<>();
     }
 
     public void setIdProperty(int id) {
@@ -28,6 +30,14 @@ public class Citizen {
 
     public PersonalInformation getPersonalInformationProperty() {
         return personalInformation.get();
+    }
+
+    public GeneralInformation getGeneralInformation() {
+        return generalInformation.get();
+    }
+
+    public void setGeneralInformation(GeneralInformation generalInformation) {
+        this.generalInformation.set(generalInformation);
     }
 
     @Override
