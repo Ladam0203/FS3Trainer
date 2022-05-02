@@ -50,7 +50,7 @@ public class CitizenDAO implements DAO<Citizen> {
     }
 
     @Override
-    public void update(Citizen citizen, String[] params) {
+    public void update(Citizen citizen) {
 
     }
 

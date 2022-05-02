@@ -16,7 +16,7 @@ public interface DAO<T> {
 
     Optional<T> create(T t);
 
-    void update(T t, String[] params) throws Exception;
+    void update(T t) throws Exception;
 
 
     void delete(T t) throws Exception;
