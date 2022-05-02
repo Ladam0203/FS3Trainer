@@ -22,7 +22,6 @@ public class CitizenDAO implements DAO<Citizen> {
     String read = "SELECT * FROM" + tableName + " WHERE " + columns[0] + " = ?";
     String readAll = "SELECT * FROM " + tableName;
     String create = "INSERT INTO " + tableName + " DEFAULT VALUES";
-    String update = "UPDATE " + tableName + " SET " + columns[0] + " = ?, " + columns[1] + " = ? WHERE " + columns[0] + " = ?";
     String delete = "DELETE FROM " + tableName + " WHERE " + columns[0] + " = ?";
 
     @Override
