@@ -14,12 +14,12 @@ import java.util.Optional;
 
 public class PersonalInformationDAO implements DAO<PersonalInformation> {
     private String tableName = "PersonalInformations";
-    private String[] columns = {"CitizenID", "FirstName", "LastName"};
+    private String[] columns = {"citizenId", "[name]"};
 
     private String read = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ?";
     private String readAll = "SELECT * FROM " + tableName;
-    private String create = "INSERT INTO " + tableName + " VALUES (?, ?, ?)";
-    private String update = "UPDATE " + tableName + " SET " + columns[1] + " = ?, " + columns[2] + " = ? WHERE " + columns[0] + " = ?";
+    private String create = "INSERT INTO " + tableName + " VALUES (?, ?)";
+    private String update = "UPDATE " + tableName + " SET " + columns[1] + " = ? WHERE " + columns[0] + " = ?";
 
     @Override
     public Optional<PersonalInformation> read(int citizenId) throws Exception {
@@ -61,8 +61,7 @@ public class PersonalInformationDAO implements DAO<PersonalInformation> {
     @Override
     public Optional<PersonalInformation> constructObject(ResultSet rs) throws Exception {
         PersonalInformation personalInformation = new PersonalInformation();
-        personalInformation.setFirstName(rs.getString(2));
-        personalInformation.setLastName(rs.getString(3));
+        personalInformation.setName(rs.getString(columns[1]));
         return Optional.of(personalInformation);
     }
 }
