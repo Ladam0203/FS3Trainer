@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="834.0" prefWidth="1194.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.StudentPageController">
    <children>
       <HBox maxWidth="1.7976931348623157E308" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -163,127 +169,56 @@
                         </VBox>
                     </content>
                   </ScrollPane>
-                  <ScrollPane fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" HBox.hgrow="ALWAYS">
+                  <ScrollPane fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" minWidth="-Infinity" HBox.hgrow="ALWAYS">
                      <content>
                         <VBox spacing="20.0">
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </padding>
                            <children>
-                              <AnchorPane prefHeight="250.0" style="-fx-background-color: AAA;">
+                              <AnchorPane prefHeight="250.0" style="-fx-background-color: AAA;" VBox.vgrow="NEVER">
                                  <children>
-                                    <HBox layoutX="151.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <VBox spacing="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
-                                          <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Sub category 1" HBox.hgrow="ALWAYS">
+                                          <Label text="Sub category" VBox.vgrow="NEVER">
                                              <font>
-                                                <Font size="30.0" />
+                                                <Font size="28.0" />
                                              </font>
                                           </Label>
-                                       </children>
-                                    </HBox>
-                                    <VBox layoutY="175.0" spacing="4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                                       <padding>
-                                          <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-                                       </padding>
-                                       <children>
-                                          <TextArea prefHeight="50.0" VBox.vgrow="NEVER" />
-                                          <TextArea prefHeight="50.0" VBox.vgrow="NEVER" />
-                                          <TextArea prefHeight="50.0" VBox.vgrow="NEVER" />
+                                          <HBox maxWidth="1.7976931348623157E308" spacing="16.0" VBox.vgrow="NEVER">
+                                             <children>
+                                                <Label maxWidth="1.7976931348623157E308" minWidth="160.0" text="Current level" HBox.hgrow="ALWAYS">
+                                                   <font>
+                                                      <Font size="24.0" />
+                                                   </font>
+                                                </Label>
+                                                <ComboBox maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="35.0" promptText="SELECT LEVEL" HBox.hgrow="NEVER" />
+                                             </children>
+                                          </HBox>
+                                          <HBox maxWidth="1.7976931348623157E308" spacing="16.0" VBox.vgrow="NEVER">
+                                             <children>
+                                                <Label maxWidth="1.7976931348623157E308" minWidth="160.0" text="Expected level" HBox.hgrow="ALWAYS">
+                                                   <font>
+                                                      <Font size="24.0" />
+                                                   </font>
+                                                </Label>
+                                                <ComboBox maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="35.0" promptText="SELECT LEVEL" HBox.hgrow="NEVER" />
+                                             </children>
+                                          </HBox>
+                                          <TextArea promptText="PROFESSIONAL NOTE" VBox.vgrow="ALWAYS">
+                                             <VBox.margin>
+                                                <Insets />
+                                             </VBox.margin>
+                                          </TextArea>
                                        </children>
                                     </VBox>
                                  </children>
-                              </AnchorPane>
-                              <AnchorPane prefHeight="250.0" style="-fx-background-color: AAA;">
-                                 <children>
-                                    <HBox layoutX="151.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                       <children>
-                                          <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Sub category 1" HBox.hgrow="ALWAYS">
-                                             <font>
-                                                <Font size="30.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </HBox>
-                                    <VBox layoutY="175.0" spacing="4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                                       <padding>
-                                          <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-                                       </padding>
-                                       <children>
-                                          <TextArea prefHeight="50.0" VBox.vgrow="NEVER" />
-                                          <TextArea prefHeight="50.0" VBox.vgrow="NEVER" />
-                                          <TextArea prefHeight="50.0" VBox.vgrow="NEVER" />
-                                       </children>
-                                    </VBox>
-                                 </children>
-                              </AnchorPane>
-                              <AnchorPane prefHeight="250.0" style="-fx-background-color: AAA;">
-                                 <children>
-                                    <HBox layoutX="151.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                       <children>
-                                          <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Sub category 1" HBox.hgrow="ALWAYS">
-                                             <font>
-                                                <Font size="30.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </HBox>
-                                    <VBox layoutY="175.0" spacing="4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                                       <padding>
-                                          <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-                                       </padding>
-                                       <children>
-                                          <TextArea prefHeight="50.0" VBox.vgrow="NEVER" />
-                                          <TextArea prefHeight="50.0" VBox.vgrow="NEVER" />
-                                          <TextArea prefHeight="50.0" VBox.vgrow="NEVER" />
-                                       </children>
-                                    </VBox>
-                                 </children>
-                              </AnchorPane>
-                              <AnchorPane prefHeight="250.0" style="-fx-background-color: AAA;">
-                                 <children>
-                                    <HBox layoutX="151.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                       <children>
-                                          <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Sub category 1" HBox.hgrow="ALWAYS">
-                                             <font>
-                                                <Font size="30.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </HBox>
-                                    <VBox layoutY="175.0" spacing="4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                                       <padding>
-                                          <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-                                       </padding>
-                                       <children>
-                                          <TextArea prefHeight="50.0" VBox.vgrow="NEVER" />
-                                          <TextArea prefHeight="50.0" VBox.vgrow="NEVER" />
-                                          <TextArea prefHeight="50.0" VBox.vgrow="NEVER" />
-                                       </children>
-                                    </VBox>
-                                 </children>
-                              </AnchorPane>
-                              <AnchorPane prefHeight="250.0" style="-fx-background-color: AAA;">
-                                 <children>
-                                    <HBox layoutX="151.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                       <children>
-                                          <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Sub category 1" HBox.hgrow="ALWAYS">
-                                             <font>
-                                                <Font size="30.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </HBox>
-                                    <VBox layoutY="175.0" spacing="4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                                       <padding>
-                                          <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-                                       </padding>
-                                       <children>
-                                          <TextArea prefHeight="50.0" VBox.vgrow="NEVER" />
-                                          <TextArea prefHeight="50.0" VBox.vgrow="NEVER" />
-                                          <TextArea prefHeight="50.0" VBox.vgrow="NEVER" />
-                                       </children>
-                                    </VBox>
-                                 </children>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                                 </padding>
                               </AnchorPane>
                            </children>
                         </VBox>
