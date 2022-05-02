@@ -17,11 +17,15 @@ public class CitizenModel {
         allCitizens = FXCollections.observableList(citizenLogic.getAllCitizens());
     }
 
-    public Optional<Citizen> getCitizen(int id){return citizenLogic.getCitizen(id);}
+    public Optional<Citizen> getCitizen(int id) throws Exception {return citizenLogic.getCitizen(id);}
 
     public ObservableList<Citizen> getAllCitizens() throws Exception {
         return allCitizens;
     }
 
     public Optional<Citizen> createCitizen(Citizen citizen){ return citizenLogic.createCitizen(citizen);}
+
+    public void updateCitizen(Citizen citizen) throws Exception {citizenLogic.updateCitizen(citizen);}
+
+     public void deleteCitizen(Citizen citizen) throws Exception{citizenLogic.deleteCitizen(citizen);}
 }

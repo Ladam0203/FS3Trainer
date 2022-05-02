@@ -12,7 +12,7 @@ public class CitizenLogic {
 
    public CitizenLogic(){ citizenDAO = new CitizenDAO();}
 
-    public Optional<Citizen> getCitizen(int id){ return citizenDAO.read(id);}
+    public Optional<Citizen> getCitizen(int id) throws Exception { return citizenDAO.read(id);}
 
     public List<Citizen> getAllCitizens() throws Exception {return citizenDAO.readAll();}
 
