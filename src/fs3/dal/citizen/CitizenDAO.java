@@ -1,6 +1,9 @@
-package fs3.dal;
+package fs3.dal.citizen;
 
 import fs3.be.Citizen;
+import fs3.dal.ConnectionManager;
+import fs3.dal.ConnectionManagerPool;
+import fs3.dal.DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class CitizenDAO implements DAO<Citizen>{
+public class CitizenDAO implements DAO<Citizen> {
     String tableName = "Citizens";
     String[] columns = {"id", "name"};
 
@@ -33,10 +36,11 @@ public class CitizenDAO implements DAO<Citizen>{
             PreparedStatement ps = con.prepareStatement(selectAll);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                citizens.add(constructObject(rs));
+                citizens.add(constructObject(rs).get());
             }
         }
         ConnectionManagerPool.getInstance().returnConnectionManager(cm);
+
         return citizens;
     }
 
@@ -55,10 +59,10 @@ public class CitizenDAO implements DAO<Citizen>{
 
     }
 
-    private Citizen constructObject(ResultSet rs) throws Exception {
+    public Optional<Citizen> constructObject(ResultSet rs) throws Exception {
         Citizen citizen = new Citizen();
         citizen.setId(rs.getInt(columns[0]));
         citizen.setName(rs.getString(columns[1]));
-        return citizen;
+        return Optional.of(citizen);
     }
 }

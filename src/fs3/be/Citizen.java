@@ -1,22 +1,25 @@
 package fs3.be;
 
-public class Citizen {
-    private int id;
-    private String name;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ObjectProperty;
 
-    public int getId() {
-        return id;
-    }
+public class Citizen {
+    private IntegerProperty id;
+    private ObjectProperty<PersonalInformation> personalInformation;
 
     public void setId(int id) {
-        this.id = id;
+        this.id.set(id);
     }
 
-    public String getName() {
-        return name;
+    public int getId() {
+        return id.get();
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPersonalInformation(PersonalInformation personalInformation) {
+        this.personalInformation.set(personalInformation);
+    }
+
+    public PersonalInformation getPersonalInformation() {
+        return personalInformation.get();
     }
 }
