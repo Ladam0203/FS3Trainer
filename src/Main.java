@@ -1,3 +1,4 @@
+import fs3.dal.ConnectionManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,5 +20,8 @@ public class Main extends Application {
         stage.setTitle("Student Page");
         stage.setScene(scene);
         stage.show();
+
+        ConnectionManager cm = new ConnectionManager();
+        System.out.println(cm.getConnection());
     }
 }
