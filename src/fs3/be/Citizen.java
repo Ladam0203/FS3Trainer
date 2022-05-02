@@ -29,4 +29,9 @@ public class Citizen {
     public PersonalInformation getPersonalInformation() {
         return personalInformation.get();
     }
+
+    @Override
+    public String toString(){
+        return this.personalInformation.getName();
+    }
 }
