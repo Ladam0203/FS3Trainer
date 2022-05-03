@@ -1,0 +1,35 @@
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-opacity: 1;
+
+    -fx-outer-border: #2D73A2;
+    -fx-body-color: #22577A;
+    -fx-background-color:
+            -fx-outer-border,
+            -fx-body-color;
+    -fx-background-insets: 0 0 0 0, 2px 0 2px 0;
+}
+
+.tab {
+    -fx-background-color: transparent;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-padding: 5;
+}
+
+.tab-label {
+    -fx-text-fill: #FFF;
+}
+
+.tab:hover .text {
+    -fx-text-fill: #FFF;
+    -fx-font-weight: bold;
+}
+
+.tab:selected .tab-label {
+    -fx-text-fill: #FFF;
+    -fx-font-weight: bold;
+}
+
+.tab:selected .text {
+    -fx-underline: true;
+}
