@@ -1,4 +1,4 @@
-package fs3.gui.controller;
+package fs3.gui.controller.student;
 
 import fs3.be.Citizen;
 import fs3.gui.model.CitizenModel;
