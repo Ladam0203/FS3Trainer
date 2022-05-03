@@ -9,4 +9,8 @@ public enum ExpectedLevel {
     ExpectedLevel(String expectedLevel) {
         this.expectedLevel = expectedLevel;
     }
+    @Override
+    public String toString() {
+        return expectedLevel;
+    }
 }

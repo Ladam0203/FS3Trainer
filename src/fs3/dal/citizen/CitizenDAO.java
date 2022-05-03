@@ -2,10 +2,12 @@ package fs3.dal.citizen;
 
 import fs3.be.Citizen;
 import fs3.be.GeneralInformation;
+import fs3.be.HealthConditionData;
 import fs3.be.PersonalInformation;
 import fs3.dal.ConnectionManager;
 import fs3.dal.ConnectionManagerPool;
 import fs3.dal.DAO;
+import fs3.enums.HealthCondition;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,6 +19,7 @@ import java.util.Optional;
 public class CitizenDAO implements DAO<Citizen> {
     private final DAO<PersonalInformation> personalInformationDAO = new PersonalInformationDAO();
     private final DAO<GeneralInformation> generalInformationDAO = new GeneralInformationDAO();
+    private final HealthConditionDataDAO healthConditionDataDAO = new HealthConditionDataDAO();
 
     String tableName = "Citizens";
     String[] columns = {"id"};
@@ -69,6 +72,9 @@ public class CitizenDAO implements DAO<Citizen> {
         citizen.setId(citizenId);
         citizen.setPersonalInformation(personalInformationDAO.read(citizenId).get());
         citizen.setGeneralInformation(generalInformationDAO.read(citizenId).get());
+        for (HealthCondition healthCondition : HealthCondition.values()) {
+            citizen.getHealthConditions().put(healthCondition, healthConditionDataDAO.read(citizenId, healthCondition).get());
+        }
         return Optional.of(citizen);
     }
 }

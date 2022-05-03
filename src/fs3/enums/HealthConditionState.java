@@ -9,4 +9,9 @@ public enum HealthConditionState {
     HealthConditionState(String healthConditionState) {
         this.healthConditionState = healthConditionState;
     }
+
+    @Override
+    public String toString() {
+        return healthConditionState;
+    }
 }

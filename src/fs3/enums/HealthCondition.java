@@ -1,6 +1,7 @@
 package fs3.enums;
 
 public enum HealthCondition {
+    //TODO: Extend with all subcategories of health conditions
     PROBLEMS_WITH_PERSONAL_CARE("Problems with personal care"),
     PROBLEMS_WITH_DAILY_ACTIVITES("Problems with daily activities"),
     PROBLEMS_WITH_MOBILITY_AND_MOVEMENT("Problems with mobility and movement"),
@@ -16,5 +17,10 @@ public enum HealthCondition {
     String healthConditionName;
     HealthCondition(String healthConditionName) {
         this.healthConditionName = healthConditionName;
+    }
+
+    @Override
+    public String toString() {
+        return healthConditionName;
     }
 }
