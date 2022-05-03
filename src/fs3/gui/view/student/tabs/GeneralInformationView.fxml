@@ -1,14 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="fs3.gui.controller.student.tabs.GeneralInformationController"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.student.tabs.GeneralInformationController">
+   <children>
+      <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ScrollPane maxHeight="1.7976931348623157E308" maxWidth="540.0" minWidth="-Infinity" prefHeight="623.0" prefWidth="400.0" vbarPolicy="NEVER" HBox.hgrow="SOMETIMES">
+              <content>
+                <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="626.0" prefWidth="402.0" />
+              </content>
+               <padding>
+                  <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+               </padding>
+            </ScrollPane>
+            <ScrollPane fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="623.0" prefWidth="405.0" HBox.hgrow="SOMETIMES">
+               <content>
+                  <GridPane hgap="12.0" vgap="8.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="170.0" />
+                      <ColumnConstraints hgrow="ALWAYS" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="1.7976931348623157E308" prefHeight="80.0" valignment="TOP" vgrow="ALWAYS" />
+                      <RowConstraints maxHeight="1.7976931348623157E308" prefHeight="80.0" valignment="TOP" vgrow="ALWAYS" />
+                      <RowConstraints maxHeight="1.7976931348623157E308" prefHeight="80.0" valignment="TOP" vgrow="ALWAYS" />
+                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="80.0" valignment="TOP" vgrow="ALWAYS" />
+                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="80.0" valignment="TOP" vgrow="ALWAYS" />
+                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="80.0" valignment="TOP" vgrow="ALWAYS" />
+                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="80.0" valignment="TOP" vgrow="ALWAYS" />
+                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="80.0" valignment="TOP" vgrow="ALWAYS" />
+                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="80.0" valignment="TOP" vgrow="ALWAYS" />
+                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="80.0" valignment="TOP" vgrow="ALWAYS" />
+                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="80.0" valignment="TOP" vgrow="ALWAYS" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="Mastery" />
+                        <Label text="Motivation" GridPane.rowIndex="1" />
+                        <Label text="Resources" GridPane.rowIndex="2" />
+                        <Label text="Roles" GridPane.rowIndex="3" />
+                        <Label text="Habits" GridPane.rowIndex="4" />
+                        <Label text="Education and jobs" GridPane.rowIndex="5" />
+                        <Label text="Life story" GridPane.rowIndex="6" />
+                        <Label text="Network" GridPane.rowIndex="7" />
+                        <Label text="Health information" GridPane.rowIndex="8" />
+                        <Label text="Assistive devices" GridPane.rowIndex="9" />
+                        <Label text="The interior of the home" GridPane.rowIndex="10" />
+                        <TextArea maxWidth="1.7976931348623157E308" minWidth="200.0" GridPane.columnIndex="1" />
+                        <TextArea maxWidth="1.7976931348623157E308" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextArea maxWidth="1.7976931348623157E308" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextArea maxWidth="1.7976931348623157E308" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextArea maxWidth="1.7976931348623157E308" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <TextArea maxWidth="1.7976931348623157E308" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <TextArea maxWidth="1.7976931348623157E308" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <TextArea maxWidth="1.7976931348623157E308" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <TextArea maxWidth="1.7976931348623157E308" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                        <TextArea maxWidth="1.7976931348623157E308" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                        <TextArea maxWidth="1.7976931348623157E308" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                        <TextArea maxWidth="1.7976931348623157E308" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                     </children>
+                  </GridPane>
+               </content>
+               <padding>
+                  <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+               </padding>
+            </ScrollPane>
+         </children>
+      </HBox>
+   </children>
 </AnchorPane>
