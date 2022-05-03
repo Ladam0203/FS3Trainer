@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<VBox xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.StudentPageController">
+   <children>
+      <HBox maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="35.0" VBox.vgrow="NEVER">
+         <children>
+            <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="113.0" text="FS3 Trainer" HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets left="4.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Separator maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" valignment="BASELINE" HBox.hgrow="ALWAYS" />
+            <ComboBox fx:id="cmbAssignedCitizens" maxHeight="1.7976931348623157E308" prefWidth="150.0" promptText="ASSIGNED CITIZENS">
+               <HBox.margin>
+                  <Insets bottom="4.0" right="4.0" top="4.0" />
+               </HBox.margin>
+            </ComboBox>
+         </children>
+      </HBox>
+      <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="General information" />
+          <Tab text="Health conditions" />
+            <Tab text="Functional abilities" />
+        </tabs>
+      </TabPane>
+   </children>
+</VBox>
