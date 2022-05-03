@@ -66,7 +66,7 @@ public class CitizenDAO implements DAO<Citizen> {
 
     public Citizen constructObject(ResultSet rs) throws Exception {
         Citizen citizen = new Citizen();
-        int citizenId = rs.getInt("id");
+        int citizenId = rs.getInt(columns[0]);
         citizen.setId(citizenId);
         citizen.setPersonalInformation(personalInformationDAO.read(citizenId));
         citizen.setGeneralInformation(generalInformationDAO.read(citizenId));
