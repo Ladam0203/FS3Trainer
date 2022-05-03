@@ -20,19 +20,19 @@ public class HealthConditionDAO implements DAO<HashMap<HealthCondition, HealthCo
     String select = "SELECT * FROM " + tableName + " WHERE citizenId = ?";
 
     @Override
-    public Optional<HashMap<HealthCondition, HealthConditionData>> read(int citizenId) throws Exception {
-        HashMap<HealthCondition, HealthConditionData> healthConditionData = null;
+    public HashMap<HealthCondition, HealthConditionData> read(int citizenId) throws Exception {
+        HashMap<HealthCondition, HealthConditionData> healthConditionData;
 
         ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
         try (Connection con = cm.getConnection()) {
             PreparedStatement ps = con.prepareStatement(select);
             ps.setInt(1, citizenId);
             ResultSet rs = ps.executeQuery();
-            healthConditionData = constructObject(rs).get();
+            healthConditionData = constructObject(rs);
         }
         ConnectionManagerPool.getInstance().returnConnectionManager(cm);
 
-        return Optional.of(healthConditionData);
+        return healthConditionData;
     }
 
     @Override
@@ -41,8 +41,8 @@ public class HealthConditionDAO implements DAO<HashMap<HealthCondition, HealthCo
     }
 
     @Override
-    public Optional<HashMap<HealthCondition, HealthConditionData>> create(HashMap<HealthCondition, HealthConditionData> healthConditionHealthConditionDataHashMap) {
-        return Optional.empty();
+    public HashMap<HealthCondition, HealthConditionData> create(HashMap<HealthCondition, HealthConditionData> healthConditionHealthConditionDataHashMap) {
+        return null;
     }
 
     @Override
@@ -56,12 +56,12 @@ public class HealthConditionDAO implements DAO<HashMap<HealthCondition, HealthCo
     }
 
     @Override
-    public Optional<HashMap<HealthCondition, HealthConditionData>> constructObject(ResultSet rs) throws Exception {
+    public HashMap<HealthCondition, HealthConditionData> constructObject(ResultSet rs) throws Exception {
         HashMap<HealthCondition, HealthConditionData> healthConditions = new HashMap<>();
         while (rs.next()) {
             healthConditions.put(HealthConditionParser.StringToHealthCondition(rs.getString(columns[1])), constructHealthConditionData(rs));
         }
-        return Optional.of(healthConditions);
+        return healthConditions;
     }
 
     private HealthConditionData constructHealthConditionData(ResultSet rs) throws Exception {

@@ -21,7 +21,7 @@ public class PersonalInformationDAO implements DAO<PersonalInformation> {
     private String update = "UPDATE " + tableName + " SET " + columns[1] + " = ? WHERE " + columns[0] + " = ?";
 
     @Override
-    public Optional<PersonalInformation> read(int citizenId) throws Exception {
+    public PersonalInformation read(int citizenId) throws Exception {
         PersonalInformation personalInformation = null;
 
         ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
@@ -31,12 +31,12 @@ public class PersonalInformationDAO implements DAO<PersonalInformation> {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                personalInformation = constructObject(rs).get();
+                personalInformation = constructObject(rs);
             }
         }
         ConnectionManagerPool.getInstance().returnConnectionManager(cm);
 
-        return Optional.of(personalInformation);
+        return personalInformation;
     }
 
     @Override
@@ -45,8 +45,8 @@ public class PersonalInformationDAO implements DAO<PersonalInformation> {
     }
 
     @Override
-    public Optional<PersonalInformation> create(PersonalInformation personalInformation) {
-        return Optional.empty();
+    public PersonalInformation create(PersonalInformation personalInformation) {
+        return null;
     }
 
     @Override
@@ -60,9 +60,9 @@ public class PersonalInformationDAO implements DAO<PersonalInformation> {
     }
 
     @Override
-    public Optional<PersonalInformation> constructObject(ResultSet rs) throws Exception {
+    public PersonalInformation constructObject(ResultSet rs) throws Exception {
         PersonalInformation personalInformation = new PersonalInformation();
         personalInformation.setName(rs.getString(columns[1]));
-        return Optional.of(personalInformation);
+        return personalInformation;
     }
 }

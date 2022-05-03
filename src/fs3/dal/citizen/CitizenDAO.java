@@ -28,8 +28,8 @@ public class CitizenDAO implements DAO<Citizen> {
     String delete = "DELETE FROM " + tableName + " WHERE " + columns[0] + " = ?";
 
     @Override
-    public Optional<Citizen> read(int id) {
-        return Optional.empty();
+    public Citizen read(int id) {
+        return null;
     }
 
     @Override
@@ -41,7 +41,7 @@ public class CitizenDAO implements DAO<Citizen> {
             PreparedStatement ps = con.prepareStatement(readAll);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                citizens.add(constructObject(rs).get());
+                citizens.add(constructObject(rs));
             }
         }
         ConnectionManagerPool.getInstance().returnConnectionManager(cm);
@@ -50,8 +50,8 @@ public class CitizenDAO implements DAO<Citizen> {
     }
 
     @Override
-    public Optional<Citizen> create(Citizen citizen) {
-        return Optional.empty();
+    public Citizen create(Citizen citizen) {
+        return null;
     }
 
     @Override
@@ -64,13 +64,13 @@ public class CitizenDAO implements DAO<Citizen> {
 
     }
 
-    public Optional<Citizen> constructObject(ResultSet rs) throws Exception {
+    public Citizen constructObject(ResultSet rs) throws Exception {
         Citizen citizen = new Citizen();
         int citizenId = rs.getInt("id");
         citizen.setId(citizenId);
-        citizen.setPersonalInformation(personalInformationDAO.read(citizenId).get());
-        citizen.setGeneralInformation(generalInformationDAO.read(citizenId).get());
-        citizen.setHealthConditions(healthConditionDAO.read(citizenId).get());
-        return Optional.of(citizen);
+        citizen.setPersonalInformation(personalInformationDAO.read(citizenId));
+        citizen.setGeneralInformation(generalInformationDAO.read(citizenId));
+        citizen.setHealthConditions(healthConditionDAO.read(citizenId));
+        return citizen;
     }
 }
