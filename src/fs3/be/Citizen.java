@@ -1,6 +1,6 @@
 package fs3.be;
 
-import fs3.enums.HealthConditions;
+import fs3.enums.HealthCondition;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -12,7 +12,7 @@ public class Citizen {
     private IntegerProperty id;
     private ObjectProperty<PersonalInformation> personalInformation;
     private ObjectProperty<GeneralInformation> generalInformation;
-    private HashMap<HealthConditions, HealthCondition> healthConditions;
+    private HashMap<HealthCondition, HealthConditionData> healthConditions;
 
     public Citizen() {
         id = new SimpleIntegerProperty();
@@ -45,11 +45,11 @@ public class Citizen {
         this.generalInformation.set(generalInformation);
     }
 
-    public HashMap<HealthConditions, HealthCondition> getHealthConditions() {
+    public HashMap<HealthCondition, HealthConditionData> getHealthConditions() {
         return healthConditions;
     }
 
-    public void setHealthConditions(HashMap<HealthConditions, HealthCondition> healthConditions) {
+    public void setHealthConditions(HashMap<HealthCondition, HealthConditionData> healthConditions) {
         this.healthConditions = healthConditions;
     }
 

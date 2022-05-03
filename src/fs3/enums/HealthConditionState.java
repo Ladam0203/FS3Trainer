@@ -1,7 +1,12 @@
 package fs3.enums;
 
 public enum HealthConditionState {
-    INACTIVE,
-    POTENTIAL,
-    ACTIVE
+    INACTIVE("Inactive"),
+    POTENTIAL("Potential"),
+    ACTIVE("Active");
+
+    String healthConditionState;
+    HealthConditionState(String healthConditionState) {
+        this.healthConditionState = healthConditionState;
+    }
 }
