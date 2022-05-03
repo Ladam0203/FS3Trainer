@@ -12,14 +12,12 @@ import fs3.enums.HealthCondition;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class CitizenDAO implements DAO<Citizen> {
     private final DAO<PersonalInformation> personalInformationDAO = new PersonalInformationDAO();
     private final DAO<GeneralInformation> generalInformationDAO = new GeneralInformationDAO();
-    private final HealthConditionDataDAO healthConditionDataDAO = new HealthConditionDataDAO();
+    private final DAO<HashMap<HealthCondition, HealthConditionData>> healthConditionDAO = new HealthConditionDAO();
 
     String tableName = "Citizens";
     String[] columns = {"id"};
@@ -72,9 +70,7 @@ public class CitizenDAO implements DAO<Citizen> {
         citizen.setId(citizenId);
         citizen.setPersonalInformation(personalInformationDAO.read(citizenId).get());
         citizen.setGeneralInformation(generalInformationDAO.read(citizenId).get());
-        for (HealthCondition healthCondition : HealthCondition.values()) {
-            citizen.getHealthConditions().put(healthCondition, healthConditionDataDAO.read(citizenId, healthCondition).get());
-        }
+        citizen.setHealthConditions(healthConditionDAO.read(citizenId).get());
         return Optional.of(citizen);
     }
 }
