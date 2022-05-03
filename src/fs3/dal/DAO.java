@@ -7,16 +7,16 @@ import java.util.Optional;
 public interface DAO<T> {
 
 
-    Optional<T> read(int id) throws Exception;
+    T read(int id) throws Exception;
 
     List<T> readAll() throws Exception;
 
-    Optional<T> create(T t);
+    T create(T t);
 
     void update(T t) throws Exception;
 
 
     void delete(T t) throws Exception;
 
-    Optional<T> constructObject(ResultSet rs) throws Exception;
+    T constructObject(ResultSet rs) throws Exception;
 }

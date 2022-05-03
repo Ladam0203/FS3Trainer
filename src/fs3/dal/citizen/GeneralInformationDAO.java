@@ -20,7 +20,7 @@ public class GeneralInformationDAO implements DAO<GeneralInformation> {
     private String readAll = "SELECT * FROM " + tableName;
 
     @Override
-    public Optional<GeneralInformation> read(int citizenId) throws Exception {
+    public GeneralInformation read(int citizenId) throws Exception {
         GeneralInformation generalInformation = null;
 
         ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
@@ -30,12 +30,12 @@ public class GeneralInformationDAO implements DAO<GeneralInformation> {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                generalInformation = constructObject(rs).get();
+                generalInformation = constructObject(rs);
             }
         }
         ConnectionManagerPool.getInstance().returnConnectionManager(cm);
 
-        return Optional.of(generalInformation);
+        return generalInformation;
     }
 
     @Override
@@ -44,8 +44,8 @@ public class GeneralInformationDAO implements DAO<GeneralInformation> {
     }
 
     @Override
-    public Optional<GeneralInformation> create(GeneralInformation generalInformation) {
-        return Optional.empty();
+    public GeneralInformation create(GeneralInformation generalInformation) {
+        return null;
     }
 
     @Override
@@ -59,7 +59,7 @@ public class GeneralInformationDAO implements DAO<GeneralInformation> {
     }
 
     @Override
-    public Optional<GeneralInformation> constructObject(ResultSet rs) throws Exception {
+    public GeneralInformation constructObject(ResultSet rs) throws Exception {
         GeneralInformation generalInformation = new GeneralInformation();
         generalInformation.setCoping(rs.getString("coping"));
         generalInformation.setMotivation(rs.getString("motivation"));
@@ -73,6 +73,6 @@ public class GeneralInformationDAO implements DAO<GeneralInformation> {
         generalInformation.setEquipmnentAids(rs.getString("equipmentAids"));
         generalInformation.setHomeLayout(rs.getString("homeLayout"));
         generalInformation.setNetwork(rs.getString("network"));
-        return Optional.of(generalInformation);
+        return generalInformation;
     }
 }
