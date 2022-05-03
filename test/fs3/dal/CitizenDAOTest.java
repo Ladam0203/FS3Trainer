@@ -21,12 +21,13 @@ public class CitizenDAOTest {
         DAO<Citizen> citizenDAO = new CitizenDAO();
         Citizen citizen = citizenDAO.readAll().get(0);
 
-        //Assertions.assertEquals(1, citizen.getId());
-        //Assertions.assertEquals("Romi", citizen.getPersonalInformation().getName());
-        //Assertions.assertEquals("a", citizen.getGeneralInformation().getCoping());
-        //Assertions.assertNotNull(citizen.getHealthConditions());
-        //Assertions.assertNotNull(citizen.getHealthConditions().get(HealthCondition.PROBLEMS_WITH_PERSONAL_CARE));
+        Assertions.assertEquals(1, citizen.getId());
+        Assertions.assertEquals("Romi", citizen.getPersonalInformation().getName());
+        Assertions.assertEquals("a", citizen.getGeneralInformation().getCoping());
+        Assertions.assertNotNull(citizen.getHealthConditions());
+        Assertions.assertNotNull(citizen.getHealthConditions().get(HealthCondition.PROBLEMS_WITH_PERSONAL_CARE));
         Assertions.assertEquals(HealthConditionState.ACTIVE, citizen.getHealthConditions().get(HealthCondition.PROBLEMS_WITH_PERSONAL_CARE).getHealthConditionState());
+        Assertions.assertNull(citizen.getHealthConditions().get(HealthCondition.ACUTE_PAIN));
 
     }
 }
