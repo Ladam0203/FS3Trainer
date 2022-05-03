@@ -26,15 +26,20 @@
                 </ComboBox>
             </children>
         </HBox>
-        <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" stylesheets="@../styles/tabpane.css" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="25.0" tabMaxWidth="160.0" tabMinHeight="25.0" tabMinWidth="160.0">
+        <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" stylesheets="@../styles/tabpane.css" tabClosingPolicy="UNAVAILABLE" tabMaxWidth="170.0" tabMinWidth="170.0">
             <tabs>
+            <Tab text="PERSONAL INFORMATION">
+               <content>
+                  <fx:include source="tabs/PersonalInformationView.fxml" />
+               </content>
+            </Tab>
                 <Tab text="GENERAL INFORMATION">
                     <fx:include source="tabs/GeneralInformationView.fxml" />
                 </Tab>
-                <Tab text="HEALTH CONDITIONS" >
+                <Tab text="HEALTH CONDITIONS">
                     <fx:include source="tabs/HealthConditionsView.fxml" />
                 </Tab>
-                <Tab text="FUNCTIONAL ABILITIES" >
+                <Tab text="FUNCTIONAL ABILITIES">
                     <fx:include source="tabs/FunctionalAbilitiesView.fxml" />
                 </Tab>
             </tabs>
