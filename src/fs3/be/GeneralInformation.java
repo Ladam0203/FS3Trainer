@@ -13,7 +13,7 @@ public class GeneralInformation {
     private StringProperty jobs;
     private StringProperty lifeStory;
     private StringProperty healthInformation;
-    private StringProperty equipmnentAids;
+    private StringProperty equipmentAids;
     private StringProperty homeLayout;
     private StringProperty network;
 
@@ -27,7 +27,7 @@ public class GeneralInformation {
         this.jobs = new SimpleStringProperty();
         this.lifeStory = new SimpleStringProperty();
         this.healthInformation = new SimpleStringProperty();
-        this.equipmnentAids = new SimpleStringProperty();
+        this.equipmentAids = new SimpleStringProperty();
         this.homeLayout = new SimpleStringProperty();
         this.network = new SimpleStringProperty();
     }
@@ -136,16 +136,16 @@ public class GeneralInformation {
         this.healthInformation.set(healthInformation);
     }
 
-    public String getEquipmnentAids() {
-        return equipmnentAids.get();
+    public String getEquipmentAids() {
+        return equipmentAids.get();
     }
 
-    public StringProperty equipmnentAidsProperty() {
-        return equipmnentAids;
+    public StringProperty equipmentAidsProperty() {
+        return equipmentAids;
     }
 
-    public void setEquipmnentAids(String equipmnentAids) {
-        this.equipmnentAids.set(equipmnentAids);
+    public void setEquipmentAids(String equipmentAids) {
+        this.equipmentAids.set(equipmentAids);
     }
 
     public String getHomeLayout() {

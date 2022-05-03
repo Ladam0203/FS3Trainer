@@ -1,20 +1,15 @@
 package fs3.dal.citizen;
 
 import fs3.be.Citizen;
-import fs3.be.GeneralInformation;
-import fs3.be.HealthConditionData;
-import fs3.be.PersonalInformation;
 import fs3.dal.ConnectionManager;
 import fs3.dal.ConnectionManagerPool;
-import fs3.dal.DAO;
-import fs3.enums.HealthCondition;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.*;
 
-public class CitizenDAO implements DAO<Citizen> {
+public class CitizenDAO {
     private final PersonalInformationDAO personalInformationDAO = new PersonalInformationDAO();
     private final GeneralInformationDAO generalInformationDAO = new GeneralInformationDAO();
     private final HealthConditionDAO healthConditionDAO = new HealthConditionDAO();
@@ -27,12 +22,10 @@ public class CitizenDAO implements DAO<Citizen> {
     String create = "INSERT INTO " + tableName + " DEFAULT VALUES";
     String delete = "DELETE FROM " + tableName + " WHERE " + columns[0] + " = ?";
 
-    @Override
     public Citizen read(int id) {
         return null;
     }
 
-    @Override
     public List<Citizen> readAll() throws Exception {
         List<Citizen> citizens = new ArrayList<>();
 
@@ -49,28 +42,19 @@ public class CitizenDAO implements DAO<Citizen> {
         return citizens;
     }
 
-    @Override
-    public Citizen create(Citizen citizen) {
-        return null;
-    }
-
-    @Override
-    public void update(Citizen citizen) {
-
-    }
-
-    @Override
-    public void delete(Citizen citizen) {
-
+    public void update(Citizen citizen) throws Exception {
+        personalInformationDAO.update(citizen);
+        generalInformationDAO.update(citizen);
+        healthConditionDAO.update(citizen);
     }
 
     private Citizen constructObject(ResultSet rs) throws Exception {
         Citizen citizen = new Citizen();
         int citizenId = rs.getInt(columns[0]);
         citizen.setId(citizenId);
-        citizen.setPersonalInformation(personalInformationDAO.read(citizenId));
-        citizen.setGeneralInformation(generalInformationDAO.read(citizenId));
-        citizen.setHealthConditions(healthConditionDAO.read(citizenId));
+        citizen.setPersonalInformation(personalInformationDAO.read(citizen));
+        citizen.setGeneralInformation(generalInformationDAO.read(citizen));
+        citizen.setHealthConditions(healthConditionDAO.read(citizen));
         return citizen;
     }
 }

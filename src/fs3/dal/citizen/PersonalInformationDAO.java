@@ -1,15 +1,13 @@
 package fs3.dal.citizen;
 
+import fs3.be.Citizen;
 import fs3.be.PersonalInformation;
 import fs3.dal.ConnectionManager;
 import fs3.dal.ConnectionManagerPool;
-import fs3.dal.DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.List;
-import java.util.Optional;
 
 public class PersonalInformationDAO {
     private String tableName = "PersonalInformations";
@@ -20,13 +18,13 @@ public class PersonalInformationDAO {
     private String create = "INSERT INTO " + tableName + " VALUES (?, ?)";
     private String update = "UPDATE " + tableName + " SET " + columns[1] + " = ? WHERE " + columns[0] + " = ?";
 
-    public PersonalInformation read(int citizenId) throws Exception {
+    public PersonalInformation read(Citizen citizen) throws Exception {
         PersonalInformation personalInformation = null;
 
         ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
         try (Connection con = cm.getConnection()) {
             PreparedStatement ps = con.prepareStatement(read);
-            ps.setInt(1, citizenId);
+            ps.setInt(1, citizen.getId());
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
@@ -36,6 +34,19 @@ public class PersonalInformationDAO {
         ConnectionManagerPool.getInstance().returnConnectionManager(cm);
 
         return personalInformation;
+    }
+
+    public void update(Citizen citizen) throws Exception {
+        ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
+        try (Connection con = cm.getConnection()) {
+            PreparedStatement ps = con.prepareStatement(update);
+            ps.setString(1, citizen.getPersonalInformation().getName());
+
+            ps.setInt(2, citizen.getId());
+
+            ps.executeUpdate();
+        }
+        ConnectionManagerPool.getInstance().returnConnectionManager(cm);
     }
 
     public PersonalInformation constructObject(ResultSet rs) throws Exception {
