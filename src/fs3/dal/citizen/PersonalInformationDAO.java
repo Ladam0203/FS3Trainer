@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import java.util.List;
 import java.util.Optional;
 
-public class PersonalInformationDAO implements DAO<PersonalInformation> {
+public class PersonalInformationDAO {
     private String tableName = "PersonalInformations";
     private String[] columns = {"citizenId", "name"};
 
@@ -20,7 +20,6 @@ public class PersonalInformationDAO implements DAO<PersonalInformation> {
     private String create = "INSERT INTO " + tableName + " VALUES (?, ?)";
     private String update = "UPDATE " + tableName + " SET " + columns[1] + " = ? WHERE " + columns[0] + " = ?";
 
-    @Override
     public PersonalInformation read(int citizenId) throws Exception {
         PersonalInformation personalInformation = null;
 
@@ -39,27 +38,6 @@ public class PersonalInformationDAO implements DAO<PersonalInformation> {
         return personalInformation;
     }
 
-    @Override
-    public List<PersonalInformation> readAll() throws Exception {
-        return null;
-    }
-
-    @Override
-    public PersonalInformation create(PersonalInformation personalInformation) {
-        return null;
-    }
-
-    @Override
-    public void update(PersonalInformation personalInformation) throws Exception {
-
-    }
-
-    @Override
-    public void delete(PersonalInformation personalInformation) throws Exception {
-
-    }
-
-    @Override
     public PersonalInformation constructObject(ResultSet rs) throws Exception {
         PersonalInformation personalInformation = new PersonalInformation();
         personalInformation.setName(rs.getString(columns[1]));

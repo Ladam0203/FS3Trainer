@@ -17,6 +17,4 @@ public interface DAO<T> {
 
 
     void delete(T t) throws Exception;
-
-    T constructObject(ResultSet rs) throws Exception;
 }

@@ -12,14 +12,13 @@ import java.sql.ResultSet;
 import java.util.List;
 import java.util.Optional;
 
-public class GeneralInformationDAO implements DAO<GeneralInformation> {
+public class GeneralInformationDAO {
     private String tableName = "GeneralInformations";
     private String[] columns = {"citizenId", "coping", "motivation", "resources", "roles", "habits", "education", "jobs", "lifeStory", "healthInformation", "equipmentAids", "homeLayout", "network"};
 
     private String read = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ?";
     private String readAll = "SELECT * FROM " + tableName;
 
-    @Override
     public GeneralInformation read(int citizenId) throws Exception {
         GeneralInformation generalInformation = null;
 
@@ -38,27 +37,6 @@ public class GeneralInformationDAO implements DAO<GeneralInformation> {
         return generalInformation;
     }
 
-    @Override
-    public List<GeneralInformation> readAll() throws Exception {
-        return null;
-    }
-
-    @Override
-    public GeneralInformation create(GeneralInformation generalInformation) {
-        return null;
-    }
-
-    @Override
-    public void update(GeneralInformation generalInformation) throws Exception {
-
-    }
-
-    @Override
-    public void delete(GeneralInformation generalInformation) throws Exception {
-
-    }
-
-    @Override
     public GeneralInformation constructObject(ResultSet rs) throws Exception {
         GeneralInformation generalInformation = new GeneralInformation();
         generalInformation.setCoping(rs.getString("coping"));

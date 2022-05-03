@@ -15,9 +15,9 @@ import java.sql.ResultSet;
 import java.util.*;
 
 public class CitizenDAO implements DAO<Citizen> {
-    private final DAO<PersonalInformation> personalInformationDAO = new PersonalInformationDAO();
-    private final DAO<GeneralInformation> generalInformationDAO = new GeneralInformationDAO();
-    private final DAO<HashMap<HealthCondition, HealthConditionData>> healthConditionDAO = new HealthConditionDAO();
+    private final PersonalInformationDAO personalInformationDAO = new PersonalInformationDAO();
+    private final GeneralInformationDAO generalInformationDAO = new GeneralInformationDAO();
+    private final HealthConditionDAO healthConditionDAO = new HealthConditionDAO();
 
     String tableName = "Citizens";
     String[] columns = {"id"};
@@ -64,7 +64,7 @@ public class CitizenDAO implements DAO<Citizen> {
 
     }
 
-    public Citizen constructObject(ResultSet rs) throws Exception {
+    private Citizen constructObject(ResultSet rs) throws Exception {
         Citizen citizen = new Citizen();
         int citizenId = rs.getInt(columns[0]);
         citizen.setId(citizenId);

@@ -14,12 +14,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.*;
 
-public class HealthConditionDAO implements DAO<HashMap<HealthCondition, HealthConditionData>> {
+public class HealthConditionDAO {
     private String tableName = "HealthConditions";
     private String[] columns = {"citizenId", "healthCondition", "healthConditionState", "professionalNote", "currentAssesment", "expectedLevel", "followUpDate", "observationNote"};
     String select = "SELECT * FROM " + tableName + " WHERE citizenId = ?";
 
-    @Override
     public HashMap<HealthCondition, HealthConditionData> read(int citizenId) throws Exception {
         HashMap<HealthCondition, HealthConditionData> healthConditionData;
 
@@ -35,27 +34,6 @@ public class HealthConditionDAO implements DAO<HashMap<HealthCondition, HealthCo
         return healthConditionData;
     }
 
-    @Override
-    public List<HashMap<HealthCondition, HealthConditionData>> readAll() throws Exception {
-        return null;
-    }
-
-    @Override
-    public HashMap<HealthCondition, HealthConditionData> create(HashMap<HealthCondition, HealthConditionData> healthConditionHealthConditionDataHashMap) {
-        return null;
-    }
-
-    @Override
-    public void update(HashMap<HealthCondition, HealthConditionData> healthConditionHealthConditionDataHashMap) throws Exception {
-
-    }
-
-    @Override
-    public void delete(HashMap<HealthCondition, HealthConditionData> healthConditionHealthConditionDataHashMap) throws Exception {
-
-    }
-
-    @Override
     public HashMap<HealthCondition, HealthConditionData> constructObject(ResultSet rs) throws Exception {
         HashMap<HealthCondition, HealthConditionData> healthConditions = new HashMap<>();
         while (rs.next()) {
