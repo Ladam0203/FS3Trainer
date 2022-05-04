@@ -3,6 +3,7 @@ package fs3.gui.controller.student.tabs;
 import fs3.gui.model.CitizenModel;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 
 import java.net.URL;
@@ -11,6 +12,8 @@ import java.util.ResourceBundle;
 public class GeneralInformationController implements Initializable {
     @FXML
     private TextArea txaCoping, txaMotivation, txaResources, txaRoles, txaHabits, txaEducation, txaJobs, txaLifeStory, txaHealthInformation, txaEquipmentAids, txaHomeLayout, txaNetwork;
+    @FXML
+    private Label lblName;
 
 
     @Override
@@ -24,6 +27,8 @@ public class GeneralInformationController implements Initializable {
 
         citizenModel.getSelectedCitizenProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
+                lblName.setText(newValue.getPersonalInformation().getName());
+
                 txaCoping.setText(newValue.getGeneralInformation().getCoping());
                 txaMotivation.setText(newValue.getGeneralInformation().getMotivation());
                 txaResources.setText(newValue.getGeneralInformation().getResources());
