@@ -31,6 +31,10 @@ public class CitizenModel {
         return observableCitizens;
     }
 
+    public Citizen getSelectedCitizen() {
+        return selectedCitizen.get();
+    }
+
     public ObjectProperty<Citizen> getSelectedCitizenProperty() {
         return selectedCitizen;
     }
