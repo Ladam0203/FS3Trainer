@@ -51,6 +51,10 @@ public class GeneralInformationController implements Initializable {
 
     @FXML
     private void handleSave() throws Exception {
+        if (citizenModel.getSelectedCitizenProperty().get() == null) {
+            return;
+        }
+        
         GeneralInformation generalInformation = citizenModel.getSelectedCitizen().getGeneralInformation();
 
         generalInformation.setCoping(txaCoping.getText());
