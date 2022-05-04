@@ -67,7 +67,7 @@
                               <TextArea fx:id="txaRoles" maxWidth="1.7976931348623157E308" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                               <TextArea fx:id="txaHabits" maxWidth="1.7976931348623157E308" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                               <TextArea fx:id="txaEducation" maxWidth="1.7976931348623157E308" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                              <TextArea fx:id="txaJobs" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                              <TextArea fx:id="txaJobs" maxWidth="1.7976931348623157E308" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                               <TextArea fx:id="txaLifeStory" maxWidth="1.7976931348623157E308" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                               <TextArea fx:id="txaHealthInformation" maxWidth="1.7976931348623157E308" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                               <TextArea fx:id="txaEquipmentAids" maxWidth="1.7976931348623157E308" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
