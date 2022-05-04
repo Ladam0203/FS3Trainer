@@ -12,4 +12,7 @@ public class CitizenLogic {
    public CitizenLogic(){ DAOFacade = new DAOFacade();}
 
     public List<Citizen> readAllCitizens() throws Exception {return DAOFacade.readAllCitizens();}
+
+    //update citizen
+    public void updateCitizen(Citizen citizen) throws Exception {DAOFacade.updateCitizen(citizen);}
 }

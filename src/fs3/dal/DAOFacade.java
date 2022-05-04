@@ -12,4 +12,9 @@ public class DAOFacade implements IDAOFacade {
     public List<Citizen> readAllCitizens() throws Exception {
         return citizenDAO.readAll();
     }
+
+    @Override
+    public void updateCitizen(Citizen citizen) throws Exception {
+        citizenDAO.update(citizen);
+    }
 }

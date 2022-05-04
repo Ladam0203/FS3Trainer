@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.student.tabs.GeneralInformationController">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.student.tabs.GeneralInformationController">
    <children>
       <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -88,7 +88,7 @@
                   </ScrollPane>
                   <HBox alignment="TOP_RIGHT" VBox.vgrow="NEVER">
                      <children>
-                        <Button mnemonicParsing="false" text="Save" />
+                        <Button mnemonicParsing="false" onAction="#handleSave" text="Save" />
                      </children>
                      <padding>
                         <Insets bottom="8.0" right="8.0" />

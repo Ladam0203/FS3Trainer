@@ -59,4 +59,20 @@ public class CitizenDAOTest {
         Assertions.assertEquals("b", citizen.getGeneralInformation().getCoping());
         Assertions.assertEquals(HealthConditionState.INACTIVE, citizen.getHealthConditions().get(HealthCondition.PROBLEMS_WITH_PERSONAL_CARE).getHealthConditionState());
     }
+
+    //test update general info
+    @Test
+    public void testUpdateGeneralInfo() throws Exception {
+        CitizenDAO citizenDAO = new CitizenDAO();
+
+        Citizen citizen = citizenDAO.readAll().get(0);
+
+        citizen.getGeneralInformation().setCoping("b1");
+
+        citizenDAO.update(citizen);
+
+        citizen = citizenDAO.readAll().get(0);
+
+        Assertions.assertEquals("b1", citizen.getGeneralInformation().getCoping());
+    }
 }

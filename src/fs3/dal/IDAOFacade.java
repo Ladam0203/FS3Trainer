@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface IDAOFacade {
     List<Citizen> readAllCitizens() throws Exception;
+    void updateCitizen(Citizen citizen) throws Exception;
 }

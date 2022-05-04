@@ -7,6 +7,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.sql.SQLOutput;
 import java.util.Optional;
 
 public class CitizenModel {
@@ -36,5 +37,9 @@ public class CitizenModel {
 
     public void setSelectedCitizen(Citizen selectedCitizen) {
         this.selectedCitizen.set(selectedCitizen);
+    }
+
+    public void updateSelectedCitizen() throws Exception {
+        citizenLogic.updateCitizen(selectedCitizen.get());
     }
 }

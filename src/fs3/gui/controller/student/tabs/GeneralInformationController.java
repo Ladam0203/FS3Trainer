@@ -1,5 +1,7 @@
 package fs3.gui.controller.student.tabs;
 
+import fs3.be.GeneralInformation;
+import fs3.be.PersonalInformation;
 import fs3.gui.model.CitizenModel;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,10 +17,10 @@ public class GeneralInformationController implements Initializable {
     @FXML
     private Label lblName;
 
+    private CitizenModel citizenModel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        CitizenModel citizenModel = null;
         try {
             citizenModel = CitizenModel.getInstance();
         } catch (Exception e) {
@@ -27,21 +29,43 @@ public class GeneralInformationController implements Initializable {
 
         citizenModel.getSelectedCitizenProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
-                lblName.setText(newValue.getPersonalInformation().getName());
+                PersonalInformation personalInformation = newValue.getPersonalInformation();
+                lblName.setText(personalInformation.getName());
 
-                txaCoping.setText(newValue.getGeneralInformation().getCoping());
-                txaMotivation.setText(newValue.getGeneralInformation().getMotivation());
-                txaResources.setText(newValue.getGeneralInformation().getResources());
-                txaRoles.setText(newValue.getGeneralInformation().getRoles());
-                txaHabits.setText(newValue.getGeneralInformation().getHabits());
-                txaEducation.setText(newValue.getGeneralInformation().getEducation());
-                txaJobs.setText(newValue.getGeneralInformation().getJobs());
-                txaLifeStory.setText(newValue.getGeneralInformation().getLifeStory());
-                txaHealthInformation.setText(newValue.getGeneralInformation().getHealthInformation());
-                txaEquipmentAids.setText(newValue.getGeneralInformation().getEquipmentAids());
-                txaHomeLayout.setText(newValue.getGeneralInformation().getHomeLayout());
-                txaNetwork.setText(newValue.getGeneralInformation().getNetwork());
+                GeneralInformation generalInformation = newValue.getGeneralInformation();
+                txaCoping.setText(generalInformation.getCoping());
+                txaMotivation.setText(generalInformation.getMotivation());
+                txaResources.setText(generalInformation.getResources());
+                txaRoles.setText(generalInformation.getRoles());
+                txaHabits.setText(generalInformation.getHabits());
+                txaEducation.setText(generalInformation.getEducation());
+                txaJobs.setText(generalInformation.getJobs());
+                txaLifeStory.setText(generalInformation.getLifeStory());
+                txaHealthInformation.setText(generalInformation.getHealthInformation());
+                txaEquipmentAids.setText(generalInformation.getEquipmentAids());
+                txaHomeLayout.setText(generalInformation.getHomeLayout());
+                txaNetwork.setText(generalInformation.getNetwork());
             }
         });
+    }
+
+    @FXML
+    private void handleSave() throws Exception {
+        GeneralInformation generalInformation = citizenModel.getSelectedCitizenProperty().get().getGeneralInformation();
+
+        generalInformation.setCoping(txaCoping.getText());
+        generalInformation.setMotivation(txaMotivation.getText());
+        generalInformation.setResources(txaResources.getText());
+        generalInformation.setRoles(txaRoles.getText());
+        generalInformation.setHabits(txaHabits.getText());
+        generalInformation.setEducation(txaEducation.getText());
+        generalInformation.setJobs(txaJobs.getText());
+        generalInformation.setLifeStory(txaLifeStory.getText());
+        generalInformation.setHealthInformation(txaHealthInformation.getText());
+        generalInformation.setEquipmentAids(txaEquipmentAids.getText());
+        generalInformation.setHomeLayout(txaHomeLayout.getText());
+        generalInformation.setNetwork(txaNetwork.getText());
+
+        citizenModel.updateSelectedCitizen();
     }
 }
