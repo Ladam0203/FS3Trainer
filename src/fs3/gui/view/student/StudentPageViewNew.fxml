@@ -29,7 +29,7 @@
         <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@../styles/tabpane.css" tabClosingPolicy="UNAVAILABLE" tabMaxWidth="170.0" tabMinWidth="170.0" VBox.vgrow="ALWAYS">
             <tabs>
                 <Tab text="GENERAL INFORMATION">
-                    <fx:include maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" source="tabs/GeneralInformationView.fxml" />
+                    <fx:include source="tabs/GeneralInformationView.fxml" />
                 </Tab>
                 <Tab text="HEALTH CONDITIONS">
                     <fx:include source="tabs/HealthConditionsView.fxml" />
