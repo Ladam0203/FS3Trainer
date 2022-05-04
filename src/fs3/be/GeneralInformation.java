@@ -36,6 +36,10 @@ public class GeneralInformation {
         return coping.get();
     }
 
+    public StringProperty getCopingProperty() {
+        return coping;
+    }
+
     public void setCoping(String coping) {
         this.coping.set(coping);
     }

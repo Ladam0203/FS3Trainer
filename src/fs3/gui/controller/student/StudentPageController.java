@@ -21,7 +21,7 @@ public class StudentPageController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            citizenModel = new CitizenModel();
+            citizenModel = CitizenModel.getInstance();
             cmbAssignedCitizens.setItems(citizenModel.getObservableCitizens());
         } catch (Exception e) {
             //TODO: handle exception gracefully
@@ -31,5 +31,9 @@ public class StudentPageController implements Initializable {
 
     @FXML
     private void handleSelectCitizen(ActionEvent actionEvent) {
+        Citizen citizen = cmbAssignedCitizens.getSelectionModel().getSelectedItem();
+        if (citizen != null) {
+            citizenModel.setSelectedCitizen(citizen);
+        }
     }
 }

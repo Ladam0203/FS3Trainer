@@ -8,14 +8,17 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 public class CitizenDAOTest {
-    @Disabled
+
     @Test
     public void testGetAllFirstNotNull() throws Exception {
         CitizenDAO citizenDAO = new CitizenDAO();
-        Citizen citizen = citizenDAO.readAll().get(0);
+        List<Citizen> citizens = citizenDAO.readAll();
 
-        Assertions.assertNotNull(citizen);
+        Assertions.assertNotNull(citizens.get(0).getPersonalInformation());
+        //Assertions.assertNotNull(citizens.get(1).getPersonalInformation());
     }
 
     @Disabled
@@ -34,6 +37,7 @@ public class CitizenDAOTest {
 
     }
 
+    @Disabled
     @Test
     //test update
     public void testUpdate() throws Exception {
