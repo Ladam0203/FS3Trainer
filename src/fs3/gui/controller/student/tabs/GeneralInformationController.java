@@ -3,12 +3,15 @@ package fs3.gui.controller.student.tabs;
 import fs3.be.GeneralInformation;
 import fs3.be.PersonalInformation;
 import fs3.gui.model.CitizenModel;
+import fs3.util.PopUp;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class GeneralInformationController implements Initializable {
@@ -19,10 +22,26 @@ public class GeneralInformationController implements Initializable {
 
     private CitizenModel citizenModel;
 
+    //not sure if adding it into list is the right, but I think it is more practical
+    private List<TextArea> textAreas;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
             citizenModel = CitizenModel.getInstance();
+            textAreas = new ArrayList<>();
+            textAreas.add(txaCoping);
+            textAreas.add(txaMotivation);
+            textAreas.add(txaResources);
+            textAreas.add(txaRoles);
+            textAreas.add(txaHabits);
+            textAreas.add(txaEducation);
+            textAreas.add(txaJobs);
+            textAreas.add(txaLifeStory);
+            textAreas.add(txaHealthInformation);
+            textAreas.add(txaEquipmentAids);
+            textAreas.add(txaHomeLayout);
+            textAreas.add(txaNetwork);
         } catch (Exception e) {
             //TODO: handle gracefully
         }
@@ -56,7 +75,7 @@ public class GeneralInformationController implements Initializable {
         }
         
         GeneralInformation generalInformation = citizenModel.getSelectedCitizen().getGeneralInformation();
-
+        checkTextAreas();
         generalInformation.setCoping(txaCoping.getText());
         generalInformation.setMotivation(txaMotivation.getText());
         generalInformation.setResources(txaResources.getText());
@@ -71,5 +90,12 @@ public class GeneralInformationController implements Initializable {
         generalInformation.setNetwork(txaNetwork.getText());
 
         citizenModel.updateSelectedCitizen();
+    }
+    private void checkTextAreas(){
+        for (TextArea t : textAreas){
+            if(t.getText().isEmpty()){
+                PopUp.showError("Fill all fields!");
+            }
+        }
     }
 }
