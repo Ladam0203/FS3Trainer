@@ -2,6 +2,7 @@ package fs3.gui.controller.student;
 
 import fs3.be.Citizen;
 import fs3.gui.model.CitizenModel;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
@@ -26,5 +27,9 @@ public class StudentPageController implements Initializable {
             //TODO: handle exception gracefully
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    private void handleSelectCitizen(ActionEvent actionEvent) {
     }
 }
