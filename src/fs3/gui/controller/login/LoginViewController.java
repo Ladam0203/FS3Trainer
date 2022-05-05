@@ -1,4 +1,4 @@
-package fs3.gui;
+package fs3.gui.controller.login;
 
 import fs3.be.Student;
 import fs3.util.PopUp;
@@ -25,7 +25,7 @@ public class LoginViewController {
         if(username != null && password != null){
             if(username.equals(student.getUsername())&& password.equals(student.getPassword())){
                 try {
-                    Parent root = FXMLLoader.load(getClass().getResource("view/student/StudentPageViewNew.fxml"));
+                    Parent root = FXMLLoader.load(getClass().getResource("../../view/student/StudentPageViewNew.fxml"));
                     Stage stage =  (Stage) ((Node) event.getSource()).getScene().getWindow();
                     Scene scene = new Scene (root);
                     stage.setScene(scene);
