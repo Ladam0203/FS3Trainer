@@ -15,8 +15,8 @@ import java.sql.ResultSet;
 import java.util.*;
 
 public class HealthConditionDAO {
-    private String tableName = "HealthConditions";
-    private String[] columns = {"citizenId", "healthCondition", "healthConditionState", "professionalNote", "currentAssesment", "expectedLevel", "followUpDate", "observationNote"};
+    private final String tableName = "HealthConditions";
+    private final String[] columns = {"citizenId", "healthCondition", "healthConditionState", "professionalNote", "currentAssesment", "expectedLevel", "followUpDate", "observationNote"};
 
     String select = "SELECT * FROM " + tableName + " WHERE citizenId = ?";
     String update = "UPDATE " + tableName + " SET " + columns[2] + " = ?, " + columns[3] + " = ?, " + columns[4] + " = ?, " + columns[5] + " = ?, " + columns[6] + " = ?, " + columns[7] + " = ? WHERE " + columns[0] + " = ? AND " + columns[1] + " = ?";
