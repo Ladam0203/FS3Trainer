@@ -8,6 +8,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class LimitationLevelParserTest {
     @Test
     void testParse() {
-        assertEquals(LimitationLevelParser.parseInt(0), LimitationLevel.NO_LIMITATION);
+        assertEquals(LimitationLevel.fromInt(0), LimitationLevel.NO_LIMITATION);
     }
 }
