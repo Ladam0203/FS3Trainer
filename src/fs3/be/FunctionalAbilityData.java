@@ -1,9 +1,9 @@
 package fs3.be;
 
-import fs3.enums.LimitationLevel;
+import fs3.enums.Limitation;
 
 public class FunctionalAbilityData {
-    LimitationLevel currentLevel;
-    LimitationLevel expectedLevel;
+    Limitation currentLevel;
+    Limitation expectedLevel;
     String professionalNote;
 }
