@@ -12,11 +12,11 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("fs3/gui/view/student/StudentPageViewNew.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("fs3/gui/view/loginView.fxml"));
 
         Scene scene = new Scene(root);
 
-        stage.setTitle("Student Page");
+        stage.setTitle("Login Page");
         stage.setScene(scene);
         stage.show();
     }
