@@ -75,27 +75,33 @@ public class GeneralInformationController implements Initializable {
         }
         
         GeneralInformation generalInformation = citizenModel.getSelectedCitizen().getGeneralInformation();
-        checkTextAreas();
-        generalInformation.setCoping(txaCoping.getText());
-        generalInformation.setMotivation(txaMotivation.getText());
-        generalInformation.setResources(txaResources.getText());
-        generalInformation.setRoles(txaRoles.getText());
-        generalInformation.setHabits(txaHabits.getText());
-        generalInformation.setEducation(txaEducation.getText());
-        generalInformation.setJobs(txaJobs.getText());
-        generalInformation.setLifeStory(txaLifeStory.getText());
-        generalInformation.setHealthInformation(txaHealthInformation.getText());
-        generalInformation.setEquipmentAids(txaEquipmentAids.getText());
-        generalInformation.setHomeLayout(txaHomeLayout.getText());
-        generalInformation.setNetwork(txaNetwork.getText());
+        if(areTextAreasEmpty())
+        {
+            generalInformation.setCoping(txaCoping.getText());
+            generalInformation.setMotivation(txaMotivation.getText());
+            generalInformation.setResources(txaResources.getText());
+            generalInformation.setRoles(txaRoles.getText());
+            generalInformation.setHabits(txaHabits.getText());
+            generalInformation.setEducation(txaEducation.getText());
+            generalInformation.setJobs(txaJobs.getText());
+            generalInformation.setLifeStory(txaLifeStory.getText());
+            generalInformation.setHealthInformation(txaHealthInformation.getText());
+            generalInformation.setEquipmentAids(txaEquipmentAids.getText());
+            generalInformation.setHomeLayout(txaHomeLayout.getText());
+            generalInformation.setNetwork(txaNetwork.getText());
 
-        citizenModel.updateSelectedCitizen();
+            citizenModel.updateSelectedCitizen();
+        }
+        return;
+
     }
-    private void checkTextAreas(){
+    private boolean areTextAreasEmpty(){
         for (TextArea t : textAreas){
             if(t.getText().isEmpty()){
                 PopUp.showError("Fill all fields!");
+                return false;
             }
         }
+        return true;
     }
 }
