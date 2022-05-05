@@ -4,10 +4,9 @@ import fs3.be.Citizen;
 import fs3.be.HealthConditionData;
 import fs3.dal.ConnectionManager;
 import fs3.dal.ConnectionManagerPool;
+import fs3.enums.ExpectedLevel;
 import fs3.enums.HealthCondition;
-import fs3.util.ExpectedLevelParser;
-import fs3.util.HealthConditionParser;
-import fs3.util.HealthConditionStateParser;
+import fs3.enums.HealthConditionState;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,10 +14,10 @@ import java.sql.ResultSet;
 import java.util.*;
 
 public class HealthConditionDAO {
-    private String tableName = "HealthConditions";
-    private String[] columns = {"citizenId", "healthCondition", "healthConditionState", "professionalNote", "currentAssesment", "expectedLevel", "followUpDate", "observationNote"};
+    private final String tableName = "HealthConditions";
+    private final String[] columns = {"citizenId", "healthCondition", "healthConditionState", "professionalNote", "currentAssesment", "expectedLevel", "followUpDate", "observationNote"};
 
-    String select = "SELECT * FROM " + tableName + " WHERE citizenId = ?";
+    String select = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ?";
     String update = "UPDATE " + tableName + " SET " + columns[2] + " = ?, " + columns[3] + " = ?, " + columns[4] + " = ?, " + columns[5] + " = ?, " + columns[6] + " = ?, " + columns[7] + " = ? WHERE " + columns[0] + " = ? AND " + columns[1] + " = ?";
 
     public HashMap<HealthCondition, HealthConditionData> read(Citizen citizen) throws Exception {
@@ -63,17 +62,17 @@ public class HealthConditionDAO {
     public HashMap<HealthCondition, HealthConditionData> constructObject(ResultSet rs) throws Exception {
         HashMap<HealthCondition, HealthConditionData> healthConditions = new HashMap<>();
         while (rs.next()) {
-            healthConditions.put(HealthConditionParser.StringToHealthCondition(rs.getString(columns[1])), constructHealthConditionData(rs));
+            healthConditions.put(HealthCondition.fromString(rs.getString(columns[1])), constructHealthConditionData(rs));
         }
         return healthConditions;
     }
 
     private HealthConditionData constructHealthConditionData(ResultSet rs) throws Exception {
         HealthConditionData healthConditionData = new HealthConditionData();
-        healthConditionData.setHealthConditionState(HealthConditionStateParser.StringToHealthCondition(rs.getString(columns[2])));
+        healthConditionData.setHealthConditionState(HealthConditionState.fromString(rs.getString(columns[2])));
         healthConditionData.setProfessionalNote(rs.getString(columns[3]));
         healthConditionData.setCurrentAssessment(rs.getString(columns[4]));
-        healthConditionData.setExpectedLevel(ExpectedLevelParser.StringToExpectedLevel(rs.getString(columns[5])));
+        healthConditionData.setExpectedLevel(ExpectedLevel.fromString(rs.getString(columns[5])));
         healthConditionData.setFollowUpDate(rs.getDate(columns[6]).toLocalDate());
         healthConditionData.setObservationNote(rs.getString(columns[7]));
         return healthConditionData;

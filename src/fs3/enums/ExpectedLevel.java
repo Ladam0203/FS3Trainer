@@ -5,12 +5,20 @@ public enum ExpectedLevel {
     UNCHANGED("Unchanged"),
     DISAPPEAR("Disappear");
 
-    String expectedLevel;
-    ExpectedLevel(String expectedLevel) {
-        this.expectedLevel = expectedLevel;
+    private String name;
+    ExpectedLevel(String name) {
+        this.name = name;
     }
     @Override
     public String toString() {
-        return expectedLevel;
+        return name;
+    }
+    public static ExpectedLevel fromString(String expectedLevel) {
+        for (ExpectedLevel el : ExpectedLevel.values()) {
+            if (el.name.equals(expectedLevel)) {
+                return el;
+            }
+        }
+        throw new IllegalArgumentException("Expected level " + expectedLevel + " could not be parsed");
     }
 }

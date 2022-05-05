@@ -1,11 +1,13 @@
 package fs3.be;
 
+import fs3.enums.FunctionalAbility;
 import fs3.enums.HealthCondition;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 
+import java.util.EnumMap;
 import java.util.HashMap;
 
 public class Citizen {
@@ -13,12 +15,14 @@ public class Citizen {
     private ObjectProperty<PersonalInformation> personalInformation;
     private ObjectProperty<GeneralInformation> generalInformation;
     private HashMap<HealthCondition, HealthConditionData> healthConditions;
+    private HashMap<FunctionalAbility, FunctionalAbilityData> functionalAbilities;
 
     public Citizen() {
         id = new SimpleIntegerProperty();
         personalInformation = new SimpleObjectProperty<>();
         generalInformation = new SimpleObjectProperty<>();
         healthConditions = new HashMap<>();
+        functionalAbilities = new HashMap<>();
     }
 
     public void setId(int id) {
@@ -51,6 +55,14 @@ public class Citizen {
 
     public void setHealthConditions(HashMap<HealthCondition, HealthConditionData> healthConditions) {
         this.healthConditions = healthConditions;
+    }
+
+    public HashMap<FunctionalAbility, FunctionalAbilityData> getFunctionalAbilities() {
+        return functionalAbilities;
+    }
+
+    public void setFunctionalAbilities(HashMap<FunctionalAbility, FunctionalAbilityData> functionalAbilities) {
+        this.functionalAbilities = functionalAbilities;
     }
 
     @Override
