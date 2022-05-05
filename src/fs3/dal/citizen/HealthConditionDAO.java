@@ -63,17 +63,17 @@ public class HealthConditionDAO {
     public HashMap<HealthCondition, HealthConditionData> constructObject(ResultSet rs) throws Exception {
         HashMap<HealthCondition, HealthConditionData> healthConditions = new HashMap<>();
         while (rs.next()) {
-            healthConditions.put(HealthConditionParser.StringToHealthCondition(rs.getString(columns[1])), constructHealthConditionData(rs));
+            healthConditions.put(HealthConditionParser.parseString(rs.getString(columns[1])), constructHealthConditionData(rs));
         }
         return healthConditions;
     }
 
     private HealthConditionData constructHealthConditionData(ResultSet rs) throws Exception {
         HealthConditionData healthConditionData = new HealthConditionData();
-        healthConditionData.setHealthConditionState(HealthConditionStateParser.StringToHealthCondition(rs.getString(columns[2])));
+        healthConditionData.setHealthConditionState(HealthConditionStateParser.parseString(rs.getString(columns[2])));
         healthConditionData.setProfessionalNote(rs.getString(columns[3]));
         healthConditionData.setCurrentAssessment(rs.getString(columns[4]));
-        healthConditionData.setExpectedLevel(ExpectedLevelParser.StringToExpectedLevel(rs.getString(columns[5])));
+        healthConditionData.setExpectedLevel(ExpectedLevelParser.parseString(rs.getString(columns[5])));
         healthConditionData.setFollowUpDate(rs.getDate(columns[6]).toLocalDate());
         healthConditionData.setObservationNote(rs.getString(columns[7]));
         return healthConditionData;

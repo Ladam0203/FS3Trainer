@@ -95,6 +95,7 @@ public class GeneralInformationController implements Initializable {
         return;
 
     }
+
     private boolean areTextAreasEmpty(){
         for (TextArea t : textAreas){
             if(t.getText().isEmpty()){
