@@ -29,6 +29,8 @@ public enum FunctionalAbility {
     ENERGY_AND_WILLPOWER("Energy and willpower"),
     MEMORY("Memory"),
     EMOTIONAL_ABILITIES("Emotional abilities"),
+    COGNITIVE_ABILITIES("Cognitive abilities"),
+    ABILITY_TO_WORK("Ability to work");
 
 
     String name;
