@@ -47,13 +47,21 @@ public enum HealthCondition {
     STOMACH_AND_INTESTINAL_PROBLEMS("Stomach and intestinal problems"),
     PROBLEMS_WITH_LIQUID_FROM_THE_DRAIN("Problems with liquid from the drain");
 
-    String healthConditionName;
-    HealthCondition(String healthConditionName) {
-        this.healthConditionName = healthConditionName;
+    private String name;
+    HealthCondition(String name) {
+        this.name = name;
+    }
+    public static HealthCondition fromString(String healthCondition) {
+        for (HealthCondition hc : HealthCondition.values()) {
+            if (hc.name.equals(healthCondition)) {
+                return hc;
+            }
+        }
+        throw new IllegalArgumentException("Health condition " + healthCondition + " could not be parsed");
     }
 
     @Override
     public String toString() {
-        return healthConditionName;
+        return name;
     }
 }

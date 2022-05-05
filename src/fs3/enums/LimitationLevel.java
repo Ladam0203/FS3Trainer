@@ -8,19 +8,29 @@ public enum LimitationLevel {
     TOTAL_LIMITATION("Extreme limitation", 4),
     NOT_RELEVANT("Not relevant", 9);
 
-    String name;
-    int value;
+    private String name;
+    private int value;
 
     LimitationLevel(String name, int value) {
         this.name = name;
         this.value = value;
     }
 
-    public String getName() {
+    @Override
+    public String toString() {
         return name;
     }
 
     public int getValue() {
         return value;
+    }
+
+    public static LimitationLevel fromInt(int value) {
+        for (LimitationLevel l : LimitationLevel.values()) {
+            if (l.getValue() == value) {
+                return l;
+            }
+        }
+        throw new IllegalArgumentException("Limitiation level + " + value + " could not be parsed");
     }
 }

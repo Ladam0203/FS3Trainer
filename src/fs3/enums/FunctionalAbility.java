@@ -33,8 +33,20 @@ public enum FunctionalAbility {
     ABILITY_TO_WORK("Ability to work");
 
 
-    String name;
+    private String name;
     FunctionalAbility(String name) {
         this.name = name;
+    }
+    @Override
+    public String toString() {
+        return name;
+    }
+    public static FunctionalAbility fromString(String functionalAbility) {
+        for (FunctionalAbility fa : FunctionalAbility.values()) {
+            if (fa.name.equals(functionalAbility)) {
+                return fa;
+            }
+        }
+        throw new IllegalArgumentException("Functional ability " + functionalAbility + " could not be parsed");
     }
 }
