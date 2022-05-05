@@ -1,10 +1,10 @@
 package fs3.util;
 
-import fs3.enums.LimitationLevel;
+import fs3.enums.Limitation;
 
 public class LimitationLevelParser {
-    public static LimitationLevel parseInt(int value) {
-        for (LimitationLevel level : LimitationLevel.values()) {
+    public static Limitation parseInt(int value) {
+        for (Limitation level : Limitation.values()) {
             if (level.getValue() == value) {
                 return level;
             }

@@ -2,14 +2,12 @@ package fs3.be;
 
 import fs3.enums.ExpectedLevel;
 import fs3.enums.HealthConditionState;
-import fs3.enums.HealthCondition;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public class HealthConditionData {
     private ObjectProperty<HealthConditionState> healthConditionState;

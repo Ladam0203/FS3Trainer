@@ -1,6 +1,6 @@
 package fs3.enums;
 
-public enum LimitationLevel {
+public enum Limitation {
     NO_LIMITATION("No limitation", 0),
     SLIGHT_LIMITATION("Slight limitation", 1),
     MODERATE_LIMITATION("Moderate limitation", 2),
@@ -11,7 +11,7 @@ public enum LimitationLevel {
     String name;
     int value;
 
-    LimitationLevel(String name, int value) {
+    Limitation(String name, int value) {
         this.name = name;
         this.value = value;
     }
