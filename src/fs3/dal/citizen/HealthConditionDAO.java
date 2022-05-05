@@ -18,7 +18,7 @@ public class HealthConditionDAO {
     private final String tableName = "HealthConditions";
     private final String[] columns = {"citizenId", "healthCondition", "healthConditionState", "professionalNote", "currentAssesment", "expectedLevel", "followUpDate", "observationNote"};
 
-    String select = "SELECT * FROM " + tableName + " WHERE citizenId = ?";
+    String select = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ?";
     String update = "UPDATE " + tableName + " SET " + columns[2] + " = ?, " + columns[3] + " = ?, " + columns[4] + " = ?, " + columns[5] + " = ?, " + columns[6] + " = ?, " + columns[7] + " = ? WHERE " + columns[0] + " = ? AND " + columns[1] + " = ?";
 
     public HashMap<HealthCondition, HealthConditionData> read(Citizen citizen) throws Exception {

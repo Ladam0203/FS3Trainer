@@ -17,14 +17,7 @@ public class CitizenDAO {
     String tableName = "Citizens";
     String[] columns = {"id"};
 
-    String read = "SELECT * FROM" + tableName + " WHERE " + columns[0] + " = ?";
     String readAll = "SELECT * FROM " + tableName;
-    String create = "INSERT INTO " + tableName + " DEFAULT VALUES";
-    String delete = "DELETE FROM " + tableName + " WHERE " + columns[0] + " = ?";
-
-    public Citizen read(int id) {
-        return null;
-    }
 
     public List<Citizen> readAll() throws Exception {
         List<Citizen> citizens = new ArrayList<>();
