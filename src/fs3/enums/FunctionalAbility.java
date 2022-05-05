@@ -25,7 +25,7 @@ public enum FunctionalAbility {
     LEARNING_SKILLS("Learning skills"),
     PROBLEM_SOLVING("Problem solving"),
     USE_OF_COMMUNICATION_TOOLS_AND_TECHNIQUES("Use of communication tools and techniques"),
-    ORIENTATION_ABILITY("Orientation"),
+    ORIENTATION_ABILITY("Orientation ability"),
     ENERGY_AND_WILLPOWER("Energy and willpower"),
     MEMORY("Memory"),
     EMOTIONAL_ABILITIES("Emotional abilities"),
