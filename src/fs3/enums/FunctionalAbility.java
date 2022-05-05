@@ -10,7 +10,26 @@ public enum FunctionalAbility {
     TAKING_CARE_OF_OWN_HEALTH("Taking care of own health"),
     FOOD_INTAKE("Food intake"),
     PERFORMING_DAILY_ROUTINES("Performing daily routines"),
-    ACQUIRING_GOODS_AND_SERVICES("Acquiring goods and services");
+    ACQUIRING_GOODS_AND_SERVICES("Acquiring goods and services"),
+    COOKING("Cooking"),
+    HOUSEWORK("Housework"),
+    CHANGING_BODY_POSITION("Changing body position"),
+    MOVEMENT("Movement"),
+    LIFT_AND_CARRY("Lift and carry"),
+    WALKING("Walking"),
+    MOVING_AROUND("Moving around"),
+    MOVING_INTO_DIFFERENT_SURROUNDINGS("Moving into different surroundings"),
+    USE_MEANS_OF_TRANSPORTATION("Use means of transportation"),
+    ENDURANCE("Endurance"),
+    STRENGTH("Strength"),
+    LEARNING_SKILLS("Learning skills"),
+    PROBLEM_SOLVING("Problem solving"),
+    USE_OF_COMMUNICATION_TOOLS_AND_TECHNIQUES("Use of communication tools and techniques"),
+    ORIENTATION_ABILITY("Orientation"),
+    ENERGY_AND_WILLPOWER("Energy and willpower"),
+    MEMORY("Memory"),
+    EMOTIONAL_ABILITIES("Emotional abilities"),
+
 
     String name;
     FunctionalAbility(String name) {
