@@ -4,7 +4,7 @@ import fs3.be.HealthConditionData;
 import fs3.enums.HealthCondition;
 
 public class HealthConditionParser {
-    public static HealthCondition StringToHealthCondition(String healthCondition) {
+    public static HealthCondition parseString(String healthCondition) {
         for (HealthCondition hc : HealthCondition.values()) {
             if (hc.toString().equals(healthCondition)) {
                 return hc;

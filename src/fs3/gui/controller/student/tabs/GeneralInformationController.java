@@ -91,6 +91,7 @@ public class GeneralInformationController implements Initializable {
 
         citizenModel.updateSelectedCitizen();
     }
+
     private void checkTextAreas(){
         for (TextArea t : textAreas){
             if(t.getText().isEmpty()){
