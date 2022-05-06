@@ -108,10 +108,12 @@ public class HealthConditionController implements Initializable {
             HealthConditionData healthConditionData = new HealthConditionData();
             healthConditionData.setHealthConditionState(cmbHealthConditionState.getSelectionModel().getSelectedItem());
             healthConditionData.setProfessionalNote(txaProfessionalNote.getText());
+            healthConditionData.setObservationNote(txaObservationNote.getText());
             healthConditionData.setCurrentAssessment(txaCurrentAssessment.getText());
             healthConditionData.setExpectedLevel(cmbExpectedLevel.getSelectionModel().getSelectedItem());
             healthConditionData.setFollowUpDate(dtpFollowUpDate.getValue());
-            healthConditionData.setObservationNote(txaObservationNote.getText());
+
+
 
             citizen.getHealthConditions().put(healthCondition, healthConditionData);
 
@@ -126,10 +128,18 @@ public class HealthConditionController implements Initializable {
     }
 
     private boolean areFieldsFilled(){
-        if(isCitizenSelected()&&isComboBoxSelected()&&isDateValid()&& isCurrentAssessmentFilled()){
-            return true;
+        if (!isCitizenSelected() || !isCurrentStateSelected()){
+            return  false;
         }
-        return false;
+        //fromString(cmbHealthConditionState.getSelectionModel().getSelectedItem().toString())
+        if(!cmbHealthConditionState.getSelectionModel().getSelectedItem().equals(HealthConditionState.INACTIVE)){
+            System.out.println(cmbHealthConditionState.getSelectionModel().getSelectedItem());
+            if(!isDateValid() || !isExpectedStateSelected() || !isCurrentAssessmentFilled()){
+                return  false;
+            }
+        }
+        return true;
+
     }
 
     private boolean isCitizenSelected(){
@@ -142,20 +152,33 @@ public class HealthConditionController implements Initializable {
         return false;
     }
 
-    private boolean isComboBoxSelected (){
-        if(cmbHealthConditionState.getSelectionModel().getSelectedItem()!= null && cmbExpectedLevel.getSelectionModel().getSelectedItem()!= null){
+    private boolean isCurrentStateSelected (){
+        if(cmbHealthConditionState.getSelectionModel().getSelectedItem()!= null){
             return true;
         }
         else {
-            PopUp.showError("Select current and expected status!");
+            PopUp.showError("Select current status!");
         }
         return false;
     }
+
+    private boolean isExpectedStateSelected (){
+        if(cmbExpectedLevel.getSelectionModel().getSelectedItem()!= null){
+            return true;
+        }
+        else {
+            PopUp.showError("Select expected status!");
+        }
+        return false;
+    }
+
+
 
     private boolean isDateValid(){
         if(dtpFollowUpDate.getValue() != null){
             if(dtpFollowUpDate.getValue().isAfter(LocalDate.now())){
                 return true;
+
             }
             else{
                 PopUp.showError("Follow up date cannot be in past!");

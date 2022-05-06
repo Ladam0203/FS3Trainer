@@ -32,6 +32,7 @@ public class LoginViewController {
                     stage.show();
                 } catch (IOException e) {
                     PopUp.showError("Cannot load Student View!");
+                    e.printStackTrace();
                 }
             }
         }
