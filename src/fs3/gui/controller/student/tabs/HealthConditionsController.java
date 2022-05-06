@@ -55,6 +55,11 @@ public class HealthConditionsController implements Initializable {
                         HealthConditionData healthConditionData = newValue.getHealthConditions().get(entry.getKey());
                         if (healthConditionData != null) {
                             entry.getValue().setProfessionalNote(healthConditionData.getProfessionalNote());
+                            entry.getValue().setHealthConditionState(healthConditionData.getHealthConditionState());
+                            entry.getValue().setExpectedLevel(healthConditionData.getExpectedLevel());
+                            entry.getValue().setDtpFollowUpDate(healthConditionData.getFollowUpDate());
+                            entry.getValue().setCurrentAssessment(healthConditionData.getCurrentAssessment());
+                            entry.getValue().setObservationNote(healthConditionData.getObservationNote());
                         }
                     }
                 }

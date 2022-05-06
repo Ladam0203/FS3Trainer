@@ -96,6 +96,10 @@ public class HealthConditionController implements Initializable {
         txaObservationNote.setText(note);
     }
 
+    public void setDtpFollowUpDate(LocalDate date){
+        dtpFollowUpDate.setValue(date);
+    }
+
 
     public void handleSave(ActionEvent event) {
         Citizen citizen = citizenModel.getSelectedCitizen();
