@@ -11,11 +11,12 @@ import fs3.enums.HealthConditionState;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
 import java.util.*;
 
 public class HealthConditionDAO {
     private final String tableName = "HealthConditions";
-    private final String[] columns = {"citizenId", "healthCondition", "healthConditionState", "professionalNote", "currentAssesment", "expectedLevel", "followUpDate", "observationNote"};
+    private final String[] columns = {"citizenId", "healthCondition", "healthConditionState", "professionalNote", "currentAssessment", "expectedLevel", "followUpDate", "observationNote"};
 
     String select = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ?";
     String selectHealthCondition = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ?" + " AND " + columns[1] + " = ?";
@@ -41,7 +42,7 @@ public class HealthConditionDAO {
         ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
         try (Connection con = cm.getConnection()) {
             HashMap<HealthCondition, HealthConditionData> healthConditions = citizen.getHealthConditions();
-            
+
             PreparedStatement preparedStatementUpdate = con.prepareStatement(update);
             PreparedStatement preparedStatementInsert = con.prepareStatement(insertHealthConditonData);
 
@@ -58,7 +59,7 @@ public class HealthConditionDAO {
                     preparedStatementUpdate.setString(1, healthConditionData.getHealthConditionState().toString());
                     preparedStatementUpdate.setString(2, healthConditionData.getProfessionalNote());
                     preparedStatementUpdate.setString(3, healthConditionData.getCurrentAssessment());
-                    preparedStatementUpdate.setString(4, healthConditionData.getExpectedLevel().toString());
+                    preparedStatementUpdate.setString(4, healthConditionData.getExpectedLevel() == null ? "" : healthConditionData.getExpectedLevel().toString());
                     preparedStatementUpdate.setDate(5, java.sql.Date.valueOf(healthConditionData.getFollowUpDate()));
                     preparedStatementUpdate.setString(6, healthConditionData.getObservationNote());
 
