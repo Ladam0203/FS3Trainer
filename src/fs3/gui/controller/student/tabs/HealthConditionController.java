@@ -110,8 +110,6 @@ public class HealthConditionController implements Initializable {
             healthConditionData.setExpectedLevel(cmbExpectedLevel.getSelectionModel().getSelectedItem());
             healthConditionData.setFollowUpDate(dtpFollowUpDate.getValue());
 
-
-
             citizen.getHealthConditions().put(healthCondition, healthConditionData);
 
             try {

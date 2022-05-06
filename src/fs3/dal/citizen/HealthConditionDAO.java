@@ -60,7 +60,7 @@ public class HealthConditionDAO {
                     preparedStatementUpdate.setString(2, healthConditionData.getProfessionalNote());
                     preparedStatementUpdate.setString(3, healthConditionData.getCurrentAssessment());
                     preparedStatementUpdate.setString(4, healthConditionData.getExpectedLevel() == null ? null : healthConditionData.getExpectedLevel().toString());
-                    preparedStatementUpdate.setDate(5, java.sql.Date.valueOf(healthConditionData.getFollowUpDate()));
+                    preparedStatementUpdate.setDate(5, healthConditionData.getFollowUpDate() == null ? null : java.sql.Date.valueOf(healthConditionData.getFollowUpDate()));
                     preparedStatementUpdate.setString(6, healthConditionData.getObservationNote());
 
                     preparedStatementUpdate.setInt(7, citizen.getId());
@@ -75,7 +75,7 @@ public class HealthConditionDAO {
                     preparedStatementInsert.setString(4, healthConditionData.getProfessionalNote());
                     preparedStatementInsert.setString(5, healthConditionData.getCurrentAssessment());
                     preparedStatementInsert.setString(6,healthConditionData.getExpectedLevel() == null ? null : healthConditionData.getExpectedLevel().toString());
-                    preparedStatementInsert.setDate(7, java.sql.Date.valueOf(healthConditionData.getFollowUpDate()));
+                    preparedStatementInsert.setDate(7, healthConditionData.getFollowUpDate() == null ? null : java.sql.Date.valueOf(healthConditionData.getFollowUpDate()));
                     preparedStatementInsert.setString(8, healthConditionData.getObservationNote());
 
                     preparedStatementInsert.addBatch();
