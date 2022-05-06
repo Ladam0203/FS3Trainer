@@ -18,6 +18,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TitledPane;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
@@ -75,11 +76,11 @@ public class HealthConditionController implements Initializable {
         ttpRoot.setText(title);
     }
 
-    public void setHealthConditionState(HealthConditionState state){
+    public void setHealthConditionState(HealthConditionState state) {
         cmbHealthConditionState.getSelectionModel().select(state);
     }
 
-    public void setExpectedLevel(ExpectedLevel level){
+    public void setExpectedLevel(ExpectedLevel level) {
         cmbExpectedLevel.getSelectionModel().select(level);
     }
 
@@ -87,18 +88,18 @@ public class HealthConditionController implements Initializable {
         txaProfessionalNote.setText(note);
     }
 
-    public void setCurrentAssessment(String assessment){
+    public void setCurrentAssessment(String assessment) {
         txaCurrentAssessment.setText(assessment);
     }
 
-    public void setObservationNote(String note){
+    public void setObservationNote(String note) {
         txaObservationNote.setText(note);
     }
 
 
     public void handleSave(ActionEvent event) {
         Citizen citizen = citizenModel.getSelectedCitizen();
-        if (citizen != null) {
+        if (areFieldsFilled()) {
             HealthCondition healthCondition = HealthCondition.fromString(ttpRoot.getText());
             HealthConditionData healthConditionData = new HealthConditionData();
             healthConditionData.setHealthConditionState(cmbHealthConditionState.getSelectionModel().getSelectedItem());
@@ -117,7 +118,59 @@ public class HealthConditionController implements Initializable {
                 e.printStackTrace();
             }
         }
-        else
-            PopUp.showError("kokot");
+
     }
+
+    private boolean areFieldsFilled(){
+        if(isCitizenSelected()&&isComboBoxSelected()&&isDateValid()&& isCurrentAssessmentFilled()){
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isCitizenSelected(){
+        if(citizenModel.getSelectedCitizen() != null){
+            return true;
+        }
+        else {
+            PopUp.showError("Select a citizen!");
+        }
+        return false;
+    }
+
+    private boolean isComboBoxSelected (){
+        if(cmbHealthConditionState.getSelectionModel().getSelectedItem()!= null && cmbExpectedLevel.getSelectionModel().getSelectedItem()!= null){
+            return true;
+        }
+        else {
+            PopUp.showError("Select current and expected status!");
+        }
+        return false;
+    }
+
+    private boolean isDateValid(){
+        if(dtpFollowUpDate.getValue() != null){
+            if(dtpFollowUpDate.getValue().isAfter(LocalDate.now())){
+                return true;
+            }
+            else{
+                PopUp.showError("Follow date cannot be in past!");
+            }
+        }
+        else{
+            PopUp.showError("Pick a date!");
+        }
+        return false;
+    }
+
+    private boolean isCurrentAssessmentFilled(){
+        if(!txaCurrentAssessment.getText().isEmpty()){
+            return true;
+        }
+        else{
+            PopUp.showError("Current Assessment need to be filled out!");
+        }
+        return false;
+    }
+
 }
