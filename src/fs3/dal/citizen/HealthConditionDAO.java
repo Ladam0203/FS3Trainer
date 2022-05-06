@@ -11,11 +11,12 @@ import fs3.enums.HealthConditionState;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
 import java.util.*;
 
 public class HealthConditionDAO {
     private final String tableName = "HealthConditions";
-    private final String[] columns = {"citizenId", "healthCondition", "healthConditionState", "professionalNote", "currentAssesment", "expectedLevel", "followUpDate", "observationNote"};
+    private final String[] columns = {"citizenId", "healthCondition", "healthConditionState", "professionalNote", "currentAssessment", "expectedLevel", "followUpDate", "observationNote"};
 
     String select = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ?";
     String selectHealthCondition = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ?" + " AND " + columns[1] + " = ?";
@@ -41,19 +42,24 @@ public class HealthConditionDAO {
         ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
         try (Connection con = cm.getConnection()) {
             HashMap<HealthCondition, HealthConditionData> healthConditions = citizen.getHealthConditions();
+
             PreparedStatement preparedStatementUpdate = con.prepareStatement(update);
             PreparedStatement preparedStatementInsert = con.prepareStatement(insertHealthConditonData);
+
             for (Map.Entry<HealthCondition, HealthConditionData> entry : healthConditions.entrySet()) {
+
                 PreparedStatement preparedStatementSelectHealthCondition = con.prepareStatement(selectHealthCondition);
                 preparedStatementSelectHealthCondition.setInt(1, citizen.getId());
                 preparedStatementSelectHealthCondition.setString(2, entry.getKey().toString());
+
                 ResultSet rs = preparedStatementSelectHealthCondition.executeQuery();
                 HealthConditionData healthConditionData = entry.getValue();
+
                 if (rs.next()) {
                     preparedStatementUpdate.setString(1, healthConditionData.getHealthConditionState().toString());
                     preparedStatementUpdate.setString(2, healthConditionData.getProfessionalNote());
                     preparedStatementUpdate.setString(3, healthConditionData.getCurrentAssessment());
-                    preparedStatementUpdate.setString(4, healthConditionData.getExpectedLevel().toString());
+                    preparedStatementUpdate.setString(4, healthConditionData.getExpectedLevel() == null ? null : healthConditionData.getExpectedLevel().toString());
                     preparedStatementUpdate.setDate(5, java.sql.Date.valueOf(healthConditionData.getFollowUpDate()));
                     preparedStatementUpdate.setString(6, healthConditionData.getObservationNote());
 
@@ -64,13 +70,15 @@ public class HealthConditionDAO {
                 }
                 else { //responsible for creating new rows
                     preparedStatementInsert.setInt(1, citizen.getId());
-                    preparedStatementInsert.setString(2, healthConditionData.toString());
+                    preparedStatementInsert.setString(2, entry.getKey().toString());
                     preparedStatementInsert.setString(3, healthConditionData.getHealthConditionState().toString());
                     preparedStatementInsert.setString(4, healthConditionData.getProfessionalNote());
                     preparedStatementInsert.setString(5, healthConditionData.getCurrentAssessment());
                     preparedStatementInsert.setString(6, healthConditionData.getExpectedLevel().toString());
                     preparedStatementInsert.setDate(7, java.sql.Date.valueOf(healthConditionData.getFollowUpDate()));
                     preparedStatementInsert.setString(8, healthConditionData.getObservationNote());
+
+                    preparedStatementInsert.addBatch();
                 }
             }
             preparedStatementUpdate.executeBatch();

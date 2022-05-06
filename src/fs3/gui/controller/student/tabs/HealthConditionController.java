@@ -58,10 +58,7 @@ public class HealthConditionController implements Initializable {
     }
 
     private void changeState(HealthConditionState newValue) {
-        switch (newValue) {
-            case INACTIVE -> disableFields(true);
-            case ACTIVE, POTENTIAL -> disableFields(false);
-        }
+        disableFields(newValue == HealthConditionState.INACTIVE); //unkown state also keeps the field enabled
     }
 
     private void disableFields(boolean disable) {
@@ -198,6 +195,15 @@ public class HealthConditionController implements Initializable {
             PopUp.showError("Current assessment needs to be filled out!");
         }
         return false;
+    }
+
+    public void clearFields() {
+        cmbHealthConditionState.getSelectionModel().clearSelection();
+        cmbExpectedLevel.getSelectionModel().clearSelection();
+        txaProfessionalNote.clear();
+        txaCurrentAssessment.clear();
+        txaObservationNote.clear();
+        dtpFollowUpDate.setValue(null);
     }
 
 }
