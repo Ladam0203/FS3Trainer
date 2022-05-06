@@ -59,7 +59,7 @@ public class HealthConditionDAO {
                     preparedStatementUpdate.setString(1, healthConditionData.getHealthConditionState().toString());
                     preparedStatementUpdate.setString(2, healthConditionData.getProfessionalNote());
                     preparedStatementUpdate.setString(3, healthConditionData.getCurrentAssessment());
-                    preparedStatementUpdate.setString(4, healthConditionData.getExpectedLevel() == null ? "" : healthConditionData.getExpectedLevel().toString());
+                    preparedStatementUpdate.setString(4, healthConditionData.getExpectedLevel() == null ? null : healthConditionData.getExpectedLevel().toString());
                     preparedStatementUpdate.setDate(5, java.sql.Date.valueOf(healthConditionData.getFollowUpDate()));
                     preparedStatementUpdate.setString(6, healthConditionData.getObservationNote());
 
