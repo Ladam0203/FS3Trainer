@@ -108,14 +108,14 @@ public class HealthConditionController implements Initializable {
             healthConditionData.setExpectedLevel(cmbExpectedLevel.getSelectionModel().getSelectedItem());
             healthConditionData.setFollowUpDate(dtpFollowUpDate.getValue());
             healthConditionData.setObservationNote(txaObservationNote.getText());
-            HashMap<HealthCondition, HealthConditionData> healthConditions = new HashMap<>();
-            healthConditions.put(healthCondition, healthConditionData);
-            citizen.setHealthConditions(healthConditions);
+
+            citizen.getHealthConditions().put(healthCondition, healthConditionData);
 
             try {
                 citizenModel.updateSelectedCitizen();
             } catch (Exception e) {
                 e.printStackTrace();
+                //TODO: handle gracefully
             }
         }
 
@@ -154,7 +154,7 @@ public class HealthConditionController implements Initializable {
                 return true;
             }
             else{
-                PopUp.showError("Follow date cannot be in past!");
+                PopUp.showError("Follow up date cannot be in past!");
             }
         }
         else{
@@ -168,7 +168,7 @@ public class HealthConditionController implements Initializable {
             return true;
         }
         else{
-            PopUp.showError("Current Assessment need to be filled out!");
+            PopUp.showError("Current assessment needs to be filled out!");
         }
         return false;
     }
