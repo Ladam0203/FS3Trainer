@@ -12,8 +12,8 @@ public abstract class User {
 
     public User(String username, String password) {
         this.id = new SimpleIntegerProperty();
-        this.username = new SimpleStringProperty();
-        this.password = new SimpleStringProperty();
+        this.username = new SimpleStringProperty(username);
+        this.password = new SimpleStringProperty(password);
     }
 
     public int getId() {
