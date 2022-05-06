@@ -1,4 +1,4 @@
-package fs3.dal;
+package fs3.dal.citizen;
 
 import fs3.be.Citizen;
 import fs3.dal.citizen.CitizenDAO;

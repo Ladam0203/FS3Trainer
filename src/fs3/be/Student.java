@@ -1,15 +1,26 @@
 package fs3.be;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 public class Student extends  User {
-    public Student(String username, String password){
-        setUsername(username);
-        setPassword(password);
+    StringProperty name;
+
+    public Student(String username, String password) {
+        super(username, password);
+        this.name = new SimpleStringProperty();
     }
 
-    public Student(int id, String username, String password){
-        setId(id);
-        setUsername(password);
-        setPassword(password);
+    public String getName() {
+        return name.get();
+    }
+
+    public StringProperty nameProperty() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name.set(name);
     }
 
     @Override
