@@ -1,13 +1,16 @@
 package fs3.dal.citizen;
 
 import fs3.be.Citizen;
+import fs3.be.HealthConditionData;
 import fs3.dal.citizen.CitizenDAO;
+import fs3.enums.ExpectedLevel;
 import fs3.enums.HealthCondition;
 import fs3.enums.HealthConditionState;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class CitizenDAOTest {
@@ -60,7 +63,7 @@ public class CitizenDAOTest {
         Assertions.assertEquals(HealthConditionState.INACTIVE, citizen.getHealthConditions().get(HealthCondition.PROBLEMS_WITH_PERSONAL_CARE).getHealthConditionState());
     }
 
-    //test update general info
+    @Disabled
     @Test
     public void testUpdateGeneralInfo() throws Exception {
         CitizenDAO citizenDAO = new CitizenDAO();
@@ -74,5 +77,29 @@ public class CitizenDAOTest {
         citizen = citizenDAO.readAll().get(0);
 
         Assertions.assertEquals("b1", citizen.getGeneralInformation().getCoping());
+    }
+
+    //test update
+    @Test
+    public void TestUpdateHealthConditions() throws Exception {
+        CitizenDAO citizenDAO = new CitizenDAO();
+
+        Citizen citizen = citizenDAO.readAll().get(0);
+
+        HealthConditionData healthConditionData = new HealthConditionData();
+        healthConditionData.setHealthConditionState(HealthConditionState.ACTIVE);
+        healthConditionData.setProfessionalNote("test");
+        healthConditionData.setCurrentAssessment("test");
+        healthConditionData.setExpectedLevel(ExpectedLevel.DECREASE);
+        healthConditionData.setFollowUpDate(LocalDate.now());
+        healthConditionData.setObservationNote("test");
+
+        citizen.getHealthConditions().put(HealthCondition.CIRCADIAN_RHYTHM_PROBLEMS, healthConditionData);
+
+        citizenDAO.update(citizen);
+
+        citizen = citizenDAO.readAll().get(0);
+
+        Assertions.assertEquals(HealthConditionState.ACTIVE, citizen.getHealthConditions().get(HealthCondition.CIRCADIAN_RHYTHM_PROBLEMS).getHealthConditionState());
     }
 }

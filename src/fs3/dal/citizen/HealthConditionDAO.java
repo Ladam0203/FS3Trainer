@@ -41,14 +41,19 @@ public class HealthConditionDAO {
         ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
         try (Connection con = cm.getConnection()) {
             HashMap<HealthCondition, HealthConditionData> healthConditions = citizen.getHealthConditions();
+            
             PreparedStatement preparedStatementUpdate = con.prepareStatement(update);
             PreparedStatement preparedStatementInsert = con.prepareStatement(insertHealthConditonData);
+
             for (Map.Entry<HealthCondition, HealthConditionData> entry : healthConditions.entrySet()) {
+
                 PreparedStatement preparedStatementSelectHealthCondition = con.prepareStatement(selectHealthCondition);
                 preparedStatementSelectHealthCondition.setInt(1, citizen.getId());
                 preparedStatementSelectHealthCondition.setString(2, entry.getKey().toString());
+
                 ResultSet rs = preparedStatementSelectHealthCondition.executeQuery();
                 HealthConditionData healthConditionData = entry.getValue();
+
                 if (rs.next()) {
                     preparedStatementUpdate.setString(1, healthConditionData.getHealthConditionState().toString());
                     preparedStatementUpdate.setString(2, healthConditionData.getProfessionalNote());
@@ -64,13 +69,15 @@ public class HealthConditionDAO {
                 }
                 else { //responsible for creating new rows
                     preparedStatementInsert.setInt(1, citizen.getId());
-                    preparedStatementInsert.setString(2, healthConditionData.toString());
+                    preparedStatementInsert.setString(2, entry.getKey().toString());
                     preparedStatementInsert.setString(3, healthConditionData.getHealthConditionState().toString());
                     preparedStatementInsert.setString(4, healthConditionData.getProfessionalNote());
                     preparedStatementInsert.setString(5, healthConditionData.getCurrentAssessment());
                     preparedStatementInsert.setString(6, healthConditionData.getExpectedLevel().toString());
                     preparedStatementInsert.setDate(7, java.sql.Date.valueOf(healthConditionData.getFollowUpDate()));
                     preparedStatementInsert.setString(8, healthConditionData.getObservationNote());
+
+                    preparedStatementInsert.addBatch();
                 }
             }
             preparedStatementUpdate.executeBatch();

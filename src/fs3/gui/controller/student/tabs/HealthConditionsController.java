@@ -61,6 +61,9 @@ public class HealthConditionsController implements Initializable {
                             entry.getValue().setCurrentAssessment(healthConditionData.getCurrentAssessment());
                             entry.getValue().setObservationNote(healthConditionData.getObservationNote());
                         }
+                        else {
+                            entry.getValue().clearFields();
+                        }
                     }
                 }
             });
