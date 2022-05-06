@@ -62,7 +62,7 @@ public class HealthConditionDAO {
 
                     preparedStatementUpdate.addBatch();
                 }
-                else {
+                else { //responsible for creating new rows
                     preparedStatementInsert.setInt(1, citizen.getId());
                     preparedStatementInsert.setString(2, healthConditionData.toString());
                     preparedStatementInsert.setString(3, healthConditionData.getHealthConditionState().toString());
