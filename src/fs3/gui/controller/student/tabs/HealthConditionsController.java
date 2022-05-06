@@ -1,8 +1,11 @@
 package fs3.gui.controller.student.tabs;
 
+import fs3.be.Citizen;
 import fs3.be.HealthConditionData;
 import fs3.enums.HealthCondition;
+import fs3.gui.controller.student.StudentPageController;
 import fs3.gui.model.CitizenModel;
+import fs3.util.PopUp;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -12,6 +15,7 @@ import javafx.scene.control.TitledPane;
 
 import java.net.URL;
 import java.util.*;
+import java.util.concurrent.locks.Condition;
 
 public class HealthConditionsController implements Initializable {
     @FXML
@@ -35,18 +39,21 @@ public class HealthConditionsController implements Initializable {
                 HealthConditionController controller = loader.getController();
                 //set title of pane
                 controller.setTitle(condition.toString());
+                //can I access it like this to get the citizen selected ?
 
-                accHealthConditions.getPanes().add((TitledPane)root);
+
+
+                accHealthConditions.getPanes().add((TitledPane) root);
                 conditionControllerMap.put(condition, controller);
             }
 
             //selected citizen listener
             citizenModel.getSelectedCitizenProperty().addListener((observable, oldValue, newValue) -> {
-                if(newValue != null){
+                if (newValue != null) {
                     for (Map.Entry<HealthCondition, HealthConditionController> entry :
                             conditionControllerMap.entrySet()) {
                         HealthConditionData healthConditionData = newValue.getHealthConditions().get(entry.getKey());
-                        if(healthConditionData != null){
+                        if (healthConditionData != null) {
                             entry.getValue().setProfessionalNote(healthConditionData.getProfessionalNote());
                         }
                     }
@@ -56,5 +63,9 @@ public class HealthConditionsController implements Initializable {
             //TODO: handle gracefully
             e.printStackTrace();
         }
+
     }
+
+
+
 }

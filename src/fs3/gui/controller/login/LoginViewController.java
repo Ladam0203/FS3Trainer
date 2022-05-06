@@ -17,7 +17,7 @@ import java.io.IOException;
 public class LoginViewController {
     public TextField txfUsername;
     public PasswordField psfPassword;
-    Student student = new Student("jano", "jano");
+    Student student = new Student("", "");
     public void handleLogin(ActionEvent event) {
         String username = txfUsername.getText();
         String password = psfPassword.getText();
