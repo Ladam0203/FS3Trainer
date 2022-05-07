@@ -21,6 +21,17 @@ public class DAOFacade implements IDAOFacade {
         citizenDAO.update(citizen);
     }
 
+    /*
+     * Call the readUser with the username and password, if the value returned is not null,
+     * it will be either an Admin, Teacher or a Student. Depending on the type of user that you wanted to log in,
+     * you can safely downcast the user to the correct type.
+     *
+     * Eg. 
+     * User user = daoFacade.readUser("username", "password");
+     * if (user != null) {
+     *    Student student = (Student) user;
+     * }
+     */
     @Override
     public User readUser(String username, String password) throws Exception {
         return userDAO.readUser(username, password);
