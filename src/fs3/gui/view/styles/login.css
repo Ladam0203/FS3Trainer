@@ -1,0 +1,25 @@
+.background {
+    -fx-background-image: url("../resources/login_background.png");
+    -fx-background-position: center center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+}
+
+.field {
+    -fx-background-color: #FFF;
+    -fx-prompt-text-fill: #000;
+    -fx-border-color: #2D73A2;
+    -fx-border-width: 2px;
+}
+
+.button {
+    -fx-background-color: #2D73A2;
+    -fx-background-radius: 0;
+    -fx-text-fill: #FFF;
+    -fx-font-weight: bold;
+
+}
+
+.button:hover {
+    -fx-background-color: #22577A;
+}

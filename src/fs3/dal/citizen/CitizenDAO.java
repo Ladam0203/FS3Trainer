@@ -55,6 +55,7 @@ public class CitizenDAO {
         personalInformationDAO.update(citizen);
         generalInformationDAO.update(citizen);
         healthConditionDAO.update(citizen);
+        functionalAbilityDAO.update(citizen);
     }
 
     private Citizen constructObject(ResultSet rs) throws Exception {
