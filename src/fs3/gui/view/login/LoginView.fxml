@@ -10,7 +10,7 @@
 
 <AnchorPane prefHeight="700.0" prefWidth="1200.0" styleClass="background" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.login.LoginViewController">
    <children>
-      <VBox alignment="CENTER" layoutX="46.0" layoutY="181.0" spacing="12.0">
+      <VBox alignment="CENTER" layoutY="181.0" prefHeight="116.0" prefWidth="327.0" spacing="12.0">
          <children>
             <TextField fx:id="txfUsername" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#handleLogin" prefWidth="230.0" promptText="Username" styleClass="field" VBox.vgrow="NEVER" />
             <PasswordField fx:id="psfPassword" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#handleLogin" prefWidth="230.0" promptText="Password" styleClass="field" VBox.vgrow="NEVER" />
