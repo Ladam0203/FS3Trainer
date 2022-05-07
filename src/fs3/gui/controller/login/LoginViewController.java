@@ -1,8 +1,11 @@
 package fs3.gui.controller.login;
 
 import fs3.be.Student;
+import fs3.be.User;
+import fs3.gui.model.LoginModel;
 import fs3.util.PopUp;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -15,28 +18,41 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class LoginViewController {
-    public TextField txfUsername;
-    public PasswordField psfPassword;
-    Student student = new Student("", "");
+    @FXML
+    private TextField txfUsername;
+    @FXML
+    private PasswordField psfPassword;
+    private LoginModel loginModel;
+
+    public LoginViewController() {
+        loginModel = new LoginModel();
+    }
+
     public void handleLogin(ActionEvent event) {
         String username = txfUsername.getText();
         String password = psfPassword.getText();
 
-        if(username != null && password != null){
-            if(username.equals(student.getUsername())&& password.equals(student.getPassword())){
-                try {
-                    Parent root = FXMLLoader.load(getClass().getResource("../../view/student/StudentPageViewNew.fxml"));
-                    Stage stage =  (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    Scene scene = new Scene (root);
-                    stage.setScene(scene);
-                    stage.show();
-                } catch (IOException e) {
-                    PopUp.showError("Cannot load Student View!");
-                    e.printStackTrace();
-                }
+        try {
+            User loggedUser = loginModel.tryLogin(username, password);
+            if (loggedUser == null) {
+                PopUp.showError("Wrong login credentials!");
+                return;
             }
+            try {
+                boolean isStudent = loggedUser.getClass().equals(Student.class);
+//                boolean isTeacher = loggedUser.getClass().equals(Teacher.class);
+//                boolean isAdmin = loggedUser.getClass().equals(Admin.class);
+
+                Parent root = isStudent ? FXMLLoader.load(getClass().getResource("../../view/student/StudentPageViewNew.fxml")) : null;
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            } catch (Exception e) {
+                PopUp.showError("Cannot load the page!");
+            }
+        } catch (Exception e) {
+            PopUp.showError("Cannot login");
         }
     }
-
-
 }
