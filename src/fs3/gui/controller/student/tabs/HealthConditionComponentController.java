@@ -22,7 +22,7 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
-public class HealthConditionController implements Initializable {
+public class HealthConditionComponentController implements Initializable {
     @FXML
     private TitledPane ttpRoot;
 

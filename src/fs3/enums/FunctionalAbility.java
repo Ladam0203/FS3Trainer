@@ -49,4 +49,5 @@ public enum FunctionalAbility {
         }
         throw new IllegalArgumentException("Functional ability " + functionalAbility + " could not be parsed");
     }
+
 }
