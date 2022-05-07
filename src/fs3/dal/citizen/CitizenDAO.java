@@ -16,6 +16,7 @@ public class CitizenDAO {
     private final PersonalInformationDAO personalInformationDAO = new PersonalInformationDAO();
     private final GeneralInformationDAO generalInformationDAO = new GeneralInformationDAO();
     private final HealthConditionDAO healthConditionDAO = new HealthConditionDAO();
+    private final FunctionalAbilityDAO functionalAbilityDAO = new FunctionalAbilityDAO();
 
     ExecutorService executor = Executors.newCachedThreadPool();
 
@@ -87,7 +88,16 @@ public class CitizenDAO {
             }
             return null;
         });
-        if (future.get() != null || future1.get() != null || future2.get() != null) {
+        Future<Exception> future3 = executor.submit(() -> {
+            try {
+                citizen.setFunctionalAbilities(functionalAbilityDAO.read(citizen));
+            }
+            catch (Exception e) {
+                return e;
+            }
+            return null;
+        });
+        if (future.get() != null || future1.get() != null || future2.get() != null || future3.get() != null) {
             throw new Exception("Error while constructing citizen object");
         }
 

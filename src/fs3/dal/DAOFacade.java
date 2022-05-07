@@ -26,7 +26,7 @@ public class DAOFacade implements IDAOFacade {
      * it will be either an Admin, Teacher or a Student. Depending on the type of user that you wanted to log in,
      * you can safely downcast the user to the correct type.
      *
-     * Eg. 
+     * Eg.
      * User user = daoFacade.readUser("username", "password");
      * if (user != null) {
      *    Student student = (Student) user;
