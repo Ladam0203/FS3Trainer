@@ -20,7 +20,7 @@ public class HealthConditionDAO {
     String select = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ?";
     String selectHealthCondition = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ?" + " AND " + columns[1] + " = ?";
     String update = "UPDATE " + tableName + " SET " + columns[2] + " = ?, " + columns[3] + " = ?, " + columns[4] + " = ?, " + columns[5] + " = ?, " + columns[6] + " = ?, " + columns[7] + " = ? WHERE " + columns[0] + " = ? AND " + columns[1] + " = ?";
-    String insertHealthConditonData = "INSERT INTO " + tableName + " (" + String.join(", ", columns) + ") VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    String insertHealthConditonData = "INSERT INTO " + tableName + "  VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
     public HashMap<HealthCondition, HealthConditionData> read(Citizen citizen) throws Exception {
         HashMap<HealthCondition, HealthConditionData> healthConditionData;
