@@ -98,11 +98,13 @@ public class HealthConditionDAO {
     private HealthConditionData constructHealthConditionData(ResultSet rs) throws Exception {
         HealthConditionData healthConditionData = new HealthConditionData();
         healthConditionData.setHealthConditionState(HealthConditionState.fromString(rs.getString(columns[2])));
-        healthConditionData.setProfessionalNote(rs.getString(columns[3]));
-        healthConditionData.setCurrentAssessment(rs.getString(columns[4]));
-        healthConditionData.setExpectedLevel(ExpectedLevel.fromString(rs.getString(columns[5])));
-        healthConditionData.setFollowUpDate(rs.getDate(columns[6]).toLocalDate());
-        healthConditionData.setObservationNote(rs.getString(columns[7]));
+        if (healthConditionData.getHealthConditionState() == HealthConditionState.ACTIVE) {
+            healthConditionData.setProfessionalNote(rs.getString(columns[3]));
+            healthConditionData.setCurrentAssessment(rs.getString(columns[4]));
+            healthConditionData.setExpectedLevel(ExpectedLevel.fromString(rs.getString(columns[5])));
+            healthConditionData.setFollowUpDate(rs.getDate(columns[6]).toLocalDate());
+            healthConditionData.setObservationNote(rs.getString(columns[7]));
+        }
         return healthConditionData;
     }
 }

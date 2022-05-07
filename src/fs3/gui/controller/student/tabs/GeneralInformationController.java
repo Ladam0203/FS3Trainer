@@ -44,6 +44,7 @@ public class GeneralInformationController implements Initializable {
             textAreas.add(txaNetwork);
         } catch (Exception e) {
             //TODO: handle gracefully
+            e.printStackTrace();
         }
 
         citizenModel.getSelectedCitizenProperty().addListener((observable, oldValue, newValue) -> {
