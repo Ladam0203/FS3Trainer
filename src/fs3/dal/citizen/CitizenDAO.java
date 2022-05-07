@@ -8,11 +8,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class CitizenDAO {
     private final PersonalInformationDAO personalInformationDAO = new PersonalInformationDAO();
     private final GeneralInformationDAO generalInformationDAO = new GeneralInformationDAO();
     private final HealthConditionDAO healthConditionDAO = new HealthConditionDAO();
+
+    ExecutorService executor = Executors.newCachedThreadPool();
 
     String tableName = "Citizens";
     String[] columns = {"id"};
@@ -27,11 +32,21 @@ public class CitizenDAO {
             PreparedStatement ps = con.prepareStatement(readAll);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                citizens.add(constructObject(rs));
+                Future<Exception> future = executor.submit(() -> {
+                    try {
+                        citizens.add(constructObject(rs));
+                    }
+                    catch (Exception e) {
+                        return e;
+                    }
+                    return null;
+                });
+                if (future.get() != null) {
+                    throw future.get();
+                }
             }
         }
         ConnectionManagerPool.getInstance().returnConnectionManager(cm);
-
         return citizens;
     }
 
@@ -45,9 +60,37 @@ public class CitizenDAO {
         Citizen citizen = new Citizen();
         int citizenId = rs.getInt(columns[0]);
         citizen.setId(citizenId);
-        citizen.setPersonalInformation(personalInformationDAO.read(citizen));
-        citizen.setGeneralInformation(generalInformationDAO.read(citizen));
-        citizen.setHealthConditions(healthConditionDAO.read(citizen));
+        Future<Exception> future = executor.submit(() -> {
+            try {
+                citizen.setPersonalInformation(personalInformationDAO.read(citizen));
+            }
+            catch (Exception e) {
+                return e;
+            }
+            return null;
+        });
+        Future<Exception> future1 = executor.submit(() -> {
+            try {
+                citizen.setGeneralInformation(generalInformationDAO.read(citizen));
+            }
+            catch (Exception e) {
+                return e;
+            }
+            return null;
+        });
+        Future<Exception> future2 = executor.submit(() -> {
+            try {
+                citizen.setHealthConditions(healthConditionDAO.read(citizen));
+            }
+            catch (Exception e) {
+                return e;
+            }
+            return null;
+        });
+        if (future.get() != null || future1.get() != null || future2.get() != null) {
+            throw new Exception("Error while constructing citizen object");
+        }
+
         return citizen;
     }
 }
