@@ -4,6 +4,7 @@ import fs3.be.Citizen;
 import fs3.be.HealthConditionData;
 import fs3.dal.citizen.CitizenDAO;
 import fs3.enums.ExpectedLevel;
+import fs3.enums.FunctionalAbility;
 import fs3.enums.HealthCondition;
 import fs3.enums.HealthConditionState;
 import org.junit.jupiter.api.Assertions;
@@ -30,8 +31,7 @@ public class CitizenDAOTest {
         CitizenDAO citizenDAO = new CitizenDAO();
         Citizen citizen = citizenDAO.readAll().get(0);
 
-        Assertions.assertNull(citizen.getHealthConditions().get(HealthCondition.ACUTE_PAIN));
-
+        Assertions.assertEquals("test", citizen.getFunctionalAbilities().get(FunctionalAbility.ABILITY_TO_WORK).getProfessionalNote());
     }
 
     @Disabled
