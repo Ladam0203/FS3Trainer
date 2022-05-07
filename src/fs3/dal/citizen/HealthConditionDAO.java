@@ -11,6 +11,7 @@ import fs3.enums.HealthConditionState;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.*;
 
 public class HealthConditionDAO {
@@ -80,8 +81,16 @@ public class HealthConditionDAO {
                     preparedStatementInsert.addBatch();
                 }
             }
-            preparedStatementUpdate.executeBatch();
-            preparedStatementInsert.executeBatch();
+            try {
+                preparedStatementUpdate.executeBatch();
+            } catch (SQLException e) {
+
+            }
+            try {
+                preparedStatementInsert.executeBatch();
+            } catch (SQLException e) {
+
+            }
         }
         ConnectionManagerPool.getInstance().returnConnectionManager(cm);
     }
