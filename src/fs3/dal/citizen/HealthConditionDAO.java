@@ -11,7 +11,6 @@ import fs3.enums.HealthConditionState;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.time.LocalDate;
 import java.util.*;
 
 public class HealthConditionDAO {
