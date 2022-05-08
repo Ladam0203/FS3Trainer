@@ -1,25 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
 
-<AnchorPane prefHeight="700.0" prefWidth="1200.0" styleClass="background" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.login.LoginViewController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox alignment="CENTER" layoutY="181.0" prefHeight="116.0" prefWidth="327.0" spacing="12.0">
-         <children>
-            <TextField fx:id="txfUsername" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#handleLogin" prefWidth="230.0" promptText="Username" styleClass="field" VBox.vgrow="NEVER" />
-            <PasswordField fx:id="psfPassword" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#handleLogin" prefWidth="230.0" promptText="Password" styleClass="field" VBox.vgrow="NEVER" />
-            <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleLogin" prefWidth="230.0" text="Login" VBox.vgrow="NEVER" />
-         </children>
-      </VBox>
+      <BorderPane maxWidth="400.0" prefWidth="300.0" HBox.hgrow="SOMETIMES">
+         <center>
+            <VBox spacing="12.0" BorderPane.alignment="TOP_CENTER">
+               <BorderPane.margin>
+                  <Insets top="200.0" />
+               </BorderPane.margin>
+               <children>
+                  <TextField fx:id="txfUsername" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onAction="#handleLogin" prefWidth="230.0" promptText="Username" styleClass="field" />
+                  <PasswordField fx:id="psfPassword" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onAction="#handleLogin" prefWidth="230.0" promptText="Password" styleClass="field" />
+                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleLogin" prefWidth="230.0" text="Login" />
+               </children>
+               <padding>
+                  <Insets left="20.0" right="20.0" />
+               </padding>
+            </VBox>
+         </center>
+      </BorderPane>
+      <Pane maxWidth="1.7976931348623157E308" prefWidth="900.0" styleClass="background" HBox.hgrow="SOMETIMES" />
    </children>
    <stylesheets>
-      <URL value="@../styles/login.css" />
       <URL value="@../styles/common.css" />
+      <URL value="@../styles/login.css" />
    </stylesheets>
-</AnchorPane>
+</HBox>
