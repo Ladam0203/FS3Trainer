@@ -56,10 +56,8 @@ public class FunctionalAbilityDAO {
                 FunctionalAbilityData functionalAbilityData = entry.getValue();
 
                 if (rs.next()) {
-                    System.out.println("func ab pres");
                     psUpdate.setInt(1, functionalAbilityData.getCurrentLimitationLevel().getValue());
                     if (functionalAbilityData.getCurrentLimitationLevel() == LimitationLevel.NOT_RELEVANT) {
-                        System.out.println("set to not relevant");
                         psUpdate.setNull(2, Types.INTEGER);
                         psUpdate.setNull(3, Types.INTEGER);
                         psUpdate.setNull(4, Types.NVARCHAR);
