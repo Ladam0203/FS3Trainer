@@ -18,6 +18,7 @@ public class CitizenDAO {
     private final HealthConditionDAO healthConditionDAO = new HealthConditionDAO();
     private final FunctionalAbilityDAO functionalAbilityDAO = new FunctionalAbilityDAO();
 
+    ExecutorService subExecutor = Executors.newFixedThreadPool(4);
     ExecutorService executor = Executors.newCachedThreadPool();
 
     String tableName = "Citizens";
@@ -26,6 +27,8 @@ public class CitizenDAO {
     String readAll = "SELECT * FROM " + tableName;
 
     public List<Citizen> readAll() throws Exception {
+        long start = System.currentTimeMillis();
+
         List<Citizen> citizens = new ArrayList<>();
 
         ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
@@ -44,65 +47,86 @@ public class CitizenDAO {
             ConnectionManagerPool.getInstance().returnConnectionManager(cm);
         }
 
+        long end = System.currentTimeMillis();
+        System.out.println("CitizenDAO.readAll() took " + (end - start) + " ms");
+
         return citizens;
     }
 
     public void update(Citizen citizen) throws Exception {
-        executeAsync(new ExceptionCallable() {
+        subExecutor = Executors.newFixedThreadPool(4);
+        List<Future<Exception>> futures = new ArrayList<>();
+        futures.add(executor.submit(new ExceptionCallable() {
             @Override
             void doTask() throws Exception {
                 personalInformationDAO.update(citizen);
             }
-        });
-        executeAsync(new ExceptionCallable() {
+        }));
+        futures.add(executor.submit(new ExceptionCallable() {
             @Override
             void doTask() throws Exception {
                 generalInformationDAO.update(citizen);
             }
-        });
-        executeAsync(new ExceptionCallable() {
+        }));
+        futures.add(executor.submit(new ExceptionCallable() {
             @Override
             void doTask() throws Exception {
                 healthConditionDAO.update(citizen);
             }
-        });
-        executeAsync(new ExceptionCallable() {
+        }));
+        futures.add(executor.submit(new ExceptionCallable() {
             @Override
             void doTask() throws Exception {
                 functionalAbilityDAO.update(citizen);
             }
-        });
+        }));
+
+        subExecutor.shutdown();
+        for (Future<Exception> future : futures) {
+            if (future.get() != null) {
+                throw future.get();
+            }
+        }
     }
 
     private Citizen constructCitizen(ResultSet rs) throws Exception {
         Citizen citizen = new Citizen();
         int citizenId = rs.getInt(columns[0]);
         citizen.setId(citizenId);
-        executeAsync(new ExceptionCallable() {
+
+        subExecutor = Executors.newFixedThreadPool(4);
+        List<Future<Exception>> futures = new ArrayList<>();
+        futures.add(executor.submit(new ExceptionCallable() {
             @Override
             void doTask() throws Exception {
                 citizen.setPersonalInformation(personalInformationDAO.read(citizen));
             }
-        });
-        executeAsync(new ExceptionCallable() {
+        }));
+        futures.add(executor.submit(new ExceptionCallable() {
             @Override
             void doTask() throws Exception {
                 citizen.setGeneralInformation(generalInformationDAO.read(citizen));
             }
-        });
-        executeAsync(new ExceptionCallable() {
+        }));
+        futures.add(executor.submit(new ExceptionCallable() {
             @Override
             void doTask() throws Exception {
                 citizen.setHealthConditions(healthConditionDAO.read(citizen));
             }
-        });
-        executeAsync(new ExceptionCallable() {
+        }));
+        futures.add(executor.submit(new ExceptionCallable() {
             @Override
             void doTask() throws Exception {
                 citizen.setFunctionalAbilities(functionalAbilityDAO.read(citizen));
             }
-        });
+        }));
 
+        subExecutor.shutdown();
+        for (Future<Exception> future : futures) {
+            if (future.get() != null) {
+                throw future.get();
+            }
+        }
 
         return citizen;
     }
