@@ -21,15 +21,6 @@ public class CitizenDAOTest {
 
         Citizen citizen = citizenDAO.readAll().get(0);
 
-        FunctionalAbilityData functionalAbilityData = new FunctionalAbilityData();
-        functionalAbilityData.setCurrentLimitationLevel(LimitationLevel.NOT_RELEVANT);
-
-        citizen.getFunctionalAbilities().put(FunctionalAbility.COOKING, functionalAbilityData);
-
-        citizenDAO.update(citizen);
-
-        citizen = citizenDAO.readAll().get(0);
-
         Assertions.assertEquals(LimitationLevel.NOT_RELEVANT, citizen.getFunctionalAbilities().get(FunctionalAbility.COOKING).getCurrentLimitationLevel());
     }
 }
