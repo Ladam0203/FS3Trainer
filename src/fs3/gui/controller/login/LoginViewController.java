@@ -40,7 +40,7 @@ public class LoginViewController {
 //                boolean isTeacher = loggedUser.getClass().equals(Teacher.class);
 //                boolean isAdmin = loggedUser.getClass().equals(Admin.class);
 
-                Parent root = isStudent ? FXMLLoader.load(getClass().getResource("../../view/student/StudentPageViewNew.fxml")) : null;
+                Parent root = isStudent ? FXMLLoader.load(getClass().getResource("../../view/student/StudentPageView.fxml")) : null;
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
