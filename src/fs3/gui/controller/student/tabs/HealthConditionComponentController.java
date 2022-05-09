@@ -50,6 +50,7 @@ public class HealthConditionComponentController implements Initializable {
             citizenModel = CitizenModel.getInstance();
         } catch (Exception e) {
             e.printStackTrace();
+            //handle gracefully
         }
 
         cmbHealthConditionState.getItems().addAll(HealthConditionState.values());
@@ -104,6 +105,14 @@ public class HealthConditionComponentController implements Initializable {
             HealthCondition healthCondition = HealthCondition.fromString(ttpRoot.getText());
             HealthConditionData healthConditionData = new HealthConditionData();
             healthConditionData.setHealthConditionState(cmbHealthConditionState.getSelectionModel().getSelectedItem());
+            if (healthConditionData.getHealthConditionState() == HealthConditionState.INACTIVE) {  //sync model with db
+                txaProfessionalNote.clear();
+                txaObservationNote.clear();
+                txaCurrentAssessment.clear();
+                cmbExpectedLevel.getSelectionModel().clearSelection();
+                dtpFollowUpDate.getEditor().clear();
+            }
+
             healthConditionData.setProfessionalNote(txaProfessionalNote.getText());
             healthConditionData.setObservationNote(txaObservationNote.getText());
             healthConditionData.setCurrentAssessment(txaCurrentAssessment.getText());

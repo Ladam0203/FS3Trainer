@@ -133,6 +133,15 @@ public class FunctionalAbilityComponentController implements Initializable {
             FunctionalAbility functionalAbility = FunctionalAbility.fromString(ttpRoot.getText());
             FunctionalAbilityData functionalAbilityData = new FunctionalAbilityData();
             functionalAbilityData.setCurrentLimitationLevel(cmbCurrentLimitationLevel.getSelectionModel().getSelectedItem());
+            if (cmbCurrentLimitationLevel.getSelectionModel().getSelectedItem() == LimitationLevel.NOT_RELEVANT) { //sync model with db
+                cmbExpectedLimitationLevel.getSelectionModel().clearSelection();
+                dtpFollowUpDate.getEditor().clear();
+                txaProfessionalNote.clear();
+                txaObservationNote.clear();
+                cmbPerformanceLevel.getSelectionModel().clearSelection();
+                cmbPerceivedLimitationLevel.getSelectionModel().clearSelection();
+                txaCitizenRequest.clear();
+            }
             functionalAbilityData.setExpectedLimitationLevel(cmbExpectedLimitationLevel.getSelectionModel().getSelectedItem());
             functionalAbilityData.setFollowUpDate(dtpFollowUpDate.getValue());
             functionalAbilityData.setProfessionalNote(txaProfessionalNote.getText());
