@@ -109,7 +109,7 @@ public class CitizenDAO {
     }
 
     /*
-    * Submits task to executor service and throws the exception upwards if it happened
+    * Submits task to executor service and throws the exception upwards if it happened, not really async because it will wait to finish...
      */
     public void executeAsync(ExceptionCallable callable) throws Exception {
         Future<Exception> exception = executor.submit(callable);
