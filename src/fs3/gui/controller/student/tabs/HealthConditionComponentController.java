@@ -128,7 +128,6 @@ public class HealthConditionComponentController implements Initializable {
         }
         //fromString(cmbHealthConditionState.getSelectionModel().getSelectedItem().toString())
         if(!cmbHealthConditionState.getSelectionModel().getSelectedItem().equals(HealthConditionState.INACTIVE)){
-            System.out.println(cmbHealthConditionState.getSelectionModel().getSelectedItem());
             if(!isDateValid() || !isExpectedStateSelected() || !isCurrentAssessmentFilled()){
                 return  false;
             }
