@@ -8,191 +8,170 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.student.tabs.GeneralInformationController">
    <children>
       <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ScrollPane fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="540.0" minWidth="-Infinity" prefHeight="623.0" prefWidth="405.0" HBox.hgrow="SOMETIMES">
+            <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="540.0" minWidth="-Infinity" prefWidth="405.0" style="-fx-background-color: #FFF;" styleClass="divider" HBox.hgrow="SOMETIMES">
               <content>
-                  <VBox alignment="TOP_CENTER" spacing="10.0">
+                  <VBox alignment="TOP_CENTER" spacing="10.0" style="-fx-background-color: #FFF;">
                      <children>
                         <Label text="PERSONAL INFORMATION" VBox.vgrow="NEVER">
                            <VBox.margin>
                               <Insets top="4.0" />
                            </VBox.margin>
                         </Label>
-                        <Label fx:id="lblName" text="Rigmor Hansen" VBox.vgrow="NEVER" />
+                        <Label fx:id="lblName" text="Name of citizen" VBox.vgrow="NEVER" />
                      </children>
                   </VBox>
               </content>
             </ScrollPane>
-            <VBox spacing="8.0" HBox.hgrow="SOMETIMES">
+            <VBox HBox.hgrow="SOMETIMES">
                <children>
-                  <ScrollPane fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="623.0" prefWidth="405.0" VBox.vgrow="ALWAYS">
+                  <ScrollPane fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="623.0" prefWidth="405.0" style="-fx-background-color: #FFF;" VBox.vgrow="ALWAYS">
                      <content>
-                        <GridPane hgap="12.0" vgap="8.0">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="130.0" />
-                            <ColumnConstraints hgrow="ALWAYS" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints maxHeight="1.7976931348623157E308" prefHeight="80.0" valignment="TOP" vgrow="ALWAYS" />
-                            <RowConstraints maxHeight="1.7976931348623157E308" prefHeight="80.0" valignment="TOP" vgrow="ALWAYS" />
-                            <RowConstraints maxHeight="1.7976931348623157E308" prefHeight="80.0" valignment="TOP" vgrow="ALWAYS" />
-                              <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="80.0" valignment="TOP" vgrow="ALWAYS" />
-                              <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="80.0" valignment="TOP" vgrow="ALWAYS" />
-                              <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="80.0" valignment="TOP" vgrow="ALWAYS" />
-                              <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="80.0" valignment="TOP" vgrow="ALWAYS" />
-                              <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="80.0" valignment="TOP" vgrow="ALWAYS" />
-                              <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="80.0" valignment="TOP" vgrow="ALWAYS" />
-                              <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="80.0" valignment="TOP" vgrow="ALWAYS" />
-                              <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="80.0" valignment="TOP" vgrow="ALWAYS" />
-                              <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="80.0" valignment="TOP" vgrow="ALWAYS" />
-                          </rowConstraints>
+                        <VBox spacing="8.0" style="-fx-background-color: #FFF;">
                            <children>
-                              <HBox>
+                              <HBox spacing="8.0">
                                  <children>
-                                    <Label text="Coping" />
-                                    <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="?" HBox.hgrow="ALWAYS">
+                                    <Label maxWidth="220.0" minWidth="-Infinity" prefWidth="120.0" text="Coping" HBox.hgrow="SOMETIMES" />
+                                    <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="?" HBox.hgrow="NEVER">
                                        <tooltip>
-                                          <Tooltip text="The conscious or unconscious of the citizenmanagement of life / illness - bothchallenges and opportunities." />
+                                          <Tooltip prefWidth="150.0" text="The conscious or unconscious of the citizenmanagement of life / illness - both challenges and opportunities." wrapText="true" />
                                        </tooltip>
                                     </Label>
+                                    <TextArea fx:id="txaCoping" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="150.0" prefHeight="100.0" prefWidth="250.0" HBox.hgrow="ALWAYS" />
                                  </children>
                               </HBox>
-                              <HBox GridPane.rowIndex="1">
+                              <HBox spacing="8.0">
                                  <children>
-                                    <Label text="Motivation" />
-                                    <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="?" HBox.hgrow="ALWAYS">
+                                    <Label maxWidth="220.0" minWidth="-Infinity" prefWidth="120.0" text="Motivation" HBox.hgrow="SOMETIMES" />
+                                    <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="?" HBox.hgrow="NEVER">
                                        <tooltip>
-                                          <Tooltip text="The driving force behind the citizen acting ona certain way or get startedwith / maintains a task / effort." />
+                                          <Tooltip prefWidth="150.0" text="The driving force behind the citizen acting ona certain way or get startedwith / maintains a task / effort." wrapText="true" />
                                        </tooltip>
                                     </Label>
+                                    <TextArea fx:id="txaMotivation" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="150.0" prefHeight="100.0" prefWidth="250.0" HBox.hgrow="ALWAYS" />
                                  </children>
                               </HBox>
-                              <HBox GridPane.rowIndex="2">
+                              <HBox spacing="8.0">
                                  <children>
-                                    <Label text="Resources" />
-                                    <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="?" HBox.hgrow="ALWAYS">
+                                    <Label maxWidth="220.0" minWidth="-Infinity" prefWidth="120.0" text="Resources" HBox.hgrow="SOMETIMES" />
+                                    <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="?" HBox.hgrow="NEVER">
                                        <tooltip>
-                                          <Tooltip text="The physical or mental forces thatthe citizen to a certain extent has toavailable and can take advantage of. Physical forcescan for example be in the form of physical health andstrength. Mental forces can, for example, be inform of mental health and strength,including thoughts and ways of behavingto situations and other people on." />
+                                          <Tooltip prefWidth="150.0" text="The physical or mental forces thatthe citizen to a certain extent has toavailable and can take advantage of. Physical forcescan for example be in the form of physical health andstrength. Mental forces can, for example, be inform of mental health and strength,including thoughts and ways of behavingto situations and other people on." wrapText="true" />
                                        </tooltip>
                                     </Label>
+                                    <TextArea fx:id="txaResources" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="150.0" prefHeight="100.0" prefWidth="250.0" HBox.hgrow="ALWAYS" />
                                  </children>
                               </HBox>
-                              <HBox GridPane.rowIndex="3">
+                              <HBox spacing="8.0">
                                  <children>
-                                    <Label text="Roles" />
-                                    <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="?" HBox.hgrow="ALWAYS">
+                                    <Label maxWidth="220.0" minWidth="-Infinity" prefWidth="120.0" text="Roles" HBox.hgrow="SOMETIMES" />
+                                    <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="?" HBox.hgrow="NEVER">
                                        <tooltip>
-                                          <Tooltip text="The roles that are particularly important forthe citizen in relation to family, work andcommunity." />
+                                          <Tooltip prefWidth="150.0" text="The roles that are particularly important forthe citizen in relation to family, work andcommunity." wrapText="true" />
                                        </tooltip>
                                     </Label>
+                                    <TextArea fx:id="txaRoles" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="150.0" prefHeight="100.0" prefWidth="250.0" HBox.hgrow="ALWAYS" />
                                  </children>
                               </HBox>
-                              <HBox GridPane.rowIndex="4">
+                              <HBox spacing="8.0">
                                  <children>
-                                    <Label text="Habits" />
-                                    <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="?" HBox.hgrow="ALWAYS">
+                                    <Label maxWidth="220.0" minWidth="-Infinity" prefWidth="120.0" text="Habits" HBox.hgrow="SOMETIMES" />
+                                    <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="?" HBox.hgrow="NEVER">
                                        <tooltip>
-                                          <Tooltip text="Regular behavior that the citizen haslearned through constant repetition andexecution completely or partially unconsciously.Habits are, for example, the circadian rhythm, the way of becomingaccused of, contact with fellow human beings andrelationships, way of looking at the world." />
+                                          <Tooltip prefWidth="150.0" text="Regular behavior that the citizen haslearned through constant repetition andexecution completely or partially unconsciously.Habits are, for example, the circadian rhythm, the way of becomingaccused of, contact with fellow human beings andrelationships, way of looking at the world." wrapText="true" />
                                        </tooltip>
                                     </Label>
+                                    <TextArea fx:id="txaHabits" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="150.0" prefHeight="100.0" prefWidth="250.0" HBox.hgrow="ALWAYS" />
                                  </children>
                               </HBox>
-                              <HBox GridPane.rowIndex="5">
+                              <HBox spacing="8.0">
                                  <children>
-                                    <Label text="Education" />
-                                    <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="?" HBox.hgrow="ALWAYS">
+                                    <Label maxWidth="220.0" minWidth="-Infinity" prefWidth="120.0" text="Education" HBox.hgrow="SOMETIMES" />
+                                    <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="?" HBox.hgrow="NEVER">
                                        <tooltip>
-                                          <Tooltip text="Current or previous educational and / or professional background.Eg primary school, vocational education andHigher Education." />
+                                          <Tooltip prefWidth="150.0" text="Current or previous educational and / or professional background.Eg primary school, vocational education andHigher Education." wrapText="true" />
                                        </tooltip>
                                     </Label>
+                                    <TextArea fx:id="txaEducation" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="150.0" prefHeight="100.0" prefWidth="250.0" HBox.hgrow="ALWAYS" />
                                  </children>
                               </HBox>
-                              <HBox GridPane.rowIndex="6">
+                              <HBox spacing="8.0">
                                  <children>
-                                    <Label text="Jobs" />
-                                    <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="?" HBox.hgrow="ALWAYS">
+                                    <Label maxWidth="220.0" minWidth="-Infinity" prefWidth="120.0" text="Jobs" HBox.hgrow="SOMETIMES" />
+                                    <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="?" HBox.hgrow="NEVER">
                                        <tooltip>
-                                          <Tooltip text="Current or previous educational and / or professional background.Eg primary school, vocational education andHigher Education." />
+                                          <Tooltip prefWidth="150.0" text="Current or previous educational and / or professional background.Eg primary school, vocational education andHigher Education." wrapText="true" />
                                        </tooltip>
                                     </Label>
+                                    <TextArea fx:id="txaJobs" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="150.0" prefHeight="100.0" prefWidth="250.0" HBox.hgrow="ALWAYS" />
                                  </children>
                               </HBox>
-                              <HBox GridPane.rowIndex="7">
+                              <HBox spacing="8.0">
                                  <children>
-                                    <Label text="Life story" />
-                                    <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="?" HBox.hgrow="ALWAYS">
+                                    <Label maxWidth="220.0" minWidth="-Infinity" prefWidth="120.0" text="Life story" HBox.hgrow="SOMETIMES" />
+                                    <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="?" HBox.hgrow="NEVER">
                                        <tooltip>
-                                          <Tooltip text="A description of the citizen's experience ofsignificant events, interests andchores throughout life." />
+                                          <Tooltip prefWidth="150.0" text="A description of the citizen's experience ofsignificant events, interests andchores throughout life." wrapText="true" />
                                        </tooltip>
                                     </Label>
+                                    <TextArea fx:id="txaLifeStory" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="150.0" prefHeight="100.0" prefWidth="250.0" HBox.hgrow="ALWAYS" />
                                  </children>
                               </HBox>
-                              <HBox GridPane.rowIndex="8">
+                              <HBox spacing="8.0">
                                  <children>
-                                    <Label text="Health information" />
-                                    <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="?" HBox.hgrow="ALWAYS">
+                                    <Label maxWidth="220.0" minWidth="-Infinity" prefWidth="120.0" text="Health information" HBox.hgrow="SOMETIMES" />
+                                    <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="?" HBox.hgrow="NEVER">
                                        <tooltip>
-                                          <Tooltip text="Current or past illnesses anddisability that mattersthe situation of the citizen.Health professional contacts:Employee or units withinthe healthcare system the citizen is affiliated with,eg ophthalmologist, dentist, podiatrist ordepartment / outpatient clinic." />
+                                          <Tooltip prefWidth="150.0" text="Current or past illnesses anddisability that mattersthe situation of the citizen.Health professional contacts:Employee or units withinthe healthcare system the citizen is affiliated with,eg ophthalmologist, dentist, podiatrist ordepartment / outpatient clinic." wrapText="true" />
                                        </tooltip>
                                     </Label>
+                                    <TextArea fx:id="txaHealthInformation" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="150.0" prefHeight="100.0" prefWidth="250.0" HBox.hgrow="ALWAYS" />
                                  </children>
                               </HBox>
-                              <HBox GridPane.rowIndex="9">
+                              <HBox spacing="8.0">
                                  <children>
-                                    <Label text="Equipment aids" />
-                                    <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="?" HBox.hgrow="ALWAYS">
+                                    <Label maxWidth="220.0" minWidth="-Infinity" prefWidth="120.0" text="Equipment aids" HBox.hgrow="SOMETIMES" />
+                                    <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="?" HBox.hgrow="NEVER">
                                        <tooltip>
-                                          <Tooltip text="Equipment, products and technology such asused by the citizen in dailyactivities, incl. such as are customizedor specially made for, implanted in,located on or near the person whoapply them. (Incl. Regularobjects and aids and technologyfor personal use)" />
+                                          <Tooltip prefWidth="150.0" text="Equipment, products and technology such asused by the citizen in dailyactivities, incl. such as are customizedor specially made for, implanted in,located on or near the person whoapply them. (Incl. Regularobjects and aids and technologyfor personal use)" wrapText="true" />
                                        </tooltip>
                                     </Label>
+                                    <TextArea fx:id="txaEquipmentAids" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="150.0" prefHeight="100.0" prefWidth="250.0" HBox.hgrow="ALWAYS" />
                                  </children>
                               </HBox>
-                              <HBox GridPane.rowIndex="10">
+                              <HBox spacing="8.0">
                                  <children>
-                                    <Label text="Home layout" />
-                                    <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="?" HBox.hgrow="ALWAYS">
+                                    <Label maxWidth="220.0" minWidth="-Infinity" prefWidth="120.0" text="Home layout" HBox.hgrow="SOMETIMES" />
+                                    <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="?" HBox.hgrow="NEVER">
                                        <tooltip>
-                                          <Tooltip text="A description of the physical environment of the homeand environments that matterthe citizen's everyday life and ability to function." />
+                                          <Tooltip prefWidth="150.0" text="A description of the physical environment of the homeand environments that matterthe citizen's everyday life and ability to function." wrapText="true" />
                                        </tooltip>
                                     </Label>
+                                    <TextArea fx:id="txaHomeLayout" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="150.0" prefHeight="100.0" prefWidth="250.0" HBox.hgrow="ALWAYS" />
                                  </children>
                               </HBox>
-                              <HBox GridPane.rowIndex="11">
+                              <HBox spacing="8.0">
                                  <children>
-                                    <Label text="Network" />
-                                    <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="?" HBox.hgrow="ALWAYS">
+                                    <Label maxWidth="220.0" minWidth="-Infinity" prefWidth="120.0" text="Network" HBox.hgrow="SOMETIMES" />
+                                    <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="?" HBox.hgrow="NEVER">
                                        <tooltip>
-                                          <Tooltip text="People who are close to the citizen, andwhich provides practical and / oremotional support and caretowards the citizen. Networking can bepublic or private.A public network consists of personalhelpers, health professionals and othersprofessionals primarily caregivers.Private network is family, relative,friends and acquaintances." />
+                                          <Tooltip prefWidth="150.0" text="People who are close to the citizen, andwhich provides practical and / oremotional support and caretowards the citizen. Networking can bepublic or private.A public network consists of personalhelpers, health professionals and othersprofessionals primarily caregivers.Private network is family, relative,friends and acquaintances." wrapText="true" />
                                        </tooltip>
                                     </Label>
+                                    <TextArea fx:id="txaNetwork" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="150.0" prefHeight="100.0" prefWidth="250.0" HBox.hgrow="ALWAYS" />
                                  </children>
                               </HBox>
-                              <TextArea fx:id="txaCoping" maxWidth="1.7976931348623157E308" minWidth="200.0" GridPane.columnIndex="1" />
-                              <TextArea fx:id="txaMotivation" maxWidth="1.7976931348623157E308" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <TextArea fx:id="txaResources" maxWidth="1.7976931348623157E308" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <TextArea fx:id="txaRoles" maxWidth="1.7976931348623157E308" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <TextArea fx:id="txaHabits" maxWidth="1.7976931348623157E308" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                              <TextArea fx:id="txaEducation" maxWidth="1.7976931348623157E308" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                              <TextArea fx:id="txaJobs" maxWidth="1.7976931348623157E308" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                              <TextArea fx:id="txaLifeStory" maxWidth="1.7976931348623157E308" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                              <TextArea fx:id="txaHealthInformation" maxWidth="1.7976931348623157E308" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                              <TextArea fx:id="txaEquipmentAids" maxWidth="1.7976931348623157E308" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                              <TextArea fx:id="txaHomeLayout" maxWidth="1.7976931348623157E308" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-                              <TextArea fx:id="txaNetwork" maxWidth="1.7976931348623157E308" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="11" />
                            </children>
-                        </GridPane>
+                        </VBox>
                      </content>
                      <padding>
-                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                      </padding>
                   </ScrollPane>
                   <HBox alignment="TOP_RIGHT" VBox.vgrow="NEVER">
@@ -200,7 +179,7 @@
                         <Button mnemonicParsing="false" onAction="#handleSave" text="Save" />
                      </children>
                      <padding>
-                        <Insets bottom="8.0" right="8.0" />
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="12.0" />
                      </padding>
                   </HBox>
                </children>

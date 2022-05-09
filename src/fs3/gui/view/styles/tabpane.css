@@ -1,12 +1,12 @@
 .tab-pane .tab-header-area .tab-header-background {
     -fx-opacity: 1;
 
-    -fx-outer-border: #2D73A2;
-    -fx-body-color: #22577A;
+    -fx-outer-border: #22577A;
+    -fx-body-color: #2D73A2;
     -fx-background-color:
             -fx-outer-border,
             -fx-body-color;
-    -fx-background-insets: 0 0 0 0, 2px 0 2px 0;
+    -fx-background-insets: 0 0 0 0, 0 0 2px 0;
 }
 
 .tab {
