@@ -142,6 +142,7 @@ public class FunctionalAbilityComponentController implements Initializable {
             functionalAbilityData.setCitizenRequest(txaCitizenRequest.getText());
 
             citizen.getFunctionalAbilities().put(functionalAbility, functionalAbilityData);
+            System.out.println(citizen.getFunctionalAbilities().get(functionalAbility).getCurrentLimitationLevel());
 
             try {
                 citizenModel.updateSelectedCitizen();
