@@ -1,5 +1,6 @@
 package fs3.gui.controller.student.tabs;
 
+import fs3.be.FunctionalAbilityData;
 import fs3.enums.FunctionalAbility;
 import fs3.enums.LimitationLevel;
 import fs3.enums.PerceivedLimitationLevel;
@@ -16,7 +17,7 @@ import javafx.scene.control.TitledPane;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class FunctionalAbilityComponentViewController implements Initializable {
+public class FunctionalAbilityComponentController implements Initializable {
     @FXML
     private TitledPane ttpRoot;
     @FXML
@@ -88,6 +89,29 @@ public class FunctionalAbilityComponentViewController implements Initializable {
         this.txaCitizenRequest = txaCitizenRequest;
     }
 
-    public void handleSave(ActionEvent event) {
+    public void clearFields() {
+        cmbCurrentLimitationLevel.getSelectionModel().clearSelection();
+        cmbExpectedLimitationLevel.getSelectionModel().clearSelection();
+        dtpFollowUpDate.getEditor().clear();
+        txaProfessionalNote.clear();
+        txaObservationNote.clear();
+        cmbPerformanceLevel.getSelectionModel().clearSelection();
+        cmbPerceivedLimitationLevel.getSelectionModel().clearSelection();
+        txaCitizenRequest.clear();
+    }
+
+    public void setFields(FunctionalAbilityData functionalAbilityData) {
+        cmbCurrentLimitationLevel.getSelectionModel().select(functionalAbilityData.getCurrentLimitationLevel());
+        cmbExpectedLimitationLevel.getSelectionModel().select(functionalAbilityData.getExpectedLimitationLevel());
+        dtpFollowUpDate.setValue(functionalAbilityData.getFollowUpDate());
+        txaProfessionalNote.setText(functionalAbilityData.getProfessionalNote());
+        txaObservationNote.setText(functionalAbilityData.getObservationNote());
+        cmbPerformanceLevel.getSelectionModel().select(functionalAbilityData.getPerformance());
+        cmbPerceivedLimitationLevel.getSelectionModel().select(functionalAbilityData.getPerceivedLimitationLevel());
+        txaCitizenRequest.setText(functionalAbilityData.getCitizenRequest());
+    }
+
+    public void handleSave() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

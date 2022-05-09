@@ -26,7 +26,6 @@ public class CitizenDAO {
     String readAll = "SELECT * FROM " + tableName;
 
     public List<Citizen> readAll() throws Exception {
-        long start = System.currentTimeMillis();
         List<Citizen> citizens = new ArrayList<>();
 
         ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
@@ -41,10 +40,10 @@ public class CitizenDAO {
                     }
                 });
             }
+        } finally {
+            ConnectionManagerPool.getInstance().returnConnectionManager(cm);
         }
-        ConnectionManagerPool.getInstance().returnConnectionManager(cm);
-        long end = System.currentTimeMillis();
-        System.out.println("CitizenDAO.readAll() took " + (end - start) + " ms");
+
         return citizens;
     }
 
@@ -109,7 +108,7 @@ public class CitizenDAO {
     }
 
     /*
-    * Submits task to executor service and throws the exception upwards if it happened
+    * Submits task to executor service and throws the exception upwards if it happened, not really async because it will wait to finish...
      */
     public void executeAsync(ExceptionCallable callable) throws Exception {
         Future<Exception> exception = executor.submit(callable);

@@ -24,7 +24,7 @@ public class CitizenDAOTest {
         FunctionalAbilityData functionalAbilityData = new FunctionalAbilityData();
         functionalAbilityData.setCurrentLimitationLevel(LimitationLevel.NOT_RELEVANT);
 
-        citizen.getFunctionalAbilities().put(FunctionalAbility.COOKING, functionalAbilityData);
+        citizen.getFunctionalAbilities().put(FunctionalAbility.COGNITIVE_ABILITIES, functionalAbilityData);
 
         citizenDAO.update(citizen);
 
