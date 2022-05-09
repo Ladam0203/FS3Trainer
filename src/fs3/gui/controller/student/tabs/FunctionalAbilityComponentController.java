@@ -53,6 +53,7 @@ public class FunctionalAbilityComponentController implements Initializable {
         cmbExpectedLimitationLevel.getItems().addAll(LimitationLevel.values());
         cmbPerformanceLevel.getItems().addAll(Performance.values());
         cmbPerceivedLimitationLevel.getItems().addAll(PerceivedLimitationLevel.values());
+        cmbCurrentLimitationLevel.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> changeState(newValue));
 
     }
 
@@ -102,6 +103,18 @@ public class FunctionalAbilityComponentController implements Initializable {
         cmbPerceivedLimitationLevel.getSelectionModel().clearSelection();
         txaCitizenRequest.clear();
     }
+    private void changeState(LimitationLevel newValue){
+        disableFields(newValue == LimitationLevel.NOT_RELEVANT);
+    }
+    private void disableFields(boolean disable){
+        cmbExpectedLimitationLevel.setDisable(disable);
+        dtpFollowUpDate.setDisable(disable);
+        txaProfessionalNote.setDisable(disable);
+        txaObservationNote.setDisable(disable);
+        cmbPerformanceLevel.setDisable(disable);
+        cmbPerceivedLimitationLevel.setDisable(disable);
+        txaCitizenRequest.setDisable(disable);
+    }
 
     public void setFields(FunctionalAbilityData functionalAbilityData) {
         cmbCurrentLimitationLevel.getSelectionModel().select(functionalAbilityData.getCurrentLimitationLevel());
@@ -145,7 +158,7 @@ public class FunctionalAbilityComponentController implements Initializable {
             return false;
         }
         if(!cmbCurrentLimitationLevel.getSelectionModel().getSelectedItem().equals(LimitationLevel.NOT_RELEVANT)){
-            if(!isExpectedLimitationLevelSelected() || !isDateValid() ||  isPerformanceLevelSelected() || isPerceivedLimitationLevelSelected()){
+            if(!isExpectedLimitationLevelSelected() || !isDateValid() ||  !isPerformanceLevelSelected() || !isPerceivedLimitationLevelSelected()){
                 return false;
             }
         }
@@ -186,7 +199,6 @@ public class FunctionalAbilityComponentController implements Initializable {
         if(dtpFollowUpDate.getValue() != null){
             if(dtpFollowUpDate.getValue().isAfter(LocalDate.now())){
                 return true;
-
             }
             else{
                 PopUp.showError("Follow up date cannot be in past!");
