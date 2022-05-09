@@ -55,14 +55,27 @@ public class FunctionalAbilityDAO {
                 FunctionalAbilityData functionalAbilityData = entry.getValue();
 
                 if (rs.next()) {
-                    psUpdate.setInt(1, functionalAbilityData.getCurrentLimitationLevel() == null ? null : functionalAbilityData.getCurrentLimitationLevel().getValue());
-                    psUpdate.setInt(2, functionalAbilityData.getExpectedLimitationLevel() == null ? null : functionalAbilityData.getExpectedLimitationLevel().getValue());
-                    psUpdate.setString(3, functionalAbilityData.getProfessionalNote());
-                    psUpdate.setString(4, functionalAbilityData.getPerformance() == null ? null : functionalAbilityData.getPerformance().toString());
-                    psUpdate.setString(5, functionalAbilityData.getPerceivedLimitationLevel() == null ? null : functionalAbilityData.getPerceivedLimitationLevel().toString());
-                    psUpdate.setString(6, functionalAbilityData.getCitizenRequest());
-                    psUpdate.setDate(7, functionalAbilityData.getFollowUpDate() == null ? null : java.sql.Date.valueOf(functionalAbilityData.getFollowUpDate()));
-                    psUpdate.setString(8, functionalAbilityData.getObservationNote());
+                    psUpdate.setInt(1, functionalAbilityData.getCurrentLimitationLevel().getValue());
+                    if (functionalAbilityData.getCurrentLimitationLevel() == LimitationLevel.NOT_RELEVANT) {
+                        psUpdate.setNull(2, Types.INTEGER);
+                        psUpdate.setNull(3, Types.INTEGER);
+                        psUpdate.setNull(4, Types.NVARCHAR);
+                        psUpdate.setNull(5, Types.NVARCHAR);
+                        psUpdate.setNull(6, Types.NVARCHAR);
+                        psUpdate.setNull(7, Types.DATE);
+                        psUpdate.setNull(8, Types.NVARCHAR);
+                    }
+                    else //we can trust the UI that if the func ab is relevant, every data is provided
+                    {
+                        psUpdate.setInt(1, functionalAbilityData.getCurrentLimitationLevel().getValue());
+                        psUpdate.setInt(2, functionalAbilityData.getExpectedLimitationLevel().getValue());
+                        psUpdate.setString(3, functionalAbilityData.getProfessionalNote());
+                        psUpdate.setString(4, functionalAbilityData.getPerformance().toString());
+                        psUpdate.setString(5, functionalAbilityData.getPerceivedLimitationLevel().toString());
+                        psUpdate.setString(6, functionalAbilityData.getCitizenRequest());
+                        psUpdate.setDate(7, java.sql.Date.valueOf(functionalAbilityData.getFollowUpDate()));
+                        psUpdate.setString(8, functionalAbilityData.getObservationNote());
+                    }
 
                     psUpdate.setInt(9, citizen.getId());
                     psUpdate.setString(10, entry.getKey().toString());
@@ -73,30 +86,36 @@ public class FunctionalAbilityDAO {
                     psInsert.setInt(1, citizen.getId());
                     psInsert.setString(2, entry.getKey().toString());
                     psInsert.setInt(3, functionalAbilityData.getCurrentLimitationLevel().getValue());
-                    if (functionalAbilityData.getExpectedLimitationLevel() == null) {
+                    if (functionalAbilityData.getCurrentLimitationLevel() == LimitationLevel.NOT_RELEVANT) {
                         psInsert.setNull(4, Types.INTEGER);
+                        psInsert.setNull(5, Types.NVARCHAR);
+                        psInsert.setNull(6, Types.NVARCHAR);
+                        psInsert.setNull(7, Types.NVARCHAR);
+                        psInsert.setNull(8, Types.NVARCHAR);
+                        psInsert.setNull(9, Types.DATE);
+                        psInsert.setNull(10, Types.NVARCHAR);
                     }
-                    else {
+                    else { //we can trust the UI that if the func ab is relevant, every data is provided
                         psInsert.setInt(4, functionalAbilityData.getExpectedLimitationLevel().getValue());
+                        psInsert.setString(5, functionalAbilityData.getProfessionalNote());
+                        psInsert.setString(6, functionalAbilityData.getPerformance().toString());
+                        psInsert.setString(7, functionalAbilityData.getPerceivedLimitationLevel().toString());
+                        psInsert.setString(8, functionalAbilityData.getCitizenRequest());
+                        psInsert.setDate(9, java.sql.Date.valueOf(functionalAbilityData.getFollowUpDate()));
+                        psInsert.setString(10, functionalAbilityData.getObservationNote());
                     }
-                    psInsert.setString(5, functionalAbilityData.getProfessionalNote());
-                    psInsert.setString(6, functionalAbilityData.getPerformance() == null ? null : functionalAbilityData.getPerformance().toString());
-                    psInsert.setString(7, functionalAbilityData.getPerceivedLimitationLevel() == null ? null : functionalAbilityData.getPerceivedLimitationLevel().toString());
-                    psInsert.setString(8, functionalAbilityData.getCitizenRequest());
-                    psInsert.setDate(9, functionalAbilityData.getFollowUpDate() == null ? null : java.sql.Date.valueOf(functionalAbilityData.getFollowUpDate()));
-                    psInsert.setString(10, functionalAbilityData.getObservationNote());
 
                     psInsert.addBatch();
                 }
                 try {
                     psUpdate.executeBatch();
                 } catch (SQLException e) {
-
+                    //there was nothing to update
                 }
                 try {
                     psInsert.executeBatch();
                 } catch (SQLException e) {
-
+                    //there was nothing to insert
                 }
             }
         }
