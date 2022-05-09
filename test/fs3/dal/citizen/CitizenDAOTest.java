@@ -22,14 +22,21 @@ public class CitizenDAOTest {
         Citizen citizen = citizenDAO.readAll().get(0);
 
         FunctionalAbilityData functionalAbilityData = new FunctionalAbilityData();
-        functionalAbilityData.setCurrentLimitationLevel(LimitationLevel.NOT_RELEVANT);
+        functionalAbilityData.setCurrentLimitationLevel(LimitationLevel.SEVERE_LIMITATION);
+        functionalAbilityData.setExpectedLimitationLevel(LimitationLevel.SLIGHT_LIMITATION);
+        functionalAbilityData.setProfessionalNote("professional note");
+        functionalAbilityData.setPerformance(Performance.DOES_NOT_PERFORM_BY_THEMSELF);
+        functionalAbilityData.setPerceivedLimitationLevel(PerceivedLimitationLevel.EXPERIENCES_LIMITATION);
+        functionalAbilityData.setCitizenRequest("request");
+        functionalAbilityData.setFollowUpDate(LocalDate.now());
+        functionalAbilityData.setObservationNote("observation notesss");
 
-        citizen.getFunctionalAbilities().put(FunctionalAbility.COGNITIVE_ABILITIES, functionalAbilityData);
+        citizen.getFunctionalAbilities().put(FunctionalAbility.DRINKING, functionalAbilityData);
 
         citizenDAO.update(citizen);
 
         citizen = citizenDAO.readAll().get(0);
 
-        Assertions.assertEquals(LimitationLevel.NOT_RELEVANT, citizen.getFunctionalAbilities().get(FunctionalAbility.COOKING).getCurrentLimitationLevel());
+        Assertions.assertEquals(LimitationLevel.SEVERE_LIMITATION, citizen.getFunctionalAbilities().get(FunctionalAbility.DRINKING).getCurrentLimitationLevel());
     }
 }

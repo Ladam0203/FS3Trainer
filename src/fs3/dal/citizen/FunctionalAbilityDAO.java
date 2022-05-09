@@ -19,7 +19,7 @@ public class FunctionalAbilityDAO {
 
     private final String select = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ?";
     private final String selectFunctionalAbility = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ? AND " + columns[1] + " = ?";
-    private final String update = "UPDATE " + tableName + " SET " + columns[2] + " = ?, " + columns[3] + " = ?, " + columns[4] + " = ?, " + columns[5] + " = ?, " + columns[6] + " = ?, " + columns[7] + " = ?, " + columns[8] + " = ?, " + columns[9] + " = ?, " + " = ? WHERE " + columns[0] + " = ? AND " + columns[1] + " = ?";
+    private final String update = "UPDATE " + tableName + " SET " + columns[2] + " = ?, " + columns[3] + " = ?, " + columns[4] + " = ?, " + columns[5] + " = ?, " + columns[6] + " = ?, " + columns[7] + " = ?, " + columns[8] + " = ?, " + columns[9] + " = ? " + " WHERE " + columns[0] + " = ? AND " + columns[1] + " = ?";
     private final String insertFunctionalAbility = "INSERT INTO " + tableName + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     public HashMap<FunctionalAbility, FunctionalAbilityData> read(Citizen citizen) throws Exception {
@@ -56,8 +56,10 @@ public class FunctionalAbilityDAO {
                 FunctionalAbilityData functionalAbilityData = entry.getValue();
 
                 if (rs.next()) {
+                    System.out.println("func ab pres");
                     psUpdate.setInt(1, functionalAbilityData.getCurrentLimitationLevel().getValue());
                     if (functionalAbilityData.getCurrentLimitationLevel() == LimitationLevel.NOT_RELEVANT) {
+                        System.out.println("set to not relevant");
                         psUpdate.setNull(2, Types.INTEGER);
                         psUpdate.setNull(3, Types.INTEGER);
                         psUpdate.setNull(4, Types.NVARCHAR);
@@ -108,16 +110,9 @@ public class FunctionalAbilityDAO {
 
                     psInsert.addBatch();
                 }
-                try {
-                    psUpdate.executeBatch();
-                } catch (SQLException e) {
-                    //there was nothing to update
-                }
-                try {
-                    psInsert.executeBatch();
-                } catch (SQLException e) {
-                    //there was nothing to insert
-                }
+
+                psUpdate.executeBatch();
+                psInsert.executeBatch();
             }
         } finally {
             ConnectionManagerPool.getInstance().returnConnectionManager(cm);

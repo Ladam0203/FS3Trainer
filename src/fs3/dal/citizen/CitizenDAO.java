@@ -101,8 +101,6 @@ public class CitizenDAO {
     }
 
     private Citizen constructCitizen(ResultSet rs) throws Exception {
-        int pos = rs.getRow();
-        System.out.println("pos: " + pos);
         Citizen citizen = new Citizen();
         int citizenId = rs.getInt(columns[0]);
         citizen.setId(citizenId);
