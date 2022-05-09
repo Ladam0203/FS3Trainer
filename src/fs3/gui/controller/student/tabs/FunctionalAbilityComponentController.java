@@ -1,11 +1,13 @@
 package fs3.gui.controller.student.tabs;
 
+import fs3.be.Citizen;
 import fs3.be.FunctionalAbilityData;
 import fs3.enums.FunctionalAbility;
 import fs3.enums.LimitationLevel;
 import fs3.enums.PerceivedLimitationLevel;
 import fs3.enums.Performance;
 import fs3.gui.model.CitizenModel;
+import fs3.util.PopUp;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,15 +17,16 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TitledPane;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class FunctionalAbilityComponentController implements Initializable {
     @FXML
     private TitledPane ttpRoot;
     @FXML
-    private ComboBox cmbCurrentLimitationLevel;
+    private ComboBox<LimitationLevel> cmbCurrentLimitationLevel;
     @FXML
-    private ComboBox cmbExpectedLimitationLevel;
+    private ComboBox<LimitationLevel> cmbExpectedLimitationLevel;
     @FXML
     private DatePicker dtpFollowUpDate;
     @FXML
@@ -31,9 +34,9 @@ public class FunctionalAbilityComponentController implements Initializable {
     @FXML
     private TextArea txaObservationNote;
     @FXML
-    private ComboBox cmbPerformanceLevel;
+    private ComboBox<Performance> cmbPerformanceLevel;
     @FXML
-    private ComboBox cmbPerceivedLimitationLevel;
+    private ComboBox<PerceivedLimitationLevel> cmbPerceivedLimitationLevel;
     @FXML
     private TextArea txaCitizenRequest;
 
@@ -112,6 +115,106 @@ public class FunctionalAbilityComponentController implements Initializable {
     }
 
     public void handleSave() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Citizen citizen = citizenModel.getSelectedCitizen();
+        if(areFieldsFilled()){
+            FunctionalAbility functionalAbility = FunctionalAbility.fromString(ttpRoot.getText());
+            FunctionalAbilityData functionalAbilityData = new FunctionalAbilityData();
+            functionalAbilityData.setCurrentLimitationLevel(cmbCurrentLimitationLevel.getSelectionModel().getSelectedItem());
+            functionalAbilityData.setExpectedLimitationLevel(cmbExpectedLimitationLevel.getSelectionModel().getSelectedItem());
+            functionalAbilityData.setFollowUpDate(dtpFollowUpDate.getValue());
+            functionalAbilityData.setProfessionalNote(txaProfessionalNote.getText());
+            functionalAbilityData.setObservationNote(txaObservationNote.getText());
+            functionalAbilityData.setPerformance(cmbPerformanceLevel.getSelectionModel().getSelectedItem());
+            functionalAbilityData.setPerceivedLimitationLevel(cmbPerceivedLimitationLevel.getSelectionModel().getSelectedItem());
+            functionalAbilityData.setCitizenRequest(txaCitizenRequest.getText());
+
+            citizen.getFunctionalAbilities().put(functionalAbility, functionalAbilityData);
+
+            try {
+                citizenModel.updateSelectedCitizen();
+            } catch (Exception e) {
+                e.printStackTrace();
+                //TODO: handle gracefully
+            }
+        }
+
+    }
+
+    private boolean areFieldsFilled(){
+        if(!isCitizenSelected() || !isCurrentLimitationLevelSelected()){
+            return false;
+        }
+        if(!cmbCurrentLimitationLevel.getSelectionModel().getSelectedItem().equals(LimitationLevel.NOT_RELEVANT)){
+            if(!isExpectedLimitationLevelSelected() || !isDateValid() ||  isPerformanceLevelSelected() || isPerceivedLimitationLevelSelected()){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean isCitizenSelected(){
+        if(citizenModel.getSelectedCitizen() != null){
+            return true;
+        }
+        else {
+            PopUp.showError("Select a citizen!");
+        }
+        return false;
+    }
+
+    private boolean isCurrentLimitationLevelSelected(){
+        if(cmbCurrentLimitationLevel.getSelectionModel().getSelectedItem() != null){
+            return  true;
+        }
+        else{
+            PopUp.showError("Select current limitation level!");
+        }
+        return  false;
+    }
+
+    private boolean isExpectedLimitationLevelSelected(){
+        if (cmbExpectedLimitationLevel.getSelectionModel().getSelectedItem() != null){
+            return true;
+        }
+        else{
+            PopUp.showError("Select expected limitation level!");
+        }
+        return  false;
+    }
+
+    private boolean isDateValid(){
+        if(dtpFollowUpDate.getValue() != null){
+            if(dtpFollowUpDate.getValue().isAfter(LocalDate.now())){
+                return true;
+
+            }
+            else{
+                PopUp.showError("Follow up date cannot be in past!");
+            }
+        }
+        else{
+            PopUp.showError("Pick a date!");
+        }
+        return false;
+    }
+
+    private boolean isPerformanceLevelSelected(){
+        if(cmbPerformanceLevel.getSelectionModel().getSelectedItem() != null){
+            return true;
+        }
+        else{
+            PopUp.showError("Select performance level!");
+        }
+        return false;
+    }
+
+    private boolean isPerceivedLimitationLevelSelected(){
+        if(cmbPerceivedLimitationLevel.getSelectionModel().getSelectedItem() != null){
+            return true;
+        }
+        else{
+            PopUp.showError("Select PerceivedLimitationLevel");
+        }
+        return false;
     }
 }
