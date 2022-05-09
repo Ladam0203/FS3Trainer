@@ -29,8 +29,9 @@ public class GeneralInformationDAO {
             if (rs.next()) {
                 generalInformation = constructObject(rs);
             }
+        } finally {
+            ConnectionManagerPool.getInstance().returnConnectionManager(cm);
         }
-        ConnectionManagerPool.getInstance().returnConnectionManager(cm);
 
         return generalInformation;
     }
@@ -55,8 +56,9 @@ public class GeneralInformationDAO {
             ps.setInt(13, citizen.getId());
 
             ps.executeUpdate();
+        } finally {
+            ConnectionManagerPool.getInstance().returnConnectionManager(cm);
         }
-        ConnectionManagerPool.getInstance().returnConnectionManager(cm);
     }
 
     public GeneralInformation constructObject(ResultSet rs) throws Exception {

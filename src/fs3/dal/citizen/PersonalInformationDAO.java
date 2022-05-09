@@ -30,8 +30,9 @@ public class PersonalInformationDAO {
             if (rs.next()) {
                 personalInformation = constructObject(rs);
             }
+        } finally {
+            ConnectionManagerPool.getInstance().returnConnectionManager(cm);
         }
-        ConnectionManagerPool.getInstance().returnConnectionManager(cm);
 
         return personalInformation;
     }
@@ -45,8 +46,9 @@ public class PersonalInformationDAO {
             ps.setInt(2, citizen.getId());
 
             ps.executeUpdate();
+        } finally {
+            ConnectionManagerPool.getInstance().returnConnectionManager(cm);
         }
-        ConnectionManagerPool.getInstance().returnConnectionManager(cm);
     }
 
     public PersonalInformation constructObject(ResultSet rs) throws Exception {

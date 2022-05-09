@@ -31,8 +31,9 @@ public class FunctionalAbilityDAO {
             ps.setInt(1, citizen.getId());
             ResultSet rs = ps.executeQuery();
             setObject(functionalAblities, rs);
+        } finally {
+            ConnectionManagerPool.getInstance().returnConnectionManager(cm);
         }
-        ConnectionManagerPool.getInstance().returnConnectionManager(cm);
 
         return functionalAblities;
     }
@@ -118,8 +119,9 @@ public class FunctionalAbilityDAO {
                     //there was nothing to insert
                 }
             }
+        } finally {
+            ConnectionManagerPool.getInstance().returnConnectionManager(cm);
         }
-        ConnectionManagerPool.getInstance().returnConnectionManager(cm);
     }
 
     private void setObject(HashMap<FunctionalAbility, FunctionalAbilityData> functionalAbilities, ResultSet rs) throws Exception {

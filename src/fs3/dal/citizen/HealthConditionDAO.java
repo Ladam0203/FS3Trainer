@@ -29,8 +29,9 @@ public class HealthConditionDAO {
             ps.setInt(1, citizen.getId());
             ResultSet rs = ps.executeQuery();
             healthConditionData = constructObject(rs);
+        } finally {
+            ConnectionManagerPool.getInstance().returnConnectionManager(cm);
         }
-        ConnectionManagerPool.getInstance().returnConnectionManager(cm);
 
         return healthConditionData;
     }
@@ -102,8 +103,9 @@ public class HealthConditionDAO {
             } catch (SQLException e) {
                 //there is no row to insert
             }
+        } finally {
+            ConnectionManagerPool.getInstance().returnConnectionManager(cm);
         }
-        ConnectionManagerPool.getInstance().returnConnectionManager(cm);
     }
 
     public HashMap<HealthCondition, HealthConditionData> constructObject(ResultSet rs) throws Exception {
