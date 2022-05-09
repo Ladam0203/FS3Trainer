@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -13,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.student.tabs.GeneralInformationController">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.student.tabs.GeneralInformationController">
    <children>
       <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -37,7 +38,7 @@
                      <content>
                         <GridPane hgap="12.0" vgap="8.0">
                           <columnConstraints>
-                            <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="170.0" />
+                            <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="130.0" />
                             <ColumnConstraints hgrow="ALWAYS" />
                           </columnConstraints>
                           <rowConstraints>
@@ -55,18 +56,126 @@
                               <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="80.0" valignment="TOP" vgrow="ALWAYS" />
                           </rowConstraints>
                            <children>
-                              <Label text="Coping" />
-                              <Label text="Motivation" GridPane.rowIndex="1" />
-                              <Label text="Resources" GridPane.rowIndex="2" />
-                              <Label text="Roles" GridPane.rowIndex="3" />
-                              <Label text="Habits" GridPane.rowIndex="4" />
-                              <Label text="Education" GridPane.rowIndex="5" />
-                              <Label text="Jobs" GridPane.rowIndex="6" />
-                              <Label text="Life story" GridPane.rowIndex="7" />
-                              <Label text="Health information" GridPane.rowIndex="8" />
-                              <Label text="Equipment aids" GridPane.rowIndex="9" />
-                              <Label text="Home layout" GridPane.rowIndex="10" />
-                              <Label text="Network" GridPane.rowIndex="11" />
+                              <HBox>
+                                 <children>
+                                    <Label text="Coping" />
+                                    <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="?" HBox.hgrow="ALWAYS">
+                                       <tooltip>
+                                          <Tooltip text="The conscious or unconscious of the citizenmanagement of life / illness - bothchallenges and opportunities." />
+                                       </tooltip>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox GridPane.rowIndex="1">
+                                 <children>
+                                    <Label text="Motivation" />
+                                    <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="?" HBox.hgrow="ALWAYS">
+                                       <tooltip>
+                                          <Tooltip text="The driving force behind the citizen acting ona certain way or get startedwith / maintains a task / effort." />
+                                       </tooltip>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox GridPane.rowIndex="2">
+                                 <children>
+                                    <Label text="Resources" />
+                                    <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="?" HBox.hgrow="ALWAYS">
+                                       <tooltip>
+                                          <Tooltip text="The physical or mental forces thatthe citizen to a certain extent has toavailable and can take advantage of. Physical forcescan for example be in the form of physical health andstrength. Mental forces can, for example, be inform of mental health and strength,including thoughts and ways of behavingto situations and other people on." />
+                                       </tooltip>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox GridPane.rowIndex="3">
+                                 <children>
+                                    <Label text="Roles" />
+                                    <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="?" HBox.hgrow="ALWAYS">
+                                       <tooltip>
+                                          <Tooltip text="The roles that are particularly important forthe citizen in relation to family, work andcommunity." />
+                                       </tooltip>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox GridPane.rowIndex="4">
+                                 <children>
+                                    <Label text="Habits" />
+                                    <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="?" HBox.hgrow="ALWAYS">
+                                       <tooltip>
+                                          <Tooltip text="Regular behavior that the citizen haslearned through constant repetition andexecution completely or partially unconsciously.Habits are, for example, the circadian rhythm, the way of becomingaccused of, contact with fellow human beings andrelationships, way of looking at the world." />
+                                       </tooltip>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox GridPane.rowIndex="5">
+                                 <children>
+                                    <Label text="Education" />
+                                    <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="?" HBox.hgrow="ALWAYS">
+                                       <tooltip>
+                                          <Tooltip text="Current or previous educational and / or professional background.Eg primary school, vocational education andHigher Education." />
+                                       </tooltip>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox GridPane.rowIndex="6">
+                                 <children>
+                                    <Label text="Jobs" />
+                                    <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="?" HBox.hgrow="ALWAYS">
+                                       <tooltip>
+                                          <Tooltip text="Current or previous educational and / or professional background.Eg primary school, vocational education andHigher Education." />
+                                       </tooltip>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox GridPane.rowIndex="7">
+                                 <children>
+                                    <Label text="Life story" />
+                                    <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="?" HBox.hgrow="ALWAYS">
+                                       <tooltip>
+                                          <Tooltip text="A description of the citizen's experience ofsignificant events, interests andchores throughout life." />
+                                       </tooltip>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox GridPane.rowIndex="8">
+                                 <children>
+                                    <Label text="Health information" />
+                                    <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="?" HBox.hgrow="ALWAYS">
+                                       <tooltip>
+                                          <Tooltip text="Current or past illnesses anddisability that mattersthe situation of the citizen.Health professional contacts:Employee or units withinthe healthcare system the citizen is affiliated with,eg ophthalmologist, dentist, podiatrist ordepartment / outpatient clinic." />
+                                       </tooltip>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox GridPane.rowIndex="9">
+                                 <children>
+                                    <Label text="Equipment aids" />
+                                    <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="?" HBox.hgrow="ALWAYS">
+                                       <tooltip>
+                                          <Tooltip text="Equipment, products and technology such asused by the citizen in dailyactivities, incl. such as are customizedor specially made for, implanted in,located on or near the person whoapply them. (Incl. Regularobjects and aids and technologyfor personal use)" />
+                                       </tooltip>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox GridPane.rowIndex="10">
+                                 <children>
+                                    <Label text="Home layout" />
+                                    <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="?" HBox.hgrow="ALWAYS">
+                                       <tooltip>
+                                          <Tooltip text="A description of the physical environment of the homeand environments that matterthe citizen's everyday life and ability to function." />
+                                       </tooltip>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox GridPane.rowIndex="11">
+                                 <children>
+                                    <Label text="Network" />
+                                    <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="?" HBox.hgrow="ALWAYS">
+                                       <tooltip>
+                                          <Tooltip text="People who are close to the citizen, andwhich provides practical and / oremotional support and caretowards the citizen. Networking can bepublic or private.A public network consists of personalhelpers, health professionals and othersprofessionals primarily caregivers.Private network is family, relative,friends and acquaintances." />
+                                       </tooltip>
+                                    </Label>
+                                 </children>
+                              </HBox>
                               <TextArea fx:id="txaCoping" maxWidth="1.7976931348623157E308" minWidth="200.0" GridPane.columnIndex="1" />
                               <TextArea fx:id="txaMotivation" maxWidth="1.7976931348623157E308" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                               <TextArea fx:id="txaResources" maxWidth="1.7976931348623157E308" minWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
