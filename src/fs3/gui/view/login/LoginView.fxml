@@ -14,7 +14,7 @@
 
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.login.LoginViewController">
    <children>
-      <BorderPane maxWidth="400.0" prefWidth="300.0" HBox.hgrow="SOMETIMES">
+      <BorderPane maxWidth="576.0" prefWidth="360.0" HBox.hgrow="SOMETIMES">
          <center>
             <VBox spacing="12.0" BorderPane.alignment="TOP_CENTER">
                <BorderPane.margin>
@@ -23,7 +23,7 @@
                <children>
                   <TextField fx:id="txfUsername" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onAction="#handleLogin" prefWidth="230.0" promptText="Username" styleClass="field" />
                   <PasswordField fx:id="psfPassword" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onAction="#handleLogin" prefWidth="230.0" promptText="Password" styleClass="field" />
-                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleLogin" prefWidth="230.0" text="Login" />
+                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleLogin" prefHeight="32.0" prefWidth="230.0" text="Login" />
                </children>
                <padding>
                   <Insets left="20.0" right="20.0" />
@@ -41,7 +41,7 @@
             </ImageView>
          </top>
       </BorderPane>
-      <Pane maxWidth="1.7976931348623157E308" prefWidth="900.0" styleClass="background" HBox.hgrow="SOMETIMES" />
+      <Pane maxWidth="1.7976931348623157E308" prefWidth="840.0" styleClass="background" HBox.hgrow="SOMETIMES" />
    </children>
    <stylesheets>
       <URL value="@../styles/common.css" />

@@ -1,19 +1,18 @@
-.tab-pane .tab-header-area .tab-header-background {
-    -fx-opacity: 1;
+.tab-header-area {
+    -fx-padding: 0;
+}
 
-    -fx-outer-border: #22577A;
-    -fx-body-color: #2D73A2;
-    -fx-background-color:
-            -fx-outer-border,
-            -fx-body-color;
-    -fx-background-insets: 0 0 0 0, 0 0 2px 0;
+.tab-header-background {
+    -fx-opacity: 1;
+    -fx-background-color: #22577A;
 }
 
 .tab {
-    -fx-background-color: transparent;
+    -fx-background-color: #22577A;
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
-    -fx-padding: 5;
+    -fx-padding: 8;
+    -fx-background-radius: 0;
 }
 
 .tab-label {
@@ -21,7 +20,6 @@
 }
 
 .tab:hover .text {
-    -fx-text-fill: #FFF;
     -fx-font-weight: bold;
 }
 
@@ -30,6 +28,11 @@
     -fx-font-weight: bold;
 }
 
-.tab:selected .text {
-    -fx-underline: true;
+.tab:selected {
+    -fx-outer-border: #deaa88;
+    -fx-body-color: #22577A;
+    -fx-background-color:
+            -fx-outer-border,
+            -fx-body-color;
+    -fx-background-insets: 0 0 0 0, 0 0 3 0;
 }
