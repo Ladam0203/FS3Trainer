@@ -12,4 +12,5 @@ public interface IDAOFacade {
     User readUser(String username, String password) throws Exception;
     List<CitizenInstance> readAllCitizenInstances() throws Exception;
     List<CitizenTemplate> readAllCitizenTemplates() throws Exception;
+    Citizen createCitizen(Citizen citizen) throws Exception;
 }

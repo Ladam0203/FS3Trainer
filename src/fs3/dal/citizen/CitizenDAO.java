@@ -6,12 +6,12 @@ import fs3.be.CitizenTemplate;
 import fs3.dal.ConnectionManager;
 import fs3.dal.ConnectionManagerPool;
 
-import javax.sql.RowSet;
 import javax.sql.rowset.CachedRowSet;
 import javax.sql.rowset.RowSetProvider;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -29,6 +29,7 @@ public class CitizenDAO {
     String tableName = "Citizens";
     String[] columns = {"id", "isTemplate"};
 
+    String insert = "INSERT INTO " + tableName + " " + "VALUES (?)";
     String readAllInstances = "SELECT * FROM " + tableName + " WHERE " + columns[1] + " = 0";
     String readAllTemplates = "SELECT * FROM " + tableName + " WHERE " + columns[1] + " = 1";
 
@@ -61,6 +62,58 @@ public class CitizenDAO {
         return citizens;
     }
 
+    public Citizen create(Citizen citizen) throws Exception {
+        ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
+        try (Connection con = cm.getConnection()) {
+            PreparedStatement ps = con.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
+            ps.setBoolean(1, CitizenTemplate.class.equals(citizen.getClass()));
+            ps.executeUpdate();
+
+            ResultSet rs = ps.getGeneratedKeys();
+            if (rs.next()) {
+                citizen.setId(rs.getInt(1));
+            }
+        } finally {
+            ConnectionManagerPool.getInstance().returnConnectionManager(cm);
+        }
+        subExecutor = Executors.newFixedThreadPool(4);
+        List<Future<Exception>> futures = new ArrayList<>();
+        futures.add(subExecutor.submit(new ExceptionCallable() {
+            @Override
+            void doTask() throws Exception {
+                personalInformationDAO.create(citizen);
+            }
+        }));
+        
+        futures.add(subExecutor.submit(new ExceptionCallable() {
+            @Override
+            void doTask() throws Exception {
+                generalInformationDAO.create(citizen);
+            }
+        }));
+        futures.add(subExecutor.submit(new ExceptionCallable() {
+            @Override
+            void doTask() throws Exception {
+                healthConditionDAO.create(citizen);
+            }
+        }));
+        futures.add(subExecutor.submit(new ExceptionCallable() {
+            @Override
+            void doTask() throws Exception {
+                functionalAbilityDAO.create(citizen);
+            }
+        }));
+
+        subExecutor.shutdown();
+        for (Future<Exception> future : futures) {
+            if (future.get() != null) {
+                throw future.get();
+            }
+        }
+
+        return citizen;
+    }
+
     public void update(Citizen citizen) throws Exception {
         subExecutor = Executors.newFixedThreadPool(4);
         List<Future<Exception>> futures = new ArrayList<>();
@@ -88,6 +141,7 @@ public class CitizenDAO {
                 functionalAbilityDAO.update(citizen);
             }
         }));
+        //if citizen is instance, update connections
 
         subExecutor.shutdown();
         for (Future<Exception> future : futures) {
@@ -128,6 +182,7 @@ public class CitizenDAO {
                 citizen.setFunctionalAbilities(functionalAbilityDAO.read(citizen));
             }
         }));
+        //if citizen is instance, load connections
 
         subExecutor.shutdown();
         for (Future<Exception> future : futures) {

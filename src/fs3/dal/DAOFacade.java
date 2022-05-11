@@ -44,5 +44,9 @@ public class DAOFacade implements IDAOFacade {
         return citizenDAO.readAllCitizenTemplates();
     }
 
+    @Override
+    public Citizen createCitizen(Citizen citizen) throws Exception {
+        return citizenDAO.create(citizen);
+    }
 
 }

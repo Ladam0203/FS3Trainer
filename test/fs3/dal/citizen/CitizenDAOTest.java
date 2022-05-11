@@ -1,8 +1,6 @@
 package fs3.dal.citizen;
 
-import fs3.be.Citizen;
-import fs3.be.FunctionalAbilityData;
-import fs3.be.HealthConditionData;
+import fs3.be.*;
 import fs3.dal.citizen.CitizenDAO;
 import fs3.enums.*;
 import org.junit.jupiter.api.Assertions;
@@ -14,7 +12,7 @@ import java.util.List;
 
 public class CitizenDAOTest {
 
-    //test update
+    @Disabled
     @Test
     public void TestUpdateHealthConditions() throws Exception {
         CitizenDAO citizenDAO = new CitizenDAO();
@@ -38,5 +36,21 @@ public class CitizenDAOTest {
         citizen = citizenDAO.readAllCitizenInstances().get(0);
 
         Assertions.assertEquals(LimitationLevel.SEVERE_LIMITATION, citizen.getFunctionalAbilities().get(FunctionalAbility.DRINKING).getCurrentLimitationLevel());
+    }
+
+    @Test
+    //test create citizen
+    public void TestCreateCitizen() throws Exception {
+        CitizenDAO citizenDAO = new CitizenDAO();
+        CitizenInstance citizen = new CitizenInstance();
+
+        PersonalInformation personalInformation = new PersonalInformation();
+        personalInformation.setName("Created");
+
+        citizen.setPersonalInformation(personalInformation);
+
+        Citizen newCitizen = citizenDAO.create(citizen);
+        Assertions.assertEquals(11, newCitizen.getId());
+        Assertions.assertEquals(CitizenInstance.class, newCitizen.getClass());
     }
 }

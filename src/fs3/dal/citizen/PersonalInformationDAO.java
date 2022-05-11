@@ -1,6 +1,7 @@
 package fs3.dal.citizen;
 
 import fs3.be.Citizen;
+import fs3.be.CitizenTemplate;
 import fs3.be.PersonalInformation;
 import fs3.dal.ConnectionManager;
 import fs3.dal.ConnectionManagerPool;
@@ -35,6 +36,19 @@ public class PersonalInformationDAO {
         }
 
         return personalInformation;
+    }
+
+    public void create(Citizen citizen) throws Exception {
+        ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
+        try (Connection con = cm.getConnection()) {
+            PreparedStatement ps = con.prepareStatement(create);
+            ps.setInt(1, citizen.getId());
+            ps.setString(2, citizen.getPersonalInformation().getName());
+
+            ps.executeUpdate();
+        } finally {
+            ConnectionManagerPool.getInstance().returnConnectionManager(cm);
+        }
     }
 
     public void update(Citizen citizen) throws Exception {
