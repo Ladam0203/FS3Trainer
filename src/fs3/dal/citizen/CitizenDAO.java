@@ -84,7 +84,7 @@ public class CitizenDAO {
                 personalInformationDAO.create(citizen);
             }
         }));
-        
+
         futures.add(subExecutor.submit(new ExceptionCallable() {
             @Override
             void doTask() throws Exception {

@@ -38,6 +38,7 @@ public class CitizenDAOTest {
         Assertions.assertEquals(LimitationLevel.SEVERE_LIMITATION, citizen.getFunctionalAbilities().get(FunctionalAbility.DRINKING).getCurrentLimitationLevel());
     }
 
+    @Disabled
     @Test
     //test create citizen
     public void TestCreateCitizen() throws Exception {
