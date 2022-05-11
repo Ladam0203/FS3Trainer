@@ -128,7 +128,7 @@ public class FunctionalAbilityComponentController implements Initializable {
     }
 
     public void handleSave() {
-        Citizen citizen = citizenInstanceModel.getSelectedCitizen();
+        CitizenInstance citizenInstance = citizenInstanceModel.getSelectedCitizen();
         if(areFieldsFilled()){
             FunctionalAbility functionalAbility = FunctionalAbility.fromString(ttpRoot.getText());
             FunctionalAbilityData functionalAbilityData = new FunctionalAbilityData();
@@ -150,7 +150,7 @@ public class FunctionalAbilityComponentController implements Initializable {
             functionalAbilityData.setPerceivedLimitationLevel(cmbPerceivedLimitationLevel.getSelectionModel().getSelectedItem());
             functionalAbilityData.setCitizenRequest(txaCitizenRequest.getText());
 
-            citizen.getFunctionalAbilities().put(functionalAbility, functionalAbilityData);
+            citizenInstance.getFunctionalAbilities().put(functionalAbility, functionalAbilityData);
             try {
                 citizenInstanceModel.updateSelectedCitizen();
             } catch (Exception e) {
