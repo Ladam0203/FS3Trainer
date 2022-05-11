@@ -1,6 +1,8 @@
 package fs3.gui.controller.teacher;
 
 import fs3.be.CitizenTemplate;
+import fs3.be.GeneralInformation;
+import fs3.be.PersonalInformation;
 import fs3.gui.model.CitizenTemplateModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
@@ -26,7 +28,19 @@ public class TeacherPageController implements Initializable {
         ltvCitizenTemplates.setItems(citizenTemplateModel.getObservableCitizenTemplates());
     }
     public void handleAddTemplate(ActionEvent event) {
-        
+        String name = txfTemplateName.getText();
+        if(!name.isEmpty()){
+            CitizenTemplate citizenTemplate = new CitizenTemplate();
+            PersonalInformation personalInformation = new PersonalInformation();
+            GeneralInformation generalInformation = new GeneralInformation();
+            personalInformation.setName(name);
+            citizenTemplate.setPersonalInformation(personalInformation);
+            try {
+                citizenTemplateModel.createCitizenTemplate(citizenTemplate);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 
