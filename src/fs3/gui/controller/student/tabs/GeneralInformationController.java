@@ -93,8 +93,6 @@ public class GeneralInformationController implements Initializable {
 
             citizenInstanceModel.updateSelectedCitizen();
         }
-        return;
-
     }
 
     private boolean areTextAreasEmpty(){

@@ -35,8 +35,6 @@ public class StudentPageController implements Initializable {
         if (citizenInstance != null) {
             citizenInstanceModel.setSelectedCitizenInstance(citizenInstance);
         }
-
-
     }
 
 
