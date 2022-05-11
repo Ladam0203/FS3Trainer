@@ -38,6 +38,43 @@ public class FunctionalAbilityDAO {
         return functionalAblities;
     }
 
+    public void create(Citizen citizen) throws Exception {
+        ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
+        try (Connection con = cm.getConnection()) {
+            PreparedStatement ps = con.prepareStatement(insertFunctionalAbility);
+            for (Map.Entry<FunctionalAbility, FunctionalAbilityData> entry : citizen.getFunctionalAbilities().entrySet()) {
+                FunctionalAbilityData functionalAbilityData = entry.getValue();
+                ps.setInt(1, citizen.getId());
+                ps.setString(2, entry.getKey().toString());
+                ps.setInt(3, functionalAbilityData.getCurrentLimitationLevel().getValue());
+                if (functionalAbilityData.getCurrentLimitationLevel() == LimitationLevel.NOT_RELEVANT) {
+                    ps.setNull(4, Types.INTEGER);
+                    ps.setNull(5, Types.INTEGER);
+                    ps.setNull(6, Types.NVARCHAR);
+                    ps.setNull(7, Types.NVARCHAR);
+                    ps.setNull(8, Types.NVARCHAR);
+                    ps.setNull(9, Types.DATE);
+                    ps.setNull(10, Types.NVARCHAR);
+                }
+                else //we can trust the UI that if the func ab is relevant, every data is provided
+                {
+                    ps.setInt(4, functionalAbilityData.getExpectedLimitationLevel().getValue());
+                    ps.setString(5, functionalAbilityData.getProfessionalNote());
+                    ps.setString(6, functionalAbilityData.getPerformance().toString());
+                    ps.setString(7, functionalAbilityData.getPerceivedLimitationLevel().toString());
+                    ps.setString(8, functionalAbilityData.getCitizenRequest());
+                    ps.setDate(9, java.sql.Date.valueOf(functionalAbilityData.getFollowUpDate()));
+                    ps.setString(10, functionalAbilityData.getObservationNote());
+                }
+                ps.addBatch();
+            }
+            ps.executeBatch();
+        }
+        finally {
+            ConnectionManagerPool.getInstance().returnConnectionManager(cm);
+        }
+    }
+
     public void update(Citizen citizen) throws Exception {
         ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
         try (Connection con = cm.getConnection()) {
@@ -68,7 +105,6 @@ public class FunctionalAbilityDAO {
                     }
                     else //we can trust the UI that if the func ab is relevant, every data is provided
                     {
-                        psUpdate.setInt(1, functionalAbilityData.getCurrentLimitationLevel().getValue());
                         psUpdate.setInt(2, functionalAbilityData.getExpectedLimitationLevel().getValue());
                         psUpdate.setString(3, functionalAbilityData.getProfessionalNote());
                         psUpdate.setString(4, functionalAbilityData.getPerformance().toString());

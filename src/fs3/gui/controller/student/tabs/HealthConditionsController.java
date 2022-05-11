@@ -2,7 +2,7 @@ package fs3.gui.controller.student.tabs;
 
 import fs3.be.HealthConditionData;
 import fs3.enums.HealthCondition;
-import fs3.gui.model.CitizenModel;
+import fs3.gui.model.CitizenInstanceModel;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -16,14 +16,14 @@ import java.util.*;
 public class HealthConditionsController implements Initializable {
     @FXML
     private Accordion accHealthConditions;
-    private CitizenModel citizenModel;
+    private CitizenInstanceModel citizenModel;
 
     private EnumMap<HealthCondition, HealthConditionComponentController> conditionControllerMap = new EnumMap<>(HealthCondition.class);
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            citizenModel = CitizenModel.getInstance();
+            citizenModel = CitizenInstanceModel.getInstance();
             //add all health condition panes
             for (HealthCondition condition :
                     HealthCondition.values()) {

@@ -1,14 +1,14 @@
 package fs3.gui.controller.student.tabs;
 
 import fs3.be.Citizen;
+import fs3.be.CitizenInstance;
 import fs3.be.FunctionalAbilityData;
 import fs3.enums.FunctionalAbility;
 import fs3.enums.LimitationLevel;
 import fs3.enums.PerceivedLimitationLevel;
 import fs3.enums.Performance;
-import fs3.gui.model.CitizenModel;
+import fs3.gui.model.CitizenInstanceModel;
 import fs3.util.PopUp;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
@@ -40,12 +40,12 @@ public class FunctionalAbilityComponentController implements Initializable {
     @FXML
     private TextArea txaCitizenRequest;
 
-    private CitizenModel citizenModel;
+    private CitizenInstanceModel citizenInstanceModel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            citizenModel = CitizenModel.getInstance();
+            citizenInstanceModel = CitizenInstanceModel.getInstance();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -128,7 +128,7 @@ public class FunctionalAbilityComponentController implements Initializable {
     }
 
     public void handleSave() {
-        Citizen citizen = citizenModel.getSelectedCitizen();
+        CitizenInstance citizenInstance = citizenInstanceModel.getSelectedCitizen();
         if(areFieldsFilled()){
             FunctionalAbility functionalAbility = FunctionalAbility.fromString(ttpRoot.getText());
             FunctionalAbilityData functionalAbilityData = new FunctionalAbilityData();
@@ -150,11 +150,9 @@ public class FunctionalAbilityComponentController implements Initializable {
             functionalAbilityData.setPerceivedLimitationLevel(cmbPerceivedLimitationLevel.getSelectionModel().getSelectedItem());
             functionalAbilityData.setCitizenRequest(txaCitizenRequest.getText());
 
-            citizen.getFunctionalAbilities().put(functionalAbility, functionalAbilityData);
-            System.out.println(citizen.getFunctionalAbilities().get(functionalAbility).getCurrentLimitationLevel());
-
+            citizenInstance.getFunctionalAbilities().put(functionalAbility, functionalAbilityData);
             try {
-                citizenModel.updateSelectedCitizen();
+                citizenInstanceModel.updateSelectedCitizen();
             } catch (Exception e) {
                 e.printStackTrace();
                 //TODO: handle gracefully
@@ -176,7 +174,7 @@ public class FunctionalAbilityComponentController implements Initializable {
     }
 
     private boolean isCitizenSelected(){
-        if(citizenModel.getSelectedCitizen() != null){
+        if(citizenInstanceModel.getSelectedCitizen() != null){
             return true;
         }
         else {

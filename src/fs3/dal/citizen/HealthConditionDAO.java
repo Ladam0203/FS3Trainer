@@ -36,6 +36,36 @@ public class HealthConditionDAO {
         return healthConditionData;
     }
 
+    public void create(Citizen citizen) throws Exception {
+        ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
+        try (Connection con = cm.getConnection()) {
+            PreparedStatement ps = con.prepareStatement(insertHealthConditonData);
+            for (Map.Entry<HealthCondition, HealthConditionData> entry : citizen.getHealthConditions().entrySet()) {
+                HealthConditionData healthConditionData = entry.getValue();
+                ps.setInt(1, citizen.getId());
+                ps.setString(2, entry.getKey().toString());
+                ps.setString(3, healthConditionData.getHealthConditionState().toString());
+                if (healthConditionData.getHealthConditionState() == HealthConditionState.INACTIVE) {
+                    ps.setNull(4, java.sql.Types.NVARCHAR);
+                    ps.setNull(5, java.sql.Types.NVARCHAR);
+                    ps.setNull(6, java.sql.Types.NVARCHAR);
+                    ps.setNull(7, Types.DATE);
+                    ps.setNull(8, Types.NVARCHAR);
+                } else { //we can trust the GUI that f the state is not inactive, all additional data is filled
+                    ps.setString(4, healthConditionData.getProfessionalNote());
+                    ps.setString(5, healthConditionData.getCurrentAssessment());
+                    ps.setString(6, healthConditionData.getExpectedLevel().toString());
+                    ps.setDate(7, java.sql.Date.valueOf(healthConditionData.getFollowUpDate()));
+                    ps.setString(8, healthConditionData.getObservationNote());
+                }
+                ps.addBatch();
+            }
+            ps.executeBatch();
+        } finally {
+            ConnectionManagerPool.getInstance().returnConnectionManager(cm);
+        }
+    }
+
     public void update(Citizen citizen) throws Exception {
         ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
         try (Connection con = cm.getConnection()) {

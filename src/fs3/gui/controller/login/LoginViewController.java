@@ -1,6 +1,7 @@
 package fs3.gui.controller.login;
 
 import fs3.be.Student;
+import fs3.be.Teacher;
 import fs3.be.User;
 import fs3.gui.model.LoginModel;
 import fs3.util.PopUp;
@@ -37,10 +38,12 @@ public class LoginViewController {
             }
             try {
                 boolean isStudent = loggedUser.getClass().equals(Student.class);
-//                boolean isTeacher = loggedUser.getClass().equals(Teacher.class);
+                boolean isTeacher = loggedUser.getClass().equals(Teacher.class);
 //                boolean isAdmin = loggedUser.getClass().equals(Admin.class);
 
-                Parent root = isStudent ? FXMLLoader.load(getClass().getResource("../../view/student/StudentPageView.fxml")) : null;
+                Parent root = isStudent ? FXMLLoader.load(getClass().getResource("../../view/student/StudentPageView.fxml"))
+                : isTeacher ? FXMLLoader.load(getClass().getResource("../../view/teacher/TeacherPageView.fxml"))
+                        :null;
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 Scene scene = new Scene(root);
                 stage.setScene(scene);

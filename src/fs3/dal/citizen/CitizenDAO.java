@@ -1,19 +1,22 @@
 package fs3.dal.citizen;
 
 import fs3.be.Citizen;
+import fs3.be.CitizenInstance;
+import fs3.be.CitizenTemplate;
 import fs3.dal.ConnectionManager;
 import fs3.dal.ConnectionManagerPool;
 
-import javax.sql.RowSet;
 import javax.sql.rowset.CachedRowSet;
 import javax.sql.rowset.RowSetProvider;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.stream.Collectors;
 
 public class CitizenDAO {
     private final PersonalInformationDAO personalInformationDAO = new PersonalInformationDAO();
@@ -21,47 +24,94 @@ public class CitizenDAO {
     private final HealthConditionDAO healthConditionDAO = new HealthConditionDAO();
     private final FunctionalAbilityDAO functionalAbilityDAO = new FunctionalAbilityDAO();
 
-    ExecutorService executor;
     ExecutorService subExecutor;
 
     String tableName = "Citizens";
-    String[] columns = {"id"};
+    String[] columns = {"id", "isTemplate"};
 
-    String readAll = "SELECT * FROM " + tableName;
+    String insert = "INSERT INTO " + tableName + " " + "VALUES (?)";
+    String readAllInstances = "SELECT * FROM " + tableName + " WHERE " + columns[1] + " = 0";
+    String readAllTemplates = "SELECT * FROM " + tableName + " WHERE " + columns[1] + " = 1";
 
-    public List<Citizen> readAll() throws Exception {
-        long start = System.currentTimeMillis();
+    public List<CitizenTemplate> readAllCitizenTemplates() throws Exception {
+        return readAll(readAllTemplates).stream().map(c -> (CitizenTemplate) c).collect(Collectors.toList());
+    }
 
+    public List<CitizenInstance> readAllCitizenInstances() throws Exception {
+        return readAll(readAllInstances).stream().map(c -> (CitizenInstance) c).collect(Collectors.toList());
+    }
+
+    private List<Citizen> readAll(String query) throws Exception {
         List<Citizen> citizens = new ArrayList<>();
 
         ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
         try (Connection con = cm.getConnection()) {
-            PreparedStatement ps = con.prepareStatement(readAll);
+            PreparedStatement ps = con.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
 
             CachedRowSet crs = RowSetProvider.newFactory().createCachedRowSet();
             crs.populate(rs);
 
-            List<Future<Exception>> futures = new ArrayList<>();
-            executor = Executors.newCachedThreadPool();
             while (crs.next()) {
                 citizens.add(constructCitizen(crs));
-            }
-
-            executor.shutdown();
-            for (Future<Exception> future : futures) {
-                if (future.get() != null) {
-                    throw future.get();
-                }
             }
         } finally {
             ConnectionManagerPool.getInstance().returnConnectionManager(cm);
         }
 
-        long end = System.currentTimeMillis();
-        System.out.println("CitizenDAO.readAll() took " + (end - start) + " ms");
-
         return citizens;
+    }
+
+    public Citizen create(Citizen citizen) throws Exception {
+        ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
+        try (Connection con = cm.getConnection()) {
+            PreparedStatement ps = con.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
+            ps.setBoolean(1, CitizenTemplate.class.equals(citizen.getClass()));
+            ps.executeUpdate();
+
+            ResultSet rs = ps.getGeneratedKeys();
+            if (rs.next()) {
+                citizen.setId(rs.getInt(1));
+            }
+        } finally {
+            ConnectionManagerPool.getInstance().returnConnectionManager(cm);
+        }
+        subExecutor = Executors.newFixedThreadPool(4);
+        List<Future<Exception>> futures = new ArrayList<>();
+        futures.add(subExecutor.submit(new ExceptionCallable() {
+            @Override
+            void doTask() throws Exception {
+                personalInformationDAO.create(citizen);
+            }
+        }));
+
+        futures.add(subExecutor.submit(new ExceptionCallable() {
+            @Override
+            void doTask() throws Exception {
+                generalInformationDAO.create(citizen);
+            }
+        }));
+        futures.add(subExecutor.submit(new ExceptionCallable() {
+            @Override
+            void doTask() throws Exception {
+                healthConditionDAO.create(citizen);
+            }
+        }));
+        futures.add(subExecutor.submit(new ExceptionCallable() {
+            @Override
+            void doTask() throws Exception {
+                functionalAbilityDAO.create(citizen);
+            }
+        }));
+
+        subExecutor.shutdown();
+        for (Future<Exception> future : futures) {
+            if (future.get() != null) {
+                throw future.get();
+            }
+        }
+
+        return citizen;
     }
 
     public void update(Citizen citizen) throws Exception {
@@ -91,6 +141,7 @@ public class CitizenDAO {
                 functionalAbilityDAO.update(citizen);
             }
         }));
+        //if citizen is instance, update connections
 
         subExecutor.shutdown();
         for (Future<Exception> future : futures) {
@@ -101,7 +152,7 @@ public class CitizenDAO {
     }
 
     private Citizen constructCitizen(ResultSet rs) throws Exception {
-        Citizen citizen = new Citizen();
+        Citizen citizen = CitizenFactory.createCitizen(rs.getBoolean(columns[1]));
         int citizenId = rs.getInt(columns[0]);
         citizen.setId(citizenId);
 
@@ -131,6 +182,7 @@ public class CitizenDAO {
                 citizen.setFunctionalAbilities(functionalAbilityDAO.read(citizen));
             }
         }));
+        //if citizen is instance, load connections
 
         subExecutor.shutdown();
         for (Future<Exception> future : futures) {
@@ -141,8 +193,4 @@ public class CitizenDAO {
 
         return citizen;
     }
-
-    /*
-    * Submits task to executor service and throws the exception upwards if it happened, not really async because it will wait to finish...
-     */
 }
