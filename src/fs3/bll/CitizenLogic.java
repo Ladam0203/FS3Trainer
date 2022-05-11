@@ -8,12 +8,13 @@ import fs3.dal.IDAOFacade;
 import java.util.List;
 
 public class CitizenLogic {
-   private final IDAOFacade DAOFacade;
+   private final IDAOFacade daoFacade;
 
-   public CitizenLogic(){ DAOFacade = new DAOFacade();}
+   public CitizenLogic(){ daoFacade = new DAOFacade();}
 
-    public List<CitizenInstance> readAllCitizensInstances() throws Exception {return DAOFacade.readAllCitizenInstances();}
+    public List<CitizenInstance> readAllCitizensInstances() throws Exception {return daoFacade.readAllCitizenInstances();}
 
     //update citizen
-    public void updateCitizen(Citizen citizen) throws Exception {DAOFacade.updateCitizen(citizen);}
+    public void updateCitizen(Citizen citizen) throws Exception {
+        daoFacade.updateCitizen(citizen);}
 }
