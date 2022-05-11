@@ -10,14 +10,14 @@ import javafx.beans.property.SimpleObjectProperty;
 import java.util.EnumMap;
 import java.util.HashMap;
 
-public class Citizen {
-    private IntegerProperty id;
-    private ObjectProperty<PersonalInformation> personalInformation;
-    private ObjectProperty<GeneralInformation> generalInformation;
-    private HashMap<HealthCondition, HealthConditionData> healthConditions;
-    private HashMap<FunctionalAbility, FunctionalAbilityData> functionalAbilities;
+public abstract class Citizen {
+    protected IntegerProperty id;
+    protected ObjectProperty<PersonalInformation> personalInformation;
+    protected ObjectProperty<GeneralInformation> generalInformation;
+    protected HashMap<HealthCondition, HealthConditionData> healthConditions;
+    protected HashMap<FunctionalAbility, FunctionalAbilityData> functionalAbilities;
 
-    public Citizen() {
+    protected Citizen() {
         id = new SimpleIntegerProperty();
         personalInformation = new SimpleObjectProperty<>();
         generalInformation = new SimpleObjectProperty<>();

@@ -1,6 +1,8 @@
 package fs3.dal;
 
 import fs3.be.Citizen;
+import fs3.be.CitizenInstance;
+import fs3.be.CitizenTemplate;
 import fs3.be.User;
 import fs3.dal.citizen.CitizenDAO;
 import fs3.dal.user.UserDAO;
@@ -10,11 +12,6 @@ import java.util.List;
 public class DAOFacade implements IDAOFacade {
     CitizenDAO citizenDAO = new CitizenDAO();
     UserDAO userDAO = new UserDAO();
-
-    @Override
-    public List<Citizen> readAllCitizens() throws Exception {
-        return citizenDAO.readAll();
-    }
 
     @Override
     public void updateCitizen(Citizen citizen) throws Exception {
@@ -35,6 +32,16 @@ public class DAOFacade implements IDAOFacade {
     @Override
     public User readUser(String username, String password) throws Exception {
         return userDAO.readUser(username, password);
+    }
+
+    @Override
+    public List<CitizenInstance> readAllCitizenInstances() throws Exception {
+        return citizenDAO.readAllCitizenInstances();
+    }
+
+    @Override
+    public List<CitizenTemplate> readAllCitizenTemplates() throws Exception {
+        return citizenDAO.readAllCitizenTemplates();
     }
 
 

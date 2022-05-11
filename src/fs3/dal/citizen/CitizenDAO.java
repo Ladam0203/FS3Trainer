@@ -1,6 +1,8 @@
 package fs3.dal.citizen;
 
 import fs3.be.Citizen;
+import fs3.be.CitizenInstance;
+import fs3.be.CitizenTemplate;
 import fs3.dal.ConnectionManager;
 import fs3.dal.ConnectionManagerPool;
 
@@ -14,6 +16,7 @@ import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.stream.Collectors;
 
 public class CitizenDAO {
     private final PersonalInformationDAO personalInformationDAO = new PersonalInformationDAO();
@@ -21,45 +24,39 @@ public class CitizenDAO {
     private final HealthConditionDAO healthConditionDAO = new HealthConditionDAO();
     private final FunctionalAbilityDAO functionalAbilityDAO = new FunctionalAbilityDAO();
 
-    ExecutorService executor;
     ExecutorService subExecutor;
 
     String tableName = "Citizens";
-    String[] columns = {"id"};
+    String[] columns = {"id", "isTemplate"};
 
-    String readAll = "SELECT * FROM " + tableName;
+    String readAllInstances = "SELECT * FROM " + tableName + " WHERE " + columns[1] + " = 0";
+    String readAllTemplates = "SELECT * FROM " + tableName + " WHERE " + columns[1] + " = 1";
 
-    public List<Citizen> readAll() throws Exception {
-        long start = System.currentTimeMillis();
+    public List<CitizenTemplate> readAllCitizenTemplates() throws Exception {
+        return readAll(readAllTemplates).stream().map(c -> (CitizenTemplate) c).collect(Collectors.toList());
+    }
 
+    public List<CitizenInstance> readAllCitizenInstances() throws Exception {
+        return readAll(readAllInstances).stream().map(c -> (CitizenInstance) c).collect(Collectors.toList());
+    }
+
+    private List<Citizen> readAll(String query) throws Exception {
         List<Citizen> citizens = new ArrayList<>();
 
         ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
         try (Connection con = cm.getConnection()) {
-            PreparedStatement ps = con.prepareStatement(readAll);
+            PreparedStatement ps = con.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
 
             CachedRowSet crs = RowSetProvider.newFactory().createCachedRowSet();
             crs.populate(rs);
 
-            List<Future<Exception>> futures = new ArrayList<>();
-            executor = Executors.newCachedThreadPool();
             while (crs.next()) {
                 citizens.add(constructCitizen(crs));
-            }
-
-            executor.shutdown();
-            for (Future<Exception> future : futures) {
-                if (future.get() != null) {
-                    throw future.get();
-                }
             }
         } finally {
             ConnectionManagerPool.getInstance().returnConnectionManager(cm);
         }
-
-        long end = System.currentTimeMillis();
-        System.out.println("CitizenDAO.readAll() took " + (end - start) + " ms");
 
         return citizens;
     }
@@ -101,7 +98,7 @@ public class CitizenDAO {
     }
 
     private Citizen constructCitizen(ResultSet rs) throws Exception {
-        Citizen citizen = new Citizen();
+        Citizen citizen = CitizenFactory.createCitizen(rs.getBoolean(columns[1]));
         int citizenId = rs.getInt(columns[0]);
         citizen.setId(citizenId);
 
@@ -141,8 +138,4 @@ public class CitizenDAO {
 
         return citizen;
     }
-
-    /*
-    * Submits task to executor service and throws the exception upwards if it happened, not really async because it will wait to finish...
-     */
 }
