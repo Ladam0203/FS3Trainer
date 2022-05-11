@@ -1,6 +1,7 @@
 package fs3.dal.user;
 
 import fs3.be.Student;
+import fs3.be.Teacher;
 import fs3.be.User;
 import fs3.dal.ConnectionManager;
 import fs3.dal.ConnectionManagerPool;
@@ -8,15 +9,14 @@ import fs3.dal.ConnectionManagerPool;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
-public class StudentDAO {
-    String tableName = "Students";
+public class TeacherDAO {
+    String tableName = "Teachers";
     String[] columns = {"userId", "name"};
 
     String select = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ?";
 
-    public void setStudent(User user) throws Exception {
+    public void setTeacher(User user) throws Exception {
         ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
         try (Connection con = cm.getConnection()) {
             PreparedStatement ps = con.prepareStatement(select);
@@ -24,10 +24,11 @@ public class StudentDAO {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                Student student = (Student) user;
-                student.setName(rs.getString("name"));
+                Teacher teacher = (Teacher) user;
+                teacher.setName(rs.getString("name"));
             }
+        } finally {
+            ConnectionManagerPool.getInstance().returnConnectionManager(cm);
         }
-        ConnectionManagerPool.getInstance().returnConnectionManager(cm);
     }
 }
