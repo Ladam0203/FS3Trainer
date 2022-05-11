@@ -1,6 +1,7 @@
 package fs3.dal.user;
 
 import fs3.be.Student;
+import fs3.be.Teacher;
 import fs3.be.User;
 import fs3.dal.ConnectionManager;
 import fs3.dal.ConnectionManagerPool;
@@ -11,6 +12,7 @@ import java.sql.ResultSet;
 
 public class UserDAO {
     private final StudentDAO studentDAO = new StudentDAO();
+    private final TeacherDAO teacherDAO = new TeacherDAO();
 
     String tableName = "Users";
     String[] columns = {"id", "username", "password", "roleId"};
@@ -35,8 +37,13 @@ public class UserDAO {
             if (Student.class.equals(user.getClass())) {
                 studentDAO.setStudent(user);
             }
+            else if (Teacher.class.equals(user.getClass())) {
+                teacherDAO.setTeacher(user);
+            }
+
+        } finally {
+            ConnectionManagerPool.getInstance().returnConnectionManager(cm);
         }
-        ConnectionManagerPool.getInstance().returnConnectionManager(cm);
 
         return user;
     }
