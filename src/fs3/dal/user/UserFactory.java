@@ -1,6 +1,7 @@
 package fs3.dal.user;
 
 import fs3.be.Student;
+import fs3.be.Teacher;
 import fs3.be.User;
 
 public class UserFactory {
@@ -9,7 +10,7 @@ public class UserFactory {
             case 1:
                 throw new UnsupportedOperationException("Not supported yet.");
             case 2:
-                throw new UnsupportedOperationException("Not supported yet.");
+                return new Teacher(username, password);
             case 3:
                 return new Student(username, password);
         }
