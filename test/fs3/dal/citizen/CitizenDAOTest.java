@@ -19,7 +19,7 @@ public class CitizenDAOTest {
     public void TestUpdateHealthConditions() throws Exception {
         CitizenDAO citizenDAO = new CitizenDAO();
 
-        Citizen citizen = citizenDAO.readAll().get(0);
+        Citizen citizen = citizenDAO.readAllCitizenInstances().get(0);
 
         FunctionalAbilityData functionalAbilityData = new FunctionalAbilityData();
         functionalAbilityData.setCurrentLimitationLevel(LimitationLevel.SEVERE_LIMITATION);
@@ -35,7 +35,7 @@ public class CitizenDAOTest {
 
         citizenDAO.update(citizen);
 
-        citizen = citizenDAO.readAll().get(0);
+        citizen = citizenDAO.readAllCitizenInstances().get(0);
 
         Assertions.assertEquals(LimitationLevel.SEVERE_LIMITATION, citizen.getFunctionalAbilities().get(FunctionalAbility.DRINKING).getCurrentLimitationLevel());
     }

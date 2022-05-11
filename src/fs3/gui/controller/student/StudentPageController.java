@@ -1,7 +1,8 @@
 package fs3.gui.controller.student;
 
 import fs3.be.Citizen;
-import fs3.gui.model.CitizenModel;
+import fs3.be.CitizenInstance;
+import fs3.gui.model.CitizenInstanceModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,16 +13,16 @@ import java.util.ResourceBundle;
 
 public class StudentPageController implements Initializable {
     @FXML
-    private ComboBox<Citizen> cmbAssignedCitizens;
+    private ComboBox<CitizenInstance> cmbAssignedCitizens;
 
-    private CitizenModel citizenModel;
+    private CitizenInstanceModel citizenInstanceModel;
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            citizenModel = CitizenModel.getInstance();
-            cmbAssignedCitizens.setItems(citizenModel.getObservableCitizens());
+            citizenInstanceModel = CitizenInstanceModel.getInstance();
+            cmbAssignedCitizens.setItems(citizenInstanceModel.getObservableCitizens());
         } catch (Exception e) {
             //TODO: handle exception gracefully
             e.printStackTrace();
@@ -30,9 +31,9 @@ public class StudentPageController implements Initializable {
 
     @FXML
     private void handleSelectCitizen(ActionEvent actionEvent) {
-        Citizen citizen = cmbAssignedCitizens.getSelectionModel().getSelectedItem();
-        if (citizen != null) {
-            citizenModel.setSelectedCitizen(citizen);
+        CitizenInstance citizenInstance = cmbAssignedCitizens.getSelectionModel().getSelectedItem();
+        if (citizenInstance != null) {
+            citizenInstanceModel.setSelectedCitizenInstance(citizenInstance);
         }
 
 

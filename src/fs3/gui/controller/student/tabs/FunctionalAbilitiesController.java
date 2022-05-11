@@ -2,7 +2,7 @@ package fs3.gui.controller.student.tabs;
 
 import fs3.be.FunctionalAbilityData;
 import fs3.enums.FunctionalAbility;
-import fs3.gui.model.CitizenModel;
+import fs3.gui.model.CitizenInstanceModel;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -21,11 +21,11 @@ public class FunctionalAbilitiesController implements Initializable {
 
     private EnumMap<FunctionalAbility, FunctionalAbilityComponentController> functionControllerMap = new EnumMap<>(FunctionalAbility.class);
 
-    private CitizenModel citizenModel;
+    private CitizenInstanceModel citizenInstanceModel;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            citizenModel = CitizenModel.getInstance();
+            citizenInstanceModel = CitizenInstanceModel.getInstance();
             //add all functional abilities panes
             for(FunctionalAbility condition : FunctionalAbility.values()){
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../view/student/tabs/FunctionalAbilityComponentView.fxml"));
@@ -40,7 +40,7 @@ public class FunctionalAbilitiesController implements Initializable {
             e.printStackTrace();
         }
 
-        citizenModel.getSelectedCitizenProperty().addListener((observable, oldValue, newValue) -> {
+        citizenInstanceModel.getSelectedCitizenProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue == null) {
                 return;
             }

@@ -2,7 +2,7 @@ package fs3.gui.controller.student.tabs;
 
 import fs3.be.GeneralInformation;
 import fs3.be.PersonalInformation;
-import fs3.gui.model.CitizenModel;
+import fs3.gui.model.CitizenInstanceModel;
 import fs3.util.PopUp;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -20,7 +20,7 @@ public class GeneralInformationController implements Initializable {
     @FXML
     private Label lblName;
 
-    private CitizenModel citizenModel;
+    private CitizenInstanceModel citizenInstanceModel;
 
     //not sure if adding it into list is the right, but I think it is more practical
     private List<TextArea> textAreas;
@@ -28,7 +28,7 @@ public class GeneralInformationController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            citizenModel = CitizenModel.getInstance();
+            citizenInstanceModel = CitizenInstanceModel.getInstance();
             textAreas = new ArrayList<>();
             textAreas.add(txaCoping);
             textAreas.add(txaMotivation);
@@ -47,7 +47,7 @@ public class GeneralInformationController implements Initializable {
             e.printStackTrace();
         }
 
-        citizenModel.getSelectedCitizenProperty().addListener((observable, oldValue, newValue) -> {
+        citizenInstanceModel.getSelectedCitizenProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 PersonalInformation personalInformation = newValue.getPersonalInformation();
                 lblName.setText(personalInformation.getName());
@@ -71,11 +71,11 @@ public class GeneralInformationController implements Initializable {
 
     @FXML
     private void handleSave() throws Exception {
-        if (citizenModel.getSelectedCitizenProperty().get() == null) {
+        if (citizenInstanceModel.getSelectedCitizenProperty().get() == null) {
             return;
         }
         
-        GeneralInformation generalInformation = citizenModel.getSelectedCitizen().getGeneralInformation();
+        GeneralInformation generalInformation = citizenInstanceModel.getSelectedCitizen().getGeneralInformation();
         if(areTextAreasEmpty())
         {
             generalInformation.setCoping(txaCoping.getText());
@@ -91,7 +91,7 @@ public class GeneralInformationController implements Initializable {
             generalInformation.setHomeLayout(txaHomeLayout.getText());
             generalInformation.setNetwork(txaNetwork.getText());
 
-            citizenModel.updateSelectedCitizen();
+            citizenInstanceModel.updateSelectedCitizen();
         }
         return;
 
