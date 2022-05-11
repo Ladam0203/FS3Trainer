@@ -20,7 +20,9 @@ public abstract class Citizen {
     protected Citizen() {
         id = new SimpleIntegerProperty();
         personalInformation = new SimpleObjectProperty<>();
+        setPersonalInformation(new PersonalInformation());
         generalInformation = new SimpleObjectProperty<>();
+        setGeneralInformation(new GeneralInformation());
         healthConditions = new HashMap<>();
         functionalAbilities = new HashMap<>();
     }

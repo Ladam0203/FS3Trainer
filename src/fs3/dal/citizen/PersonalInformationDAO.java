@@ -39,9 +39,6 @@ public class PersonalInformationDAO {
     }
 
     public void create(Citizen citizen) throws Exception {
-        if (citizen.getPersonalInformation() == null) {
-            return;
-        }
         ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
         try (Connection con = cm.getConnection()) {
             PreparedStatement ps = con.prepareStatement(create);
