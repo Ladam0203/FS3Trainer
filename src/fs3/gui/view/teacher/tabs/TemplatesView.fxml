@@ -1,18 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
-
 
 <HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1200.0" stylesheets="@../../styles/common.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.teacher.tabs.TemplatesController">
    <children>
       <VBox maxHeight="1.7976931348623157E308" maxWidth="-Infinity" HBox.hgrow="NEVER">
          <children>
-            <ListView fx:id="ltvCitizenTemplates" minHeight="-Infinity" minWidth="-Infinity" prefWidth="250.0" VBox.vgrow="ALWAYS" />
+            <Pane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="55.0" style="-fx-background-color: #22577A;" VBox.vgrow="NEVER">
+               <children>
+                  <ImageView fitWidth="80.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../resources/login_logo.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin></Pane>
+            <ListView fx:id="ltvCitizenTemplates" VBox.vgrow="ALWAYS" />
             <HBox VBox.vgrow="NEVER">
                <children>
                   <TextField fx:id="txfTemplateName" />
@@ -23,8 +40,28 @@
                     </buttons>
                   </ButtonBar>
                </children>
+               <padding>
+                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+               </padding>
             </HBox>
          </children>
       </VBox>
+      <TabPane stylesheets="@../../styles/tabpane.css" tabClosingPolicy="UNAVAILABLE" tabMinHeight="40.0" tabMinWidth="200.0" HBox.hgrow="ALWAYS">
+        <tabs>
+          <Tab text="General information">
+              <fx:include source="GeneralInformationView.fxml" />
+          </Tab>
+          <Tab text="Health conditions">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+          </Tab>
+            <Tab text="Functional abilities">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
    </children>
 </HBox>

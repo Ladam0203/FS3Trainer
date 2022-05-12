@@ -1,6 +1,5 @@
 package fs3.gui.controller.student;
 
-import fs3.be.Citizen;
 import fs3.be.CitizenInstance;
 import fs3.gui.model.CitizenInstanceModel;
 import javafx.event.ActionEvent;
