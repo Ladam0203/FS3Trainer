@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1200.0" stylesheets="@../../styles/common.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.teacher.tabs.TemplatesController">
+   <children>
+      <VBox maxHeight="1.7976931348623157E308" maxWidth="-Infinity" HBox.hgrow="NEVER">
+         <children>
+            <ListView fx:id="ltvCitizenTemplates" minHeight="-Infinity" minWidth="-Infinity" prefWidth="250.0" VBox.vgrow="ALWAYS" />
+            <HBox VBox.vgrow="NEVER">
+               <children>
+                  <TextField fx:id="txfTemplateName" />
+                  <ButtonBar buttonMinWidth="50.0" HBox.hgrow="NEVER">
+                    <buttons>
+                      <Button mnemonicParsing="false" onAction="#handleAddTemplate" text="Add" />
+                        <Button mnemonicParsing="false" onAction="#handleUpdateTemplate" text="Update" />
+                    </buttons>
+                  </ButtonBar>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</HBox>
