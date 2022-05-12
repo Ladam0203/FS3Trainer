@@ -55,6 +55,7 @@ public class CitizenDAOTest {
         Assertions.assertEquals(CitizenInstance.class, newCitizen.getClass());
     }
 
+    @Disabled
     @Test
     void testDeleteCitizen() throws Exception {
         CitizenDAO citizenDAO = new CitizenDAO();
