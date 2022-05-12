@@ -4,6 +4,7 @@ import fs3.be.CitizenTemplate;
 import fs3.be.GeneralInformation;
 import fs3.be.PersonalInformation;
 import fs3.gui.model.CitizenTemplateModel;
+import fs3.util.PopUp;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
@@ -21,7 +22,7 @@ public class TemplatesController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            citizenTemplateModel = new CitizenTemplateModel();
+            citizenTemplateModel = CitizenTemplateModel.getInstance();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -40,6 +41,24 @@ public class TemplatesController implements Initializable {
                 citizenTemplateModel.createCitizenTemplate(citizenTemplate);
             } catch (Exception e) {
                 e.printStackTrace();
+            }
+        }
+    }
+
+    public void handleUpdateTemplate(ActionEvent event) {
+        CitizenTemplate updatedCitizenTemplate = ltvCitizenTemplates.getSelectionModel().getSelectedItem();
+        PersonalInformation personalInformation = new PersonalInformation();
+        GeneralInformation generalInformation = new GeneralInformation();
+
+        String name = txfTemplateName.getText();
+        if (!name.isEmpty() && updatedCitizenTemplate != null) {
+            personalInformation.setName(name);
+            updatedCitizenTemplate.setPersonalInformation(personalInformation);
+            updatedCitizenTemplate.setGeneralInformation(generalInformation);
+            try {
+                citizenTemplateModel.updateSelectedCitizenTemplate(updatedCitizenTemplate);
+            } catch (Exception e) {
+                PopUp.showError("Cannot update the template!");
             }
         }
     }

@@ -19,6 +19,7 @@
                   <ButtonBar buttonMinWidth="50.0" HBox.hgrow="NEVER">
                     <buttons>
                       <Button mnemonicParsing="false" onAction="#handleAddTemplate" text="Add" />
+                        <Button mnemonicParsing="false" onAction="#handleUpdateTemplate" text="Update" />
                     </buttons>
                   </ButtonBar>
                </children>
