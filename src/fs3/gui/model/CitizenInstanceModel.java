@@ -43,4 +43,9 @@ public class CitizenInstanceModel {
     public void updateSelectedCitizen() throws Exception {
         citizenLogic.updateCitizen(selectedCitizenInstance.get());
     }
+
+    public void deleteCitizenInstance(CitizenInstance citizenInstance) throws Exception {
+        observableCitizensInstances.remove(citizenInstance);
+        citizenLogic.deleteCitizen(citizenInstance);
+    }
 }

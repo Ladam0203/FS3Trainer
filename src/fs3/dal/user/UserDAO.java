@@ -9,14 +9,35 @@ import fs3.dal.ConnectionManagerPool;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDAO {
     private final StudentDAO studentDAO = new StudentDAO();
     private final TeacherDAO teacherDAO = new TeacherDAO();
 
-    String tableName = "Users";
-    String[] columns = {"id", "username", "password", "roleId"};
-    String select = "SELECT * FROM " + tableName + " WHERE " + columns[1] + " = ? AND " + columns[2] + " = ?";
+    private String tableName = "Users";
+    private String[] columns = {"id", "username", "password", "roleId"};
+    private String select = "SELECT * FROM " + tableName + " WHERE " + columns[1] + " = ? AND " + columns[2] + " = ?";
+    private String selectStudents = "SELECT * FROM " + tableName + " WHERE " + columns[3] + " = ?";
+
+    public List<Student> readAllStudents() throws Exception {
+        List<Student> students = new ArrayList<>();
+        ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
+        try (Connection con = cm.getConnection()) {
+            PreparedStatement ps = con.prepareStatement(selectStudents);
+            ps.setInt(1, 3);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Student student = (Student) constructUser(rs);
+                studentDAO.setStudent(student);
+                students.add(student);
+            }
+        } finally {
+            ConnectionManagerPool.getInstance().returnConnectionManager(cm);
+        }
+        return students;
+    }
 
     public User readUser(String username, String password) throws Exception {
         User user = null;

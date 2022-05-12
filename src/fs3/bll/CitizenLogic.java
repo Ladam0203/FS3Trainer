@@ -35,4 +35,8 @@ public class CitizenLogic {
     public void updateCitizenTemplate(CitizenTemplate citizenTemplate) throws Exception {
         daoFacade.updateCitizen(citizenTemplate);
     }
+
+    public void deleteCitizen(Citizen citizen) throws Exception {
+        daoFacade.deleteCitizen(citizen);
+    }
 }
