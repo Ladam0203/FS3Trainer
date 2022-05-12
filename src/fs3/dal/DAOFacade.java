@@ -1,9 +1,6 @@
 package fs3.dal;
 
-import fs3.be.Citizen;
-import fs3.be.CitizenInstance;
-import fs3.be.CitizenTemplate;
-import fs3.be.User;
+import fs3.be.*;
 import fs3.dal.citizen.CitizenDAO;
 import fs3.dal.user.UserDAO;
 
@@ -54,4 +51,8 @@ public class DAOFacade implements IDAOFacade {
         citizenDAO.delete(citizen);
     }
 
+    @Override
+    public List<Student> readAllStudents() throws Exception {
+        return userDAO.readAllStudents();
+    }
 }

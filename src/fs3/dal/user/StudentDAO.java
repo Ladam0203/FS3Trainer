@@ -9,12 +9,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class StudentDAO {
-    String tableName = "Students";
-    String[] columns = {"userId", "name"};
+    private String tableName = "Students";
+    private String[] columns = {"userId", "name"};
 
-    String select = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ?";
+    private String select = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ?";
+    private String selectAll = "SELECT * FROM " + tableName;
 
     public void setStudent(User user) throws Exception {
         ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();

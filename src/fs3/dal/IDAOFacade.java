@@ -1,9 +1,6 @@
 package fs3.dal;
 
-import fs3.be.Citizen;
-import fs3.be.CitizenInstance;
-import fs3.be.CitizenTemplate;
-import fs3.be.User;
+import fs3.be.*;
 
 import java.util.List;
 
@@ -14,4 +11,5 @@ public interface IDAOFacade {
     List<CitizenTemplate> readAllCitizenTemplates() throws Exception;
     Citizen createCitizen(Citizen citizen) throws Exception;
     void deleteCitizen(Citizen citizen) throws Exception;
+    List<Student> readAllStudents() throws Exception;
 }
