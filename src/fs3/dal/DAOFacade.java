@@ -49,4 +49,9 @@ public class DAOFacade implements IDAOFacade {
         return citizenDAO.create(citizen);
     }
 
+    @Override
+    public void deleteCitizen(Citizen citizen) throws Exception {
+        citizenDAO.delete(citizen);
+    }
+
 }

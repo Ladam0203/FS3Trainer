@@ -13,4 +13,5 @@ public interface IDAOFacade {
     List<CitizenInstance> readAllCitizenInstances() throws Exception;
     List<CitizenTemplate> readAllCitizenTemplates() throws Exception;
     Citizen createCitizen(Citizen citizen) throws Exception;
+    void deleteCitizen(Citizen citizen) throws Exception;
 }
