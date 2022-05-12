@@ -24,14 +24,15 @@ public class CitizenDAO {
     private final HealthConditionDAO healthConditionDAO = new HealthConditionDAO();
     private final FunctionalAbilityDAO functionalAbilityDAO = new FunctionalAbilityDAO();
 
-    ExecutorService subExecutor;
+    private ExecutorService subExecutor;
 
-    String tableName = "Citizens";
-    String[] columns = {"id", "isTemplate"};
+    private String tableName = "Citizens";
+    private String[] columns = {"id", "isTemplate"};
 
-    String insert = "INSERT INTO " + tableName + " " + "VALUES (?)";
-    String readAllInstances = "SELECT * FROM " + tableName + " WHERE " + columns[1] + " = 0";
-    String readAllTemplates = "SELECT * FROM " + tableName + " WHERE " + columns[1] + " = 1";
+    private String insert = "INSERT INTO " + tableName + " " + "VALUES (?)";
+    private String readAllInstances = "SELECT * FROM " + tableName + " WHERE " + columns[1] + " = 0";
+    private String readAllTemplates = "SELECT * FROM " + tableName + " WHERE " + columns[1] + " = 1";
+    private String delete = "DELETE FROM " + tableName + " WHERE " + columns[0] + " = ?";
 
     public List<CitizenTemplate> readAllCitizenTemplates() throws Exception {
         return readAll(readAllTemplates).stream().map(c -> (CitizenTemplate) c).collect(Collectors.toList());
@@ -148,6 +149,17 @@ public class CitizenDAO {
             if (future.get() != null) {
                 throw future.get();
             }
+        }
+    }
+
+    public void delete(Citizen citizen) throws Exception {
+        ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
+        try (Connection con = cm.getConnection()) {
+            PreparedStatement ps = con.prepareStatement(delete);
+            ps.setInt(1, citizen.getId());
+            ps.executeUpdate();
+        } finally {
+            ConnectionManagerPool.getInstance().returnConnectionManager(cm);
         }
     }
 

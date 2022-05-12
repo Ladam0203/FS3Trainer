@@ -14,9 +14,9 @@ public class UserDAO {
     private final StudentDAO studentDAO = new StudentDAO();
     private final TeacherDAO teacherDAO = new TeacherDAO();
 
-    String tableName = "Users";
-    String[] columns = {"id", "username", "password", "roleId"};
-    String select = "SELECT * FROM " + tableName + " WHERE " + columns[1] + " = ? AND " + columns[2] + " = ?";
+    private String tableName = "Users";
+    private String[] columns = {"id", "username", "password", "roleId"};
+    private String select = "SELECT * FROM " + tableName + " WHERE " + columns[1] + " = ? AND " + columns[2] + " = ?";
 
     public User readUser(String username, String password) throws Exception {
         User user = null;

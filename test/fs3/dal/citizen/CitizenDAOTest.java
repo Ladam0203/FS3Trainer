@@ -54,4 +54,14 @@ public class CitizenDAOTest {
         Assertions.assertEquals(11, newCitizen.getId());
         Assertions.assertEquals(CitizenInstance.class, newCitizen.getClass());
     }
+
+    @Test
+    void testDeleteCitizen() throws Exception {
+        CitizenDAO citizenDAO = new CitizenDAO();
+        CitizenInstance citizen = citizenDAO.readAllCitizenInstances().get(0);
+        citizenDAO.delete(citizen);
+
+        List<CitizenInstance> citizens = citizenDAO.readAllCitizenInstances();
+        Assertions.assertEquals(1, citizens.size());
+    }
 }
