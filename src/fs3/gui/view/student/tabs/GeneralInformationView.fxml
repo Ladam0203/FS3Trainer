@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@../../styles/common.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.student.tabs.GeneralInformationController">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@../../styles/common.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.student.tabs.GeneralInformationController">
    <children>
       <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -91,24 +91,13 @@
                               </HBox>
                               <HBox spacing="8.0">
                                  <children>
-                                    <Label maxWidth="220.0" minWidth="-Infinity" prefWidth="120.0" text="Education" HBox.hgrow="SOMETIMES" />
+                                    <Label maxWidth="220.0" minWidth="-Infinity" prefWidth="120.0" text="Education and Jobs" HBox.hgrow="SOMETIMES" />
                                     <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="?" HBox.hgrow="NEVER">
                                        <tooltip>
                                           <Tooltip prefWidth="230.0" text="Current or previous educational and / or professional background.Eg primary school, vocational education andHigher Education." wrapText="true" />
                                        </tooltip>
                                     </Label>
-                                    <TextArea fx:id="txaEducation" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="150.0" prefHeight="100.0" prefWidth="250.0" HBox.hgrow="ALWAYS" />
-                                 </children>
-                              </HBox>
-                              <HBox spacing="8.0">
-                                 <children>
-                                    <Label maxWidth="220.0" minWidth="-Infinity" prefWidth="120.0" text="Jobs" HBox.hgrow="SOMETIMES" />
-                                    <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="?" HBox.hgrow="NEVER">
-                                       <tooltip>
-                                          <Tooltip prefWidth="230.0" text="Current or previous educational and / or professional background.Eg primary school, vocational education andHigher Education." wrapText="true" />
-                                       </tooltip>
-                                    </Label>
-                                    <TextArea fx:id="txaJobs" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="150.0" prefHeight="100.0" prefWidth="250.0" HBox.hgrow="ALWAYS" />
+                                    <TextArea fx:id="txaEducationAndJobs" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="150.0" prefHeight="100.0" prefWidth="250.0" HBox.hgrow="ALWAYS" />
                                  </children>
                               </HBox>
                               <HBox spacing="8.0">

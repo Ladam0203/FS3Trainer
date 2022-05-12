@@ -9,8 +9,7 @@ public class GeneralInformation {
     private StringProperty resources;
     private StringProperty roles;
     private StringProperty habits;
-    private StringProperty education;
-    private StringProperty jobs;
+    private StringProperty educationAndJobs;
     private StringProperty lifeStory;
     private StringProperty healthInformation;
     private StringProperty equipmentAids;
@@ -23,8 +22,7 @@ public class GeneralInformation {
         this.resources = new SimpleStringProperty();
         this.roles = new SimpleStringProperty();
         this.habits = new SimpleStringProperty();
-        this.education = new SimpleStringProperty();
-        this.jobs = new SimpleStringProperty();
+        this.educationAndJobs = new SimpleStringProperty();
         this.lifeStory = new SimpleStringProperty();
         this.healthInformation = new SimpleStringProperty();
         this.equipmentAids = new SimpleStringProperty();
@@ -92,28 +90,16 @@ public class GeneralInformation {
         this.habits.set(habits);
     }
 
-    public String getEducation() {
-        return education.get();
+    public String getEducationAndJobs() {
+        return educationAndJobs.get();
     }
 
-    public StringProperty educationProperty() {
-        return education;
+    public StringProperty educationAndJobsProperty() {
+        return educationAndJobs;
     }
 
-    public void setEducation(String education) {
-        this.education.set(education);
-    }
-
-    public String getJobs() {
-        return jobs.get();
-    }
-
-    public StringProperty jobsProperty() {
-        return jobs;
-    }
-
-    public void setJobs(String jobs) {
-        this.jobs.set(jobs);
+    public void setEducationAndJobs(String educationAndJobs) {
+        this.educationAndJobs.set(educationAndJobs);
     }
 
     public String getLifeStory() {
