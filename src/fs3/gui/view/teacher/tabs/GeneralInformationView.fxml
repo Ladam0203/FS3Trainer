@@ -11,14 +11,13 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
-<VBox stylesheets="@../../styles/common.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.student.tabs.GeneralInformationController">
+<VBox stylesheets="@../../styles/common.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.teacher.tabs.GeneralInformationController">
    <children>
       <HBox VBox.vgrow="ALWAYS">
          <children>
-            <ScrollPane fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="540.0" minWidth="-Infinity" prefWidth="405.0" styleClass="background-color" HBox.hgrow="SOMETIMES">
+            <ScrollPane fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="540.0" minWidth="-Infinity" prefWidth="405.0" HBox.hgrow="SOMETIMES">
               <content>
-                  <VBox alignment="TOP_CENTER" spacing="8.0" styleClass="background-color">
+                  <VBox alignment="TOP_CENTER" spacing="8.0">
                      <children>
                         <Label styleClass="text" text="PERSONAL INFORMATION" VBox.vgrow="NEVER">
                            <VBox.margin>
@@ -33,13 +32,13 @@
                   </VBox>
               </content>
             </ScrollPane>
-            <ScrollPane fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="623.0" prefWidth="405.0" styleClass="background-color" HBox.hgrow="SOMETIMES">
+            <ScrollPane fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="623.0" prefWidth="405.0" HBox.hgrow="SOMETIMES">
                <content>
-                  <VBox spacing="20.0" styleClass="background-color">
+                  <VBox spacing="20.0">
                      <children>
                         <HBox spacing="8.0">
                            <children>
-                              <Label maxWidth="220.0" minWidth="-Infinity" prefWidth="120.0" text="Coping" HBox.hgrow="SOMETIMES" />
+                              <Label maxWidth="220.0" minWidth="-Infinity" prefWidth="120.0" text="Coping" wrapText="true" HBox.hgrow="SOMETIMES" />
                               <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="?" HBox.hgrow="NEVER">
                                  <tooltip>
                                     <Tooltip prefWidth="230.0" text="The conscious or unconscious of the citizenmanagement of life / illness - both challenges and opportunities." wrapText="true" />
@@ -50,7 +49,7 @@
                         </HBox>
                         <HBox spacing="8.0">
                            <children>
-                              <Label maxWidth="220.0" minWidth="-Infinity" prefWidth="120.0" text="Motivation" HBox.hgrow="SOMETIMES" />
+                              <Label maxWidth="220.0" minWidth="-Infinity" prefWidth="120.0" text="Motivation" wrapText="true" HBox.hgrow="SOMETIMES" />
                               <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="?" HBox.hgrow="NEVER">
                                  <tooltip>
                                     <Tooltip prefWidth="230.0" text="The driving force behind the citizen acting ona certain way or get startedwith / maintains a task / effort." wrapText="true" />
@@ -61,7 +60,7 @@
                         </HBox>
                         <HBox spacing="8.0">
                            <children>
-                              <Label maxWidth="220.0" minWidth="-Infinity" prefWidth="120.0" text="Resources" HBox.hgrow="SOMETIMES" />
+                              <Label maxWidth="220.0" minWidth="-Infinity" prefWidth="120.0" text="Resources" wrapText="true" HBox.hgrow="SOMETIMES" />
                               <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="?" HBox.hgrow="NEVER">
                                  <tooltip>
                                     <Tooltip prefWidth="230.0" text="The physical or mental forces thatthe citizen to a certain extent has toavailable and can take advantage of. Physical forcescan for example be in the form of physical health andstrength. Mental forces can, for example, be inform of mental health and strength,including thoughts and ways of behavingto situations and other people on." wrapText="true" />
@@ -72,7 +71,7 @@
                         </HBox>
                         <HBox spacing="8.0">
                            <children>
-                              <Label maxWidth="220.0" minWidth="-Infinity" prefWidth="120.0" text="Roles" HBox.hgrow="SOMETIMES" />
+                              <Label maxWidth="220.0" minWidth="-Infinity" prefWidth="120.0" text="Roles" wrapText="true" HBox.hgrow="SOMETIMES" />
                               <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="?" HBox.hgrow="NEVER">
                                  <tooltip>
                                     <Tooltip prefWidth="230.0" text="The roles that are particularly important forthe citizen in relation to family, work andcommunity." wrapText="true" />
@@ -83,7 +82,7 @@
                         </HBox>
                         <HBox spacing="8.0">
                            <children>
-                              <Label maxWidth="220.0" minWidth="-Infinity" prefWidth="120.0" text="Habits" HBox.hgrow="SOMETIMES" />
+                              <Label maxWidth="220.0" minWidth="-Infinity" prefWidth="120.0" text="Habits" wrapText="true" HBox.hgrow="SOMETIMES" />
                               <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="?" HBox.hgrow="NEVER">
                                  <tooltip>
                                     <Tooltip prefWidth="230.0" text="Regular behavior that the citizen haslearned through constant repetition andexecution completely or partially unconsciously.Habits are, for example, the circadian rhythm, the way of becomingaccused of, contact with fellow human beings andrelationships, way of looking at the world." wrapText="true" />
@@ -94,7 +93,7 @@
                         </HBox>
                         <HBox spacing="8.0">
                            <children>
-                              <Label maxWidth="220.0" minWidth="-Infinity" prefWidth="120.0" text="Education and Jobs" HBox.hgrow="SOMETIMES" />
+                              <Label maxWidth="220.0" minWidth="-Infinity" prefWidth="120.0" text="Education and Jobs" wrapText="true" HBox.hgrow="SOMETIMES" />
                               <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="?" HBox.hgrow="NEVER">
                                  <tooltip>
                                     <Tooltip prefWidth="230.0" text="Current or previous educational and / or professional background.Eg primary school, vocational education andHigher Education." wrapText="true" />
@@ -105,7 +104,7 @@
                         </HBox>
                         <HBox spacing="8.0">
                            <children>
-                              <Label maxWidth="220.0" minWidth="-Infinity" prefWidth="120.0" text="Life story" HBox.hgrow="SOMETIMES" />
+                              <Label maxWidth="220.0" minWidth="-Infinity" prefWidth="120.0" text="Life story" wrapText="true" HBox.hgrow="SOMETIMES" />
                               <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="?" HBox.hgrow="NEVER">
                                  <tooltip>
                                     <Tooltip prefWidth="230.0" text="A description of the citizen's experience ofsignificant events, interests andchores throughout life." wrapText="true" />
@@ -116,7 +115,7 @@
                         </HBox>
                         <HBox spacing="8.0">
                            <children>
-                              <Label maxWidth="220.0" minWidth="-Infinity" prefWidth="120.0" text="Health information" HBox.hgrow="SOMETIMES" />
+                              <Label maxWidth="220.0" minWidth="-Infinity" prefWidth="120.0" text="Health information" wrapText="true" HBox.hgrow="SOMETIMES" />
                               <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="?" HBox.hgrow="NEVER">
                                  <tooltip>
                                     <Tooltip prefWidth="230.0" text="Current or past illnesses anddisability that mattersthe situation of the citizen.Health professional contacts:Employee or units withinthe healthcare system the citizen is affiliated with,eg ophthalmologist, dentist, podiatrist ordepartment / outpatient clinic." wrapText="true" />
@@ -127,7 +126,7 @@
                         </HBox>
                         <HBox spacing="8.0">
                            <children>
-                              <Label maxWidth="220.0" minWidth="-Infinity" prefWidth="120.0" text="Equipment aids" HBox.hgrow="SOMETIMES" />
+                              <Label maxWidth="220.0" minWidth="-Infinity" prefWidth="120.0" text="Equipment aids" wrapText="true" HBox.hgrow="SOMETIMES" />
                               <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="?" HBox.hgrow="NEVER">
                                  <tooltip>
                                     <Tooltip prefWidth="230.0" text="Equipment, products and technology such asused by the citizen in dailyactivities, incl. such as are customizedor specially made for, implanted in,located on or near the person whoapply them. (Incl. Regularobjects and aids and technologyfor personal use)" wrapText="true" />
@@ -138,7 +137,7 @@
                         </HBox>
                         <HBox spacing="8.0">
                            <children>
-                              <Label maxWidth="220.0" minWidth="-Infinity" prefWidth="120.0" text="Home layout" HBox.hgrow="SOMETIMES" />
+                              <Label maxWidth="220.0" minWidth="-Infinity" prefWidth="120.0" text="Home layout" wrapText="true" HBox.hgrow="SOMETIMES" />
                               <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="?" HBox.hgrow="NEVER">
                                  <tooltip>
                                     <Tooltip prefWidth="230.0" text="A description of the physical environment of the homeand environments that matterthe citizen's everyday life and ability to function." wrapText="true" />
@@ -149,7 +148,7 @@
                         </HBox>
                         <HBox spacing="8.0">
                            <children>
-                              <Label maxWidth="220.0" minWidth="-Infinity" prefWidth="120.0" text="Network" HBox.hgrow="SOMETIMES" />
+                              <Label maxWidth="220.0" minWidth="-Infinity" prefWidth="120.0" text="Network" wrapText="true" HBox.hgrow="SOMETIMES" />
                               <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="?" HBox.hgrow="NEVER">
                                  <tooltip>
                                     <Tooltip prefWidth="230.0" text="People who are close to the citizen, andwhich provides practical and / oremotional support and caretowards the citizen. Networking can bepublic or private.A public network consists of personalhelpers, health professionals and othersprofessionals primarily caregivers.Private network is family, relative,friends and acquaintances." wrapText="true" />
