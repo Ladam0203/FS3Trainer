@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.HBox?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.teacher.TeacherPageController">
+<HBox maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" stylesheets="@../styles/common.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.teacher.TeacherPageController">
    <children>
-      <ListView fx:id="ltvCitizenTemplates" layoutX="14.0" layoutY="42.0" prefHeight="200.0" prefWidth="200.0" />
-      <TextField fx:id="txfTemplateName" layoutX="249.0" layoutY="70.0" />
-      <Button layoutX="260.0" layoutY="117.0" mnemonicParsing="false" onAction="#handleAddTemplate" text="Add" />
+      <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@../styles/tabpane.css" tabClosingPolicy="UNAVAILABLE" tabMinHeight="40.0" tabMinWidth="200.0" HBox.hgrow="ALWAYS">
+        <tabs>
+          <Tab closable="false" text="Citizen templates">
+              <fx:include source="tabs/TemplatesView.fxml" />
+          </Tab>
+          <Tab closable="false" text="Assignments">
+              <fx:include source="tabs/AssignmentsView.fxml" />
+          </Tab>
+            <Tab closable="false" text="Students">
+                <fx:include source="tabs/StudentsView.fxml" />
+            </Tab>
+        </tabs>
+      </TabPane>
    </children>
-</AnchorPane>
+</HBox>

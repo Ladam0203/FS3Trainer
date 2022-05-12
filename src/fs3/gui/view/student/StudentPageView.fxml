@@ -15,13 +15,13 @@
     <children>
         <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@../styles/tabpane.css" tabClosingPolicy="UNAVAILABLE" tabMinHeight="40.0" tabMinWidth="200.0" VBox.vgrow="ALWAYS">
             <tabs>
-                <Tab closable="false" text="GENERAL INFORMATION">
+                <Tab closable="false" text="General information">
                     <fx:include source="tabs/GeneralInformationView.fxml" />
                 </Tab>
-                <Tab closable="false" text="HEALTH CONDITIONS">
+                <Tab closable="false" text="Health conditions">
                     <fx:include source="tabs/HealthConditionsView.fxml" />
                 </Tab>
-                <Tab closable="false" text="FUNCTIONAL ABILITIES">
+                <Tab closable="false" text="Functional ablities">
                     <fx:include source="tabs/FunctionalAbilitiesView.fxml" />
                 </Tab>
             </tabs>
