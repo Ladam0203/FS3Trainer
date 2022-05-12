@@ -7,15 +7,16 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 
+import java.io.Serializable;
 import java.util.EnumMap;
 import java.util.HashMap;
 
 public abstract class Citizen {
-    protected IntegerProperty id;
-    protected ObjectProperty<PersonalInformation> personalInformation;
-    protected ObjectProperty<GeneralInformation> generalInformation;
-    protected HashMap<HealthCondition, HealthConditionData> healthConditions;
-    protected HashMap<FunctionalAbility, FunctionalAbilityData> functionalAbilities;
+    private IntegerProperty id;
+    private ObjectProperty<PersonalInformation> personalInformation;
+    private ObjectProperty<GeneralInformation> generalInformation;
+    private HashMap<HealthCondition, HealthConditionData> healthConditions;
+    private HashMap<FunctionalAbility, FunctionalAbilityData> functionalAbilities;
 
     protected Citizen() {
         id = new SimpleIntegerProperty();

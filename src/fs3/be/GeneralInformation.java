@@ -3,6 +3,8 @@ package fs3.be;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+import java.io.Serializable;
+
 public class GeneralInformation {
     private StringProperty coping;
     private StringProperty motivation;
@@ -28,6 +30,21 @@ public class GeneralInformation {
         this.equipmentAids = new SimpleStringProperty();
         this.homeLayout = new SimpleStringProperty();
         this.network = new SimpleStringProperty();
+    }
+
+    //copy constructor
+    public GeneralInformation(GeneralInformation other) {
+        this.coping = new SimpleStringProperty(other.getCoping());
+        this.motivation = new SimpleStringProperty(other.getMotivation());
+        this.resources = new SimpleStringProperty(other.getResources());
+        this.roles = new SimpleStringProperty(other.getRoles());
+        this.habits = new SimpleStringProperty(other.getHabits());
+        this.educationAndJobs = new SimpleStringProperty(other.getEducationAndJobs());
+        this.lifeStory = new SimpleStringProperty(other.getLifeStory());
+        this.healthInformation = new SimpleStringProperty(other.getHealthInformation());
+        this.equipmentAids = new SimpleStringProperty(other.getEquipmentAids());
+        this.homeLayout = new SimpleStringProperty(other.getHomeLayout());
+        this.network = new SimpleStringProperty(other.getNetwork());
     }
 
     public String getCoping() {

@@ -8,9 +8,10 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class FunctionalAbilityData {
+public class FunctionalAbilityData{
     ObjectProperty<LimitationLevel> currentLimitationLevel;
     ObjectProperty<LimitationLevel> expectedLimitationLevel;
     StringProperty professionalNote;
@@ -29,6 +30,18 @@ public class FunctionalAbilityData {
         citizenRequest = new SimpleStringProperty();
         followUpDate = new SimpleObjectProperty<>();
         observationNote = new SimpleStringProperty();
+    }
+
+    //copy constructor
+    public FunctionalAbilityData(FunctionalAbilityData other) {
+        this.currentLimitationLevel = new SimpleObjectProperty<>(other.currentLimitationLevel.get());
+        this.expectedLimitationLevel = new SimpleObjectProperty<>(other.expectedLimitationLevel.get());
+        this.professionalNote = new SimpleStringProperty(other.professionalNote.get());
+        this.performance = new SimpleObjectProperty<>(other.performance.get());
+        this.perceivedLimitationLevel = new SimpleObjectProperty<>(other.perceivedLimitationLevel.get());
+        this.citizenRequest = new SimpleStringProperty(other.citizenRequest.get());
+        this.followUpDate = new SimpleObjectProperty<>(other.followUpDate.get());
+        this.observationNote = new SimpleStringProperty(other.observationNote.get());
     }
 
     public LimitationLevel getCurrentLimitationLevel() {

@@ -7,6 +7,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 public class HealthConditionData {
@@ -24,6 +25,16 @@ public class HealthConditionData {
         this.expectedLevel = new SimpleObjectProperty<>();
         this.followUpDate = new SimpleObjectProperty<>();
         this.observationNote = new SimpleStringProperty();
+    }
+
+    //copy constructor
+    public HealthConditionData(HealthConditionData other) {
+        this.healthConditionState = new SimpleObjectProperty<>(other.getHealthConditionState());
+        this.professionalNote = new SimpleStringProperty(other.getProfessionalNote());
+        this.currentAssessment = new SimpleStringProperty(other.getCurrentAssessment());
+        this.expectedLevel = new SimpleObjectProperty<>(other.getExpectedLevel());
+        this.followUpDate = new SimpleObjectProperty<>(other.getFollowUpDate());
+        this.observationNote = new SimpleStringProperty(other.getObservationNote());
     }
 
     public HealthConditionState getHealthConditionState() {
