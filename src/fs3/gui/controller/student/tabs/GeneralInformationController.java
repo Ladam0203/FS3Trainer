@@ -16,7 +16,7 @@ import java.util.ResourceBundle;
 
 public class GeneralInformationController implements Initializable {
     @FXML
-    private TextArea txaCoping, txaMotivation, txaResources, txaRoles, txaHabits, txaEducation, txaJobs, txaLifeStory, txaHealthInformation, txaEquipmentAids, txaHomeLayout, txaNetwork;
+    private TextArea txaCoping, txaMotivation, txaResources, txaRoles, txaHabits, txaEducationAndJobs, txaLifeStory, txaHealthInformation, txaEquipmentAids, txaHomeLayout, txaNetwork;
     @FXML
     private Label lblName;
 
@@ -35,8 +35,7 @@ public class GeneralInformationController implements Initializable {
             textAreas.add(txaResources);
             textAreas.add(txaRoles);
             textAreas.add(txaHabits);
-            textAreas.add(txaEducation);
-            textAreas.add(txaJobs);
+            textAreas.add(txaEducationAndJobs);
             textAreas.add(txaLifeStory);
             textAreas.add(txaHealthInformation);
             textAreas.add(txaEquipmentAids);
@@ -58,8 +57,7 @@ public class GeneralInformationController implements Initializable {
                 txaResources.setText(generalInformation.getResources());
                 txaRoles.setText(generalInformation.getRoles());
                 txaHabits.setText(generalInformation.getHabits());
-                txaEducation.setText(generalInformation.getEducation());
-                txaJobs.setText(generalInformation.getJobs());
+                txaEducationAndJobs.setText(generalInformation.getEducationAndJobs());
                 txaLifeStory.setText(generalInformation.getLifeStory());
                 txaHealthInformation.setText(generalInformation.getHealthInformation());
                 txaEquipmentAids.setText(generalInformation.getEquipmentAids());
@@ -83,8 +81,7 @@ public class GeneralInformationController implements Initializable {
             generalInformation.setResources(txaResources.getText());
             generalInformation.setRoles(txaRoles.getText());
             generalInformation.setHabits(txaHabits.getText());
-            generalInformation.setEducation(txaEducation.getText());
-            generalInformation.setJobs(txaJobs.getText());
+            generalInformation.setEducationAndJobs(txaEducationAndJobs.getText());
             generalInformation.setLifeStory(txaLifeStory.getText());
             generalInformation.setHealthInformation(txaHealthInformation.getText());
             generalInformation.setEquipmentAids(txaEquipmentAids.getText());
