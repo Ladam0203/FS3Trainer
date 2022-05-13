@@ -2,11 +2,13 @@ package fs3.gui.controller.student.tabs;
 
 import fs3.be.Citizen;
 import fs3.be.CitizenInstance;
+import fs3.be.CitizenTemplate;
 import fs3.be.HealthConditionData;
 import fs3.enums.ExpectedLevel;
 import fs3.enums.HealthCondition;
 import fs3.enums.HealthConditionState;
 import fs3.gui.model.CitizenInstanceModel;
+import fs3.gui.model.CitizenTemplateModel;
 import fs3.util.PopUp;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -40,12 +42,14 @@ public class HealthConditionComponentController implements Initializable {
     private TextArea txaObservationNote;
 
     private CitizenInstanceModel citizenInstanceModel;
+    private CitizenTemplateModel citizenTemplateModel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         try {
             citizenInstanceModel = CitizenInstanceModel.getInstance();
+            citizenTemplateModel = CitizenTemplateModel.getInstance();
         } catch (Exception e) {
             e.printStackTrace();
             //handle gracefully
@@ -98,7 +102,9 @@ public class HealthConditionComponentController implements Initializable {
 
 
     public void handleSave(ActionEvent event) {
-        CitizenInstance citizenInstance = citizenInstanceModel.getSelectedCitizen();
+        CitizenInstance citizenInstance = citizenInstanceModel.getSelectedCitizenInstance();
+        CitizenTemplate citizenTemplate = citizenTemplateModel.getSelectedCitizenTemplate();
+        Citizen citizen = citizenInstance == null ? citizenTemplate : citizenInstance;
         if (areFieldsFilled()) {
             HealthCondition healthCondition = HealthCondition.fromString(ttpRoot.getText());
             HealthConditionData healthConditionData = new HealthConditionData();
@@ -117,7 +123,7 @@ public class HealthConditionComponentController implements Initializable {
             healthConditionData.setExpectedLevel(cmbExpectedLevel.getSelectionModel().getSelectedItem());
             healthConditionData.setFollowUpDate(dtpFollowUpDate.getValue());
 
-            citizenInstance.getHealthConditions().put(healthCondition, healthConditionData);
+            citizen.getHealthConditions().put(healthCondition, healthConditionData);
 
             try {
                 citizenInstanceModel.updateSelectedCitizen();
@@ -144,7 +150,7 @@ public class HealthConditionComponentController implements Initializable {
     }
 
     private boolean isCitizenSelected(){
-        if(citizenInstanceModel.getSelectedCitizen() != null){
+        if(citizenInstanceModel.getSelectedCitizenInstance() != null){
             return true;
         }
         else {

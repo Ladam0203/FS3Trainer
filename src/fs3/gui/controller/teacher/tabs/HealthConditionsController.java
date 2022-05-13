@@ -20,7 +20,6 @@ import java.util.ResourceBundle;
 public class HealthConditionsController implements Initializable {
     @FXML
     private Accordion accHealthConditions;
-    private CitizenInstanceModel citizenInstanceModel;
     private CitizenTemplateModel citizenTemplateModel;
 
     private EnumMap<HealthCondition, HealthConditionComponentController> conditionControllerMap = new EnumMap<>(HealthCondition.class);
@@ -28,7 +27,6 @@ public class HealthConditionsController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            citizenInstanceModel = CitizenInstanceModel.getInstance();
             citizenTemplateModel = CitizenTemplateModel.getInstance();
             //add all health condition panes
             for (HealthCondition condition :
@@ -50,25 +48,6 @@ public class HealthConditionsController implements Initializable {
             }
 
             //selected citizen listener
-            citizenInstanceModel.getSelectedCitizenProperty().addListener((observable, oldValue, newValue) -> {
-                if (newValue != null) {
-                    for (Map.Entry<HealthCondition, HealthConditionComponentController> entry :
-                            conditionControllerMap.entrySet()) {
-                        HealthConditionData healthConditionData = newValue.getHealthConditions().get(entry.getKey());
-                        if (healthConditionData != null) {
-                            entry.getValue().setProfessionalNote(healthConditionData.getProfessionalNote());
-                            entry.getValue().setHealthConditionState(healthConditionData.getHealthConditionState());
-                            entry.getValue().setExpectedLevel(healthConditionData.getExpectedLevel());
-                            entry.getValue().setDtpFollowUpDate(healthConditionData.getFollowUpDate());
-                            entry.getValue().setCurrentAssessment(healthConditionData.getCurrentAssessment());
-                            entry.getValue().setObservationNote(healthConditionData.getObservationNote());
-                        }
-                        else {
-                            entry.getValue().clearFields();
-                        }
-                    }
-                }
-            });
             citizenTemplateModel.getSelectedCitizenTemplateProperty().addListener((observable, oldValue, newValue) -> {
                 if (newValue != null) {
                     for (Map.Entry<HealthCondition, HealthConditionComponentController> entry :
@@ -88,6 +67,7 @@ public class HealthConditionsController implements Initializable {
                     }
                 }
             });
+
         } catch (Exception e) {
             //TODO: handle gracefully
             e.printStackTrace();
