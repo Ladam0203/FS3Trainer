@@ -1,7 +1,8 @@
-package fs3.gui.controller.student.tabs;
+package fs3.gui.controller.teacher.tabs;
 
 import fs3.be.HealthConditionData;
 import fs3.enums.HealthCondition;
+import fs3.gui.controller.student.tabs.HealthConditionComponentController;
 import fs3.gui.model.CitizenInstanceModel;
 import fs3.gui.model.CitizenTemplateModel;
 import javafx.fxml.FXML;
@@ -12,12 +13,15 @@ import javafx.scene.control.Accordion;
 import javafx.scene.control.TitledPane;
 
 import java.net.URL;
-import java.util.*;
+import java.util.EnumMap;
+import java.util.Map;
+import java.util.ResourceBundle;
 
 public class HealthConditionsController implements Initializable {
     @FXML
     private Accordion accHealthConditions;
     private CitizenInstanceModel citizenInstanceModel;
+    private CitizenTemplateModel citizenTemplateModel;
 
     private EnumMap<HealthCondition, HealthConditionComponentController> conditionControllerMap = new EnumMap<>(HealthCondition.class);
 
@@ -25,6 +29,7 @@ public class HealthConditionsController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         try {
             citizenInstanceModel = CitizenInstanceModel.getInstance();
+            citizenTemplateModel = CitizenTemplateModel.getInstance();
             //add all health condition panes
             for (HealthCondition condition :
                     HealthCondition.values()) {
@@ -64,7 +69,25 @@ public class HealthConditionsController implements Initializable {
                     }
                 }
             });
-            
+            citizenTemplateModel.getSelectedCitizenTemplateProperty().addListener((observable, oldValue, newValue) -> {
+                if (newValue != null) {
+                    for (Map.Entry<HealthCondition, HealthConditionComponentController> entry :
+                            conditionControllerMap.entrySet()) {
+                        HealthConditionData healthConditionData = newValue.getHealthConditions().get(entry.getKey());
+                        if (healthConditionData != null) {
+                            entry.getValue().setProfessionalNote(healthConditionData.getProfessionalNote());
+                            entry.getValue().setHealthConditionState(healthConditionData.getHealthConditionState());
+                            entry.getValue().setExpectedLevel(healthConditionData.getExpectedLevel());
+                            entry.getValue().setDtpFollowUpDate(healthConditionData.getFollowUpDate());
+                            entry.getValue().setCurrentAssessment(healthConditionData.getCurrentAssessment());
+                            entry.getValue().setObservationNote(healthConditionData.getObservationNote());
+                        }
+                        else {
+                            entry.getValue().clearFields();
+                        }
+                    }
+                }
+            });
         } catch (Exception e) {
             //TODO: handle gracefully
             e.printStackTrace();

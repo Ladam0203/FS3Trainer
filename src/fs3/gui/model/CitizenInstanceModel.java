@@ -28,7 +28,7 @@ public class CitizenInstanceModel {
         return observableCitizensInstances;
     }
 
-    public CitizenInstance getSelectedCitizen() {
+    public CitizenInstance getSelectedCitizenInstance() {
         return selectedCitizenInstance.get();
     }
 

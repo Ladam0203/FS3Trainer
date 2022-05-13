@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1200.0" stylesheets="@../../styles/common.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.teacher.tabs.TemplatesController">
+<HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1200.0" stylesheets="@../../styles/common.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.teacher.tabs.TemplatesController">
    <children>
       <VBox maxHeight="1.7976931348623157E308" maxWidth="-Infinity" HBox.hgrow="NEVER">
          <children>
@@ -29,7 +29,7 @@
                <VBox.margin>
                   <Insets />
                </VBox.margin></Pane>
-            <ListView fx:id="ltvCitizenTemplates" VBox.vgrow="ALWAYS" />
+            <ListView fx:id="ltvCitizenTemplates" onMouseClicked="#handleSelectCitizen" VBox.vgrow="ALWAYS" />
             <HBox VBox.vgrow="NEVER">
                <children>
                   <TextField fx:id="txfTemplateName" />
@@ -53,12 +53,13 @@
           </Tab>
           <Tab text="Health conditions">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <fx:include source="../../student/tabs/HealthConditionsView.fxml" />
+
             </content>
           </Tab>
             <Tab text="Functional abilities">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                   <fx:include source="../../student/tabs/FunctionalAbilitiesView.fxml" />
                </content>
             </Tab>
         </tabs>

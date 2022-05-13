@@ -73,7 +73,7 @@ public class GeneralInformationController implements Initializable {
             return;
         }
         
-        GeneralInformation generalInformation = citizenInstanceModel.getSelectedCitizen().getGeneralInformation();
+        GeneralInformation generalInformation = citizenInstanceModel.getSelectedCitizenInstance().getGeneralInformation();
         if(areTextAreasEmpty())
         {
             generalInformation.setCoping(txaCoping.getText());
