@@ -128,7 +128,7 @@ public class FunctionalAbilityComponentController implements Initializable {
     }
 
     public void handleSave() {
-        CitizenInstance citizenInstance = citizenInstanceModel.getSelectedCitizen();
+        CitizenInstance citizenInstance = citizenInstanceModel.getSelectedCitizenInstance();
         if(areFieldsFilled()){
             FunctionalAbility functionalAbility = FunctionalAbility.fromString(ttpRoot.getText());
             FunctionalAbilityData functionalAbilityData = new FunctionalAbilityData();
@@ -174,7 +174,7 @@ public class FunctionalAbilityComponentController implements Initializable {
     }
 
     private boolean isCitizenSelected(){
-        if(citizenInstanceModel.getSelectedCitizen() != null){
+        if(citizenInstanceModel.getSelectedCitizenInstance() != null){
             return true;
         }
         else {
