@@ -21,7 +21,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
-public class FunctionalAbilityComponentController implements Initializable {
+public class TFunctionalAbilityComponentController implements Initializable {
     @FXML
     private TitledPane ttpRoot;
     @FXML
@@ -62,36 +62,36 @@ public class FunctionalAbilityComponentController implements Initializable {
         ttpRoot.setText(title);
     }
 
-    public void setCmbCurrentLimitationLevel(ComboBox cmbCurrentLimitationLevel) {
-        this.cmbCurrentLimitationLevel = cmbCurrentLimitationLevel;
+    public void setCmbCurrentLimitationLevel(LimitationLevel cmbCurrentLimitationLevel) {
+        this.cmbCurrentLimitationLevel.getSelectionModel().select(cmbCurrentLimitationLevel);
     }
 
-    public void setCmbExpectedLimitationLevel(ComboBox cmbExpectedLimitationLevel) {
-        this.cmbExpectedLimitationLevel = cmbExpectedLimitationLevel;
+    public void setCmbExpectedLimitationLevel(LimitationLevel cmbExpectedLimitationLevel) {
+        this.cmbExpectedLimitationLevel.getSelectionModel().select(cmbExpectedLimitationLevel);
     }
 
-    public void setDtpFollowUpDate(DatePicker dtpFollowUpDate) {
-        this.dtpFollowUpDate = dtpFollowUpDate;
+    public void setDtpFollowUpDate(LocalDate dtpFollowUpDate) {
+        this.dtpFollowUpDate.setValue(dtpFollowUpDate);
     }
 
-    public void setTxaProfessionalNote(TextArea txaProfessionalNote) {
-        this.txaProfessionalNote = txaProfessionalNote;
+    public void setTxaProfessionalNote(String txaProfessionalNote) {
+        this.txaProfessionalNote.setText(txaProfessionalNote);
     }
 
-    public void setTxaObservationNote(TextArea txaObservationNote) {
-        this.txaObservationNote = txaObservationNote;
+    public void setTxaObservationNote(String txaObservationNote) {
+        this.txaObservationNote.setText(txaObservationNote);
     }
 
-    public void setCmbPerformanceLevel(ComboBox cmbPerformanceLevel) {
-        this.cmbPerformanceLevel = cmbPerformanceLevel;
+    public void setCmbPerformanceLevel(Performance cmbPerformanceLevel) {
+        this.cmbPerformanceLevel.getSelectionModel().select(cmbPerformanceLevel);
     }
 
-    public void setCmbPerceivedLimitationLevel(ComboBox cmbPerceivedLimitationLevel) {
-        this.cmbPerceivedLimitationLevel = cmbPerceivedLimitationLevel;
+    public void setCmbPerceivedLimitationLevel(PerceivedLimitationLevel cmbPerceivedLimitationLevel) {
+        this.cmbPerceivedLimitationLevel.getSelectionModel().select(cmbPerceivedLimitationLevel);
     }
 
-    public void setTxaCitizenRequest(TextArea txaCitizenRequest) {
-        this.txaCitizenRequest = txaCitizenRequest;
+    public void setTxaCitizenRequest(String txaCitizenRequest) {
+        this.txaCitizenRequest.setText(txaCitizenRequest);
     }
 
     public void clearFields() {

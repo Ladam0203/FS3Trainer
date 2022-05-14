@@ -53,13 +53,13 @@
           </Tab>
           <Tab text="Health conditions">
             <content>
-                <fx:include source="../../student/tabs/HealthConditionsView.fxml" />
+                <fx:include source="../../teacher/tabs/HealthConditionsView.fxml" />
 
             </content>
           </Tab>
             <Tab text="Functional abilities">
                <content>
-                   <fx:include source="../../student/tabs/FunctionalAbilitiesView.fxml" />
+                   <fx:include source="../../teacher/tabs/FunctionalAbilitiesView.fxml" />
                </content>
             </Tab>
         </tabs>

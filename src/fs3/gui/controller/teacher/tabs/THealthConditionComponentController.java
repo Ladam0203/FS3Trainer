@@ -22,7 +22,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
-public class HealthConditionComponentController implements Initializable {
+public class THealthConditionComponentController implements Initializable {
     @FXML
     private TitledPane ttpRoot;
 
@@ -150,7 +150,7 @@ public class HealthConditionComponentController implements Initializable {
             return true;
         }
         else {
-            PopUp.showError("Select a citizen!");
+            PopUp.showError("Select a citizen! here is a problem");
         }
         return false;
     }
@@ -194,12 +194,14 @@ public class HealthConditionComponentController implements Initializable {
     }
 
     private boolean isCurrentAssessmentFilled(){
-        if(!txaCurrentAssessment.getText().isEmpty()){
+        if(txaCurrentAssessment.getText() == (null)){
+            PopUp.showError("Current assessment needs to be filled out!");
+            return false;
+        }
+        else if( !txaCurrentAssessment.getText().isEmpty() ){
             return true;
         }
-        else{
-            PopUp.showError("Current assessment needs to be filled out!");
-        }
+
         return false;
     }
 

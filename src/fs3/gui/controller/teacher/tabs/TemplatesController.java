@@ -78,7 +78,7 @@ public class TemplatesController implements Initializable {
         CitizenTemplate citizenTemplate = ltvCitizenTemplates.getSelectionModel().getSelectedItem();
         if (citizenTemplate != null) {
             citizenTemplateModel.setSelectedCitizenTemplate(citizenTemplate);
-            System.out.println(citizenTemplate);
+            //System.out.println(citizenTemplate);
         }
     }
 }
