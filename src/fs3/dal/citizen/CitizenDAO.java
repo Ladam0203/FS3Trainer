@@ -123,12 +123,14 @@ public class CitizenDAO {
                 personalInformationDAO.update(citizen);
             }
         }));
-        futures.add(subExecutor.submit(new ExceptionCallable() {
-            @Override
-            void doTask() throws Exception {
-                generalInformationDAO.update(citizen);
-            }
-        }));
+        if (citizen.getGeneralInformation() != null) {
+            futures.add(subExecutor.submit(new ExceptionCallable() {
+                @Override
+                void doTask() throws Exception {
+                    generalInformationDAO.update(citizen);
+                }
+            }));
+        }
         futures.add(subExecutor.submit(new ExceptionCallable() {
             @Override
             void doTask() throws Exception {

@@ -22,6 +22,8 @@ public class StudentDAO {
 
     private String select = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ?";
     private String update = "UPDATE " + tableName + " SET " + columns[1] + " = ? WHERE " + columns[0] + " = ?";
+
+    //private String selectJunction = "SELECT * FROM " + juntionTableName + " WHERE " + junctionColumns[0] + " = ?";
     private String deleteLinks = "DELETE FROM " + juntionTableName + " WHERE " + junctionColumns[0] + " = ?";
     private String insertLinks = "INSERT INTO " + juntionTableName + " (" + junctionColumns[0] + ", " + junctionColumns[1] + ") VALUES (?, ?)";
 
@@ -35,6 +37,7 @@ public class StudentDAO {
             if (rs.next()) {
                 Student student = (Student) user;
                 student.setName(rs.getString("name"));
+                //TODO: load citizen instances
             }
         } finally {
             ConnectionManagerPool.getInstance().returnConnectionManager(cm);
