@@ -2,17 +2,18 @@ package fs3.gui.controller.student;
 
 import fs3.be.CitizenInstance;
 import fs3.gui.model.CitizenInstanceModel;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class StudentPageController implements Initializable {
     @FXML
-    private ComboBox<CitizenInstance> cmbAssignedCitizens;
+    private ListView<CitizenInstance> ltvAssignedCitizens;
 
     private CitizenInstanceModel citizenInstanceModel;
 
@@ -21,7 +22,7 @@ public class StudentPageController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         try {
             citizenInstanceModel = CitizenInstanceModel.getInstance();
-            cmbAssignedCitizens.setItems(citizenInstanceModel.getObservableCitizens());
+            ltvAssignedCitizens.setItems(citizenInstanceModel.getObservableCitizens());
         } catch (Exception e) {
             //TODO: handle exception gracefully
             e.printStackTrace();
@@ -29,8 +30,8 @@ public class StudentPageController implements Initializable {
     }
 
     @FXML
-    private void handleSelectCitizen(ActionEvent actionEvent) {
-        CitizenInstance citizenInstance = cmbAssignedCitizens.getSelectionModel().getSelectedItem();
+    private void handleSelectCitizen(MouseEvent actionEvent) {
+        CitizenInstance citizenInstance = ltvAssignedCitizens.getSelectionModel().getSelectedItem();
         if (citizenInstance != null) {
             citizenInstanceModel.setSelectedCitizenInstance(citizenInstance);
         }
