@@ -1,3 +1,32 @@
 .root {
     -fx-font-size: 12pt;
 }
+
+.titled-pane {
+    -fx-background-color: #2a6b96;
+}
+.titled-pane {
+    -fx-text-fill: #F7F8F9;
+}
+
+.titled-pane > .title {
+    -fx-background-color: #deaa88, #22577A;
+}
+
+.titled-pane > .title > .text {
+    -fx-font-size: 16pt;
+}
+
+.titled-pane > .content {
+    -fx-background-color: #22577A;
+    -fx-border-color: #deaa88;
+    -fx-border-width: 1;
+}
+
+.titled-pane:collapsed > .title {
+    -fx-background-color: #58AEC9, #22577A;
+}
+
+.titled-pane:collapsed > .content {
+    -fx-border-color: #58AEC9;
+}
