@@ -108,11 +108,11 @@ public class HealthConditionDAO {
                     psInsert.setString(2, entry.getKey().toString());
                     psInsert.setString(3, healthConditionData.getHealthConditionState().toString());
                     if (healthConditionData.getHealthConditionState() == HealthConditionState.INACTIVE) {
-                        psUpdate.setNull(4, java.sql.Types.NVARCHAR);
-                        psUpdate.setNull(5, java.sql.Types.NVARCHAR);
-                        psUpdate.setNull(6, java.sql.Types.NVARCHAR);
-                        psUpdate.setNull(7, Types.DATE);
-                        psUpdate.setNull(8, Types.NVARCHAR);
+                        psInsert.setNull(4, java.sql.Types.NVARCHAR);
+                        psInsert.setNull(5, java.sql.Types.NVARCHAR);
+                        psInsert.setNull(6, java.sql.Types.NVARCHAR);
+                        psInsert.setNull(7, Types.DATE);
+                        psInsert.setNull(8, Types.NVARCHAR);
                     } else { //we can trust the GUI that f the state is not inactive, all additional data is filled
                         psInsert.setString(4, healthConditionData.getProfessionalNote());
                         psInsert.setString(5, healthConditionData.getCurrentAssessment());
