@@ -3,7 +3,7 @@
 }
 
 .titled-pane {
-    -fx-background-color: #2a6b96;
+    -fx-background-color: #1e4c6b;
 }
 .titled-pane {
     -fx-text-fill: #F7F8F9;
@@ -11,6 +11,7 @@
 
 .titled-pane > .title {
     -fx-background-color: #deaa88, #22577A;
+    -fx-background-insets: 0, 1 1 0 1;
 }
 
 .titled-pane > .title > .text {
@@ -25,8 +26,32 @@
 
 .titled-pane:collapsed > .title {
     -fx-background-color: #58AEC9, #22577A;
+    -fx-background-insets: 0, 1;
 }
 
 .titled-pane:collapsed > .content {
     -fx-border-color: #58AEC9;
+}
+
+.titled-pane > .title > .arrow-button .arrow
+{
+    -fx-background-color: #F7F8F9;
+}
+
+.scroll-bar .track {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0.0;
+}
+
+.scroll-bar .increment-button, .scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-shape: " ";
+    -fx-padding: 0.0 0.15em;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #58AEC9;
+    -fx-background-radius: 0;
 }

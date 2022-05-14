@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<TitledPane fx:id="ttpRoot" alignment="TOP_LEFT" animated="false" prefWidth="750.0" stylesheets="@../../styles/common.css" text="Health condition" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.student.tabs.HealthConditionComponentController">
+<TitledPane fx:id="ttpRoot" alignment="TOP_LEFT" prefWidth="750.0" stylesheets="@../../styles/common.css" text="Health condition" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.student.tabs.HealthConditionComponentController">
   <content>
       <VBox spacing="10.0">
          <children>
@@ -21,18 +21,14 @@
                   <ComboBox fx:id="cmbExpectedLevel" maxWidth="300.0" minWidth="-Infinity" promptText="Expected level" HBox.hgrow="SOMETIMES" />
                </children>
             </HBox>
-            <VBox spacing="10.0" VBox.vgrow="NEVER">
-               <children>
-                  <TextArea fx:id="txaProfessionalNote" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" promptText="Professional note" VBox.vgrow="SOMETIMES" />
-                  <TextArea fx:id="txaCurrentAssessment" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" promptText="Current assessment" VBox.vgrow="SOMETIMES" />
-                  <TextArea fx:id="txaObservationNote" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" promptText="Observation Note" VBox.vgrow="SOMETIMES" />
-                  <ButtonBar prefWidth="200.0" VBox.vgrow="NEVER">
-                    <buttons>
-                      <Button mnemonicParsing="false" onAction="#handleSave" text="Save" />
-                    </buttons>
-                  </ButtonBar>
-               </children>
-            </VBox>
+            <TextArea fx:id="txaProfessionalNote" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" promptText="Professional note" VBox.vgrow="SOMETIMES" />
+            <TextArea fx:id="txaCurrentAssessment" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" promptText="Current assessment" VBox.vgrow="SOMETIMES" />
+            <TextArea fx:id="txaObservationNote" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" promptText="Observation note" VBox.vgrow="SOMETIMES" />
+            <ButtonBar prefWidth="200.0" VBox.vgrow="NEVER">
+              <buttons>
+                <Button mnemonicParsing="false" onAction="#handleSave" text="Save" />
+              </buttons>
+            </ButtonBar>
          </children>
       </VBox>
   </content>
