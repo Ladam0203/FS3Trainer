@@ -12,4 +12,5 @@ public interface IDAOFacade {
     Citizen createCitizen(Citizen citizen) throws Exception;
     void deleteCitizen(Citizen citizen) throws Exception;
     List<Student> readAllStudents() throws Exception;
+    void updateUser(User user) throws Exception;
 }
