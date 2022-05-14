@@ -80,8 +80,5 @@ public class TemplatesController implements Initializable {
             citizenTemplateModel.setSelectedCitizenTemplate(citizenTemplate);
             System.out.println(citizenTemplate);
         }
-        else{
-            System.out.println("hjaha");
-        }
     }
 }

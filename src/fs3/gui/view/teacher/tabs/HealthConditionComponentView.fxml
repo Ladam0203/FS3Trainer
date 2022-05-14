@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<TitledPane fx:id="ttpRoot" alignment="TOP_LEFT" animated="false" prefWidth="600.0" text="HEALTH CONDITION" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.teacher.tabs.HealthConditionComponentController">
+  <content>
+      <VBox spacing="10.0">
+         <children>
+            <HBox maxWidth="1.7976931348623157E308" spacing="10.0" VBox.vgrow="NEVER">
+               <children>
+                  <ComboBox fx:id="cmbHealthConditionState" maxWidth="300.0" minWidth="-Infinity" promptText="HEALTH CONDITION STATE" HBox.hgrow="SOMETIMES" />
+                  <DatePicker fx:id="dtpFollowUpDate" maxWidth="300.0" minWidth="-Infinity" promptText="FOLLOW UP DATE" HBox.hgrow="SOMETIMES" />
+                  <ComboBox fx:id="cmbExpectedLevel" maxWidth="300.0" minWidth="-Infinity" promptText="EXPECTED LEVEL" HBox.hgrow="SOMETIMES" />
+               </children>
+            </HBox>
+            <VBox spacing="10.0" VBox.vgrow="NEVER">
+               <children>
+                  <TextArea fx:id="txaProfessionalNote" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" promptText="Professional note" VBox.vgrow="SOMETIMES" />
+                  <TextArea fx:id="txaCurrentAssessment" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" promptText="Current assessment" VBox.vgrow="SOMETIMES" />
+                  <TextArea fx:id="txaObservationNote" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" promptText="Observation Note" VBox.vgrow="SOMETIMES" />
+                  <ButtonBar prefHeight="40.0" prefWidth="200.0" VBox.vgrow="NEVER">
+                    <buttons>
+                      <Button mnemonicParsing="false" onAction="#handleSave" text="Save" />
+                    </buttons>
+                  </ButtonBar>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+  </content>
+</TitledPane>
