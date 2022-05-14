@@ -67,17 +67,17 @@ public class GeneralInformationDAO {
         ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
         try (Connection con = cm.getConnection()) {
             PreparedStatement ps = con.prepareStatement(update);
-            ps.setString(1, citizen.getGeneralInformation().getCoping());
-            ps.setString(2, citizen.getGeneralInformation().getMotivation());
-            ps.setString(3, citizen.getGeneralInformation().getResources());
-            ps.setString(4, citizen.getGeneralInformation().getRoles());
-            ps.setString(5, citizen.getGeneralInformation().getHabits());
-            ps.setString(6, citizen.getGeneralInformation().getEducationAndJobs());
-            ps.setString(7, citizen.getGeneralInformation().getLifeStory());
-            ps.setString(8, citizen.getGeneralInformation().getHealthInformation());
-            ps.setString(9, citizen.getGeneralInformation().getEquipmentAids());
-            ps.setString(10, citizen.getGeneralInformation().getHomeLayout());
-            ps.setString(11, citizen.getGeneralInformation().getNetwork());
+            ps.setString(1, citizen.getGeneralInformation().getCoping() == null ? "" : citizen.getGeneralInformation().getCoping());
+            ps.setString(2, citizen.getGeneralInformation().getMotivation() == null ? "" : citizen.getGeneralInformation().getMotivation());
+            ps.setString(3, citizen.getGeneralInformation().getResources() == null ? "" : citizen.getGeneralInformation().getResources());
+            ps.setString(4, citizen.getGeneralInformation().getRoles() == null ? "" : citizen.getGeneralInformation().getRoles());
+            ps.setString(5, citizen.getGeneralInformation().getHabits() == null ? "" : citizen.getGeneralInformation().getHabits());
+            ps.setString(6, citizen.getGeneralInformation().getEducationAndJobs() == null ? "" : citizen.getGeneralInformation().getEducationAndJobs());
+            ps.setString(7, citizen.getGeneralInformation().getLifeStory() == null ? "" : citizen.getGeneralInformation().getLifeStory());
+            ps.setString(8, citizen.getGeneralInformation().getHealthInformation() == null ? "" : citizen.getGeneralInformation().getHealthInformation());
+            ps.setString(9, citizen.getGeneralInformation().getEquipmentAids() == null ? "" : citizen.getGeneralInformation().getEquipmentAids());
+            ps.setString(10, citizen.getGeneralInformation().getHomeLayout() == null ? "" : citizen.getGeneralInformation().getHomeLayout());
+            ps.setString(11, citizen.getGeneralInformation().getNetwork() == null ? "" : citizen.getGeneralInformation().getNetwork());
 
             ps.setInt(12, citizen.getId());
 

@@ -55,4 +55,9 @@ public class DAOFacade implements IDAOFacade {
     public List<Student> readAllStudents() throws Exception {
         return userDAO.readAllStudents();
     }
+
+    @Override
+    public void updateUser(User user) throws Exception {
+        userDAO.update(user);
+    }
 }

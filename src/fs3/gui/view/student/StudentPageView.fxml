@@ -10,38 +10,41 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-
-<HBox stylesheets="@../styles/common.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.student.StudentPageController">
+<VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" stylesheets="@../styles/common.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.student.StudentPageController">
    <children>
-      <VBox maxHeight="1.7976931348623157E308" maxWidth="-Infinity">
+      <HBox VBox.vgrow="ALWAYS">
          <children>
-            <Pane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="55.0" style="-fx-background-color: #22577A;" VBox.vgrow="NEVER">
+            <VBox minWidth="-Infinity" prefWidth="300.0" HBox.hgrow="NEVER">
                <children>
-                  <ImageView fitWidth="80.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../resources/login_logo.png" />
-                     </image>
-                  </ImageView>
+                  <Pane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="55.0" style="-fx-background-color: #22577A;" VBox.vgrow="NEVER">
+                     <children>
+                        <ImageView fitWidth="80.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/login_logo.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Pane>
+                  <ListView fx:id="ltvAssignedCitizens" onMouseClicked="#handleSelectCitizen" VBox.vgrow="ALWAYS" />
                </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </Pane>
-            <ListView fx:id="ltvAssignedCitizens" onMouseClicked="#handleSelectCitizen" prefWidth="250.0" VBox.vgrow="ALWAYS" />
+            </VBox>
+              <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@../styles/tabpane.css" tabClosingPolicy="UNAVAILABLE" tabMinHeight="40.0" tabMinWidth="200.0" HBox.hgrow="ALWAYS">
+                  <tabs>
+                      <Tab closable="false" text="General information">
+                          <fx:include source="tabs/GeneralInformationView.fxml" />
+                      </Tab>
+                      <Tab closable="false" text="Health conditions">
+                          <fx:include source="tabs/HealthConditionsView.fxml" />
+                      </Tab>
+                      <Tab closable="false" text="Functional ablities">
+                          <fx:include source="tabs/FunctionalAbilitiesView.fxml" />
+                      </Tab>
+                  </tabs>
+              </TabPane>
          </children>
-      </VBox>
-        <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@../styles/tabpane.css" tabClosingPolicy="UNAVAILABLE" tabMinHeight="40.0" tabMinWidth="200.0">
-            <tabs>
-                <Tab closable="false" text="General information">
-                    <fx:include source="tabs/GeneralInformationView.fxml" />
-                </Tab>
-                <Tab closable="false" text="Health conditions">
-                    <fx:include source="tabs/HealthConditionsView.fxml" />
-                </Tab>
-                <Tab closable="false" text="Functional ablities">
-                    <fx:include source="tabs/FunctionalAbilitiesView.fxml" />
-                </Tab>
-            </tabs>
-        </TabPane>
+      </HBox>
    </children>
-</HBox>
+</VBox>

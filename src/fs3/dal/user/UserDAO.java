@@ -5,6 +5,7 @@ import fs3.be.Teacher;
 import fs3.be.User;
 import fs3.dal.ConnectionManager;
 import fs3.dal.ConnectionManagerPool;
+import jdk.jshell.spi.ExecutionControl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -30,13 +31,23 @@ public class UserDAO {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Student student = (Student) constructUser(rs);
-                studentDAO.setStudent(student);
+                studentDAO.set(student);
                 students.add(student);
             }
         } finally {
             ConnectionManagerPool.getInstance().returnConnectionManager(cm);
         }
         return students;
+    }
+
+    public void update(User user) throws Exception {
+        if (Student.class.equals(user.getClass())) {
+            studentDAO.update((Student) user);
+        }
+        else if (Teacher.class.equals(user.getClass())) {
+            throw new ExecutionControl.NotImplementedException("Teacher update not implemented");
+        }
+        //TODO: implement admin
     }
 
     public User readUser(String username, String password) throws Exception {
@@ -56,10 +67,10 @@ public class UserDAO {
             }
 
             if (Student.class.equals(user.getClass())) {
-                studentDAO.setStudent(user);
+                studentDAO.set(user);
             }
             else if (Teacher.class.equals(user.getClass())) {
-                teacherDAO.setTeacher(user);
+                teacherDAO.set(user);
             }
 
         } finally {
