@@ -85,7 +85,6 @@ public class CitizenDAO {
                 personalInformationDAO.create(citizen);
             }
         }));
-
         futures.add(subExecutor.submit(new ExceptionCallable() {
             @Override
             void doTask() throws Exception {
@@ -142,7 +141,6 @@ public class CitizenDAO {
                 functionalAbilityDAO.update(citizen);
             }
         }));
-        //if citizen is instance, update connections
 
         subExecutor.shutdown();
         for (Future<Exception> future : futures) {
@@ -194,7 +192,6 @@ public class CitizenDAO {
                 citizen.setFunctionalAbilities(functionalAbilityDAO.read(citizen));
             }
         }));
-        //if citizen is instance, load connections
 
         subExecutor.shutdown();
         for (Future<Exception> future : futures) {

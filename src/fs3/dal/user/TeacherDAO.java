@@ -16,7 +16,7 @@ public class TeacherDAO {
 
     String select = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ?";
 
-    public void setTeacher(User user) throws Exception {
+    public void set(User user) throws Exception {
         ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
         try (Connection con = cm.getConnection()) {
             PreparedStatement ps = con.prepareStatement(select);
