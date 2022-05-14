@@ -1,9 +1,8 @@
 package fs3.gui.controller.teacher.tabs;
 
+
 import fs3.be.HealthConditionData;
 import fs3.enums.HealthCondition;
-import fs3.gui.controller.student.tabs.HealthConditionComponentController;
-import fs3.gui.model.CitizenInstanceModel;
 import fs3.gui.model.CitizenTemplateModel;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,12 +16,12 @@ import java.util.EnumMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-public class HealthConditionsController implements Initializable {
+public class THealthConditionsController implements Initializable {
     @FXML
     private Accordion accHealthConditions;
     private CitizenTemplateModel citizenTemplateModel;
 
-    private EnumMap<HealthCondition, HealthConditionComponentController> conditionControllerMap = new EnumMap<>(HealthCondition.class);
+    private EnumMap<HealthCondition, THealthConditionComponentController> conditionControllerMap = new EnumMap<>(HealthCondition.class);
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -32,11 +31,11 @@ public class HealthConditionsController implements Initializable {
             for (HealthCondition condition :
                     HealthCondition.values()) {
                 //create new loader to get the controller
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../view/student/tabs/HealthConditionComponentView.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../view/teacher/tabs/HealthConditionComponentView.fxml"));
                 //load view
                 Parent root = loader.load();
                 //get the controller
-                HealthConditionComponentController controller = loader.getController();
+                THealthConditionComponentController controller = loader.getController();
                 //set title of pane
                 controller.setTitle(condition.toString());
                 //can I access it like this to get the citizen selected ?
@@ -50,7 +49,7 @@ public class HealthConditionsController implements Initializable {
             //selected citizen listener
             citizenTemplateModel.getSelectedCitizenTemplateProperty().addListener((observable, oldValue, newValue) -> {
                 if (newValue != null) {
-                    for (Map.Entry<HealthCondition, HealthConditionComponentController> entry :
+                    for (Map.Entry<HealthCondition, THealthConditionComponentController> entry :
                             conditionControllerMap.entrySet()) {
                         HealthConditionData healthConditionData = newValue.getHealthConditions().get(entry.getKey());
                         if (healthConditionData != null) {

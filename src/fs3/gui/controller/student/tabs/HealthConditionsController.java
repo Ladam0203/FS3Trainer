@@ -60,7 +60,6 @@ public class HealthConditionsController implements Initializable {
                         }
                         else {
                             entry.getValue().clearFields();
-                            System.out.println("nejde to");
                         }
                     }
                 }
