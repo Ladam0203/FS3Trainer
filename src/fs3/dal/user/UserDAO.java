@@ -10,6 +10,7 @@ import jdk.jshell.spi.ExecutionControl;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +23,8 @@ public class UserDAO {
 
     private String select = "SELECT * FROM " + tableName + " WHERE " + columns[1] + " = ? AND " + columns[2] + " = ?";
     private String selectStudents = "SELECT * FROM " + tableName + " WHERE " + columns[3] + " = ?";
+    private String insert = "INSERT INTO " + tableName + " (" + columns[1] + ", " + columns[2] + ", " + columns[3] + ") VALUES (?, ?, ?)";
+    private String update = "UPDATE " + tableName + " SET " + columns[1] + " = ?, " + columns[2] + " = ? WHERE " + columns[0] + " = ?";
     private String delete = "DELETE FROM " + tableName + " WHERE " + columns[0] + " = ?";
 
     public List<Student> readAllStudents() throws Exception {
@@ -42,17 +45,7 @@ public class UserDAO {
         return students;
     }
 
-    public void update(User user) throws Exception {
-        if (Student.class.equals(user.getClass())) {
-            studentDAO.update((Student) user);
-        }
-        else if (Teacher.class.equals(user.getClass())) {
-            throw new ExecutionControl.NotImplementedException("Teacher update not implemented");
-        }
-        //TODO: implement admin
-    }
-
-    public User readUser(String username, String password) throws Exception {
+    public User read(String username, String password) throws Exception {
         User user = null;
 
         ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
@@ -79,6 +72,57 @@ public class UserDAO {
             ConnectionManagerPool.getInstance().returnConnectionManager(cm);
         }
 
+        return user;
+    }
+
+    public void update(User user) throws Exception {
+        ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
+        try (Connection con = cm.getConnection()) {
+            PreparedStatement ps = con.prepareStatement(update);
+            ps.setString(1, user.getUsername());
+            ps.setString(2, user.getPassword());
+
+            ps.setInt(3, user.getId());
+            ps.executeUpdate();
+        } finally {
+            ConnectionManagerPool.getInstance().returnConnectionManager(cm);
+        }
+        if (Student.class.equals(user.getClass())) {
+            studentDAO.update((Student) user);
+        }
+        else if (Teacher.class.equals(user.getClass())) {
+            throw new ExecutionControl.NotImplementedException("Teacher update not implemented");
+        }
+        //TODO: implement admin
+    }
+
+    public User create(User user) throws Exception {
+        ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
+        try (Connection con = cm.getConnection()) {
+            PreparedStatement ps = con.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, user.getUsername());
+            ps.setString(2, user.getPassword());
+            if (Student.class.equals(user.getClass())) {
+                ps.setInt(3, 3);
+            } else if (Teacher.class.equals(user.getClass())) {
+                ps.setInt(3, 2);
+            }
+            //TODO: implement admin
+            ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
+            if (rs.next()) {
+                user.setId(rs.getInt("id"));
+            }
+        } finally {
+            ConnectionManagerPool.getInstance().returnConnectionManager(cm);
+        }
+        if (Student.class.equals(user.getClass())) {
+            studentDAO.create((Student) user);
+        }
+        else if (Teacher.class.equals(user.getClass())) {
+            throw new ExecutionControl.NotImplementedException("Teacher create not implemented");
+        }
+        //TODO: create admin
         return user;
     }
 

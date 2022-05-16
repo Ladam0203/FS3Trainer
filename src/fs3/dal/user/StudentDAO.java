@@ -24,6 +24,7 @@ public class StudentDAO {
     private String[] junctionColumns = {"studentId", "citizenInstanceId"};
 
     private String select = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ?";
+    private String insert = "INSERT INTO " + tableName + " VALUES (?, ?)";
     private String update = "UPDATE " + tableName + " SET " + columns[1] + " = ? WHERE " + columns[0] + " = ?";
 
     private String selectJunction = "SELECT * FROM " + juntionTableName + " WHERE " + junctionColumns[0] + " = ?";
@@ -55,18 +56,43 @@ public class StudentDAO {
     public void update(Student student) throws Exception {
         ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
         try (Connection con = cm.getConnection()) {
-            con.setAutoCommit(false);
-
             PreparedStatement ps = con.prepareStatement(update);
             ps.setString(1, student.getName());
             ps.setInt(2, student.getId());
             ps.executeUpdate();
 
-            con.commit();
+            con.setAutoCommit(false);
 
             PreparedStatement psDelete = con.prepareStatement(deleteLinks);
             psDelete.setInt(1, student.getId());
             psDelete.executeUpdate();
+
+            PreparedStatement psInsert = con.prepareStatement(insertLinks);
+            for (CitizenInstance ci : student.getAssignedCitizens()) {
+                psInsert.setInt(1, student.getId());
+                psInsert.setInt(2, ci.getId());
+                psInsert.addBatch();
+            }
+            psInsert.executeBatch();
+
+            con.commit();
+            con.setAutoCommit(true);
+        } finally {
+            ConnectionManagerPool.getInstance().returnConnectionManager(cm);
+        }
+    }
+
+    public void create(Student student) throws Exception {
+        ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
+        try (Connection con = cm.getConnection()) {
+            con.setAutoCommit(false);
+
+            PreparedStatement ps = con.prepareStatement(insert);
+            ps.setInt(1, student.getId());
+            ps.setString(2, student.getName());
+            ps.executeUpdate();
+
+            con.commit();
 
             PreparedStatement psInsert = con.prepareStatement(insertLinks);
             for (CitizenInstance ci : student.getAssignedCitizens()) {
