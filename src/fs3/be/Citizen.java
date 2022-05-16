@@ -80,7 +80,7 @@ public abstract class Citizen {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final User other = (User) obj;
+        final Citizen other = (Citizen) obj;
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
