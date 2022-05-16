@@ -14,9 +14,9 @@
    <children>
       <HBox VBox.vgrow="ALWAYS">
          <children>
-            <VBox minWidth="-Infinity" prefWidth="300.0" HBox.hgrow="NEVER">
+            <VBox minWidth="-Infinity" prefWidth="300.0" styleClass="right-border" HBox.hgrow="NEVER">
                <children>
-                  <Pane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="55.0" style="-fx-background-color: #22577A;" VBox.vgrow="NEVER">
+                  <Pane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="56.0" style="-fx-background-color: #22577A;" VBox.vgrow="NEVER">
                      <children>
                         <ImageView fitWidth="80.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -31,7 +31,7 @@
                   <ListView fx:id="ltvAssignedCitizens" onMouseClicked="#handleSelectCitizen" VBox.vgrow="ALWAYS" />
                </children>
             </VBox>
-              <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@../styles/tabpane.css" tabClosingPolicy="UNAVAILABLE" tabMinHeight="40.0" tabMinWidth="200.0" HBox.hgrow="ALWAYS">
+              <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" tabClosingPolicy="UNAVAILABLE" tabMinHeight="40.0" tabMinWidth="200.0" HBox.hgrow="ALWAYS">
                   <tabs>
                       <Tab closable="false" text="General information">
                           <fx:include source="tabs/GeneralInformationView.fxml" />

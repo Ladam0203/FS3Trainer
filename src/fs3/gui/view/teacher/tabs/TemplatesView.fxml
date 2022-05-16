@@ -46,7 +46,7 @@
             </HBox>
          </children>
       </VBox>
-      <TabPane stylesheets="@../../styles/tabpane.css" tabClosingPolicy="UNAVAILABLE" tabMinHeight="40.0" tabMinWidth="200.0" HBox.hgrow="ALWAYS">
+      <TabPane tabClosingPolicy="UNAVAILABLE" tabMinHeight="40.0" tabMinWidth="200.0" HBox.hgrow="ALWAYS">
         <tabs>
           <Tab text="General information">
               <fx:include source="GeneralInformationView.fxml" />
