@@ -45,7 +45,7 @@ public class HealthConditionDAO {
                 ps.setInt(1, citizen.getId());
                 ps.setString(2, entry.getKey().toString());
                 ps.setString(3, healthConditionData.getHealthConditionState().toString());
-                if (healthConditionData.getHealthConditionState() == HealthConditionState.INACTIVE) {
+                if (healthConditionData.getHealthConditionState() == HealthConditionState.INACTIVE || healthConditionData.getHealthConditionState() == null) {
                     ps.setNull(4, java.sql.Types.NVARCHAR);
                     ps.setNull(5, java.sql.Types.NVARCHAR);
                     ps.setNull(6, java.sql.Types.NVARCHAR);
