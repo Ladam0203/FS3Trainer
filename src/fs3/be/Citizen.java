@@ -70,4 +70,13 @@ public abstract class Citizen {
     public String toString(){
         return this.getPersonalInformation().getName() + " (" + this.id.get() + ")";
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Citizen) {
+            Citizen citizen = (Citizen) obj;
+            return this.getId() == citizen.getId();
+        }
+        return false;
+    }
 }

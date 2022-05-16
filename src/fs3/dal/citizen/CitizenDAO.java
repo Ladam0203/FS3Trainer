@@ -1,5 +1,6 @@
 package fs3.dal.citizen;
 
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import fs3.be.Citizen;
 import fs3.be.CitizenInstance;
 import fs3.be.CitizenTemplate;
@@ -29,6 +30,7 @@ public class CitizenDAO {
     private String tableName = "Citizens";
     private String[] columns = {"id", "isTemplate"};
 
+    private String select = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ?";
     private String insert = "INSERT INTO " + tableName + " " + "VALUES (?)";
     private String readAllInstances = "SELECT * FROM " + tableName + " WHERE " + columns[1] + " = 0";
     private String readAllTemplates = "SELECT * FROM " + tableName + " WHERE " + columns[1] + " = 1";
@@ -40,6 +42,21 @@ public class CitizenDAO {
 
     public List<CitizenInstance> readAllCitizenInstances() throws Exception {
         return readAll(readAllInstances).stream().map(c -> (CitizenInstance) c).collect(Collectors.toList());
+    }
+
+    public Citizen read(int id) throws Exception {
+        ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
+        try (Connection con = cm.getConnection()) {
+            PreparedStatement ps = con.prepareStatement(select);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return constructCitizen(rs);
+            }
+        } finally {
+            ConnectionManagerPool.getInstance().returnConnectionManager(cm);
+        }
+        return null;
     }
 
     private List<Citizen> readAll(String query) throws Exception {

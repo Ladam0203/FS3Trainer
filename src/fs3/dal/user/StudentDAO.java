@@ -5,6 +5,7 @@ import fs3.be.Student;
 import fs3.be.User;
 import fs3.dal.ConnectionManager;
 import fs3.dal.ConnectionManagerPool;
+import fs3.dal.citizen.CitizenDAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,6 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StudentDAO {
+    private CitizenDAO citizenDAO = new CitizenDAO();
+
     private String tableName = "Students";
     private String juntionTableName = "StudentsCitizenInstances";
 
@@ -23,7 +26,7 @@ public class StudentDAO {
     private String select = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ?";
     private String update = "UPDATE " + tableName + " SET " + columns[1] + " = ? WHERE " + columns[0] + " = ?";
 
-    //private String selectJunction = "SELECT * FROM " + juntionTableName + " WHERE " + junctionColumns[0] + " = ?";
+    private String selectJunction = "SELECT * FROM " + juntionTableName + " WHERE " + junctionColumns[0] + " = ?";
     private String deleteLinks = "DELETE FROM " + juntionTableName + " WHERE " + junctionColumns[0] + " = ?";
     private String insertLinks = "INSERT INTO " + juntionTableName + " (" + junctionColumns[0] + ", " + junctionColumns[1] + ") VALUES (?, ?)";
 
@@ -37,7 +40,12 @@ public class StudentDAO {
             if (rs.next()) {
                 Student student = (Student) user;
                 student.setName(rs.getString("name"));
-                //TODO: load citizen instances
+                PreparedStatement psJunction = con.prepareStatement(selectJunction);
+                psJunction.setInt(1, student.getId());
+                ResultSet rsJunction = psJunction.executeQuery();
+                while (rsJunction.next()) {
+                    student.assignCitizen((CitizenInstance) citizenDAO.read(rsJunction.getInt("citizenInstanceId")));
+                }
             }
         } finally {
             ConnectionManagerPool.getInstance().returnConnectionManager(cm);
