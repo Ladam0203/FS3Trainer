@@ -47,7 +47,7 @@ public class FunctionalAbilityDAO {
                 ps.setInt(1, citizen.getId());
                 ps.setString(2, entry.getKey().toString());
                 ps.setInt(3, functionalAbilityData.getCurrentLimitationLevel().getValue());
-                if (functionalAbilityData.getCurrentLimitationLevel() == LimitationLevel.NOT_RELEVANT || functionalAbilityData.getCurrentLimitationLevel() == null) {
+                if (functionalAbilityData.getCurrentLimitationLevel() == LimitationLevel.NOT_RELEVANT) {
                     ps.setNull(4, Types.INTEGER);
                     ps.setNull(5, Types.INTEGER);
                     ps.setNull(6, Types.NVARCHAR);
