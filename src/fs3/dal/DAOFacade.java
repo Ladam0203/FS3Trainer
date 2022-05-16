@@ -65,4 +65,9 @@ public class DAOFacade implements IDAOFacade {
     public void deleteUser(User user) throws Exception {
         userDAO.delete(user);
     }
+
+    @Override
+    public List<Teacher> readAllTeachers() throws Exception {
+        return userDAO.readAllTeachers();
+    }
 }

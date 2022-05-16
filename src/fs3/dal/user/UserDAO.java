@@ -5,6 +5,7 @@ import fs3.be.Teacher;
 import fs3.be.User;
 import fs3.dal.ConnectionManager;
 import fs3.dal.ConnectionManagerPool;
+import fs3.enums.UserRole;
 import jdk.jshell.spi.ExecutionControl;
 
 import java.sql.Connection;
@@ -22,7 +23,8 @@ public class UserDAO {
     private String[] columns = {"id", "username", "password", "roleId"};
 
     private String select = "SELECT * FROM " + tableName + " WHERE " + columns[1] + " = ? AND " + columns[2] + " = ?";
-    private String selectStudents = "SELECT * FROM " + tableName + " WHERE " + columns[3] + " = ?";
+    private String selectStudents = "SELECT * FROM " + tableName + " WHERE " + columns[3] + " = " + UserRole.STUDENT.getId();
+    private String selectTeachers = "SELECT * FROM " + tableName + " WHERE " + columns[3] + " = " + UserRole.TEACHER.getId();
     private String insert = "INSERT INTO " + tableName + " (" + columns[1] + ", " + columns[2] + ", " + columns[3] + ") VALUES (?, ?, ?)";
     private String update = "UPDATE " + tableName + " SET " + columns[1] + " = ?, " + columns[2] + " = ? WHERE " + columns[0] + " = ?";
     private String delete = "DELETE FROM " + tableName + " WHERE " + columns[0] + " = ?";
@@ -32,7 +34,6 @@ public class UserDAO {
         ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
         try (Connection con = cm.getConnection()) {
             PreparedStatement ps = con.prepareStatement(selectStudents);
-            ps.setInt(1, 3);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Student student = (Student) constructUser(rs);
@@ -43,6 +44,23 @@ public class UserDAO {
             ConnectionManagerPool.getInstance().returnConnectionManager(cm);
         }
         return students;
+    }
+
+    public List<Teacher> readAllTeachers() throws Exception {
+        List<Teacher> teachers = new ArrayList<>();
+        ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
+        try (Connection con = cm.getConnection()) {
+            PreparedStatement ps = con.prepareStatement(selectTeachers);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Teacher student = (Teacher) constructUser(rs);
+                teacherDAO.set(student);
+                teachers.add(student);
+            }
+        } finally {
+            ConnectionManagerPool.getInstance().returnConnectionManager(cm);
+        }
+        return teachers;
     }
 
     public User read(String username, String password) throws Exception {
@@ -91,7 +109,7 @@ public class UserDAO {
             studentDAO.update((Student) user);
         }
         else if (Teacher.class.equals(user.getClass())) {
-            throw new ExecutionControl.NotImplementedException("Teacher update not implemented");
+            teacherDAO.create((Teacher) user);
         }
         //TODO: implement admin
     }
@@ -103,9 +121,9 @@ public class UserDAO {
             ps.setString(1, user.getUsername());
             ps.setString(2, user.getPassword());
             if (Student.class.equals(user.getClass())) {
-                ps.setInt(3, 3);
+                ps.setInt(3, UserRole.STUDENT.getId());
             } else if (Teacher.class.equals(user.getClass())) {
-                ps.setInt(3, 2);
+                ps.setInt(3, UserRole.TEACHER.getId());
             }
             //TODO: implement admin
             ps.executeUpdate();

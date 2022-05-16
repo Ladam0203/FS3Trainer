@@ -41,10 +41,12 @@ public class HealthConditionDAO {
         try (Connection con = cm.getConnection()) {
             PreparedStatement ps = con.prepareStatement(insertHealthConditonData);
             for (Map.Entry<HealthCondition, HealthConditionData> entry : citizen.getHealthConditions().entrySet()) {
+                System.out.println(entry.getKey());
                 HealthConditionData healthConditionData = entry.getValue();
                 ps.setInt(1, citizen.getId());
                 ps.setString(2, entry.getKey().toString());
                 ps.setString(3, healthConditionData.getHealthConditionState().toString());
+                System.out.println(healthConditionData.getHealthConditionState().toString());
                 if (healthConditionData.getHealthConditionState() == HealthConditionState.INACTIVE) {
                     ps.setNull(4, java.sql.Types.NVARCHAR);
                     ps.setNull(5, java.sql.Types.NVARCHAR);
