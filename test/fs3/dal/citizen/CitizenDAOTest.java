@@ -77,4 +77,15 @@ public class CitizenDAOTest {
         CitizenInstance citizenInstance = new CitizenInstance(citizenTemplate);
         CitizenInstance createdInstance = (CitizenInstance) citizenDAO.create(citizenInstance);
     }
+
+    @Disabled
+    @Test
+    void delete() throws Exception {
+        CitizenDAO citizenDAO = new CitizenDAO();
+        List<CitizenTemplate> citizenTemplates = citizenDAO.readAllCitizenTemplates();
+        for (int i = 7; i < citizenTemplates.size(); i++) {
+            citizenDAO.delete(citizenTemplates.get(i));
+        }
+    }
+
 }

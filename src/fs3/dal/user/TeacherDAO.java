@@ -11,10 +11,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class TeacherDAO {
-    String tableName = "Teachers";
-    String[] columns = {"userId", "name"};
+    private String tableName = "Teachers";
+    private String[] columns = {"userId", "name"};
 
-    String select = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ?";
+    private String select = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ?";
+    private String insert = "INSERT INTO " + tableName + " (" + columns[0] + ", " + columns[1] + ") VALUES (?, ?)";
 
     public void set(User user) throws Exception {
         ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
@@ -27,6 +28,18 @@ public class TeacherDAO {
                 Teacher teacher = (Teacher) user;
                 teacher.setName(rs.getString("name"));
             }
+        } finally {
+            ConnectionManagerPool.getInstance().returnConnectionManager(cm);
+        }
+    }
+
+    public void create(Teacher teacher) throws Exception {
+        ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
+        try (Connection con = cm.getConnection()) {
+            PreparedStatement ps = con.prepareStatement(insert);
+            ps.setInt(1, teacher.getId());
+            ps.setString(2, teacher.getName());
+            ps.executeUpdate();
         } finally {
             ConnectionManagerPool.getInstance().returnConnectionManager(cm);
         }
