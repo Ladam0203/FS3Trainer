@@ -5,6 +5,7 @@
 .titled-pane {
     -fx-background-color: #1e4c6b;
 }
+
 .titled-pane {
     -fx-text-fill: #F7F8F9;
 }
@@ -33,25 +34,92 @@
     -fx-border-color: #58AEC9;
 }
 
-.titled-pane > .title > .arrow-button .arrow
-{
+.titled-pane > .title > .arrow-button .arrow {
     -fx-background-color: #F7F8F9;
 }
 
-.scroll-bar .track {
+.scroll-pane {
+    -fx-padding: 0;
+    -fx-background-color: #1e4c6b;
+}
+
+.scroll-bar {
+    -fx-background-insets: 0;
+    -fx-background-color: #1e4c6b;
+    -fx-pref-width: 1em;
+    -fx-padding: 0;
+}
+
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-background-radius: 0.0;
+    -fx-border-radius: 0;
 }
 
-.scroll-bar .increment-button, .scroll-bar .decrement-button {
+
+.scroll-bar:horizontal .increment-button,
+.scroll-bar:horizontal .decrement-button {
     -fx-background-color: transparent;
-    -fx-border-color: transparent;
-    -fx-shape: " ";
-    -fx-padding: 0.0 0.15em;
+    -fx-background-radius: 0.0;
+    -fx-padding: 0.0 0.0 10.0 0.0;
+
 }
 
-.scroll-bar .thumb {
-    -fx-background-color: #58AEC9;
-    -fx-background-radius: 0;
+.scroll-bar:vertical .increment-button,
+.scroll-bar:vertical .decrement-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0.0;
+    -fx-padding: 0.0 10.0 0.0 0.0;
 }
+
+.scroll-bar .increment-arrow,
+.scroll-bar .decrement-arrow {
+    -fx-shape: " ";
+    -fx-padding: 0.0 0.0;
+}
+
+.scroll-bar:vertical .increment-arrow,
+.scroll-bar:vertical .decrement-arrow {
+    -fx-shape: " ";
+    -fx-padding: 0.0 0.0;
+}
+
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #58AEC9;
+    -fx-background-insets: 2.0, 0.0, 0.0;
+    -fx-background-radius: 0.0;
+}
+
+.scroll-bar:horizontal .thumb:hover,
+.scroll-bar:vertical .thumb:hover {
+    -fx-background-color: #58AEC9;
+    -fx-background-insets: 2.0, 0.0, 0.0;
+    -fx-background-radius: 0.0;
+}
+
+.list-view {
+    -fx-border-width: 0;
+}
+
+.list-view .list-cell {
+    -fx-background-color: #1e4c6b;
+    -fx-text-fill: #F7F8F9;
+}
+
+/*.list-view .list-cell:filled:selected:focused, .list-cell:filled:selected {
+    -fx-background-color: #deaa88;
+    -fx-text-fill: #FFF;
+    -fx-font-weight: bold;
+}
+
+.list-view .list-cell:even {
+    -fx-background-color: white;
+}
+
+.list-view .list-cell:filled:hover {
+    -fx-background-color: #deaa88;
+    -fx-text-fill: #FFF;
+}*/
