@@ -60,4 +60,9 @@ public class DAOFacade implements IDAOFacade {
     public void updateUser(User user) throws Exception {
         userDAO.update(user);
     }
+
+    @Override
+    public void deleteUser(User user) throws Exception {
+        userDAO.delete(user);
+    }
 }

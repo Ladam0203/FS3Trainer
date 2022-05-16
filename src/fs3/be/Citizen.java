@@ -10,6 +10,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import java.io.Serializable;
 import java.util.EnumMap;
 import java.util.HashMap;
+import java.util.Objects;
 
 public abstract class Citizen {
     private IntegerProperty id;
@@ -73,10 +74,16 @@ public abstract class Citizen {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof Citizen) {
-            Citizen citizen = (Citizen) obj;
-            return this.getId() == citizen.getId();
+        if (obj == null) {
+            return false;
         }
-        return false;
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final User other = (User) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        return true;
     }
 }

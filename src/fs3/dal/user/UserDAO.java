@@ -19,8 +19,10 @@ public class UserDAO {
 
     private String tableName = "Users";
     private String[] columns = {"id", "username", "password", "roleId"};
+
     private String select = "SELECT * FROM " + tableName + " WHERE " + columns[1] + " = ? AND " + columns[2] + " = ?";
     private String selectStudents = "SELECT * FROM " + tableName + " WHERE " + columns[3] + " = ?";
+    private String delete = "DELETE FROM " + tableName + " WHERE " + columns[0] + " = ?";
 
     public List<Student> readAllStudents() throws Exception {
         List<Student> students = new ArrayList<>();
@@ -78,6 +80,17 @@ public class UserDAO {
         }
 
         return user;
+    }
+
+    public void delete(User user) throws Exception {
+        ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
+        try (Connection con = cm.getConnection()) {
+            PreparedStatement ps = con.prepareStatement(delete);
+            ps.setInt(1, user.getId());
+            ps.executeUpdate();
+        } finally {
+            ConnectionManagerPool.getInstance().returnConnectionManager(cm);
+        }
     }
 
     private User constructUser(ResultSet rs) throws Exception {
