@@ -18,6 +18,11 @@ public class CitizenLogic {
     public List<CitizenInstance> readAllCitizensInstances() throws Exception {
         return daoFacade.readAllCitizenInstances();
     }
+    //create citizen
+
+    public CitizenInstance createCitizenInstance(CitizenInstance citizen) throws Exception {
+        return (CitizenInstance) daoFacade.createCitizen(citizen);
+    }
 
     //update citizen
     public void updateCitizen(Citizen citizen) throws Exception {

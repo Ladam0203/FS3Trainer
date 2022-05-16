@@ -1,9 +1,7 @@
 package fs3.gui.controller.teacher.tabs;
 
-import fs3.be.CitizenInstance;
-import fs3.be.CitizenTemplate;
-import fs3.be.GeneralInformation;
-import fs3.be.PersonalInformation;
+import fs3.be.*;
+import fs3.gui.model.CitizenInstanceModel;
 import fs3.gui.model.CitizenTemplateModel;
 import fs3.util.PopUp;
 import javafx.event.ActionEvent;
@@ -25,11 +23,13 @@ public class TemplatesController implements Initializable {
     public TextField txfTemplateName;
 
     private CitizenTemplateModel citizenTemplateModel;
+    private CitizenInstanceModel citizenInstanceModel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
             citizenTemplateModel = CitizenTemplateModel.getInstance();
+            citizenInstanceModel = CitizenInstanceModel.getInstance();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -52,23 +52,23 @@ public class TemplatesController implements Initializable {
         }
     }
 
-    public void handleUpdateTemplate(ActionEvent event) {
-        CitizenTemplate updatedCitizenTemplate = ltvCitizenTemplates.getSelectionModel().getSelectedItem();
-        PersonalInformation personalInformation = new PersonalInformation();
-        GeneralInformation generalInformation = new GeneralInformation();
-
-        String name = txfTemplateName.getText();
-        if (!name.isEmpty() && updatedCitizenTemplate != null) {
-            personalInformation.setName(name);
-            updatedCitizenTemplate.setPersonalInformation(personalInformation);
-            updatedCitizenTemplate.setGeneralInformation(generalInformation);
-            try {
-                citizenTemplateModel.updateSelectedCitizenTemplate(updatedCitizenTemplate);
-            } catch (Exception e) {
-                PopUp.showError("Cannot update the template!");
-            }
-        }
-    }
+//    public void handleUpdateTemplate(ActionEvent event) {
+//        CitizenTemplate updatedCitizenTemplate = ltvCitizenTemplates.getSelectionModel().getSelectedItem();
+//        PersonalInformation personalInformation = new PersonalInformation();
+//        GeneralInformation generalInformation = new GeneralInformation();
+//
+//        String name = txfTemplateName.getText();
+//        if (!name.isEmpty() && updatedCitizenTemplate != null) {
+//            personalInformation.setName(name);
+//            updatedCitizenTemplate.setPersonalInformation(personalInformation);
+//            updatedCitizenTemplate.setGeneralInformation(generalInformation);
+//            try {
+//                citizenTemplateModel.updateSelectedCitizenTemplate(updatedCitizenTemplate);
+//            } catch (Exception e) {
+//                PopUp.showError("Cannot update the template!");
+//            }
+//        }
+//    }
 
 
     public void handleClick(MouseEvent mouseEvent) {
@@ -79,6 +79,27 @@ public class TemplatesController implements Initializable {
         if (citizenTemplate != null) {
             citizenTemplateModel.setSelectedCitizenTemplate(citizenTemplate);
             //System.out.println(citizenTemplate);
+        }
+    }
+
+    public void handleCopyTemplate(ActionEvent event) {
+        CitizenTemplate copiedCitizenTemplate = new CitizenTemplate(citizenTemplateModel.getSelectedCitizenTemplate());
+        try {
+            citizenTemplateModel.createCitizenTemplate(copiedCitizenTemplate);
+        } catch (Exception e) {
+            PopUp.showError("Cannot copy citizen template!");
+            e.printStackTrace();
+        }
+    }
+
+    public void handleCreateInstance(ActionEvent event) {
+        CitizenTemplate citizenTemplate = citizenTemplateModel.getSelectedCitizenTemplate();
+        CitizenInstance citizenInstance = new CitizenInstance(citizenTemplate);
+        try {
+            citizenInstanceModel.createCitizenInstance(citizenInstance);
+        } catch (Exception e) {
+            PopUp.showError("Cannot create Citizen from template!");
+            e.printStackTrace();
         }
     }
 }

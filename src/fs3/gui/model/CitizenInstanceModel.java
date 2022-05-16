@@ -1,5 +1,6 @@
 package fs3.gui.model;
 
+import fs3.be.Citizen;
 import fs3.be.CitizenInstance;
 import fs3.bll.CitizenLogic;
 import javafx.beans.property.ObjectProperty;
@@ -38,6 +39,10 @@ public class CitizenInstanceModel {
 
     public void setSelectedCitizenInstance(CitizenInstance selectedCitizenInstance) {
         this.selectedCitizenInstance.set(selectedCitizenInstance);
+    }
+
+    public void createCitizenInstance(CitizenInstance citizenInstance) throws Exception {
+        observableCitizensInstances.add( citizenLogic.createCitizenInstance(citizenInstance));
     }
 
     public void updateSelectedCitizen() throws Exception {
