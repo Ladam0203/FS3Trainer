@@ -12,6 +12,9 @@ import java.util.List;
 
 public class CitizenDAOTest {
 
+    public CitizenDAOTest() throws Exception {
+    }
+
     @Disabled
     @Test
     public void TestUpdateHealthConditions() throws Exception {
@@ -64,5 +67,14 @@ public class CitizenDAOTest {
 
         List<CitizenInstance> citizens = citizenDAO.readAllCitizenInstances();
         Assertions.assertEquals(1, citizens.size());
+    }
+
+    @Disabled
+    @Test
+    void copy() throws Exception {
+        CitizenDAO citizenDAO = new CitizenDAO();
+        CitizenTemplate citizenTemplate = citizenDAO.readAllCitizenTemplates().get(0);
+        CitizenInstance citizenInstance = new CitizenInstance(citizenTemplate);
+        CitizenInstance createdInstance = (CitizenInstance) citizenDAO.create(citizenInstance);
     }
 }

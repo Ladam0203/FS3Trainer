@@ -28,7 +28,7 @@ public class DAOFacade implements IDAOFacade {
      */
     @Override
     public User readUser(String username, String password) throws Exception {
-        return userDAO.readUser(username, password);
+        return userDAO.read(username, password);
     }
 
     @Override

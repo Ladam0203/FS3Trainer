@@ -14,7 +14,7 @@ class UserDAOTest {
     //test reading user
     void readUser() throws Exception {
         UserDAO userDAO = new UserDAO();
-        User user = userDAO.readUser("t", "t");
+        User user = userDAO.read("t", "t");
 
         assertEquals(Teacher.class, user.getClass());
         assertEquals("Jeppe", ((Teacher)user).getName());
