@@ -16,6 +16,7 @@ public class TeacherDAO {
 
     private String select = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ?";
     private String insert = "INSERT INTO " + tableName + " (" + columns[0] + ", " + columns[1] + ") VALUES (?, ?)";
+    private String update = "UPDATE " + tableName + " SET " + columns[1] + " = ? WHERE " + columns[0] + " = ?";
 
     public void set(User user) throws Exception {
         ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
@@ -39,6 +40,18 @@ public class TeacherDAO {
             PreparedStatement ps = con.prepareStatement(insert);
             ps.setInt(1, teacher.getId());
             ps.setString(2, teacher.getName());
+            ps.executeUpdate();
+        } finally {
+            ConnectionManagerPool.getInstance().returnConnectionManager(cm);
+        }
+    }
+
+    public void update(Teacher user) throws Exception {
+        ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
+        try (Connection con = cm.getConnection()) {
+            PreparedStatement ps = con.prepareStatement(update);
+            ps.setString(1, user.getName());
+            ps.setInt(2, user.getId());
             ps.executeUpdate();
         } finally {
             ConnectionManagerPool.getInstance().returnConnectionManager(cm);

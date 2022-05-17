@@ -109,7 +109,7 @@ public class UserDAO {
             studentDAO.update((Student) user);
         }
         else if (Teacher.class.equals(user.getClass())) {
-            teacherDAO.create((Teacher) user);
+            teacherDAO.update((Teacher) user);
         }
         //TODO: implement admin
     }
@@ -138,7 +138,7 @@ public class UserDAO {
             studentDAO.create((Student) user);
         }
         else if (Teacher.class.equals(user.getClass())) {
-            throw new ExecutionControl.NotImplementedException("Teacher create not implemented");
+            teacherDAO.create((Teacher) user);
         }
         //TODO: create admin
         return user;
