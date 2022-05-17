@@ -52,17 +52,19 @@ public class GeneralInformationController implements Initializable {
                 lblName.setText(personalInformation.getName());
 
                 GeneralInformation generalInformation = newValue.getGeneralInformation();
-                txaCoping.setText(generalInformation.getCoping());
-                txaMotivation.setText(generalInformation.getMotivation());
-                txaResources.setText(generalInformation.getResources());
-                txaRoles.setText(generalInformation.getRoles());
-                txaHabits.setText(generalInformation.getHabits());
-                txaEducationAndJobs.setText(generalInformation.getEducationAndJobs());
-                txaLifeStory.setText(generalInformation.getLifeStory());
-                txaHealthInformation.setText(generalInformation.getHealthInformation());
-                txaEquipmentAids.setText(generalInformation.getEquipmentAids());
-                txaHomeLayout.setText(generalInformation.getHomeLayout());
-                txaNetwork.setText(generalInformation.getNetwork());
+                if (generalInformation != null) {
+                    txaCoping.setText(generalInformation.getCoping());
+                    txaMotivation.setText(generalInformation.getMotivation());
+                    txaResources.setText(generalInformation.getResources());
+                    txaRoles.setText(generalInformation.getRoles());
+                    txaHabits.setText(generalInformation.getHabits());
+                    txaEducationAndJobs.setText(generalInformation.getEducationAndJobs());
+                    txaLifeStory.setText(generalInformation.getLifeStory());
+                    txaHealthInformation.setText(generalInformation.getHealthInformation());
+                    txaEquipmentAids.setText(generalInformation.getEquipmentAids());
+                    txaHomeLayout.setText(generalInformation.getHomeLayout());
+                    txaNetwork.setText(generalInformation.getNetwork());
+                }
             }
         });
     }
