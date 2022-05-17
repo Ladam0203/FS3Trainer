@@ -14,7 +14,3 @@
 .button:hover {
     -fx-font-weight: bold;
 }
-
-.fs3-headline {
-    -fx-font-size: 20;
-}

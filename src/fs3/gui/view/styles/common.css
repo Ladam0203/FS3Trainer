@@ -3,6 +3,10 @@
     -fx-focus-color: transparent;
 }
 
+.fs3-headline {
+    -fx-font-size: 20;
+}
+
 .right-border {
     -fx-border-width: 0 1 0 0;
     -fx-border-color: #22577A;
