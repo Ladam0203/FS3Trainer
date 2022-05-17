@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1200.0" stylesheets="@../../styles/common.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.teacher.tabs.TemplatesController">
+<HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1200.0" stylesheets="@../../styles/common.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.teacher.tabs.TemplatesController">
    <children>
-      <VBox maxHeight="1.7976931348623157E308" maxWidth="-Infinity" HBox.hgrow="NEVER">
+      <VBox minWidth="-Infinity" prefWidth="300.0" styleClass="right-border" HBox.hgrow="NEVER">
          <children>
             <Pane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="55.0" style="-fx-background-color: #22577A;" VBox.vgrow="NEVER">
                <children>
@@ -29,10 +29,10 @@
                   <Insets />
                </VBox.margin></Pane>
             <ListView fx:id="ltvCitizenTemplates" onMouseClicked="#handleSelectCitizen" VBox.vgrow="ALWAYS" />
-            <HBox VBox.vgrow="NEVER">
+            <VBox spacing="8.0" style="-fx-background-color: #1e4c6b;" VBox.vgrow="NEVER">
                <children>
-                  <TextField fx:id="txfTemplateName" />
-                  <ButtonBar buttonMinWidth="50.0" HBox.hgrow="NEVER">
+                  <TextField fx:id="txfTemplateName" VBox.vgrow="NEVER" />
+                  <ButtonBar buttonMinWidth="80.0" VBox.vgrow="NEVER">
                     <buttons>
                       <Button mnemonicParsing="false" onAction="#handleAddTemplate" text="Add" />
                         <Button mnemonicParsing="false" onAction="#handleCopyTemplate" text="Copy" />
@@ -43,7 +43,7 @@
                <padding>
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </padding>
-            </HBox>
+            </VBox>
          </children>
       </VBox>
       <TabPane tabClosingPolicy="UNAVAILABLE" tabMinHeight="40.0" tabMinWidth="200.0" HBox.hgrow="ALWAYS">
