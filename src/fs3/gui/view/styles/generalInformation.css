@@ -1,0 +1,20 @@
+.background-color {
+    -fx-background-color: #1e4c6b;
+}
+
+.label {
+    -fx-text-fill: #FFF;
+}
+
+.button {
+    -fx-text-fill: #000;
+    -fx-background-color: #F7F8F9;
+}
+
+.button:hover {
+    -fx-font-weight: bold;
+}
+
+.fs3-headline {
+    -fx-font-size: 20;
+}
