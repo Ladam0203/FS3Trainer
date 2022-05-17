@@ -6,10 +6,14 @@
 }
 
 .field {
-    -fx-background-color: #FFF;
+    -fx-background-color: transparent;
     -fx-prompt-text-fill: #000;
     -fx-border-color: #2D73A2;
-    -fx-border-width: 2px;
+    -fx-border-width: 0 0 3 0;
+}
+
+.field:focused {
+    -fx-border-color: #deaa88;
 }
 
 .button {
@@ -21,4 +25,8 @@
 
 .button:hover {
     -fx-background-color: #22577A;
+}
+
+.button:focused {
+    -fx-background-color: #deaa88;
 }
