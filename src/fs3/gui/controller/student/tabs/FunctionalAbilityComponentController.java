@@ -1,6 +1,5 @@
 package fs3.gui.controller.student.tabs;
 
-import fs3.be.Citizen;
 import fs3.be.CitizenInstance;
 import fs3.be.FunctionalAbilityData;
 import fs3.enums.FunctionalAbility;
@@ -15,9 +14,13 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TitledPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class FunctionalAbilityComponentController implements Initializable {
@@ -27,6 +30,8 @@ public class FunctionalAbilityComponentController implements Initializable {
     private ComboBox<LimitationLevel> cmbCurrentLimitationLevel;
     @FXML
     private ComboBox<LimitationLevel> cmbExpectedLimitationLevel;
+    @FXML
+    private ImageView imgCurrent, imgExpected;
     @FXML
     private DatePicker dtpFollowUpDate;
     @FXML
@@ -42,6 +47,8 @@ public class FunctionalAbilityComponentController implements Initializable {
 
     private CitizenInstanceModel citizenInstanceModel;
 
+    private List<Image> limitationImages;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
@@ -55,45 +62,40 @@ public class FunctionalAbilityComponentController implements Initializable {
         cmbPerceivedLimitationLevel.getItems().addAll(PerceivedLimitationLevel.values());
         cmbCurrentLimitationLevel.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> changeState(newValue));
 
+        cmbCurrentLimitationLevel.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            changePictogram(imgCurrent, newValue);
+        });
+        cmbExpectedLimitationLevel.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+                    changePictogram(imgExpected, newValue);
+        });
+
+        limitationImages = List.of(
+                new Image(getClass().getResource("../../../view/resources/0.PNG").toExternalForm()),
+                new Image(getClass().getResource("../../../view/resources/1.PNG").toExternalForm()),
+                new Image(getClass().getResource("../../../view/resources/2.PNG").toExternalForm()),
+                new Image(getClass().getResource("../../../view/resources/3.PNG").toExternalForm()),
+                new Image(getClass().getResource("../../../view/resources/4.PNG").toExternalForm())
+        );
+    }
+
+    private void changePictogram(ImageView img, LimitationLevel limitationLevel) {
+        if (limitationLevel == null) {
+            return;
+        }
+        if (limitationLevel == LimitationLevel.NOT_RELEVANT) {
+            img.setImage(null);
+            return;
+        }
+        img.setImage(limitationImages.get(limitationLevel.ordinal()));
     }
 
     public void setTitle(String title) {
         ttpRoot.setText(title);
     }
 
-    public void setCmbCurrentLimitationLevel(ComboBox cmbCurrentLimitationLevel) {
-        this.cmbCurrentLimitationLevel = cmbCurrentLimitationLevel;
-    }
-
-    public void setCmbExpectedLimitationLevel(ComboBox cmbExpectedLimitationLevel) {
-        this.cmbExpectedLimitationLevel = cmbExpectedLimitationLevel;
-    }
-
-    public void setDtpFollowUpDate(DatePicker dtpFollowUpDate) {
-        this.dtpFollowUpDate = dtpFollowUpDate;
-    }
-
-    public void setTxaProfessionalNote(TextArea txaProfessionalNote) {
-        this.txaProfessionalNote = txaProfessionalNote;
-    }
-
-    public void setTxaObservationNote(TextArea txaObservationNote) {
-        this.txaObservationNote = txaObservationNote;
-    }
-
-    public void setCmbPerformanceLevel(ComboBox cmbPerformanceLevel) {
-        this.cmbPerformanceLevel = cmbPerformanceLevel;
-    }
-
-    public void setCmbPerceivedLimitationLevel(ComboBox cmbPerceivedLimitationLevel) {
-        this.cmbPerceivedLimitationLevel = cmbPerceivedLimitationLevel;
-    }
-
-    public void setTxaCitizenRequest(TextArea txaCitizenRequest) {
-        this.txaCitizenRequest = txaCitizenRequest;
-    }
-
     public void clearFields() {
+        imgCurrent.setImage(null);
+        imgExpected.setImage(null);
         cmbCurrentLimitationLevel.getSelectionModel().clearSelection();
         cmbExpectedLimitationLevel.getSelectionModel().clearSelection();
         dtpFollowUpDate.getEditor().clear();
@@ -106,6 +108,7 @@ public class FunctionalAbilityComponentController implements Initializable {
     private void changeState(LimitationLevel newValue){
         disableFields(newValue == LimitationLevel.NOT_RELEVANT);
     }
+
     private void disableFields(boolean disable){
         cmbExpectedLimitationLevel.setDisable(disable);
         dtpFollowUpDate.setDisable(disable);
