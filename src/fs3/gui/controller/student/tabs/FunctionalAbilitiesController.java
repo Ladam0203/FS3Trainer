@@ -28,7 +28,7 @@ public class FunctionalAbilitiesController implements Initializable {
             citizenInstanceModel = CitizenInstanceModel.getInstance();
             //add all functional abilities panes
             for(FunctionalAbility condition : FunctionalAbility.values()){
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../view/student/tabs/FunctionalAbilityComponentView.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../view/teacher/tabs/FunctionalAbilityComponentView.fxml"));
                 Parent root = loader.load();
                 FunctionalAbilityComponentController controller = loader.getController();
                 controller.setTitle(condition.toString());

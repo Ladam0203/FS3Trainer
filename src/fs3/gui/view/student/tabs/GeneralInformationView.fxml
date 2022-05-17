@@ -12,10 +12,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <HBox xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.student.tabs.GeneralInformationController">
    <children>
-      <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="540.0" minWidth="-Infinity" prefWidth="405.0" styleClass="right-border" HBox.hgrow="SOMETIMES">
+      <ScrollPane fitToHeight="true" fitToWidth="true" styleClass="right-border" HBox.hgrow="SOMETIMES">
         <content>
             <VBox alignment="TOP_CENTER" spacing="10.0" styleClass="background-color">
                <children>

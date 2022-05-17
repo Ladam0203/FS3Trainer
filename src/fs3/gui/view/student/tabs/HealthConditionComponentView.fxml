@@ -16,9 +16,9 @@
          <children>
             <HBox spacing="10.0" VBox.vgrow="NEVER">
                <children>
-                  <ComboBox fx:id="cmbHealthConditionState" maxWidth="300.0" promptText="Health condition state" HBox.hgrow="SOMETIMES" />
-                  <DatePicker fx:id="dtpFollowUpDate" maxWidth="300.0" promptText="Follow up date" HBox.hgrow="SOMETIMES" />
-                  <ComboBox fx:id="cmbExpectedLevel" maxWidth="300.0" promptText="Expected level" HBox.hgrow="SOMETIMES" />
+                  <ComboBox fx:id="cmbHealthConditionState" maxWidth="300.0" minWidth="-Infinity" prefWidth="200.0" promptText="Health condition state" HBox.hgrow="SOMETIMES" />
+                  <DatePicker fx:id="dtpFollowUpDate" maxWidth="300.0" minWidth="-Infinity" prefWidth="200.0" promptText="Follow up date" HBox.hgrow="SOMETIMES" />
+                  <ComboBox fx:id="cmbExpectedLevel" maxWidth="300.0" minWidth="-Infinity" prefWidth="200.0" promptText="Expected level" HBox.hgrow="SOMETIMES" />
                </children>
             </HBox>
             <TextArea fx:id="txaProfessionalNote" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" promptText="Professional note" VBox.vgrow="SOMETIMES" />
