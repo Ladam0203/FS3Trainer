@@ -110,6 +110,11 @@ public class FunctionalAbilityComponentController implements Initializable {
     }
 
     private void disableFields(boolean disable){
+        if (disable){
+            imgExpected.setImage(null);
+        } else {
+            changePictogram(imgExpected, cmbExpectedLimitationLevel.getSelectionModel().getSelectedItem());
+        }
         cmbExpectedLimitationLevel.setDisable(disable);
         dtpFollowUpDate.setDisable(disable);
         txaProfessionalNote.setDisable(disable);
