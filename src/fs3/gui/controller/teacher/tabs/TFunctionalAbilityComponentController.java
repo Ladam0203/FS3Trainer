@@ -16,9 +16,12 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TitledPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class TFunctionalAbilityComponentController implements Initializable {
@@ -28,6 +31,8 @@ public class TFunctionalAbilityComponentController implements Initializable {
     private ComboBox<LimitationLevel> cmbCurrentLimitationLevel;
     @FXML
     private ComboBox<LimitationLevel> cmbExpectedLimitationLevel;
+    @FXML
+    private ImageView imgCurrent, imgExpected;
     @FXML
     private DatePicker dtpFollowUpDate;
     @FXML
@@ -43,6 +48,8 @@ public class TFunctionalAbilityComponentController implements Initializable {
 
     private CitizenTemplateModel citizenTemplateModel;
 
+    private List<Image> limitationImages;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
@@ -56,45 +63,40 @@ public class TFunctionalAbilityComponentController implements Initializable {
         cmbPerceivedLimitationLevel.getItems().addAll(PerceivedLimitationLevel.values());
         cmbCurrentLimitationLevel.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> changeState(newValue));
 
+        cmbCurrentLimitationLevel.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            changePictogram(imgCurrent, newValue);
+        });
+        cmbExpectedLimitationLevel.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            changePictogram(imgExpected, newValue);
+        });
+
+        limitationImages = List.of(
+                new Image(getClass().getResource("../../../view/resources/0.PNG").toExternalForm()),
+                new Image(getClass().getResource("../../../view/resources/1.PNG").toExternalForm()),
+                new Image(getClass().getResource("../../../view/resources/2.PNG").toExternalForm()),
+                new Image(getClass().getResource("../../../view/resources/3.PNG").toExternalForm()),
+                new Image(getClass().getResource("../../../view/resources/4.PNG").toExternalForm())
+        );
+    }
+
+    private void changePictogram(ImageView img, LimitationLevel limitationLevel) {
+        if (limitationLevel == null) {
+            return;
+        }
+        if (limitationLevel == LimitationLevel.NOT_RELEVANT) {
+            img.setImage(null);
+            return;
+        }
+        img.setImage(limitationImages.get(limitationLevel.ordinal()));
     }
 
     public void setTitle(String title) {
         ttpRoot.setText(title);
     }
 
-    public void setCmbCurrentLimitationLevel(LimitationLevel cmbCurrentLimitationLevel) {
-        this.cmbCurrentLimitationLevel.getSelectionModel().select(cmbCurrentLimitationLevel);
-    }
-
-    public void setCmbExpectedLimitationLevel(LimitationLevel cmbExpectedLimitationLevel) {
-        this.cmbExpectedLimitationLevel.getSelectionModel().select(cmbExpectedLimitationLevel);
-    }
-
-    public void setDtpFollowUpDate(LocalDate dtpFollowUpDate) {
-        this.dtpFollowUpDate.setValue(dtpFollowUpDate);
-    }
-
-    public void setTxaProfessionalNote(String txaProfessionalNote) {
-        this.txaProfessionalNote.setText(txaProfessionalNote);
-    }
-
-    public void setTxaObservationNote(String txaObservationNote) {
-        this.txaObservationNote.setText(txaObservationNote);
-    }
-
-    public void setCmbPerformanceLevel(Performance cmbPerformanceLevel) {
-        this.cmbPerformanceLevel.getSelectionModel().select(cmbPerformanceLevel);
-    }
-
-    public void setCmbPerceivedLimitationLevel(PerceivedLimitationLevel cmbPerceivedLimitationLevel) {
-        this.cmbPerceivedLimitationLevel.getSelectionModel().select(cmbPerceivedLimitationLevel);
-    }
-
-    public void setTxaCitizenRequest(String txaCitizenRequest) {
-        this.txaCitizenRequest.setText(txaCitizenRequest);
-    }
-
     public void clearFields() {
+        imgCurrent.setImage(null);
+        imgExpected.setImage(null);
         cmbCurrentLimitationLevel.getSelectionModel().clearSelection();
         cmbExpectedLimitationLevel.getSelectionModel().clearSelection();
         dtpFollowUpDate.getEditor().clear();
@@ -107,7 +109,13 @@ public class TFunctionalAbilityComponentController implements Initializable {
     private void changeState(LimitationLevel newValue){
         disableFields(newValue == LimitationLevel.NOT_RELEVANT);
     }
+
     private void disableFields(boolean disable){
+        if (disable){
+            imgExpected.setImage(null);
+        } else {
+            changePictogram(imgExpected, cmbExpectedLimitationLevel.getSelectionModel().getSelectedItem());
+        }
         cmbExpectedLimitationLevel.setDisable(disable);
         dtpFollowUpDate.setDisable(disable);
         txaProfessionalNote.setDisable(disable);

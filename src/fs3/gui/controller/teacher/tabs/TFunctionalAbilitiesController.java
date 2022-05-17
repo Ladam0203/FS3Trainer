@@ -48,14 +48,7 @@ public class TFunctionalAbilitiesController implements Initializable {
             for (Map.Entry<FunctionalAbility, TFunctionalAbilityComponentController> entry : functionControllerMap.entrySet()) {
                 FunctionalAbilityData functionalAbilityData = newValue.getFunctionalAbilities().get(entry.getKey());
                 if (functionalAbilityData != null) {
-                    entry.getValue().setCmbCurrentLimitationLevel(functionalAbilityData.getCurrentLimitationLevel());
-                    entry.getValue().setCmbExpectedLimitationLevel(functionalAbilityData.getExpectedLimitationLevel());
-                    entry.getValue().setDtpFollowUpDate(functionalAbilityData.getFollowUpDate());
-                    entry.getValue().setTxaProfessionalNote(functionalAbilityData.getProfessionalNote());
-                    entry.getValue().setTxaObservationNote(functionalAbilityData.getObservationNote());
-                    entry.getValue().setCmbPerformanceLevel(functionalAbilityData.getPerformance());
-                    entry.getValue().setCmbPerceivedLimitationLevel(functionalAbilityData.getPerceivedLimitationLevel());
-                    entry.getValue().setTxaCitizenRequest(functionalAbilityData.getCitizenRequest());
+                    entry.getValue().setFields(functionalAbilityData);
                 }else{
                     entry.getValue().clearFields();
                 }
