@@ -7,7 +7,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TitledPane;
 import javafx.scene.image.ImageView;
 
-public class FunctionalAbilityComponentController {
+public class AFunctionalAbilityComponentController {
     @FXML
     private TitledPane ttpRoot;
     @FXML

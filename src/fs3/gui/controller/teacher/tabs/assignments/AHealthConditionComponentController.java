@@ -6,7 +6,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TitledPane;
 
-public class HealthConditionComponentController {
+public class AHealthConditionComponentController {
     @FXML
     private TitledPane ttpRoot;
     @FXML
