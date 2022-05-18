@@ -3,22 +3,16 @@ package fs3.gui.controller.teacher.tabs.templates;
 import fs3.be.*;
 import fs3.gui.model.CitizenInstanceModel;
 import fs3.gui.model.CitizenTemplateModel;
+import fs3.gui.view.teacher.tabs.templates.NewDialog.NewCitizenTemplateDialog;
 import fs3.util.PopUp;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Orientation;
-import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 
-import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class TemplatesController implements Initializable {
@@ -40,19 +34,19 @@ public class TemplatesController implements Initializable {
     }
 
     public void handleAddTemplate(ActionEvent event) {
-        String name = txfTemplateName.getText();
-        if (!name.isEmpty()) {
-            CitizenTemplate citizenTemplate = new CitizenTemplate();
-            PersonalInformation personalInformation = new PersonalInformation();
-            GeneralInformation generalInformation = new GeneralInformation();
-            personalInformation.setName(name);
-            citizenTemplate.setPersonalInformation(personalInformation);
-            try {
-                citizenTemplateModel.createCitizenTemplate(citizenTemplate);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+//        String name = txfTemplateName.getText();
+//        if (!name.isEmpty()) {
+//            CitizenTemplate citizenTemplate = new CitizenTemplate();
+//            PersonalInformation personalInformation = new PersonalInformation();
+//            GeneralInformation generalInformation = new GeneralInformation();
+//            personalInformation.setName(name);
+//            citizenTemplate.setPersonalInformation(personalInformation);
+//            try {
+//                citizenTemplateModel.createCitizenTemplate(citizenTemplate);
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        }
     }
 
 //    public void handleUpdateTemplate(ActionEvent event) {
@@ -74,8 +68,7 @@ public class TemplatesController implements Initializable {
 //    }
 
 
-    public void handleClick(MouseEvent mouseEvent) {
-    }
+
 
     public void handleSelectCitizen(MouseEvent mouseEvent) {
             CitizenTemplate citizenTemplate = ltvCitizenTemplates.getSelectionModel().getSelectedItem();
@@ -89,10 +82,12 @@ public class TemplatesController implements Initializable {
             MenuItem deleteItem = new MenuItem("Delete");
             MenuItem copyTemplateItem = new MenuItem("Copy template");
             MenuItem createInstance = new MenuItem("Create instance");
+            MenuItem newItem = new MenuItem("New template");
             ContextMenu contextMenu = new ContextMenu();
             contextMenu.getItems().add(deleteItem);
             contextMenu.getItems().add(copyTemplateItem);
             contextMenu.getItems().add(createInstance);
+            contextMenu.getItems().add(newItem);
             ltvCitizenTemplates.setContextMenu(contextMenu);
             contextMenu.show(ltvCitizenTemplates.getPlaceholder(),mouseEvent.getX(), mouseEvent.getY());
             deleteItem.setOnAction(event -> {
@@ -120,6 +115,17 @@ public class TemplatesController implements Initializable {
                     PopUp.showError("Cannot create Citizen from template!");
                     e.printStackTrace();
                 }
+            });
+            newItem.setOnAction(event -> {
+                NewCitizenTemplateDialog dialog = new NewCitizenTemplateDialog();
+                Optional<CitizenTemplate> result = dialog.showAndWait();
+                result.ifPresent(response ->{
+                    try {
+                        citizenTemplateModel.createCitizenTemplate(response);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                });
             });
         }
     }
