@@ -63,13 +63,6 @@ public class TFunctionalAbilityComponentController implements Initializable {
         cmbPerceivedLimitationLevel.getItems().addAll(PerceivedLimitationLevel.values());
         cmbCurrentLimitationLevel.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> changeState(newValue));
 
-        cmbCurrentLimitationLevel.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            changePictogram(imgCurrent, newValue);
-        });
-        cmbExpectedLimitationLevel.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            changePictogram(imgExpected, newValue);
-        });
-
         limitationImages = List.of(
                 new Image(getClass().getResource("../../../view/resources/0.PNG").toExternalForm()),
                 new Image(getClass().getResource("../../../view/resources/1.PNG").toExternalForm()),
@@ -77,13 +70,18 @@ public class TFunctionalAbilityComponentController implements Initializable {
                 new Image(getClass().getResource("../../../view/resources/3.PNG").toExternalForm()),
                 new Image(getClass().getResource("../../../view/resources/4.PNG").toExternalForm())
         );
+
+        cmbCurrentLimitationLevel.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            changePictogram(imgCurrent, newValue);
+        });
+        cmbExpectedLimitationLevel.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            changePictogram(imgExpected, newValue);
+        });
     }
 
     private void changePictogram(ImageView img, LimitationLevel limitationLevel) {
-        if (limitationLevel == null) {
-            return;
-        }
-        if (limitationLevel == LimitationLevel.NOT_RELEVANT) {
+        System.out.println(limitationLevel);
+        if (limitationLevel == null || limitationLevel == LimitationLevel.NOT_RELEVANT) {
             img.setImage(null);
             return;
         }
@@ -126,6 +124,7 @@ public class TFunctionalAbilityComponentController implements Initializable {
     }
 
     public void setFields(FunctionalAbilityData functionalAbilityData) {
+        System.out.println(functionalAbilityData);
         cmbCurrentLimitationLevel.getSelectionModel().select(functionalAbilityData.getCurrentLimitationLevel());
         cmbExpectedLimitationLevel.getSelectionModel().select(functionalAbilityData.getExpectedLimitationLevel());
         dtpFollowUpDate.setValue(functionalAbilityData.getFollowUpDate());
