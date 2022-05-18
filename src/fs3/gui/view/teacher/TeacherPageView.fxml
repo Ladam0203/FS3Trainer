@@ -9,13 +9,13 @@
       <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" tabClosingPolicy="UNAVAILABLE" tabMinHeight="40.0" tabMinWidth="200.0" HBox.hgrow="ALWAYS">
         <tabs>
           <Tab closable="false" text="Citizen templates">
-              <fx:include source="tabs/TemplatesView.fxml" />
+              <fx:include source="tabs/templates/TemplatesView.fxml" />
           </Tab>
           <Tab closable="false" text="Assignments">
-              <fx:include source="tabs/AssignmentsView.fxml" />
+              <fx:include source="tabs/assignments/AssignmentsView.fxml" />
           </Tab>
             <Tab closable="false" text="Students">
-                <fx:include source="tabs/StudentsView.fxml" />
+                <fx:include source="tabs/students/StudentsView.fxml" />
             </Tab>
         </tabs>
       </TabPane>

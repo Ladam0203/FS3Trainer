@@ -1,4 +1,4 @@
-package fs3.gui.controller.teacher.tabs;
+package fs3.gui.controller.teacher.tabs.students;
 
 import fs3.gui.model.StudentModel;
 import fs3.util.PopUp;

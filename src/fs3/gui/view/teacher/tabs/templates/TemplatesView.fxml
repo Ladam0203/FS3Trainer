@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1200.0" stylesheets="@../../styles/common.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.teacher.tabs.TemplatesController">
+<HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1200.0" stylesheets="@../../../styles/common.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.teacher.tabs.TemplatesController">
    <children>
       <VBox minWidth="-Infinity" prefWidth="300.0" styleClass="right-border" HBox.hgrow="NEVER">
          <children>
@@ -21,7 +21,7 @@
                <children>
                   <ImageView fitWidth="80.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../resources/login_logo.png" />
+                        <Image url="@../../../resources/login_logo.png" />
                      </image>
                   </ImageView>
                </children>
@@ -54,13 +54,13 @@
           </Tab>
           <Tab closable="false" text="Health conditions">
             <content>
-                <fx:include source="../../teacher/tabs/HealthConditionsView.fxml" />
+                <fx:include source="HealthConditionsView.fxml" />
 
             </content>
           </Tab>
             <Tab closable="false" text="Functional abilities">
                <content>
-                   <fx:include source="../../teacher/tabs/FunctionalAbilitiesView.fxml" />
+                   <fx:include source="FunctionalAbilitiesView.fxml" />
                </content>
             </Tab>
         </tabs>

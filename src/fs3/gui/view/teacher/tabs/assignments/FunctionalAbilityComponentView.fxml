@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TextArea?>
@@ -12,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<TitledPane fx:id="ttpRoot" alignment="TOP_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefWidth="750.0" stylesheets="@../../styles/common.css" text="Functional ability" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.teacher.tabs.TFunctionalAbilityComponentController">
+<TitledPane fx:id="ttpRoot" alignment="TOP_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefWidth="750.0" stylesheets="@../../../styles/common.css" text="Functional ability" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.teacher.tabs.assignments.FunctionalAbilityComponentController">
     <content>
         <VBox spacing="10.0">
             <children>
@@ -38,8 +36,8 @@
             </HBox>
                 <VBox spacing="10.0">
                     <children>
-                        <TextArea fx:id="txaProfessionalNote" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" promptText="Professional note" VBox.vgrow="SOMETIMES" />
-                        <TextArea fx:id="txaObservationNote" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="200.0" promptText="Observation notes" VBox.vgrow="SOMETIMES" />
+                        <TextArea fx:id="txaProfessionalNote" editable="false" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" promptText="Professional note" VBox.vgrow="SOMETIMES" />
+                        <TextArea fx:id="txaObservationNote" editable="false" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="200.0" promptText="Observation notes" VBox.vgrow="SOMETIMES" />
                     </children>
                 </VBox>
                 <VBox spacing="10.0" VBox.vgrow="NEVER">
@@ -50,7 +48,7 @@
                                 <ComboBox fx:id="cmbPerceivedLimitationLevel" maxWidth="300.0" minWidth="-Infinity" promptText="Perceived limitation level" HBox.hgrow="ALWAYS" />
                             </children>
                         </HBox>
-                        <TextArea fx:id="txaCitizenRequest" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" promptText="Citizen request" VBox.vgrow="SOMETIMES" />
+                        <TextArea fx:id="txaCitizenRequest" editable="false" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" promptText="Citizen request" VBox.vgrow="SOMETIMES" />
                     </children>
                 </VBox>
                   <HBox spacing="10.0" VBox.vgrow="NEVER">
@@ -58,11 +56,6 @@
                           <DatePicker fx:id="dtpFollowUpDate" maxWidth="300.0" minWidth="-Infinity" promptText="Follow up date" HBox.hgrow="SOMETIMES" />
                       </children>
                   </HBox>
-                <ButtonBar prefWidth="200.0" VBox.vgrow="NEVER">
-                    <buttons>
-                        <Button mnemonicParsing="false" onAction="#handleSave" text="Save" />
-                    </buttons>
-                </ButtonBar>
             </children>
         </VBox>
     </content>

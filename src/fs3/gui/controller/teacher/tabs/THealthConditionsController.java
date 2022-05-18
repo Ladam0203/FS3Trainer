@@ -31,7 +31,7 @@ public class THealthConditionsController implements Initializable {
             for (HealthCondition condition :
                     HealthCondition.values()) {
                 //create new loader to get the controller
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../view/teacher/tabs/HealthConditionComponentView.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../view/teacher/tabs/templates/HealthConditionComponentView.fxml"));
                 //load view
                 Parent root = loader.load();
                 //get the controller

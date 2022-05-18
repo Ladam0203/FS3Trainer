@@ -182,7 +182,7 @@
       </VBox>
    </children>
    <stylesheets>
-      <URL value="@../../styles/common.css" />
-      <URL value="@../../styles/generalInformation.css" />
+      <URL value="@../../../styles/common.css" />
+      <URL value="@../../../styles/generalInformation.css" />
    </stylesheets>
 </HBox>

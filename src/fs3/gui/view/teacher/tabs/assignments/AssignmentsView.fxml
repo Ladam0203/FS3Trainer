@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1200.0"
+      stylesheets="@../../../styles/common.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="fs3.gui.controller.teacher.tabs.assignments.AssignmentsController">
+    <children>
+        <VBox minWidth="-Infinity" prefWidth="300.0" styleClass="right-border">
+            <children>
+                <Pane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="55.0"
+                      style="-fx-background-color: #22577A;" VBox.vgrow="NEVER">
+                    <children>
+                        <ImageView fitWidth="80.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../resources/login_logo.png"/>
+                            </image>
+                        </ImageView>
+                    </children>
+                    <VBox.margin>
+                        <Insets/>
+                    </VBox.margin>
+                </Pane>
+                <ListView fx:id="ltvAssignments" VBox.vgrow="ALWAYS"/>
+            </children>
+        </VBox>
+        <TabPane tabClosingPolicy="UNAVAILABLE" tabMinHeight="40.0" tabMinWidth="200.0" HBox.hgrow="ALWAYS">
+            <tabs>
+                <Tab text="General information">
+                    <fx:include source="GeneralInformationView.fxml"/>
+                </Tab>
+                <Tab text="Health conditions">
+                    <fx:include source="HealthConditionsView.fxml"/>
+
+                </Tab>
+                <Tab text="Functional abilities">
+                    <fx:include source="FunctionalAbilitiesView.fxml"/>
+
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
+</HBox>
