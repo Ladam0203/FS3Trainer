@@ -15,4 +15,5 @@ public interface IDAOFacade {
     void updateUser(User user) throws Exception;
     void deleteUser(User user) throws Exception;
     List<Teacher> readAllTeachers() throws Exception;
+    List<Admin> readAllAdmins() throws Exception;
 }

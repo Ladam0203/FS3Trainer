@@ -1,5 +1,6 @@
 package fs3.dal.user;
 
+import fs3.be.Admin;
 import fs3.be.Student;
 import fs3.be.Teacher;
 import fs3.be.User;
@@ -16,8 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDAO {
-    private final StudentDAO studentDAO = new StudentDAO();
-    private final TeacherDAO teacherDAO = new TeacherDAO();
+    private final SubUserDAO<Student> studentDAO = new StudentDAO();
+    private final SubUserDAO<Teacher> teacherDAO = new TeacherDAO();
+    private final SubUserDAO<Admin> adminDAO = new AdminDAO();
 
     private String tableName = "Users";
     private String[] columns = {"id", "username", "password", "roleId"};
@@ -25,42 +27,38 @@ public class UserDAO {
     private String select = "SELECT * FROM " + tableName + " WHERE " + columns[1] + " = ? AND " + columns[2] + " = ?";
     private String selectStudents = "SELECT * FROM " + tableName + " WHERE " + columns[3] + " = " + UserRole.STUDENT.getId();
     private String selectTeachers = "SELECT * FROM " + tableName + " WHERE " + columns[3] + " = " + UserRole.TEACHER.getId();
+    private String selectAdmins = "SELECT * FROM " + tableName + " WHERE " + columns[3] + " = " + UserRole.ADMIN.getId();
     private String insert = "INSERT INTO " + tableName + " (" + columns[1] + ", " + columns[2] + ", " + columns[3] + ") VALUES (?, ?, ?)";
     private String update = "UPDATE " + tableName + " SET " + columns[1] + " = ?, " + columns[2] + " = ? WHERE " + columns[0] + " = ?";
     private String delete = "DELETE FROM " + tableName + " WHERE " + columns[0] + " = ?";
 
     public List<Student> readAllStudents() throws Exception {
-        List<Student> students = new ArrayList<>();
-        ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
-        try (Connection con = cm.getConnection()) {
-            PreparedStatement ps = con.prepareStatement(selectStudents);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                Student student = (Student) constructUser(rs);
-                studentDAO.set(student);
-                students.add(student);
-            }
-        } finally {
-            ConnectionManagerPool.getInstance().returnConnectionManager(cm);
-        }
-        return students;
+        return readAllSubUsers(studentDAO, selectStudents);
     }
 
     public List<Teacher> readAllTeachers() throws Exception {
-        List<Teacher> teachers = new ArrayList<>();
+        return readAllSubUsers(teacherDAO, selectTeachers);
+    }
+
+    public List<Admin> readAllAdmins() throws Exception {
+        return readAllSubUsers(adminDAO, selectAdmins);
+    }
+
+    private <T extends User> List<T> readAllSubUsers(SubUserDAO<T> subUserDAO, String query) throws Exception {
+        List<T> subUsers = new ArrayList<>();
         ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
         try (Connection con = cm.getConnection()) {
-            PreparedStatement ps = con.prepareStatement(selectTeachers);
+            PreparedStatement ps = con.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                Teacher student = (Teacher) constructUser(rs);
-                teacherDAO.set(student);
-                teachers.add(student);
+                T subUser = (T) constructUser(rs);
+                subUserDAO.set(subUser);
+                subUsers.add(subUser);
             }
         } finally {
             ConnectionManagerPool.getInstance().returnConnectionManager(cm);
         }
-        return teachers;
+        return subUsers;
     }
 
     public User read(String username, String password) throws Exception {
@@ -84,6 +82,8 @@ public class UserDAO {
             }
             else if (Teacher.class.equals(user.getClass())) {
                 teacherDAO.set(user);
+            } else  if (Admin.class.equals(user.getClass())) {
+                adminDAO.set(user);
             }
 
         } finally {
@@ -110,6 +110,8 @@ public class UserDAO {
         }
         else if (Teacher.class.equals(user.getClass())) {
             teacherDAO.update((Teacher) user);
+        } else if (Admin.class.equals(user.getClass())) {
+            adminDAO.update((Admin) user);
         }
         //TODO: implement admin
     }
@@ -124,6 +126,8 @@ public class UserDAO {
                 ps.setInt(3, UserRole.STUDENT.getId());
             } else if (Teacher.class.equals(user.getClass())) {
                 ps.setInt(3, UserRole.TEACHER.getId());
+            } else if (Admin.class.equals(user.getClass())) {
+                ps.setInt(3, UserRole.ADMIN.getId());
             }
             //TODO: implement admin
             ps.executeUpdate();
@@ -139,8 +143,9 @@ public class UserDAO {
         }
         else if (Teacher.class.equals(user.getClass())) {
             teacherDAO.create((Teacher) user);
+        } else if (Admin.class.equals(user.getClass())) {
+            adminDAO.create((Admin) user);
         }
-        //TODO: create admin
         return user;
     }
 

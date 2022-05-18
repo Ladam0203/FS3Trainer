@@ -1,7 +1,6 @@
 package fs3.dal.user;
 
-import fs3.be.Student;
-import fs3.be.Teacher;
+import fs3.be.Admin;
 import fs3.be.User;
 import fs3.dal.ConnectionManager;
 import fs3.dal.ConnectionManagerPool;
@@ -10,8 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class TeacherDAO implements SubUserDAO<Teacher> {
-    private String tableName = "Teachers";
+public class AdminDAO implements SubUserDAO<Admin> {
+    private String tableName = "Admins";
     private String[] columns = {"userId", "name"};
 
     private String select = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ?";
@@ -26,32 +25,32 @@ public class TeacherDAO implements SubUserDAO<Teacher> {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                Teacher teacher = (Teacher) user;
-                teacher.setName(rs.getString("name"));
+                Admin admin = (Admin) user;
+                admin.setName(rs.getString("name"));
             }
         } finally {
             ConnectionManagerPool.getInstance().returnConnectionManager(cm);
         }
     }
 
-    public void create(Teacher teacher) throws Exception {
+    public void create(Admin admin) throws Exception {
         ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
         try (Connection con = cm.getConnection()) {
             PreparedStatement ps = con.prepareStatement(insert);
-            ps.setInt(1, teacher.getId());
-            ps.setString(2, teacher.getName());
+            ps.setInt(1, admin.getId());
+            ps.setString(2, admin.getName());
             ps.executeUpdate();
         } finally {
             ConnectionManagerPool.getInstance().returnConnectionManager(cm);
         }
     }
 
-    public void update(Teacher user) throws Exception {
+    public void update(Admin admin) throws Exception {
         ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
         try (Connection con = cm.getConnection()) {
             PreparedStatement ps = con.prepareStatement(update);
-            ps.setString(1, user.getName());
-            ps.setInt(2, user.getId());
+            ps.setString(1, admin.getName());
+            ps.setInt(2, admin.getId());
             ps.executeUpdate();
         } finally {
             ConnectionManagerPool.getInstance().returnConnectionManager(cm);

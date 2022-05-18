@@ -37,4 +37,12 @@ class UserDAOTest {
         assertEquals("Jeppe", teacher.getName());
     }
 
+    @Test
+    void readAllStudents() throws Exception {
+        UserDAO userDAO = new UserDAO();
+        Student student = userDAO.readAllStudents().get(0);
+
+        assertEquals("Milo", student.getName());
+    }
+
 }

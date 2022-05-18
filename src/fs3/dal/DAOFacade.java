@@ -70,4 +70,9 @@ public class DAOFacade implements IDAOFacade {
     public List<Teacher> readAllTeachers() throws Exception {
         return userDAO.readAllTeachers();
     }
+
+    @Override
+    public List<Admin> readAllAdmins() throws Exception {
+        return userDAO.readAllAdmins();
+    }
 }
