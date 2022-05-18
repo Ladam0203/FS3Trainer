@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1200.0" stylesheets="@../../styles/common.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.teacher.tabs.TemplatesController">
+<HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1200.0" stylesheets="@../../styles/common.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.teacher.tabs.TemplatesController">
    <children>
       <VBox minWidth="-Infinity" prefWidth="300.0" styleClass="right-border" HBox.hgrow="NEVER">
          <children>
@@ -29,19 +29,22 @@
                   <Insets />
                </VBox.margin></Pane>
             <ListView fx:id="ltvCitizenTemplates" onMouseClicked="#handleSelectCitizen" VBox.vgrow="ALWAYS" />
-            <VBox spacing="8.0" style="-fx-background-color: #1e4c6b;" VBox.vgrow="NEVER">
+            <HBox style="-fx-background-color: #1e4c6b;">
                <children>
-                  <TextField fx:id="txfTemplateName" VBox.vgrow="NEVER" />
-                  <ButtonBar buttonMinWidth="80.0" VBox.vgrow="NEVER">
+                  <TextField fx:id="txfTemplateName" />
+                  <ButtonBar buttonMinWidth="80.0">
                     <buttons>
                       <Button mnemonicParsing="false" onAction="#handleAddTemplate" text="Add" />
                     </buttons>
                   </ButtonBar>
                </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
                <padding>
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </padding>
-            </VBox>
+            </HBox>
          </children>
       </VBox>
       <TabPane tabClosingPolicy="UNAVAILABLE" tabMinHeight="40.0" tabMinWidth="200.0" HBox.hgrow="ALWAYS">
