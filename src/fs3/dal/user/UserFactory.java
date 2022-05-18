@@ -1,5 +1,6 @@
 package fs3.dal.user;
 
+import fs3.be.Admin;
 import fs3.be.Student;
 import fs3.be.Teacher;
 import fs3.be.User;
@@ -13,7 +14,7 @@ public class UserFactory {
         } else if (roleId == UserRole.TEACHER.getId()) {
             return new Teacher(username, password);
         } else if (roleId == UserRole.ADMIN.getId()) {
-            throw new UnsupportedOperationException("Admin is not implemented yet");
+            return new Admin(username, password);
         }
         throw new IllegalArgumentException("Unknown role: " + roleId);
     }
