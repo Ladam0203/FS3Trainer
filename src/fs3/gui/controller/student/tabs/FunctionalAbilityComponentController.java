@@ -79,10 +79,7 @@ public class FunctionalAbilityComponentController implements Initializable {
     }
 
     private void changePictogram(ImageView img, LimitationLevel limitationLevel) {
-        if (limitationLevel == null) {
-            return;
-        }
-        if (limitationLevel == LimitationLevel.NOT_RELEVANT) {
+        if (limitationLevel == null || limitationLevel == LimitationLevel.NOT_RELEVANT) {
             img.setImage(null);
             return;
         }
