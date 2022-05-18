@@ -1,7 +1,9 @@
 package fs3.gui.controller.teacher.tabs.students;
 
+import fs3.be.Student;
 import fs3.gui.model.StudentModel;
 import fs3.util.PopUp;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
@@ -11,7 +13,11 @@ import java.util.ResourceBundle;
 
 public class StudentsController implements Initializable {
     @FXML
-    private ListView ltvStudents;
+    private ListView ltvAvailableAssignements;
+    @FXML
+    private ListView ltvAssignedCases;
+    @FXML
+    private ListView<Student> ltvStudents;
 
     private StudentModel studentModel;
 
@@ -25,4 +31,9 @@ public class StudentsController implements Initializable {
         }
     }
 
+    public void handleAdd(ActionEvent event) {
+    }
+
+    public void handleRemove(ActionEvent event) {
+    }
 }
