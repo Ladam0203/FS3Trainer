@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<TitledPane fx:id="ttpRoot" alignment="TOP_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefWidth="750.0" stylesheets="@../../../styles/common.css" text="Functional ability" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.teacher.tabs.TFunctionalAbilityComponentController">
+<TitledPane fx:id="ttpRoot" alignment="TOP_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefWidth="750.0" stylesheets="@../../../styles/common.css" text="Functional ability" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.teacher.tabs.templates.TFunctionalAbilityComponentController">
     <content>
         <VBox spacing="10.0">
             <children>

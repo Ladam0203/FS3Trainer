@@ -1,8 +1,7 @@
-package fs3.gui.controller.teacher.tabs;
+package fs3.gui.controller.teacher.tabs.templates;
 
 import fs3.be.FunctionalAbilityData;
 import fs3.enums.FunctionalAbility;
-import fs3.gui.model.CitizenInstanceModel;
 import fs3.gui.model.CitizenTemplateModel;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,7 +28,7 @@ public class TFunctionalAbilitiesController implements Initializable {
             citizenTemplateModel = CitizenTemplateModel.getInstance();
             //add all functional abilities panes
             for(FunctionalAbility condition : FunctionalAbility.values()){
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../view/teacher/tabs/templates/FunctionalAbilityComponentView.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fs3/gui/view/teacher/tabs/templates/FunctionalAbilityComponentView.fxml"));
                 Parent root = loader.load();
                 TFunctionalAbilityComponentController controller = loader.getController();
                 controller.setTitle(condition.toString());

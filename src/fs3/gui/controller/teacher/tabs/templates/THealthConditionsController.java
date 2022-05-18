@@ -1,4 +1,4 @@
-package fs3.gui.controller.teacher.tabs;
+package fs3.gui.controller.teacher.tabs.templates;
 
 
 import fs3.be.HealthConditionData;
@@ -31,7 +31,7 @@ public class THealthConditionsController implements Initializable {
             for (HealthCondition condition :
                     HealthCondition.values()) {
                 //create new loader to get the controller
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../view/teacher/tabs/templates/HealthConditionComponentView.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fs3/gui/view/teacher/tabs/templates/HealthConditionComponentView.fxml"));
                 //load view
                 Parent root = loader.load();
                 //get the controller

@@ -1,4 +1,4 @@
-package fs3.gui.controller.teacher.tabs;
+package fs3.gui.controller.teacher.tabs.templates;
 
 import fs3.be.Citizen;
 import fs3.be.CitizenInstance;
