@@ -65,6 +65,9 @@ public class GeneralInformationController implements Initializable {
                     txaHomeLayout.setText(generalInformation.getHomeLayout());
                     txaNetwork.setText(generalInformation.getNetwork());
                 }
+                else {
+                    clearFields();
+                }
             }
         });
     }
@@ -102,5 +105,11 @@ public class GeneralInformationController implements Initializable {
             }
         }
         return true;
+    }
+
+    public void clearFields() {
+        for (TextArea textArea : textAreas) {
+            textArea.clear();
+        }
     }
 }
