@@ -50,6 +50,7 @@ public class LoginViewController {
                 stage.show();
             } catch (Exception e) {
                 PopUp.showError("Cannot load the page!");
+                e.printStackTrace();
             }
         } catch (Exception e) {
             PopUp.showError("Cannot login");
