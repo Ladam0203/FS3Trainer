@@ -1,11 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.teacher.tabs.students.StudentsController">
+<VBox minWidth="-Infinity" prefHeight="500.0" prefWidth="1200.0" stylesheets="@../../../styles/common.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ListView fx:id="ltvStudents" prefHeight="200.0" prefWidth="200.0" />
+      <Pane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="55.0" style="-fx-background-color: #22577A;" VBox.vgrow="NEVER">
+         <children>
+            <ImageView fitWidth="80.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../resources/login_logo.png" />
+               </image>
+            </ImageView>
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </Pane>
+      <HBox VBox.vgrow="ALWAYS">
+         <children>
+            <ListView fx:id="ltvStudents" onMouseClicked="#handleSelectCitizen" styleClass="right-border" />
+            <AnchorPane style="-fx-background-color: #1e4c6b;" styleClass="right-border" HBox.hgrow="ALWAYS" />
+         </children>
+      </HBox>
    </children>
-</AnchorPane>
+</VBox>

@@ -64,11 +64,11 @@ public class TFunctionalAbilityComponentController implements Initializable {
         cmbCurrentLimitationLevel.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> changeState(newValue));
 
         limitationImages = List.of(
-                new Image(getClass().getResource("../../../view/resources/0.PNG").toExternalForm()),
-                new Image(getClass().getResource("../../../view/resources/1.PNG").toExternalForm()),
-                new Image(getClass().getResource("../../../view/resources/2.PNG").toExternalForm()),
-                new Image(getClass().getResource("../../../view/resources/3.PNG").toExternalForm()),
-                new Image(getClass().getResource("../../../view/resources/4.PNG").toExternalForm())
+                new Image(getClass().getResource("../../../view/resources/0.png").toExternalForm()),
+                new Image(getClass().getResource("../../../view/resources/1.png").toExternalForm()),
+                new Image(getClass().getResource("../../../view/resources/2.png").toExternalForm()),
+                new Image(getClass().getResource("../../../view/resources/3.png").toExternalForm()),
+                new Image(getClass().getResource("../../../view/resources/4.png").toExternalForm())
         );
 
         cmbCurrentLimitationLevel.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
