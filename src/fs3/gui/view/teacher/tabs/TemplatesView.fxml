@@ -49,16 +49,16 @@
       </VBox>
       <TabPane tabClosingPolicy="UNAVAILABLE" tabMinHeight="40.0" tabMinWidth="200.0" HBox.hgrow="ALWAYS">
         <tabs>
-          <Tab text="General information">
+          <Tab closable="false" text="General information">
               <fx:include source="GeneralInformationView.fxml" />
           </Tab>
-          <Tab text="Health conditions">
+          <Tab closable="false" text="Health conditions">
             <content>
                 <fx:include source="../../teacher/tabs/HealthConditionsView.fxml" />
 
             </content>
           </Tab>
-            <Tab text="Functional abilities">
+            <Tab closable="false" text="Functional abilities">
                <content>
                    <fx:include source="../../teacher/tabs/FunctionalAbilitiesView.fxml" />
                </content>
