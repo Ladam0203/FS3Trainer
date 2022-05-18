@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class GeneralInformationController implements Initializable {
+public class TGeneralInformationController implements Initializable {
 
     public TextField txfCitizenName;
     public TextArea txaCoping;

@@ -19,7 +19,6 @@ import javafx.scene.image.ImageView;
 
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -79,10 +78,7 @@ public class FunctionalAbilityComponentController implements Initializable {
     }
 
     private void changePictogram(ImageView img, LimitationLevel limitationLevel) {
-        if (limitationLevel == null) {
-            return;
-        }
-        if (limitationLevel == LimitationLevel.NOT_RELEVANT) {
+        if (limitationLevel == null || limitationLevel == LimitationLevel.NOT_RELEVANT) {
             img.setImage(null);
             return;
         }

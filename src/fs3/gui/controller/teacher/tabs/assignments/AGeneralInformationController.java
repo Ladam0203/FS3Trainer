@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class GeneralInformationController implements Initializable {
+public class AGeneralInformationController implements Initializable {
     @FXML
     private Label lblName;
     @FXML
