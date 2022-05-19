@@ -1,10 +1,8 @@
 package fs3.gui.controller.teacher.tabs.students;
 
 import fs3.be.CitizenInstance;
-import fs3.be.CitizenTemplate;
 import fs3.be.Student;
 import fs3.gui.controller.teacher.tabs.students.dialog.NewStudentDialog;
-import fs3.gui.controller.teacher.tabs.templates.dialog.NewCitizenTemplateDialog;
 import fs3.gui.model.CitizenInstanceModel;
 import fs3.gui.model.StudentModel;
 import fs3.util.PopUp;
@@ -20,8 +18,6 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
@@ -97,7 +93,7 @@ public class StudentsController implements Initializable {
             ContextMenu contextMenu = new ContextMenu();
             MenuItem newItem = new MenuItem("New student");
             MenuItem editItem = new MenuItem("Edit student");
-            MenuItem deleteItem = new MenuItem("Delete");
+            MenuItem deleteItem = new MenuItem("Delete student");
 
             contextMenu.getItems().add(newItem);
             contextMenu.getItems().add(editItem);
@@ -112,7 +108,8 @@ public class StudentsController implements Initializable {
                 Optional<Student> result = dialog.showAndWait();
                 result.ifPresent(response -> {
                     try {
-
+                        //pass the new created student to student model
+                        studentModel.
                     } catch (Exception e) {
                         PopUp.showError("Cannot create new student!");
                         e.printStackTrace();
@@ -121,12 +118,18 @@ public class StudentsController implements Initializable {
             });
 
             editItem.setOnAction(event -> {
-                try {
-
-                } catch (Exception e) {
-                    PopUp.showError("Cannot edit student!");
-                    e.printStackTrace();
-                }
+                NewStudentDialog dialog = new NewStudentDialog();
+                dialog.setStudent(studentModel.getSelectedStudent());
+                Optional<Student> result = dialog.showAndWait();
+                result.ifPresent(response -> {
+                    try {
+                        //update student info
+                        studentModel.updateStudent(response);
+                    } catch (Exception e) {
+                        PopUp.showError("Cannot edit student!");
+                        e.printStackTrace();
+                    }
+                });
             });
 
             deleteItem.setOnAction(event -> {

@@ -1,5 +1,6 @@
 package fs3.gui.controller.teacher.tabs.students.dialog;
 
+import fs3.be.Student;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
@@ -8,29 +9,13 @@ public class NewStudentDialogController {
     @FXML
     private TextField txfStudentName, txfUsername, txfPassword;
 
-
-
-    public TextField getTxfStudentName() {
-        return txfStudentName;
+    public void setStudent(Student selected) {
+        setFields(selected);
     }
 
-    public void setTxfStudentName(TextField txfStudentName) {
-        this.txfStudentName = txfStudentName;
-    }
-
-    public TextField getTxfUsername() {
-        return txfUsername;
-    }
-
-    public void setTxfUsername(TextField txfUsername) {
-        this.txfUsername = txfUsername;
-    }
-
-    public TextField getTxfPassword() {
-        return txfPassword;
-    }
-
-    public void setTxfPassword(TextField txfPassword) {
-        this.txfPassword = txfPassword;
+    private void setFields(Student student){
+        txfStudentName.setText(student.getName());
+        txfUsername.setText(student.getUsername());
+        txfPassword.setText(student.getPassword());
     }
 }

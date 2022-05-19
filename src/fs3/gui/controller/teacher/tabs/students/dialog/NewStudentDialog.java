@@ -30,4 +30,8 @@ public class NewStudentDialog extends Dialog<Student> {
 
         }
     }
+
+    public void setStudent(Student selected){
+        controller.setStudent(selected);
+    }
 }
