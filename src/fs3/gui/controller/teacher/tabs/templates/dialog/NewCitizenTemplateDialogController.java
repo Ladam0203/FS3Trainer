@@ -1,4 +1,4 @@
-package fs3.gui.controller.teacher.tabs.templates;
+package fs3.gui.controller.teacher.tabs.templates.dialog;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

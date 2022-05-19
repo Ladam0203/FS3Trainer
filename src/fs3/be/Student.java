@@ -6,7 +6,7 @@ import javafx.beans.property.StringProperty;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Student extends  User {
+public class Student extends User {
     StringProperty name;
     List<CitizenInstance> assignedCitizens;
 
@@ -29,17 +29,19 @@ public class Student extends  User {
     }
 
     @Override
-    public String toString(){return this.getUsername();}
+    public String toString() {
+        return this.getUsername();
+    }
 
     public List<CitizenInstance> getAssignedCitizens() {
         return assignedCitizens;
     }
 
-    public void assignCitizen(CitizenInstance citizenInstance){
+    public void assignCitizen(CitizenInstance citizenInstance) {
         assignedCitizens.add(citizenInstance);
     }
 
-    public void removeCitizen(CitizenInstance citizenInstance){
+    public void removeCitizen(CitizenInstance citizenInstance) {
         assignedCitizens.remove(citizenInstance);
     }
 }

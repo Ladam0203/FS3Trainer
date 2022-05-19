@@ -14,11 +14,11 @@ public class AHealthConditionComponentController {
     @FXML
     private TitledPane ttpRoot;
     @FXML
-    private ComboBox cmbHealthConditionState;
+    private ComboBox<HealthConditionState> cmbHealthConditionState;
     @FXML
     private DatePicker dtpFollowUpDate;
     @FXML
-    private ComboBox cmbExpectedLevel;
+    private ComboBox<ExpectedLevel> cmbExpectedLevel;
     @FXML
     private TextArea txaProfessionalNote, txaCurrentAssessment, txaObservationNote;
 
@@ -27,7 +27,9 @@ public class AHealthConditionComponentController {
     }
 
     public void setHealthConditionState(HealthConditionState state) {
-        cmbHealthConditionState.getSelectionModel().select(state);
+        if (state != null) {
+            cmbHealthConditionState.getSelectionModel().select(state);
+        }
     }
 
     public void setExpectedLevel(ExpectedLevel level) {

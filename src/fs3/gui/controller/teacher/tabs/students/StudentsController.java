@@ -43,6 +43,7 @@ public class StudentsController implements Initializable {
 
     public void handleAdd(ActionEvent event) {
         CitizenInstance available = ltvAvailableAssignements.getSelectionModel().getSelectedItem();
+
         Student student = ltvStudents.getSelectionModel().getSelectedItem();
         if (available != null && student != null) {
             student.getAssignedCitizens().add(available);

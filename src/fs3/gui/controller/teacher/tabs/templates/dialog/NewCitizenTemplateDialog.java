@@ -1,8 +1,7 @@
-package fs3.gui.view.teacher.tabs.templates.NewDialog;
+package fs3.gui.controller.teacher.tabs.templates.dialog;
 
 import fs3.be.CitizenTemplate;
 import fs3.be.PersonalInformation;
-import fs3.gui.controller.teacher.tabs.templates.NewCitizenTemplateDialogController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
@@ -16,7 +15,7 @@ public class NewCitizenTemplateDialog extends Dialog<CitizenTemplate> {
     public NewCitizenTemplateDialog() {
         super();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("NewCitizenTemplateDialog.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fs3/gui/view/teacher/tabs/templates/dialog/NewCitizenTemplateDialogView.fxml"));
             DialogPane dp = loader.load();
             controller = loader.getController();
             this.setTitle("New citizen template");

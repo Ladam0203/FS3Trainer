@@ -1,13 +1,11 @@
 package fs3.gui.controller.teacher.tabs.templates;
 
-import fs3.be.CitizenInstance;
 import fs3.be.CitizenTemplate;
 import fs3.be.GeneralInformation;
 import fs3.be.PersonalInformation;
 import fs3.gui.model.CitizenTemplateModel;
 import fs3.util.PopUp;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -61,7 +59,7 @@ public class TGeneralInformationController implements Initializable {
                 txfCitizenName.setText(personalInformation.getName());
 
                 GeneralInformation generalInformation = newValue.getGeneralInformation();
-                if(generalInformation != null) {
+                if (generalInformation != null) {
                     txaCoping.setText(generalInformation.getCoping());
                     txaMotivation.setText(generalInformation.getMotivation());
                     txaResources.setText(generalInformation.getResources());
@@ -73,9 +71,8 @@ public class TGeneralInformationController implements Initializable {
                     txaEquipmentAids.setText(generalInformation.getEquipmentAids());
                     txaHomeLayout.setText(generalInformation.getHomeLayout());
                     txaNetwork.setText(generalInformation.getNetwork());
-                }
-                else{
-                    for(TextArea textArea : textAreaList){
+                } else {
+                    for (TextArea textArea : textAreaList) {
                         textArea.setText("");
                     }
                 }
@@ -87,7 +84,7 @@ public class TGeneralInformationController implements Initializable {
     public void handleSave(ActionEvent event) {
         CitizenTemplate selectedCitizenTemplate = citizenTemplateModel.getSelectedCitizenTemplate();
 
-        if(selectedCitizenTemplate == null){
+        if (selectedCitizenTemplate == null) {
             PopUp.showError("Select template!");
         }
         GeneralInformation newGeneralInformation = new GeneralInformation();
