@@ -1,6 +1,5 @@
 package fs3.gui.model;
 
-import fs3.be.CitizenInstance;
 import fs3.be.CitizenTemplate;
 import fs3.bll.CitizenLogic;
 import javafx.beans.property.ObjectProperty;
@@ -52,8 +51,9 @@ public class CitizenTemplateModel {
         citizenLogic.updateCitizenTemplate(citizenTemplate);
     }
 
-    public void deleteCitizenTemplate(CitizenTemplate citizenTemplate) throws Exception {
-        observableCitizenTemplates.remove(citizenTemplate);
-        citizenLogic.deleteCitizen(citizenTemplate);
+    public void deleteCitizenTemplate() throws Exception {
+        CitizenTemplate template = selectedCitizenTemplate.get();
+        citizenLogic.deleteCitizen(template);
+        observableCitizenTemplates.remove(template);
     }
 }

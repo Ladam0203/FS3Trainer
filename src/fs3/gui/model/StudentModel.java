@@ -3,6 +3,7 @@ package fs3.gui.model;
 import fs3.be.Student;
 import fs3.bll.UserLogic;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -14,6 +15,7 @@ public class StudentModel {
 
     private StudentModel() {
         userLogic = new UserLogic();
+        selectedStudent = new SimpleObjectProperty<>();
     }
 
     public static StudentModel getInstance() {
@@ -37,7 +39,20 @@ public class StudentModel {
         return observableStudents;
     }
 
-    public Student createStudent(Student student) throws Exception {
-        return (Student) userLogic.createUser(student);
+    public void createStudent(Student student) throws Exception {
+        Student created = (Student) userLogic.createUser(student);
+        if (created != null) {
+            observableStudents.add(created);
+        }
+    }
+
+    public void deleteStudent() {
+        //TODO: delete selected student from DB
+        //selectedStudent.get();
+        //userLogic.
+    }
+
+    public void setSelectedStudent(Student selected) {
+        selectedStudent.set(selected);
     }
 }

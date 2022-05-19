@@ -84,6 +84,7 @@ public class StudentsController implements Initializable {
     public void handleSelectStudent(MouseEvent mouseEvent) {
         Student selected = ltvStudents.getSelectionModel().getSelectedItem();
         if (selected != null) {
+            studentModel.setSelectedStudent(selected);
             ltvAssignedCases.setItems(FXCollections.observableList(selected.getAssignedCitizens()));
             filterAvailableCitizens(selected);
         }
@@ -109,7 +110,7 @@ public class StudentsController implements Initializable {
                 result.ifPresent(response -> {
                     try {
                         //pass the new created student to student model
-                        //studentModel.
+                        studentModel.createStudent(response);
                     } catch (Exception e) {
                         PopUp.showError("Cannot create new student!");
                         e.printStackTrace();
@@ -134,7 +135,7 @@ public class StudentsController implements Initializable {
 
             deleteItem.setOnAction(event -> {
                 try {
-
+                    studentModel.deleteStudent();
                 } catch (Exception e) {
                     PopUp.showError("Cannot delete student!");
                     e.printStackTrace();

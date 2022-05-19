@@ -61,7 +61,7 @@ public class TemplatesController implements Initializable {
 
             deleteItem.setOnAction(event -> {
                 try {
-                    citizenTemplateModel.deleteCitizenTemplate(citizenTemplateModel.getSelectedCitizenTemplate());
+                    citizenTemplateModel.deleteCitizenTemplate();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
