@@ -6,6 +6,7 @@ import fs3.gui.model.CitizenInstanceModel;
 import fs3.gui.model.StudentModel;
 import fs3.util.PopUp;
 import javafx.collections.FXCollections;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,6 +17,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 
 public class StudentsController implements Initializable {
     @FXML
@@ -28,6 +30,8 @@ public class StudentsController implements Initializable {
     private StudentModel studentModel;
     private CitizenInstanceModel instanceModel;
 
+    FilteredList<CitizenInstance> availableCitizens;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
@@ -35,7 +39,9 @@ public class StudentsController implements Initializable {
             instanceModel = CitizenInstanceModel.getInstance();
 
             ltvStudents.setItems(studentModel.readAllStudents());
-            ltvAvailableAssignements.setItems(instanceModel.getObservableCitizens());
+            availableCitizens = new FilteredList<>(instanceModel.getObservableCitizens());
+            availableCitizens.setPredicate(null);
+            ltvAvailableAssignements.setItems(availableCitizens);
         } catch (Exception e) {
             PopUp.showError("Cannot load students!");
         }
@@ -53,6 +59,7 @@ public class StudentsController implements Initializable {
                 PopUp.showError("Cannot add citizen to student!");
             }
             ltvAssignedCases.setItems(FXCollections.observableList(student.getAssignedCitizens()));
+            filterAvailableCitizens(student);
         }
     }
 
@@ -67,6 +74,7 @@ public class StudentsController implements Initializable {
                 PopUp.showError("Cannot remove citizen from student!");
             }
             ltvAssignedCases.setItems(FXCollections.observableList(student.getAssignedCitizens()));
+            filterAvailableCitizens(student);
         }
     }
 
@@ -74,15 +82,17 @@ public class StudentsController implements Initializable {
         Student selected = ltvStudents.getSelectionModel().getSelectedItem();
         if (selected != null) {
             ltvAssignedCases.setItems(FXCollections.observableList(selected.getAssignedCitizens()));
-            //ltvAvailableAssignements.setItems(FXCollections.observableList(instanceModel.getObservableCitizens()).filtered(ci -> !selected.getAssignedCitizens().contains(ci)));
-            List<CitizenInstance> notThere = new ArrayList<>();
-            for(CitizenInstance citizenInstance : selected.getAssignedCitizens()){
-                if(!selected.getAssignedCitizens().contains(citizenInstance)){
-                    notThere.add(citizenInstance);
-                }
-            }
-            ltvAvailableAssignements.setItems(FXCollections.observableList(notThere));
+            filterAvailableCitizens(selected);
         }
+    }
 
+    public void filterAvailableCitizens(Student student) {
+        availableCitizens.setPredicate(new Predicate<CitizenInstance>() {
+            @Override
+            public boolean test(CitizenInstance citizenInstance) {
+                System.out.println(!student.getAssignedCitizens().contains(citizenInstance));
+                return !student.getAssignedCitizens().contains(citizenInstance);
+            }
+        });
     }
 }

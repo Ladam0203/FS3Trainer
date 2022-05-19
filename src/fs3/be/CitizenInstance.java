@@ -5,6 +5,7 @@ import fs3.enums.HealthCondition;
 import javafx.beans.property.SimpleIntegerProperty;
 
 import java.util.Map;
+import java.util.Objects;
 
 public class CitizenInstance extends Citizen {
     public CitizenInstance() {
@@ -24,5 +25,19 @@ public class CitizenInstance extends Citizen {
         }
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final CitizenInstance other = (CitizenInstance) obj;
+        if (!Objects.equals(super.getId(), other.getId())) {
+            return false;
+        }
+        return true;
+    }
 
 }

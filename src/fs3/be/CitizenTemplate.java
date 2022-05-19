@@ -8,6 +8,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class CitizenTemplate extends Citizen{
     public CitizenTemplate() {
@@ -25,5 +26,20 @@ public class CitizenTemplate extends Citizen{
         for (Map.Entry<FunctionalAbility, FunctionalAbilityData> entry : other.getFunctionalAbilities().entrySet()) {
             this.getFunctionalAbilities().put(entry.getKey(), new FunctionalAbilityData(entry.getValue()));
         }
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final CitizenTemplate other = (CitizenTemplate) obj;
+        if (!Objects.equals(super.getId(), other.getId())) {
+            return false;
+        }
+        return true;
     }
 }
