@@ -129,11 +129,11 @@ public class UserDAO {
             } else if (Admin.class.equals(user.getClass())) {
                 ps.setInt(3, UserRole.ADMIN.getId());
             }
-            //TODO: implement admin
+
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
-                user.setId(rs.getInt("id"));
+                user.setId(rs.getInt(1));
             }
         } finally {
             ConnectionManagerPool.getInstance().returnConnectionManager(cm);
