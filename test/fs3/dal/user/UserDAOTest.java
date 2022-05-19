@@ -46,6 +46,7 @@ class UserDAOTest {
     }
 
     @Test
+    @Disabled
     void createUser() throws Exception {
         UserDAO userDAO = new UserDAO();
         Student student = new Student("Adi", "Adi");
