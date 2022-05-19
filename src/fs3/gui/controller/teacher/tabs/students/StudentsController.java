@@ -109,7 +109,7 @@ public class StudentsController implements Initializable {
                 result.ifPresent(response -> {
                     try {
                         //pass the new created student to student model
-                        studentModel.
+                        //studentModel.
                     } catch (Exception e) {
                         PopUp.showError("Cannot create new student!");
                         e.printStackTrace();
