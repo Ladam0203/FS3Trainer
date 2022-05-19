@@ -23,4 +23,6 @@ public class CitizenInstance extends Citizen {
             this.getFunctionalAbilities().put(entry.getKey(), new FunctionalAbilityData(entry.getValue()));
         }
     }
+
+
 }

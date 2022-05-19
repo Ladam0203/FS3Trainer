@@ -23,5 +23,7 @@ public class StudentModel {
         return observableStudents;
     }
 
-
+    public void updateStudent(Student student) throws Exception {
+        studentLogic.updateStudent(student);
+    }
 }

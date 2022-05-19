@@ -17,4 +17,8 @@ public class StudentLogic {
     public List<Student> readAllStudents() throws Exception {
         return daoFacade.readAllStudents();
     }
+
+    public void updateStudent(Student student) throws Exception {
+        daoFacade.updateUser(student);
+    }
 }

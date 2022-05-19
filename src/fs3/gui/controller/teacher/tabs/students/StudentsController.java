@@ -13,6 +13,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class StudentsController implements Initializable {
@@ -33,6 +35,7 @@ public class StudentsController implements Initializable {
             instanceModel = CitizenInstanceModel.getInstance();
 
             ltvStudents.setItems(studentModel.readAllStudents());
+            ltvAvailableAssignements.setItems(instanceModel.getObservableCitizens());
         } catch (Exception e) {
             PopUp.showError("Cannot load students!");
         }
@@ -40,22 +43,45 @@ public class StudentsController implements Initializable {
 
     public void handleAdd(ActionEvent event) {
         CitizenInstance available = ltvAvailableAssignements.getSelectionModel().getSelectedItem();
-        if(available != null){
-
+        Student student = ltvStudents.getSelectionModel().getSelectedItem();
+        if (available != null && student != null) {
+            student.getAssignedCitizens().add(available);
+            try {
+                studentModel.updateStudent(student);
+            } catch (Exception e) {
+                PopUp.showError("Cannot add citizen to student!");
+            }
+            ltvAssignedCases.setItems(FXCollections.observableList(student.getAssignedCitizens()));
         }
     }
 
     public void handleRemove(ActionEvent event) {
         CitizenInstance assigned = ltvAssignedCases.getSelectionModel().getSelectedItem();
-        if(assigned != null){
-
+        Student student = ltvStudents.getSelectionModel().getSelectedItem();
+        if (assigned != null && student != null) {
+            student.getAssignedCitizens().remove(assigned);
+            try {
+                studentModel.updateStudent(student);
+            } catch (Exception e) {
+                PopUp.showError("Cannot remove citizen from student!");
+            }
+            ltvAssignedCases.setItems(FXCollections.observableList(student.getAssignedCitizens()));
         }
     }
 
     public void handleSelectStudent(MouseEvent mouseEvent) {
         Student selected = ltvStudents.getSelectionModel().getSelectedItem();
-        if(selected != null){
+        if (selected != null) {
             ltvAssignedCases.setItems(FXCollections.observableList(selected.getAssignedCitizens()));
+            //ltvAvailableAssignements.setItems(FXCollections.observableList(instanceModel.getObservableCitizens()).filtered(ci -> !selected.getAssignedCitizens().contains(ci)));
+            List<CitizenInstance> notThere = new ArrayList<>();
+            for(CitizenInstance citizenInstance : selected.getAssignedCitizens()){
+                if(!selected.getAssignedCitizens().contains(citizenInstance)){
+                    notThere.add(citizenInstance);
+                }
+            }
+            ltvAvailableAssignements.setItems(FXCollections.observableList(notThere));
         }
+
     }
 }
