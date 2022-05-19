@@ -19,8 +19,8 @@ public class UserLogic {
         return daoFacade.readAllStudents();
     }
 
-    public void updateStudent(Student student) throws Exception {
-        daoFacade.updateUser(student);
+    public void updateUser(User user) throws Exception {
+        daoFacade.updateUser(user);
     }
 
     public User tryLogin(String username, String password) throws Exception {

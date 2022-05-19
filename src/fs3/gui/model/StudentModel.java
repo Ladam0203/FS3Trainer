@@ -26,7 +26,7 @@ public class StudentModel {
     }
 
     public void updateStudent(Student student) throws Exception {
-        userLogic.updateStudent(student);
+        userLogic.updateUser(student);
     }
 
     public Student getSelectedStudent() {
@@ -38,6 +38,6 @@ public class StudentModel {
     }
 
     public Student createStudent(Student student) throws Exception {
-        return null;
+        return (Student) userLogic.createUser(student);
     }
 }
