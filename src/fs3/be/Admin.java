@@ -24,5 +24,7 @@ public class Admin extends User {
     }
 
     @Override
-    public String toString(){return this.getUsername();}
+    public String toString() {
+        return getName() + " (" + getUsername() + ")";
+    }
 }
