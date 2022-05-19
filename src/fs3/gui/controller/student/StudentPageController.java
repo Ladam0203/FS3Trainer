@@ -1,7 +1,10 @@
 package fs3.gui.controller.student;
 
 import fs3.be.CitizenInstance;
+import fs3.be.Student;
 import fs3.gui.model.CitizenInstanceModel;
+import fs3.gui.model.LoginModel;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
@@ -22,7 +25,8 @@ public class StudentPageController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         try {
             citizenInstanceModel = CitizenInstanceModel.getInstance();
-            ltvAssignedCitizens.setItems(citizenInstanceModel.getObservableCitizens());
+            LoginModel loginModel = LoginModel.getInstance();
+            ltvAssignedCitizens.setItems(FXCollections.observableList(((Student) loginModel.getLoggedUser()).getAssignedCitizens()));
         } catch (Exception e) {
             //TODO: handle exception gracefully
             e.printStackTrace();

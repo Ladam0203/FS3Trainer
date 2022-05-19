@@ -24,7 +24,7 @@ public class LoginViewController {
     private LoginModel loginModel;
 
     public LoginViewController() {
-        loginModel = new LoginModel();
+        loginModel = LoginModel.getInstance();
     }
 
     public void handleLogin(ActionEvent event) {
