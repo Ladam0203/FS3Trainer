@@ -40,21 +40,21 @@ public class StudentsController implements Initializable {
 
     public void handleAdd(ActionEvent event) {
         CitizenInstance available = ltvAvailableAssignements.getSelectionModel().getSelectedItem();
-        if(available != null){
+        if (available != null) {
 
         }
     }
 
     public void handleRemove(ActionEvent event) {
         CitizenInstance assigned = ltvAssignedCases.getSelectionModel().getSelectedItem();
-        if(assigned != null){
+        if (assigned != null) {
 
         }
     }
 
     public void handleSelectStudent(MouseEvent mouseEvent) {
         Student selected = ltvStudents.getSelectionModel().getSelectedItem();
-        if(selected != null){
+        if (selected != null) {
             ltvAssignedCases.setItems(FXCollections.observableList(selected.getAssignedCitizens()));
         }
     }
