@@ -1,17 +1,18 @@
 package fs3.gui.model;
 
 import fs3.be.Student;
-import fs3.bll.StudentLogic;
+import fs3.be.User;
+import fs3.bll.UserLogic;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class StudentModel {
     private static StudentModel instance;
-    private StudentLogic studentLogic;
+    private UserLogic userLogic;
     private ObservableList<Student> observableStudents;
 
     private StudentModel (){
-        studentLogic = new StudentLogic();
+        userLogic = new UserLogic();
     }
 
     public static StudentModel getInstance(){
@@ -19,15 +20,19 @@ public class StudentModel {
     }
 
     public ObservableList<Student> readAllStudents() throws Exception {
-        observableStudents = FXCollections.observableList(studentLogic.readAllStudents());
+        observableStudents = FXCollections.observableList(userLogic.readAllStudents());
         return observableStudents;
     }
 
     public void updateStudent(Student student) throws Exception {
-        studentLogic.updateStudent(student);
+        userLogic.updateStudent(student);
     }
 
     public ObservableList<Student> getObservableStudents(){
         return observableStudents;
+    }
+
+    public Student createStudent(Student student) throws Exception {
+        return  null;
     }
 }

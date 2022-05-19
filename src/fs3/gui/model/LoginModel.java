@@ -1,17 +1,17 @@
 package fs3.gui.model;
 
 import fs3.be.User;
-import fs3.bll.LoginLogic;
+import fs3.bll.UserLogic;
 
 public class LoginModel {
     private static LoginModel instance;
 
-    private LoginLogic loginLogic;
+    private UserLogic userLogic;
 
     private User loggedUser;
 
     private LoginModel() {
-        loginLogic = new LoginLogic();
+        userLogic = new UserLogic();
     }
 
     public static LoginModel getInstance() {
@@ -19,7 +19,7 @@ public class LoginModel {
     }
 
     public User tryLogin(String username, String password) throws Exception {
-        User user = loginLogic.tryLogin(username, password);
+        User user = userLogic.tryLogin(username, password);
         if (user == null) {
             return null;
         }
