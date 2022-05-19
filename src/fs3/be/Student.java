@@ -30,7 +30,7 @@ public class Student extends User {
 
     @Override
     public String toString() {
-        return this.getUsername();
+        return getName() + " (" + getUsername() + ")";
     }
 
     public List<CitizenInstance> getAssignedCitizens() {
