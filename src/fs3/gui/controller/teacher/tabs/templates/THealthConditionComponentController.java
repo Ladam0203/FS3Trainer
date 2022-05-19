@@ -75,7 +75,9 @@ public class THealthConditionComponentController implements Initializable {
     }
 
     public void setHealthConditionState(HealthConditionState state) {
-        cmbHealthConditionState.getSelectionModel().select(state);
+        if (state != null) {
+            cmbHealthConditionState.getSelectionModel().select(state);
+        }
     }
 
     public void setExpectedLevel(ExpectedLevel level) {
@@ -206,8 +208,8 @@ public class THealthConditionComponentController implements Initializable {
     }
 
     public void clearFields() {
-        cmbHealthConditionState.getSelectionModel().clearSelection();
-        cmbExpectedLevel.getSelectionModel().clearSelection();
+        cmbHealthConditionState.getSelectionModel().select(null);
+        cmbExpectedLevel.getSelectionModel().select(null);
         txaProfessionalNote.clear();
         txaCurrentAssessment.clear();
         txaObservationNote.clear();
