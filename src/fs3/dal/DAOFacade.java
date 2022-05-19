@@ -75,4 +75,9 @@ public class DAOFacade implements IDAOFacade {
     public List<Admin> readAllAdmins() throws Exception {
         return userDAO.readAllAdmins();
     }
+
+    @Override
+    public User createUser(User user) throws Exception {
+        return userDAO.create(user);
+    }
 }
