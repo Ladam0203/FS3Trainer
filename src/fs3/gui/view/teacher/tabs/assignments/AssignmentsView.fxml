@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -10,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1200.0" stylesheets="@../../../styles/common.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.teacher.tabs.assignments.AssignmentsController">
+<HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1200.0" stylesheets="@../../../styles/common.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.teacher.tabs.assignments.AssignmentsController">
     <children>
         <VBox minWidth="-Infinity" prefWidth="300.0" styleClass="right-border">
             <children>
@@ -26,6 +27,11 @@
                         <Insets />
                     </VBox.margin>
                 </Pane>
+            <Label alignment="CENTER" maxWidth="1.7976931348623157E308" style="-fx-text-fill: #F7F8F9; -fx-background-color: #1e4c6b;" styleClass="fs3-headline" text="Assignments">
+               <padding>
+                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+               </padding>
+            </Label>
                 <ListView fx:id="ltvAssignments" onMouseClicked="#handleSelectCitizen" VBox.vgrow="ALWAYS" />
             </children>
         </VBox>
