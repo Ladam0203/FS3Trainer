@@ -29,8 +29,12 @@ public class StudentModel {
     public void updateStudent(Student student) throws Exception {
         studentLogic.updateStudent(student);
     }
-
+    
     public Student getSelectedStudent() {
         return selectedStudent.get();
+    }
+
+    public ObservableList<Student> getObservableStudents(){
+        return observableStudents;
     }
 }
