@@ -144,7 +144,6 @@ public class StudentsController implements Initializable {
         availableCitizens.setPredicate(new Predicate<CitizenInstance>() {
             @Override
             public boolean test(CitizenInstance citizenInstance) {
-                System.out.println(!student.getAssignedCitizens().contains(citizenInstance));
                 return !student.getAssignedCitizens().contains(citizenInstance);
             }
         });
