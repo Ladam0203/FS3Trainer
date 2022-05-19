@@ -237,3 +237,8 @@
 .button:hover {
     -fx-font-weight: bold;
 }
+
+.fs3-text {
+    -fx-text-fill: #F7F8F9;
+    -fx-font-size: 20;
+}
