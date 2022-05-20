@@ -134,7 +134,7 @@ public class StudentsController implements Initializable {
 
             deleteItem.setOnAction(event -> {
                 try {
-                    studentModel.deleteStudent();
+                    studentModel.deleteStudent(selected);
                 } catch (Exception e) {
                     PopUp.showError("Cannot delete student!");
                     e.printStackTrace();

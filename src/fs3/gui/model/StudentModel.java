@@ -40,7 +40,7 @@ public class StudentModel {
         }
     }
 
-    public void deleteStudent() {
-
+    public void deleteStudent(Student student) throws Exception {
+        userLogic.deleteUser(student);
     }
 }

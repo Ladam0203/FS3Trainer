@@ -35,4 +35,8 @@ public class UserLogic {
     public User createUser(User user) throws Exception {
         return daoFacade.createUser(user);
     }
+
+    public void deleteUser(User user) throws Exception {
+        daoFacade.deleteUser(user);
+    }
 }
