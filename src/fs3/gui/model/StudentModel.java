@@ -42,5 +42,6 @@ public class StudentModel {
 
     public void deleteStudent(Student student) throws Exception {
         userLogic.deleteUser(student);
+        observableStudents.remove(student);
     }
 }

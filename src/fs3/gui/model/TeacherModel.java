@@ -39,6 +39,7 @@ public class TeacherModel {
 
     public void deleteTeacher(Teacher teacher) throws Exception {
         userLogic.deleteUser(teacher);
+        observableTeachers.remove(teacher);
     }
 
     /* Returns already loaded teachers */
