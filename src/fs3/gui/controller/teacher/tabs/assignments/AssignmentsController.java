@@ -1,26 +1,33 @@
 package fs3.gui.controller.teacher.tabs.assignments;
 
 import fs3.be.CitizenInstance;
+import fs3.be.Student;
 import fs3.gui.model.CitizenInstanceModel;
 import fs3.gui.model.StudentModel;
 import fs3.util.PopUp;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 
 public class AssignmentsController implements Initializable {
+    public TextField txfFilterAssignments;
     @FXML
     private ListView<CitizenInstance> ltvAssignments;
 
     private CitizenInstanceModel citizenModel;
     private StudentModel studentModel;
+    private FilteredList<CitizenInstance> citizenInstanceFilteredList;
 
 
     @Override
@@ -32,7 +39,8 @@ public class AssignmentsController implements Initializable {
             e.printStackTrace();
             PopUp.showError("Failed to initalize Citizen Instance Model");
         }
-        ltvAssignments.setItems(citizenModel.getObservableCitizens());
+        citizenInstanceFilteredList = new FilteredList<>(citizenModel.getObservableCitizens());
+        ltvAssignments.setItems(citizenInstanceFilteredList);
     }
 
     public void handleSelectCitizen(MouseEvent mouseEvent) {
@@ -57,4 +65,14 @@ public class AssignmentsController implements Initializable {
         }
     }
 
+    public void handleFilterAssignments(KeyEvent keyEvent) {
+        String query = txfFilterAssignments.getText();
+        citizenInstanceFilteredList.setPredicate(new Predicate<CitizenInstance>() {
+            @Override
+            public boolean test(CitizenInstance citizenInstance) {
+                return citizenInstance.getPersonalInformation().getName().toLowerCase().contains(query.toLowerCase());
+            }
+        });
+
+    }
 }

@@ -23,7 +23,6 @@ import java.util.function.Predicate;
 
 public class TemplatesController implements Initializable {
     public ListView<CitizenTemplate> ltvCitizenTemplates;
-    public TextField txfTemplateName;
     public TextField txfFilterTemplates;
 
     private FilteredList<CitizenTemplate> citizenTemplateFilteredList;

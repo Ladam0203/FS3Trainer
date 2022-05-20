@@ -12,6 +12,11 @@ public class StudentModel {
 
     private StudentModel() {
         userLogic = new UserLogic();
+        try {
+            readAllStudents();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static StudentModel getInstance() {

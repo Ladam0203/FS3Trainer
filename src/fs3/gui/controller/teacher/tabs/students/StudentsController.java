@@ -15,6 +15,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 
@@ -24,6 +26,7 @@ import java.util.ResourceBundle;
 import java.util.function.Predicate;
 
 public class StudentsController implements Initializable {
+    public TextField txfFilterStudents;
     @FXML
     private ListView<CitizenInstance> ltvAvailableAssignments;
     @FXML
@@ -31,10 +34,13 @@ public class StudentsController implements Initializable {
     @FXML
     private ListView<Student> ltvStudents;
 
+
     private StudentModel studentModel;
     private CitizenInstanceModel instanceModel;
 
     FilteredList<CitizenInstance> availableCitizens;
+    FilteredList<Student> studentFilteredList;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -42,13 +48,17 @@ public class StudentsController implements Initializable {
             studentModel = StudentModel.getInstance();
             instanceModel = CitizenInstanceModel.getInstance();
 
-            ltvStudents.setItems(studentModel.readAllStudents());
+            studentFilteredList = new FilteredList<>(studentModel.getObservableStudents());
+            studentFilteredList.setPredicate(null);
+            ltvStudents.setItems(studentFilteredList);
             availableCitizens = new FilteredList<>(instanceModel.getObservableCitizens());
             availableCitizens.setPredicate(null);
             ltvAvailableAssignments.setItems(availableCitizens);
         } catch (Exception e) {
             PopUp.showError("Cannot load students!");
+            e.printStackTrace();
         }
+
     }
 
     public void handleAdd(ActionEvent event) {
@@ -149,6 +159,17 @@ public class StudentsController implements Initializable {
             @Override
             public boolean test(CitizenInstance citizenInstance) {
                 return !student.getAssignedCitizens().contains(citizenInstance);
+            }
+        });
+    }
+
+    public void handleFilterStudents(KeyEvent keyEvent) {
+        String query = txfFilterStudents.getText();
+
+        studentFilteredList.setPredicate(new Predicate<Student>() {
+            @Override
+            public boolean test(Student student) {
+                return student.getName().toLowerCase().contains(query.toLowerCase());
             }
         });
     }
