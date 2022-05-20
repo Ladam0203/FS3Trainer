@@ -14,6 +14,11 @@ public class TeacherModel {
 
     private TeacherModel() {
         userLogic = new UserLogic();
+        try {
+            readAllTeachers();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static TeacherModel getInstance() {
@@ -28,6 +33,7 @@ public class TeacherModel {
 
     public void updateTeacher(Teacher teacher) throws Exception {
         userLogic.updateUser(teacher);
+        observableTeachers.set(observableTeachers.indexOf(teacher), teacher);
     }
 
     public void createTeacher(Teacher teacher) throws Exception {

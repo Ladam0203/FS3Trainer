@@ -23,9 +23,9 @@ public class StudentDialogController extends UserDialogController<Student> {
 
     @Override
     public Student constructUser() {
-        getUser().setName(txfUsername.getText());
-        getUser().setUsername(txfPassword.getText());
-        getUser().setPassword(txfName.getText());
+        getUser().setName(txfName.getText());
+        getUser().setUsername(txfUsername.getText());
+        getUser().setPassword(txfPassword.getText());
         return getUser();
     }
 }

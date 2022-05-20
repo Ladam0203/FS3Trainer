@@ -6,6 +6,6 @@ import fs3.gui.controller.dialog.UserDialog;
 public class StudentDialog extends UserDialog<Student> {
 
     public StudentDialog() {
-        super(new StudentDialogController(), "/fs3/gui/view/teacher/tabs/students/dialog/UserDialogView.fxml", Student.class.getSimpleName());
+        super(new StudentDialogController(), "/fs3/gui/view/dialog/UserDialogView.fxml", Student.class.getSimpleName());
     }
 }
