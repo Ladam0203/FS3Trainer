@@ -2,7 +2,7 @@ package fs3.gui.controller.teacher.tabs.students;
 
 import fs3.be.CitizenInstance;
 import fs3.be.Student;
-import fs3.gui.controller.teacher.tabs.students.dialog.NewStudentDialog;
+import fs3.gui.controller.teacher.tabs.students.dialog.NewUserDialog;
 import fs3.gui.model.CitizenInstanceModel;
 import fs3.gui.model.StudentModel;
 import fs3.util.PopUp;
@@ -105,7 +105,7 @@ public class StudentsController implements Initializable {
             contextMenu.show(ltvStudents.getPlaceholder(), mouseEvent.getX(), mouseEvent.getY());
 
             newItem.setOnAction(event -> {
-                NewStudentDialog dialog = new NewStudentDialog();
+                NewUserDialog dialog = new NewUserDialog();
                 Optional<Student> result = dialog.showAndWait();
                 result.ifPresent(response -> {
                     try {
@@ -119,8 +119,8 @@ public class StudentsController implements Initializable {
             });
 
             editItem.setOnAction(event -> {
-                NewStudentDialog dialog = new NewStudentDialog();
-                dialog.setStudent(studentModel.getSelectedStudent());
+                NewUserDialog dialog = new NewUserDialog();
+                dialog.setStudent(selected);
                 Optional<Student> result = dialog.showAndWait();
                 result.ifPresent(response -> {
                     try {

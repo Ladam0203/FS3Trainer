@@ -35,7 +35,7 @@
                   <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleLogin" prefWidth="230.0" styleClass="fs3-headline" text="Login" />
                </children>
                <padding>
-                  <Insets left="20.0" right="20.0" />
+                  <Insets left="32.0" right="32.0" />
                </padding>
             </VBox>
          </center>

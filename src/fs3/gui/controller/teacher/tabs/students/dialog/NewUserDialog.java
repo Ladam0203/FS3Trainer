@@ -7,25 +7,24 @@ import javafx.scene.control.Dialog;
 import javafx.scene.control.DialogPane;
 
 
-public class NewStudentDialog extends Dialog<Student> {
+public class NewUserDialog extends Dialog<Student> {
 
-    private NewStudentDialogController controller;
+    private NewUserDialogController controller;
 
-    public NewStudentDialog() {
+    public NewUserDialog() {
         super();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fs3/gui/view/teacher/tabs/students/dialog/NewStudentDialogView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fs3/gui/view/teacher/tabs/students/dialog/NewUserDialogView.fxml"));
             DialogPane dp = loader.load();
             controller = loader.getController();
             this.setTitle("New citizen template");
             this.setDialogPane(dp);
             this.setResultConverter(buttonType -> {
                 if (buttonType.equals(ButtonType.APPLY)) {
-
+                    return controller.constructStudent();
                 }
                 return null;
             });
-
         } catch (Exception e) {
 
         }

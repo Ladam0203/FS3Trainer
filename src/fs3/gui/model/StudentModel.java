@@ -29,6 +29,7 @@ public class StudentModel {
 
     public void updateStudent(Student student) throws Exception {
         userLogic.updateUser(student);
+        observableStudents.set(observableStudents.indexOf(student), student);
     }
 
     public Student getSelectedStudent() {
@@ -48,8 +49,8 @@ public class StudentModel {
 
     public void deleteStudent() {
         //TODO: delete selected student from DB
-        //selectedStudent.get();
         //userLogic.
+        observableStudents.remove(selectedStudent.get());
     }
 
     public void setSelectedStudent(Student selected) {
