@@ -6,21 +6,27 @@ import fs3.gui.controller.teacher.tabs.templates.dialog.NewCitizenTemplateDialog
 import fs3.gui.model.CitizenInstanceModel;
 import fs3.gui.model.CitizenTemplateModel;
 import fs3.util.PopUp;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 
 public class TemplatesController implements Initializable {
     public ListView<CitizenTemplate> ltvCitizenTemplates;
     public TextField txfTemplateName;
+    public TextField txfFilterTemplates;
+
+    private FilteredList<CitizenTemplate> citizenTemplateFilteredList;
 
     private CitizenTemplateModel citizenTemplateModel;
     private CitizenInstanceModel citizenInstanceModel;
@@ -33,7 +39,9 @@ public class TemplatesController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        ltvCitizenTemplates.setItems(citizenTemplateModel.getObservableCitizenTemplates());
+        citizenTemplateFilteredList = new FilteredList<>(citizenTemplateModel.getObservableCitizenTemplates());
+        ltvCitizenTemplates.setItems(citizenTemplateFilteredList);
+
     }
 
     public void handleSelectCitizen(MouseEvent mouseEvent) {
@@ -100,5 +108,10 @@ public class TemplatesController implements Initializable {
                 });
             });
         }
+    }
+
+    public void handleFilterTemplates(KeyEvent keyEvent) {
+        String query = txfFilterTemplates.getText();
+        
     }
 }
