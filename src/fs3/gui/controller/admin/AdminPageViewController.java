@@ -70,4 +70,7 @@ public class AdminPageViewController implements Initializable {
 
         }
     }
+
+    public void handleSelectSchool(MouseEvent mouseEvent) {
+    }
 }
