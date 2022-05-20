@@ -23,8 +23,11 @@ import java.util.ResourceBundle;
 public class AdminPageViewController implements Initializable {
     @FXML
     private ListView<Teacher> ltvTeachers;
+    @FXML
+    private ListView ltvSchools;
 
     private TeacherModel teacherModel;
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         teacherModel = TeacherModel.getInstance();
