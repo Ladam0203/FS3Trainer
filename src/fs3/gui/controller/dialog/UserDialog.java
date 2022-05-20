@@ -40,8 +40,8 @@ public abstract class UserDialog<T extends User> extends Dialog<T> {
         }
     }
 
-    public void setUser(T selected){
+    public void passUser(T selected){
         this.setTitle("Edit " + userClassName);
-        controller.setUser(selected);
+        controller.passUser(selected);
     }
 }

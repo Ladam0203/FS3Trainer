@@ -120,7 +120,7 @@ public class StudentsController implements Initializable {
 
             editItem.setOnAction(event -> {
                 UserDialog<Student> dialog = new StudentDialog();
-                dialog.setUser(selected);
+                dialog.passUser(selected);
                 Optional<Student> result = dialog.showAndWait();
                 result.ifPresent(response -> {
                     try {

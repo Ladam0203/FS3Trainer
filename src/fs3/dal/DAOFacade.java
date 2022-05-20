@@ -17,7 +17,7 @@ public class DAOFacade implements IDAOFacade {
 
     /*
      * Call the readUser with the username and password, if the value returned is not null,
-     * it will be either an Admin, Teacher or a Student. Depending on the type of user that you wanted to log in,
+     * it will be either an AdminDialog, Teacher or a Student. Depending on the type of user that you wanted to log in,
      * you can safely downcast the user to the correct type.
      *
      * Eg.

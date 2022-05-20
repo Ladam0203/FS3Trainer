@@ -1,11 +1,6 @@
 package fs3.gui.controller.admin;
 
-import fs3.be.CitizenInstance;
-import fs3.be.CitizenTemplate;
 import fs3.be.Teacher;
-import fs3.be.User;
-import fs3.gui.controller.teacher.tabs.students.dialog.NewUserDialog;
-import fs3.gui.controller.teacher.tabs.templates.dialog.NewCitizenTemplateDialog;
 import fs3.gui.model.TeacherModel;
 import fs3.util.PopUp;
 import javafx.fxml.FXML;
