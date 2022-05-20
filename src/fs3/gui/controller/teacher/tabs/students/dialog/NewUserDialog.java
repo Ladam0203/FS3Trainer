@@ -17,7 +17,7 @@ public class NewUserDialog extends Dialog<Student> {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fs3/gui/view/teacher/tabs/students/dialog/NewUserDialogView.fxml"));
             DialogPane dp = loader.load();
             controller = loader.getController();
-            this.setTitle("New citizen template");
+            this.setTitle("New User");
             this.setDialogPane(dp);
             this.setResultConverter(buttonType -> {
                 if (buttonType.equals(ButtonType.APPLY)) {
@@ -31,6 +31,7 @@ public class NewUserDialog extends Dialog<Student> {
     }
 
     public void setStudent(Student selected){
+        this.setTitle("Edit User");
         controller.setStudent(selected);
     }
 }

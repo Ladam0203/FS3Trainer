@@ -2,8 +2,6 @@ package fs3.gui.model;
 
 import fs3.be.Student;
 import fs3.bll.UserLogic;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
