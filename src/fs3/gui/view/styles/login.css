@@ -12,10 +12,6 @@
     -fx-border-width: 0 0 3 0;
 }
 
-.field:focused {
-    -fx-border-color: #deaa88;
-}
-
 .button {
     -fx-background-color: #2D73A2;
     -fx-background-radius: 0;
