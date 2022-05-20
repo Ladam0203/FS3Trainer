@@ -11,11 +11,9 @@ public class StudentModel {
     private static StudentModel instance;
     private UserLogic userLogic;
     private ObservableList<Student> observableStudents;
-    private ObjectProperty<Student> selectedStudent;
 
     private StudentModel() {
         userLogic = new UserLogic();
-        selectedStudent = new SimpleObjectProperty<>();
     }
 
     public static StudentModel getInstance() {
@@ -32,10 +30,6 @@ public class StudentModel {
         observableStudents.set(observableStudents.indexOf(student), student);
     }
 
-    public Student getSelectedStudent() {
-        return selectedStudent.get();
-    }
-
     public ObservableList<Student> getObservableStudents() {
         return observableStudents;
     }
@@ -47,13 +41,8 @@ public class StudentModel {
         }
     }
 
-    public void deleteStudent() {
-        //TODO: delete selected student from DB
-        //userLogic.
-        observableStudents.remove(selectedStudent.get());
-    }
-
-    public void setSelectedStudent(Student selected) {
-        selectedStudent.set(selected);
+    public void deleteStudent(Student student) throws Exception {
+        userLogic.deleteUser(student);
+        observableStudents.remove(student);
     }
 }

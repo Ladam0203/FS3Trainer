@@ -24,7 +24,7 @@ import java.util.function.Predicate;
 
 public class StudentsController implements Initializable {
     @FXML
-    private ListView<CitizenInstance> ltvAvailableAssignements;
+    private ListView<CitizenInstance> ltvAvailableAssignments;
     @FXML
     private ListView<CitizenInstance> ltvAssignedCases;
     @FXML
@@ -44,14 +44,14 @@ public class StudentsController implements Initializable {
             ltvStudents.setItems(studentModel.readAllStudents());
             availableCitizens = new FilteredList<>(instanceModel.getObservableCitizens());
             availableCitizens.setPredicate(null);
-            ltvAvailableAssignements.setItems(availableCitizens);
+            ltvAvailableAssignments.setItems(availableCitizens);
         } catch (Exception e) {
             PopUp.showError("Cannot load students!");
         }
     }
 
     public void handleAdd(ActionEvent event) {
-        CitizenInstance available = ltvAvailableAssignements.getSelectionModel().getSelectedItem();
+        CitizenInstance available = ltvAvailableAssignments.getSelectionModel().getSelectedItem();
 
         Student student = ltvStudents.getSelectionModel().getSelectedItem();
         if (available != null && student != null) {
@@ -84,7 +84,6 @@ public class StudentsController implements Initializable {
     public void handleSelectStudent(MouseEvent mouseEvent) {
         Student selected = ltvStudents.getSelectionModel().getSelectedItem();
         if (selected != null) {
-            studentModel.setSelectedStudent(selected);
             ltvAssignedCases.setItems(FXCollections.observableList(selected.getAssignedCitizens()));
             filterAvailableCitizens(selected);
         }
@@ -135,7 +134,7 @@ public class StudentsController implements Initializable {
 
             deleteItem.setOnAction(event -> {
                 try {
-                    studentModel.deleteStudent();
+                    studentModel.deleteStudent(selected);
                 } catch (Exception e) {
                     PopUp.showError("Cannot delete student!");
                     e.printStackTrace();

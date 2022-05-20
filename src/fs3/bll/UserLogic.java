@@ -1,6 +1,7 @@
 package fs3.bll;
 
 import fs3.be.Student;
+import fs3.be.Teacher;
 import fs3.be.User;
 import fs3.dal.DAOFacade;
 import fs3.dal.IDAOFacade;
@@ -19,6 +20,10 @@ public class UserLogic {
         return daoFacade.readAllStudents();
     }
 
+    public List<Teacher> readAllTeachers() throws Exception {
+        return daoFacade.readAllTeachers();
+    }
+
     public void updateUser(User user) throws Exception {
         daoFacade.updateUser(user);
     }
@@ -29,5 +34,9 @@ public class UserLogic {
 
     public User createUser(User user) throws Exception {
         return daoFacade.createUser(user);
+    }
+
+    public void deleteUser(User user) throws Exception {
+        daoFacade.deleteUser(user);
     }
 }
