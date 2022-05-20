@@ -29,7 +29,7 @@
                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                      </padding>
                   </Label>
-                  <ListView fx:id="ltvSchoolList" VBox.vgrow="ALWAYS" />
+                  <ListView fx:id="ltvSchools" VBox.vgrow="ALWAYS" />
                </children>
             </VBox>
             <Pane prefHeight="200.0" prefWidth="200.0" styleClass="right-border" HBox.hgrow="ALWAYS" />
@@ -40,7 +40,7 @@
                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                      </padding>
                   </Label>
-                  <ListView fx:id="ltvTeacherList" VBox.vgrow="ALWAYS" />
+                  <ListView fx:id="ltvTeachers" VBox.vgrow="ALWAYS" />
                </children>
             </VBox>
          </children>
