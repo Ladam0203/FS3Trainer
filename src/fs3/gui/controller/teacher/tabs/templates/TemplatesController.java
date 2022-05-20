@@ -112,6 +112,11 @@ public class TemplatesController implements Initializable {
 
     public void handleFilterTemplates(KeyEvent keyEvent) {
         String query = txfFilterTemplates.getText();
-        
+        citizenTemplateFilteredList.setPredicate(new Predicate<CitizenTemplate>() {
+            @Override
+            public boolean test(CitizenTemplate citizenTemplate) {
+                return citizenTemplate.getPersonalInformation().getName().toLowerCase().contains(query.toLowerCase());
+            }
+        });
     }
 }

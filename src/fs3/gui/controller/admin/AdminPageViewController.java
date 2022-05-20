@@ -12,14 +12,16 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class AdminPageViewController implements Initializable {
     @FXML
     private ListView<Teacher> ltvTeachers;
+    @FXML
+    private ListView ltvSchools;
 
     private TeacherModel teacherModel;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         teacherModel = TeacherModel.getInstance();
@@ -29,10 +31,10 @@ public class AdminPageViewController implements Initializable {
 
     public void handleSelectTeacher(MouseEvent mouseEvent) {
         Teacher teacher = ltvTeachers.getSelectionModel().getSelectedItem();
-        if(teacher == null){
+        if (teacher == null) {
             return;
         }
-        if(mouseEvent.getButton().equals(MouseButton.SECONDARY)){
+        if (mouseEvent.getButton().equals(MouseButton.SECONDARY)) {
             ContextMenu contextMenu = new ContextMenu();
             MenuItem deleteItem = new MenuItem("Delete");
             MenuItem editItem = new MenuItem("Edit");
@@ -67,5 +69,8 @@ public class AdminPageViewController implements Initializable {
             });
 
         }
+    }
+
+    public void handleSelectSchool(MouseEvent mouseEvent) {
     }
 }
