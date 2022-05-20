@@ -1,5 +1,6 @@
 package fs3.gui.controller.teacher.tabs.students.dialog;
 
+import fs3.be.Student;
 import fs3.be.User;
 import fs3.util.PopUp;
 import javafx.fxml.FXMLLoader;
@@ -24,6 +25,7 @@ public abstract class UserDialog<T extends User> extends Dialog<T> {
     private void load() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
+            loader.setController(controller);
             DialogPane dp = loader.load();
             this.setTitle("New " + userClassName);
             this.setDialogPane(dp);

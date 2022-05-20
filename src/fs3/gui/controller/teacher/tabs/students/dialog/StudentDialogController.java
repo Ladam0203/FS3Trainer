@@ -8,7 +8,6 @@ public class StudentDialogController extends UserDialogController<Student> {
     @FXML
     protected TextField txfName, txfUsername, txfPassword;
 
-
     private Student student = new Student("", "");
 
     private String getUsername() {
