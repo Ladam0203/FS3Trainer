@@ -7,13 +7,14 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.DialogPane;
 
-
+/* Generalized version of dialog for the users (Admin, Teacher, Student) */
 public abstract class UserDialog<T extends User> extends Dialog<T> {
 
     private UserDialogController<T> controller;
     private String fxmlFile;
     private String userClassName;
 
+    /* Implementation has to provide the following: */
     public UserDialog(UserDialogController<T> controller, String fxmlFile, String userClassName) {
         this.controller = controller;
         this.fxmlFile = fxmlFile;
@@ -21,6 +22,7 @@ public abstract class UserDialog<T extends User> extends Dialog<T> {
         load();
     }
 
+    /* Load the dialog view with the values specified in the controller */
     private void load() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
@@ -40,6 +42,7 @@ public abstract class UserDialog<T extends User> extends Dialog<T> {
         }
     }
 
+    /* Load the user to the dialog */
     public void passUser(T selected){
         this.setTitle("Edit " + userClassName);
         controller.passUser(selected);
