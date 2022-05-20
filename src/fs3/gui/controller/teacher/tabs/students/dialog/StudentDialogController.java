@@ -1,6 +1,7 @@
 package fs3.gui.controller.teacher.tabs.students.dialog;
 
 import fs3.be.Student;
+import fs3.gui.controller.dialog.UserDialogController;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 

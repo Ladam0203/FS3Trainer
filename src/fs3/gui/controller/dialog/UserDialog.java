@@ -1,6 +1,5 @@
-package fs3.gui.controller.teacher.tabs.students.dialog;
+package fs3.gui.controller.dialog;
 
-import fs3.be.Student;
 import fs3.be.User;
 import fs3.util.PopUp;
 import javafx.fxml.FXMLLoader;
