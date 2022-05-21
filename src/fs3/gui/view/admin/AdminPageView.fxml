@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" stylesheets="@../styles/common.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.admin.AdminPageController">
+<VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" stylesheets="@../styles/common.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.admin.AdminPageController">
    <children>
       <Pane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="56.0" style="-fx-background-color: #22577A;">
          <children>
@@ -22,16 +22,6 @@
       </Pane>
       <HBox style="-fx-background-color: #1e4c6b;" VBox.vgrow="ALWAYS">
          <children>
-            <VBox minWidth="-Infinity" prefWidth="350.0" styleClass="right-border" HBox.hgrow="NEVER">
-               <children>
-                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" style="-fx-text-fill: #F7F8F9; -fx-background-color: #1e4c6b;" styleClass="fs3-headline" text="School list">
-                     <padding>
-                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-                     </padding>
-                  </Label>
-                  <ListView fx:id="ltvSchools" onMouseClicked="#handleSelectSchool" VBox.vgrow="ALWAYS" />
-               </children>
-            </VBox>
             <Pane prefHeight="200.0" prefWidth="200.0" styleClass="right-border" HBox.hgrow="ALWAYS" />
             <VBox minWidth="-Infinity" prefWidth="350.0" styleClass="right-border" HBox.hgrow="NEVER">
                <children>
