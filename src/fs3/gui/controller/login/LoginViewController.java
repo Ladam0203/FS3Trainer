@@ -34,7 +34,7 @@ public class LoginViewController {
         try {
             User loggedUser = loginModel.tryLogin(username, password);
             if (loggedUser == null) {
-                PopUp.showError("Wrong login credentials!");
+                PopUp.showError("Wrong username or password!");
                 return;
             }
             try {
@@ -51,11 +51,11 @@ public class LoginViewController {
                 stage.setScene(scene);
                 stage.show();
             } catch (Exception e) {
-                PopUp.showError("Cannot load the page!");
+                PopUp.showError("Couldn't load the next page!", e);
                 e.printStackTrace();
             }
         } catch (Exception e) {
-            PopUp.showError("Cannot login");
+            PopUp.showError("Could not log in!", e);
             e.printStackTrace();
         }
     }
