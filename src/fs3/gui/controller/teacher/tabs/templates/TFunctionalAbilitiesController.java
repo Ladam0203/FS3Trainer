@@ -3,6 +3,7 @@ package fs3.gui.controller.teacher.tabs.templates;
 import fs3.be.FunctionalAbilityData;
 import fs3.enums.FunctionalAbility;
 import fs3.gui.model.CitizenTemplateModel;
+import fs3.util.PopUp;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -37,8 +38,7 @@ public class TFunctionalAbilitiesController implements Initializable {
                 functionControllerMap.put(condition, controller);
             }
         } catch (Exception e) {
-            //TODO: handle gracefully
-            e.printStackTrace();
+            PopUp.showError("Couldn't initialize functional abilities tab!", e);
         }
 
         citizenTemplateModel.getSelectedCitizenTemplateProperty().addListener((observable, oldValue, newValue) -> {

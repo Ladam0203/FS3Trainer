@@ -50,7 +50,7 @@ public class TGeneralInformationController implements Initializable {
         try {
             citizenTemplateModel = CitizenTemplateModel.getInstance();
         } catch (Exception e) {
-            e.printStackTrace();
+            PopUp.showError("Couldn't initialize general information tab!", e);
         }
         textAreaList = new ArrayList<>();
         textAreaList.add(txaCoping);
