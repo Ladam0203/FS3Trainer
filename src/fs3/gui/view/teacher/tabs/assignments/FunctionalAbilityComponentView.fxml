@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.image.ImageView?>
@@ -10,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<TitledPane fx:id="ttpRoot" alignment="TOP_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefWidth="750.0" stylesheets="@../../../styles/common.css" text="Functional ability" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.teacher.tabs.assignments.AFunctionalAbilityComponentController">
+<TitledPane fx:id="ttpRoot" alignment="TOP_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefWidth="750.0" stylesheets="@../../../styles/common.css" text="Functional ability" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.teacher.tabs.assignments.AFunctionalAbilityComponentController">
     <content>
         <VBox spacing="10.0">
             <children>
@@ -18,8 +19,11 @@
                <children>
                   <BorderPane HBox.hgrow="NEVER">
                      <center>
-                        <ComboBox fx:id="cmbCurrentLimitationLevel" minWidth="-Infinity" prefWidth="300.0" promptText="Current limitation level" />
+                        <ComboBox fx:id="cmbCurrentLimitationLevel" minWidth="-Infinity" prefWidth="300.0" />
                      </center>
+                     <top>
+                        <Label styleClass="fs3-text" text="Current limitation level:" BorderPane.alignment="CENTER_LEFT" />
+                     </top>
                   </BorderPane>
                   <ImageView fx:id="imgCurrent" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" />
                </children>
@@ -28,32 +32,53 @@
                <children>
                   <BorderPane HBox.hgrow="NEVER">
                      <center>
-                        <ComboBox fx:id="cmbExpectedLimitationLevel" minWidth="-Infinity" prefWidth="300.0" promptText="Expected limitation level" />
+                        <ComboBox fx:id="cmbExpectedLimitationLevel" minWidth="-Infinity" prefWidth="300.0" />
                      </center>
+                     <top>
+                        <Label styleClass="fs3-text" text="Expected limitation level:" BorderPane.alignment="CENTER_LEFT" />
+                     </top>
                   </BorderPane>
                   <ImageView fx:id="imgExpected" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" />
                </children>
             </HBox>
                 <VBox spacing="10.0">
                     <children>
-                        <TextArea fx:id="txaProfessionalNote" editable="false" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" promptText="Professional note" VBox.vgrow="SOMETIMES" />
-                        <TextArea fx:id="txaObservationNote" editable="false" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="200.0" promptText="Observation notes" VBox.vgrow="SOMETIMES" />
+                  <Label styleClass="fs3-text" text="Professional note:" />
+                        <TextArea fx:id="txaProfessionalNote" editable="false" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" VBox.vgrow="SOMETIMES" />
+                  <Label styleClass="fs3-text" text="Observation notes:" />
+                        <TextArea fx:id="txaObservationNote" editable="false" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="200.0" VBox.vgrow="SOMETIMES" />
                     </children>
                 </VBox>
                 <VBox spacing="10.0" VBox.vgrow="NEVER">
                     <children>
                         <HBox spacing="10.0">
                             <children>
-                                <ComboBox fx:id="cmbPerformanceLevel" maxWidth="300.0" minWidth="-Infinity" promptText="Performance level" HBox.hgrow="ALWAYS" />
-                                <ComboBox fx:id="cmbPerceivedLimitationLevel" maxWidth="300.0" minWidth="-Infinity" promptText="Perceived limitation level" HBox.hgrow="ALWAYS" />
+                        <VBox prefWidth="300.0" HBox.hgrow="NEVER">
+                           <children>
+                              <Label styleClass="fs3-text" text="Performance level:" />
+                                      <ComboBox fx:id="cmbPerformanceLevel" maxWidth="300.0" minWidth="-Infinity" />
+                           </children>
+                        </VBox>
+                        <VBox prefWidth="300.0" HBox.hgrow="NEVER">
+                           <children>
+                              <Label styleClass="fs3-text" text="Perceived limitation level:" />
+                                      <ComboBox fx:id="cmbPerceivedLimitationLevel" maxWidth="300.0" minWidth="-Infinity" />
+                           </children>
+                        </VBox>
                             </children>
                         </HBox>
-                        <TextArea fx:id="txaCitizenRequest" editable="false" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" promptText="Citizen request" VBox.vgrow="SOMETIMES" />
+                  <Label styleClass="fs3-text" text="Citizen request:" />
+                        <TextArea fx:id="txaCitizenRequest" editable="false" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" VBox.vgrow="SOMETIMES" />
                     </children>
                 </VBox>
                   <HBox spacing="10.0" VBox.vgrow="NEVER">
                       <children>
-                          <DatePicker fx:id="dtpFollowUpDate" maxWidth="300.0" minWidth="-Infinity" promptText="Follow up date" HBox.hgrow="SOMETIMES" />
+                  <VBox prefWidth="300.0" HBox.hgrow="NEVER">
+                     <children>
+                        <Label styleClass="fs3-text" text="Follow up date:" />
+                                <DatePicker fx:id="dtpFollowUpDate" maxWidth="300.0" minWidth="-Infinity" />
+                     </children>
+                  </VBox>
                       </children>
                   </HBox>
             </children>
