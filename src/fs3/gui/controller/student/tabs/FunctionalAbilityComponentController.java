@@ -53,7 +53,7 @@ public class FunctionalAbilityComponentController implements Initializable {
         try {
             citizenInstanceModel = CitizenInstanceModel.getInstance();
         } catch (Exception e) {
-            e.printStackTrace();
+            PopUp.showError("Couldn't initialize functional ability component!", e);
         }
         cmbCurrentLimitationLevel.getItems().addAll(LimitationLevel.values());
         cmbExpectedLimitationLevel.getItems().addAll(LimitationLevel.values());
@@ -160,8 +160,7 @@ public class FunctionalAbilityComponentController implements Initializable {
             try {
                 citizenInstanceModel.updateSelectedCitizen();
             } catch (Exception e) {
-                e.printStackTrace();
-                //TODO: handle gracefully
+                PopUp.showError("Couldn't save citizen!", e);
             }
         }
 

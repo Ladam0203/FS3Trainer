@@ -53,7 +53,7 @@ public class TFunctionalAbilityComponentController implements Initializable {
         try {
             citizenTemplateModel = CitizenTemplateModel.getInstance();
         } catch (Exception e) {
-            e.printStackTrace();
+            PopUp.showError("Couldn't initialize functional ability component!", e);
         }
         cmbCurrentLimitationLevel.getItems().addAll(LimitationLevel.values());
         cmbExpectedLimitationLevel.getItems().addAll(LimitationLevel.values());

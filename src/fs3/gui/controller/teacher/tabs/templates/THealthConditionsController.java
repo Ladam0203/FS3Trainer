@@ -4,6 +4,7 @@ package fs3.gui.controller.teacher.tabs.templates;
 import fs3.be.HealthConditionData;
 import fs3.enums.HealthCondition;
 import fs3.gui.model.CitizenTemplateModel;
+import fs3.util.PopUp;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -62,8 +63,7 @@ public class THealthConditionsController implements Initializable {
                 }
             });
         } catch (Exception e) {
-            //TODO: handle gracefully
-            e.printStackTrace();
+            PopUp.showError("Couldn't initialize health conditions tab", e);
         }
     }
 }

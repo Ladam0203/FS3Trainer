@@ -58,36 +58,30 @@ public class AdminPageController implements Initializable {
                         //pass the new created teacher to teacher model
                         teacherModel.createTeacher(response);
                     } catch (Exception e) {
-                        PopUp.showError("Cannot create new teacher!");
-                        e.printStackTrace();
+                        PopUp.showError("Couldn't create new teacher!", e);
                     }
                 });
             });
 
             editItem.setOnAction(event -> {
-                try {
-                    UserDialog<Teacher> dialog = new TeacherDialog();
-                    dialog.passUser(selected);
-                    Optional<Teacher> result = dialog.showAndWait();
-                    result.ifPresent(response -> {
-                        try {
-                            //update teacher info
-                            teacherModel.updateTeacher(response);
-                        } catch (Exception e) {
-                            PopUp.showError("Cannot edit teacher!");
-                            e.printStackTrace();
-                        }
-                    });
-                } catch (Exception e) {
-                    PopUp.showError("Cannot edit teacher!");
-                }
+                UserDialog<Teacher> dialog = new TeacherDialog();
+                dialog.passUser(selected);
+                Optional<Teacher> result = dialog.showAndWait();
+                result.ifPresent(response -> {
+                    try {
+                        //update teacher info
+                        teacherModel.updateTeacher(response);
+                    } catch (Exception e) {
+                        PopUp.showError("Couldn't edit teacher!", e);
+                    }
+                });
             });
 
             deleteItem.setOnAction(event -> {
                 try {
                     teacherModel.deleteTeacher(selected);
                 } catch (Exception e) {
-                    PopUp.showError("Cannot delete teacher!");
+                    PopUp.showError("Couldn't delete teacher!", e);
                 }
             });
         }

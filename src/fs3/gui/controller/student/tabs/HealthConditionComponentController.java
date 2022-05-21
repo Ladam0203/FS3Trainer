@@ -51,8 +51,7 @@ public class HealthConditionComponentController implements Initializable {
             citizenInstanceModel = CitizenInstanceModel.getInstance();
             citizenTemplateModel = CitizenTemplateModel.getInstance();
         } catch (Exception e) {
-            e.printStackTrace();
-            //handle gracefully
+            PopUp.showError("Couldn't initialize health condition component!", e);
         }
 
         cmbHealthConditionState.getItems().addAll(HealthConditionState.values());

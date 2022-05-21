@@ -56,7 +56,7 @@ public class LoginViewController {
                 e.printStackTrace();
             }
         } catch (Exception e) {
-            PopUp.showError("Could not log in!", e);
+            PopUp.showError("Couldn't log in!", e);
             e.printStackTrace();
         }
     }

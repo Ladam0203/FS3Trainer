@@ -3,6 +3,7 @@ package fs3.gui.controller.teacher.tabs.assignments;
 import fs3.be.GeneralInformation;
 import fs3.be.PersonalInformation;
 import fs3.gui.model.CitizenInstanceModel;
+import fs3.util.PopUp;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -30,22 +31,21 @@ public class AGeneralInformationController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         try {
             citizenInstanceModel = CitizenInstanceModel.getInstance();
-            textAreas = new ArrayList<>();
-            textAreas.add(txaCoping);
-            textAreas.add(txaMotivation);
-            textAreas.add(txaResources);
-            textAreas.add(txaRoles);
-            textAreas.add(txaHabits);
-            textAreas.add(txaEducationAndJobs);
-            textAreas.add(txaLifeStory);
-            textAreas.add(txaHealthInformation);
-            textAreas.add(txaEquipmentAids);
-            textAreas.add(txaHomeLayout);
-            textAreas.add(txaNetwork);
         } catch (Exception e) {
-            //TODO: handle gracefully
-            e.printStackTrace();
+            PopUp.showError("Couldn't initialize general information tab!", e);
         }
+        textAreas = new ArrayList<>();
+        textAreas.add(txaCoping);
+        textAreas.add(txaMotivation);
+        textAreas.add(txaResources);
+        textAreas.add(txaRoles);
+        textAreas.add(txaHabits);
+        textAreas.add(txaEducationAndJobs);
+        textAreas.add(txaLifeStory);
+        textAreas.add(txaHealthInformation);
+        textAreas.add(txaEquipmentAids);
+        textAreas.add(txaHomeLayout);
+        textAreas.add(txaNetwork);
 
         citizenInstanceModel.getSelectedCitizenProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
