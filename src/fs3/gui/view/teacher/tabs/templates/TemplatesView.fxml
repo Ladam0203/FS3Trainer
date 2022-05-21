@@ -35,7 +35,7 @@
             <ListView fx:id="ltvCitizenTemplates" onMouseClicked="#handleSelectCitizen" VBox.vgrow="ALWAYS" />
             <HBox style="-fx-background-color: #1e4c6b;">
                <children>
-                  <TextField fx:id="txfFilterTemplates" onKeyTyped="#handleFilterTemplates" HBox.hgrow="ALWAYS" />
+                  <TextField fx:id="txfFilterTemplates" onKeyTyped="#handleFilterTemplates" HBox.hgrow="ALWAYS" promptText="Filter" />
                </children>
                <VBox.margin>
                   <Insets />

@@ -37,7 +37,7 @@
                   <ListView fx:id="ltvStudents" onMouseClicked="#handleSelectStudent" VBox.vgrow="ALWAYS" />
                   <HBox style="-fx-background-color: #1e4c6b;" VBox.vgrow="NEVER">
                      <children>
-                        <TextField fx:id="txfFilterStudents" onKeyTyped="#handleFilterStudents" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="txfFilterStudents" onKeyTyped="#handleFilterStudents" HBox.hgrow="ALWAYS" promptText="Filter"/>
                      </children>
                      <padding>
                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
