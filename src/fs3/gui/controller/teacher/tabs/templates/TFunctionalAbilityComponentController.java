@@ -134,7 +134,8 @@ public class TFunctionalAbilityComponentController implements Initializable {
         txaCitizenRequest.setText(functionalAbilityData.getCitizenRequest());
     }
 
-    public void handleSave() {
+    @FXML
+    private void handleSave() {
         CitizenTemplate citizenTemplate = citizenTemplateModel.getSelectedCitizenTemplate();
         if (areFieldsFilled()) {
             FunctionalAbility functionalAbility = FunctionalAbility.fromString(ttpRoot.getText());

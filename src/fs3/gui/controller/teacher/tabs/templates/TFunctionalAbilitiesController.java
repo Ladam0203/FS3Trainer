@@ -22,12 +22,13 @@ public class TFunctionalAbilitiesController implements Initializable {
     private EnumMap<FunctionalAbility, TFunctionalAbilityComponentController> functionControllerMap = new EnumMap<>(FunctionalAbility.class);
 
     private CitizenTemplateModel citizenTemplateModel;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
             citizenTemplateModel = CitizenTemplateModel.getInstance();
             //add all functional abilities panes
-            for(FunctionalAbility condition : FunctionalAbility.values()){
+            for (FunctionalAbility condition : FunctionalAbility.values()) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fs3/gui/view/teacher/tabs/templates/FunctionalAbilityComponentView.fxml"));
                 Parent root = loader.load();
                 TFunctionalAbilityComponentController controller = loader.getController();
@@ -49,7 +50,7 @@ public class TFunctionalAbilitiesController implements Initializable {
                 FunctionalAbilityData functionalAbilityData = newValue.getFunctionalAbilities().get(entry.getKey());
                 if (functionalAbilityData != null) {
                     entry.getValue().setFields(functionalAbilityData);
-                }else{
+                } else {
                     entry.getValue().clearFields();
                 }
             }

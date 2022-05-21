@@ -27,7 +27,8 @@ public class LoginViewController {
         loginModel = LoginModel.getInstance();
     }
 
-    public void handleLogin(ActionEvent event) {
+    @FXML
+    private void handleLogin(ActionEvent event) {
         String username = txfUsername.getText();
         String password = psfPassword.getText();
 
@@ -43,9 +44,9 @@ public class LoginViewController {
                 boolean isAdmin = loggedUser.getClass().equals(Admin.class);
 
                 Parent root = isStudent ? FXMLLoader.load(getClass().getResource("../../view/student/StudentPageView.fxml"))
-                : isTeacher ? FXMLLoader.load(getClass().getResource("../../view/teacher/TeacherPageView.fxml"))
-                : isAdmin ? FXMLLoader.load(getClass().getResource("../../view/admin/AdminPageView.fxml"))
-                        :null;
+                        : isTeacher ? FXMLLoader.load(getClass().getResource("../../view/teacher/TeacherPageView.fxml"))
+                        : isAdmin ? FXMLLoader.load(getClass().getResource("../../view/admin/AdminPageView.fxml"))
+                        : null;
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 Scene scene = new Scene(root);
                 stage.setScene(scene);

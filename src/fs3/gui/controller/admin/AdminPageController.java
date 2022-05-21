@@ -1,10 +1,8 @@
 package fs3.gui.controller.admin;
 
-import fs3.be.Student;
 import fs3.be.Teacher;
 import fs3.gui.controller.admin.dialog.TeacherDialog;
 import fs3.gui.controller.dialog.UserDialog;
-import fs3.gui.controller.teacher.tabs.students.dialog.StudentDialog;
 import fs3.gui.model.TeacherModel;
 import fs3.util.PopUp;
 import javafx.fxml.FXML;
@@ -30,11 +28,11 @@ public class AdminPageController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         teacherModel = TeacherModel.getInstance();
-
         ltvTeachers.setItems(teacherModel.getObservableTeachers());
     }
 
-    public void handleSelectTeacher(MouseEvent mouseEvent) {
+    @FXML
+    private void handleSelectTeacher(MouseEvent mouseEvent) {
         Teacher selected = ltvTeachers.getSelectionModel().getSelectedItem();
         if (selected == null) {
             return;
@@ -50,7 +48,6 @@ public class AdminPageController implements Initializable {
             contextMenu.getItems().add(deleteItem);
 
             ltvTeachers.setContextMenu(contextMenu);
-
             contextMenu.show(ltvTeachers.getPlaceholder(), mouseEvent.getX(), mouseEvent.getY());
 
             newItem.setOnAction(event -> {
@@ -93,12 +90,10 @@ public class AdminPageController implements Initializable {
                     PopUp.showError("Cannot delete teacher!");
                 }
             });
-
-
-
         }
     }
 
-    public void handleSelectSchool(MouseEvent mouseEvent) {
+    @FXML
+    private void handleSelectSchool(MouseEvent mouseEvent) {
     }
 }

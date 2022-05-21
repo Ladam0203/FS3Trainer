@@ -19,6 +19,7 @@ import java.util.ResourceBundle;
 public class THealthConditionsController implements Initializable {
     @FXML
     private Accordion accHealthConditions;
+
     private CitizenTemplateModel citizenTemplateModel;
 
     private EnumMap<HealthCondition, THealthConditionComponentController> conditionControllerMap = new EnumMap<>(HealthCondition.class);
@@ -38,14 +39,9 @@ public class THealthConditionsController implements Initializable {
                 THealthConditionComponentController controller = loader.getController();
                 //set title of pane
                 controller.setTitle(condition.toString());
-                //can I access it like this to get the citizen selected ?
-
-
-
                 accHealthConditions.getPanes().add((TitledPane) root);
                 conditionControllerMap.put(condition, controller);
             }
-
             //selected citizen listener
             citizenTemplateModel.getSelectedCitizenTemplateProperty().addListener((observable, oldValue, newValue) -> {
                 if (newValue != null) {
@@ -59,21 +55,15 @@ public class THealthConditionsController implements Initializable {
                             entry.getValue().setDtpFollowUpDate(healthConditionData.getFollowUpDate());
                             entry.getValue().setCurrentAssessment(healthConditionData.getCurrentAssessment());
                             entry.getValue().setObservationNote(healthConditionData.getObservationNote());
-                        }
-                        else {
+                        } else {
                             entry.getValue().clearFields();
                         }
                     }
                 }
             });
-
         } catch (Exception e) {
             //TODO: handle gracefully
             e.printStackTrace();
         }
-
     }
-
-
-
 }

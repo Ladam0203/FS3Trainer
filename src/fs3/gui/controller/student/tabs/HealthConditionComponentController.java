@@ -101,7 +101,8 @@ public class HealthConditionComponentController implements Initializable {
     }
 
 
-    public void handleSave(ActionEvent event) {
+    @FXML
+    private void handleSave(ActionEvent event) {
         CitizenInstance citizenInstance = citizenInstanceModel.getSelectedCitizenInstance();
         CitizenTemplate citizenTemplate = citizenTemplateModel.getSelectedCitizenTemplate();
         Citizen citizen = citizenInstance == null ? citizenTemplate : citizenInstance;

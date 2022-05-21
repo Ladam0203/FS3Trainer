@@ -64,8 +64,7 @@ public class GeneralInformationController implements Initializable {
                     txaEquipmentAids.setText(generalInformation.getEquipmentAids());
                     txaHomeLayout.setText(generalInformation.getHomeLayout());
                     txaNetwork.setText(generalInformation.getNetwork());
-                }
-                else {
+                } else {
                     clearFields();
                 }
             }
@@ -77,10 +76,9 @@ public class GeneralInformationController implements Initializable {
         if (citizenInstanceModel.getSelectedCitizenProperty().get() == null) {
             return;
         }
-        
+
         GeneralInformation generalInformation = citizenInstanceModel.getSelectedCitizenInstance().getGeneralInformation();
-        if(areTextAreasEmpty())
-        {
+        if (areTextAreasEmpty()) {
             generalInformation.setCoping(txaCoping.getText());
             generalInformation.setMotivation(txaMotivation.getText());
             generalInformation.setResources(txaResources.getText());
@@ -97,9 +95,9 @@ public class GeneralInformationController implements Initializable {
         }
     }
 
-    private boolean areTextAreasEmpty(){
-        for (TextArea t : textAreas){
-            if(t.getText().isEmpty()){
+    private boolean areTextAreasEmpty() {
+        for (TextArea t : textAreas) {
+            if (t.getText().isEmpty()) {
                 PopUp.showError("Fill all fields!");
                 return false;
             }
