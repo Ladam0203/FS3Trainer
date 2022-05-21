@@ -21,7 +21,8 @@ import java.util.ResourceBundle;
 import java.util.function.Predicate;
 
 public class AssignmentsController implements Initializable {
-    public TextField txfFilterAssignments;
+    @FXML
+    private TextField txfFilterAssignments;
     @FXML
     private ListView<CitizenInstance> ltvAssignments;
 
@@ -43,7 +44,8 @@ public class AssignmentsController implements Initializable {
         ltvAssignments.setItems(citizenInstanceFilteredList);
     }
 
-    public void handleSelectCitizen(MouseEvent mouseEvent) {
+    @FXML
+    private void handleSelectCitizen(MouseEvent mouseEvent) {
         CitizenInstance citizen = ltvAssignments.getSelectionModel().getSelectedItem();
         if (citizen != null) {
             citizenModel.setSelectedCitizenInstance(citizen);
@@ -65,7 +67,8 @@ public class AssignmentsController implements Initializable {
         }
     }
 
-    public void handleFilterAssignments(KeyEvent keyEvent) {
+    @FXML
+    private void handleFilterAssignments(KeyEvent keyEvent) {
         String query = txfFilterAssignments.getText();
         citizenInstanceFilteredList.setPredicate(new Predicate<CitizenInstance>() {
             @Override

@@ -2,8 +2,8 @@ package fs3.gui.controller.teacher.tabs.students;
 
 import fs3.be.CitizenInstance;
 import fs3.be.Student;
-import fs3.gui.controller.teacher.tabs.students.dialog.StudentDialog;
 import fs3.gui.controller.dialog.UserDialog;
+import fs3.gui.controller.teacher.tabs.students.dialog.StudentDialog;
 import fs3.gui.model.CitizenInstanceModel;
 import fs3.gui.model.StudentModel;
 import fs3.util.PopUp;
@@ -61,7 +61,8 @@ public class StudentsController implements Initializable {
 
     }
 
-    public void handleAdd(ActionEvent event) {
+    @FXML
+    private void handleAdd(ActionEvent event) {
         CitizenInstance available = ltvAvailableAssignments.getSelectionModel().getSelectedItem();
 
         Student student = ltvStudents.getSelectionModel().getSelectedItem();
@@ -77,7 +78,8 @@ public class StudentsController implements Initializable {
         }
     }
 
-    public void handleRemove(ActionEvent event) {
+    @FXML
+    private void handleRemove(ActionEvent event) {
         CitizenInstance assigned = ltvAssignedCases.getSelectionModel().getSelectedItem();
         Student student = ltvStudents.getSelectionModel().getSelectedItem();
         if (assigned != null && student != null) {
@@ -92,7 +94,8 @@ public class StudentsController implements Initializable {
         }
     }
 
-    public void handleSelectStudent(MouseEvent mouseEvent) {
+    @FXML
+    private void handleSelectStudent(MouseEvent mouseEvent) {
         Student selected = ltvStudents.getSelectionModel().getSelectedItem();
         if (selected != null) {
             ltvAssignedCases.setItems(FXCollections.observableList(selected.getAssignedCitizens()));
@@ -154,7 +157,8 @@ public class StudentsController implements Initializable {
         }
     }
 
-    public void filterAvailableCitizens(Student student) {
+    @FXML
+    private void filterAvailableCitizens(Student student) {
         availableCitizens.setPredicate(new Predicate<CitizenInstance>() {
             @Override
             public boolean test(CitizenInstance citizenInstance) {
@@ -163,7 +167,8 @@ public class StudentsController implements Initializable {
         });
     }
 
-    public void handleFilterStudents(KeyEvent keyEvent) {
+    @FXML
+    private void handleFilterStudents(KeyEvent keyEvent) {
         String query = txfFilterStudents.getText();
 
         studentFilteredList.setPredicate(new Predicate<Student>() {

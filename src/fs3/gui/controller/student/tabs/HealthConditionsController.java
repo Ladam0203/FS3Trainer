@@ -3,7 +3,6 @@ package fs3.gui.controller.student.tabs;
 import fs3.be.HealthConditionData;
 import fs3.enums.HealthCondition;
 import fs3.gui.model.CitizenInstanceModel;
-import fs3.gui.model.CitizenTemplateModel;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -12,7 +11,9 @@ import javafx.scene.control.Accordion;
 import javafx.scene.control.TitledPane;
 
 import java.net.URL;
-import java.util.*;
+import java.util.EnumMap;
+import java.util.Map;
+import java.util.ResourceBundle;
 
 public class HealthConditionsController implements Initializable {
     @FXML
@@ -39,7 +40,6 @@ public class HealthConditionsController implements Initializable {
                 //can I access it like this to get the citizen selected ?
 
 
-
                 accHealthConditions.getPanes().add((TitledPane) root);
                 conditionControllerMap.put(condition, controller);
             }
@@ -57,8 +57,7 @@ public class HealthConditionsController implements Initializable {
                             entry.getValue().setDtpFollowUpDate(healthConditionData.getFollowUpDate());
                             entry.getValue().setCurrentAssessment(healthConditionData.getCurrentAssessment());
                             entry.getValue().setObservationNote(healthConditionData.getObservationNote());
-                        }
-                        else {
+                        } else {
                             entry.getValue().clearFields();
                         }
                     }
@@ -71,7 +70,4 @@ public class HealthConditionsController implements Initializable {
         }
 
     }
-
-
-
 }

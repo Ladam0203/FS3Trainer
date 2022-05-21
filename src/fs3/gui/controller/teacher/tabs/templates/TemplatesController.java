@@ -7,6 +7,7 @@ import fs3.gui.model.CitizenInstanceModel;
 import fs3.gui.model.CitizenTemplateModel;
 import fs3.util.PopUp;
 import javafx.collections.transformation.FilteredList;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.ListView;
@@ -22,8 +23,10 @@ import java.util.ResourceBundle;
 import java.util.function.Predicate;
 
 public class TemplatesController implements Initializable {
-    public ListView<CitizenTemplate> ltvCitizenTemplates;
-    public TextField txfFilterTemplates;
+    @FXML
+    private ListView<CitizenTemplate> ltvCitizenTemplates;
+    @FXML
+    private TextField txfFilterTemplates;
 
     private FilteredList<CitizenTemplate> citizenTemplateFilteredList;
 
@@ -43,7 +46,8 @@ public class TemplatesController implements Initializable {
 
     }
 
-    public void handleSelectCitizen(MouseEvent mouseEvent) {
+    @FXML
+    private void handleSelectCitizen(MouseEvent mouseEvent) {
         CitizenTemplate citizenTemplate = ltvCitizenTemplates.getSelectionModel().getSelectedItem();
         if (citizenTemplate != null) {
             citizenTemplateModel.setSelectedCitizenTemplate(citizenTemplate);
@@ -109,7 +113,8 @@ public class TemplatesController implements Initializable {
         }
     }
 
-    public void handleFilterTemplates(KeyEvent keyEvent) {
+    @FXML
+    private void handleFilterTemplates(KeyEvent keyEvent) {
         String query = txfFilterTemplates.getText();
         citizenTemplateFilteredList.setPredicate(new Predicate<CitizenTemplate>() {
             @Override

@@ -22,12 +22,13 @@ public class FunctionalAbilitiesController implements Initializable {
     private EnumMap<FunctionalAbility, FunctionalAbilityComponentController> functionControllerMap = new EnumMap<>(FunctionalAbility.class);
 
     private CitizenInstanceModel citizenInstanceModel;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
             citizenInstanceModel = CitizenInstanceModel.getInstance();
             //add all functional abilities panes
-            for(FunctionalAbility condition : FunctionalAbility.values()){
+            for (FunctionalAbility condition : FunctionalAbility.values()) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../view/student/tabs/FunctionalAbilityComponentView.fxml"));
                 Parent root = loader.load();
                 FunctionalAbilityComponentController controller = loader.getController();
@@ -39,7 +40,6 @@ public class FunctionalAbilitiesController implements Initializable {
             //TODO: handle gracefully
             e.printStackTrace();
         }
-
         citizenInstanceModel.getSelectedCitizenProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue == null) {
                 return;

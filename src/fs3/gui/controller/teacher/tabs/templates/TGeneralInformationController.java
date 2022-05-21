@@ -6,6 +6,7 @@ import fs3.be.PersonalInformation;
 import fs3.gui.model.CitizenTemplateModel;
 import fs3.util.PopUp;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -16,20 +17,32 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class TGeneralInformationController implements Initializable {
+    @FXML
+    private TextField txfCitizenName;
+    @FXML
+    private TextArea txaCoping;
+    @FXML
+    private TextArea txaMotivation;
+    @FXML
+    private TextArea txaResources;
+    @FXML
+    private TextArea txaRoles;
+    @FXML
+    private TextArea txaHabits;
+    @FXML
+    private TextArea txaEducationAndJobs;
+    @FXML
+    private TextArea txaLifeStory;
+    @FXML
+    private TextArea txaHealthInformation;
+    @FXML
+    private TextArea txaEquipmentAids;
+    @FXML
+    private TextArea txaHomeLayout;
+    @FXML
+    private TextArea txaNetwork;
 
-    public TextField txfCitizenName;
-    public TextArea txaCoping;
-    public TextArea txaMotivation;
-    public TextArea txaResources;
-    public TextArea txaRoles;
-    public TextArea txaHabits;
-    public TextArea txaEducationAndJobs;
-    public TextArea txaLifeStory;
-    public TextArea txaHealthInformation;
-    public TextArea txaEquipmentAids;
-    public TextArea txaHomeLayout;
-    public TextArea txaNetwork;
-    List<TextArea> textAreaList;
+    private List<TextArea> textAreaList;
     private CitizenTemplateModel citizenTemplateModel;
 
     @Override
@@ -39,7 +52,6 @@ public class TGeneralInformationController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         textAreaList = new ArrayList<>();
         textAreaList.add(txaCoping);
         textAreaList.add(txaMotivation);
@@ -81,7 +93,8 @@ public class TGeneralInformationController implements Initializable {
     }
 
 
-    public void handleSave(ActionEvent event) {
+    @FXML
+    private void handleSave(ActionEvent event) {
         CitizenTemplate selectedCitizenTemplate = citizenTemplateModel.getSelectedCitizenTemplate();
 
         if (selectedCitizenTemplate == null) {
