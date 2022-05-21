@@ -28,4 +28,18 @@ public class TeacherDialogController extends UserDialogController<Teacher> {
         getUser().setPassword(txfPassword.getText());
         return getUser();
     }
+
+    @Override
+    public boolean isValid() {
+        if (txfName.getText().isEmpty()) {
+            return false;
+        }
+        if (txfUsername.getText().isEmpty()) {
+            return false;
+        }
+        if (txfPassword.getText().isEmpty()) {
+            return false;
+        }
+        return true;
+    }
 }

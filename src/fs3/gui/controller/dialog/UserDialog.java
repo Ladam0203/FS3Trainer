@@ -2,7 +2,9 @@ package fs3.gui.controller.dialog;
 
 import fs3.be.User;
 import fs3.util.PopUp;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.DialogPane;
@@ -30,6 +32,13 @@ public abstract class UserDialog<T extends User> extends Dialog<T> {
             DialogPane dp = loader.load();
             this.setTitle("New " + userClassName);
             this.setDialogPane(dp);
+            final Button btApply = (Button) dp.lookupButton(ButtonType.APPLY);
+            btApply.addEventFilter(ActionEvent.ACTION, event -> {
+                if (!controller.isValid()) {
+                    event.consume();
+                    PopUp.showError("Please fill in all mandatory fields! (*)");
+                }
+            });
             this.setResultConverter(buttonType -> {
                 if (buttonType.equals(ButtonType.APPLY)) {
                     return this.controller.constructUser();

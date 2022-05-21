@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
 
-<DialogPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #1e4c6b;" stylesheets="@../styles/common.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<DialogPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #1e4c6b;" stylesheets="@../styles/common.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <buttonTypes>
       <ButtonType fx:constant="APPLY" />
       <ButtonType fx:constant="CANCEL" />
@@ -14,11 +14,11 @@
    <content>
       <VBox spacing="20.0">
          <children>
-            <TextField fx:id="txfName" maxWidth="350.0" prefWidth="280.0" promptText="Name" VBox.vgrow="NEVER" />
+            <TextField fx:id="txfName" maxWidth="350.0" prefWidth="280.0" promptText="Name*" VBox.vgrow="NEVER" />
             <VBox spacing="12.0">
                <children>
-                  <TextField fx:id="txfUsername" maxWidth="350.0" prefWidth="280.0" promptText="Username" />
-                  <TextField fx:id="txfPassword" maxWidth="350.0" prefWidth="280.0" promptText="Password" />
+                  <TextField fx:id="txfUsername" maxWidth="350.0" prefWidth="280.0" promptText="Username*" />
+                  <TextField fx:id="txfPassword" maxWidth="350.0" prefWidth="280.0" promptText="Password*" />
                </children>
             </VBox>
          </children>

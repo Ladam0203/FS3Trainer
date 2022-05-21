@@ -35,4 +35,7 @@ public abstract class UserDialogController<T extends User> {
 
     /* Should construct a new user from the fields */
     public abstract T constructUser();
+
+    /* Should check if the fields have the necessary data for the Dialog to be submitted  */
+    public abstract boolean isValid();
 }
