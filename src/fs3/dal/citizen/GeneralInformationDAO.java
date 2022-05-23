@@ -14,9 +14,9 @@ public class GeneralInformationDAO {
     private String[] columns = {"citizenId", "coping", "motivation", "resources", "roles", "habits", "educationAndJobs", "lifeStory", "healthInformation", "equipmentAids", "homeLayout", "network"};
 
     private String read = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ?";
-    private String readAll = "SELECT * FROM " + tableName;
     private String update = "UPDATE " + tableName + " SET " + columns[1] + " = ?, " + columns[2] + " = ?, " + columns[3] + " = ?, " + columns[4] + " = ?, " + columns[5] + " = ?, " + columns[6] + " = ?, " + columns[7] + " = ?, " + columns[8] + " = ?, " + columns[9] + " = ?, " + columns[10] + " = ?, " + columns[11] + " = ? WHERE " + columns[0] + " = ?";
     private String insert = "INSERT INTO " + tableName + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    private String selectGeneralInformation = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ?";
 
     public GeneralInformation read(Citizen citizen) throws Exception {
         GeneralInformation generalInformation = null;
@@ -64,24 +64,35 @@ public class GeneralInformationDAO {
     }
 
     public void update(Citizen citizen) throws Exception {
+        if (citizen.getGeneralInformation() == null) {
+            return;
+        }
         ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
         try (Connection con = cm.getConnection()) {
-            PreparedStatement ps = con.prepareStatement(update);
-            ps.setString(1, citizen.getGeneralInformation().getCoping());
-            ps.setString(2, citizen.getGeneralInformation().getMotivation());
-            ps.setString(3, citizen.getGeneralInformation().getResources());
-            ps.setString(4, citizen.getGeneralInformation().getRoles());
-            ps.setString(5, citizen.getGeneralInformation().getHabits());
-            ps.setString(6, citizen.getGeneralInformation().getEducationAndJobs());
-            ps.setString(7, citizen.getGeneralInformation().getLifeStory());
-            ps.setString(8, citizen.getGeneralInformation().getHealthInformation());
-            ps.setString(9, citizen.getGeneralInformation().getEquipmentAids());
-            ps.setString(10, citizen.getGeneralInformation().getHomeLayout());
-            ps.setString(11, citizen.getGeneralInformation().getNetwork());
+            PreparedStatement ps = con.prepareStatement(selectGeneralInformation);
+            ps.setInt(1, citizen.getId());
+            ResultSet rs = ps.executeQuery();
 
-            ps.setInt(12, citizen.getId());
+            if (rs.next()) {
+                PreparedStatement psUpdate = con.prepareStatement(update);
+                psUpdate.setString(1, citizen.getGeneralInformation().getCoping());
+                psUpdate.setString(2, citizen.getGeneralInformation().getMotivation());
+                psUpdate.setString(3, citizen.getGeneralInformation().getResources());
+                psUpdate.setString(4, citizen.getGeneralInformation().getRoles());
+                psUpdate.setString(5, citizen.getGeneralInformation().getHabits());
+                psUpdate.setString(6, citizen.getGeneralInformation().getEducationAndJobs());
+                psUpdate.setString(7, citizen.getGeneralInformation().getLifeStory());
+                psUpdate.setString(8, citizen.getGeneralInformation().getHealthInformation());
+                psUpdate.setString(9, citizen.getGeneralInformation().getEquipmentAids());
+                psUpdate.setString(10, citizen.getGeneralInformation().getHomeLayout());
+                psUpdate.setString(11, citizen.getGeneralInformation().getNetwork());
 
-            ps.executeUpdate();
+                psUpdate.setInt(12, citizen.getId());
+
+                psUpdate.executeUpdate();
+            } else {
+                create(citizen);
+            }
         } finally {
             ConnectionManagerPool.getInstance().returnConnectionManager(cm);
         }

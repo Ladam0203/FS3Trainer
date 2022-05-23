@@ -89,9 +89,15 @@ public class CitizenDAOTest {
     }
 
     @Test
-    void loadRasmus() throws Exception {
+    void update() throws Exception {
         CitizenDAO citizenDAO = new CitizenDAO();
-        CitizenInstance citizen = (CitizenInstance) citizenDAO.read(75);
-        Assertions.assertEquals("Software developer at Team RAM", citizen.getGeneralInformation().getRoles());
+        CitizenTemplate citizen = citizenDAO.readAllCitizenTemplates().get(5);;
+        citizen.setGeneralInformation(new GeneralInformation());
+        citizen.getGeneralInformation().setCoping("He won't");
+
+        citizenDAO.update(citizen);
+
+        citizen = citizenDAO.readAllCitizenTemplates().get(5);
+        Assertions.assertEquals("He won't", citizen.getGeneralInformation().getCoping());
     }
 }

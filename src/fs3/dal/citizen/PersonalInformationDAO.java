@@ -15,7 +15,6 @@ public class PersonalInformationDAO {
     private String[] columns = {"citizenId", "name"};
 
     private String read = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ?";
-    private String readAll = "SELECT * FROM " + tableName;
     private String create = "INSERT INTO " + tableName + " VALUES (?, ?)";
     private String update = "UPDATE " + tableName + " SET " + columns[1] + " = ? WHERE " + columns[0] + " = ?";
 

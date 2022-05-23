@@ -43,7 +43,6 @@ public class TemplatesController implements Initializable {
         }
         citizenTemplateFilteredList = new FilteredList<>(citizenTemplateModel.getObservableCitizenTemplates());
         ltvCitizenTemplates.setItems(citizenTemplateFilteredList);
-
     }
 
     @FXML

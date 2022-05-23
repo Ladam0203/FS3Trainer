@@ -85,7 +85,6 @@ public class TGeneralInformationController implements Initializable {
                     txaHomeLayout.setText(generalInformation.getHomeLayout());
                     txaNetwork.setText(generalInformation.getNetwork());
                 } else {
-                    System.out.println("General information is null");
                     for (TextArea textArea : textAreaList) {
                         textArea.setText("");
                     }
@@ -103,7 +102,6 @@ public class TGeneralInformationController implements Initializable {
             PopUp.showError("Select template!");
         }
         GeneralInformation newGeneralInformation = new GeneralInformation();
-        selectedCitizenTemplate.setGeneralInformation(newGeneralInformation);
         selectedCitizenTemplate.getPersonalInformation().setName(txfCitizenName.getText());
         newGeneralInformation.setCoping(txaCoping.getText());
         newGeneralInformation.setMotivation(txaMotivation.getText());

@@ -67,11 +67,8 @@ public class CitizenDAO {
             PreparedStatement ps = con.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
 
-            CachedRowSet crs = RowSetProvider.newFactory().createCachedRowSet();
-            crs.populate(rs);
-
-            while (crs.next()) {
-                citizens.add(constructCitizen(crs));
+            while (rs.next()) {
+                citizens.add(constructCitizen(rs));
             }
         } finally {
             ConnectionManagerPool.getInstance().returnConnectionManager(cm);
@@ -140,14 +137,12 @@ public class CitizenDAO {
                 personalInformationDAO.update(citizen);
             }
         }));
-        if (citizen.getGeneralInformation() != null) {
-            futures.add(subExecutor.submit(new ExceptionCallable() {
-                @Override
-                void doTask() throws Exception {
-                    generalInformationDAO.update(citizen);
-                }
-            }));
-        }
+        futures.add(subExecutor.submit(new ExceptionCallable() {
+            @Override
+            void doTask() throws Exception {
+                generalInformationDAO.update(citizen);
+            }
+        }));
         futures.add(subExecutor.submit(new ExceptionCallable() {
             @Override
             void doTask() throws Exception {
