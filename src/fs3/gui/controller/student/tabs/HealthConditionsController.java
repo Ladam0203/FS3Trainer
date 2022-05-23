@@ -7,7 +7,6 @@ import fs3.util.PopUp;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.Accordion;
 import javafx.scene.control.TitledPane;
 
@@ -31,17 +30,22 @@ public class HealthConditionsController implements Initializable {
             for (HealthCondition condition :
                     HealthCondition.values()) {
                 //create new loader to get the controller
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../view/student/tabs/HealthConditionComponentView.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fs3/gui/view/student/tabs/HealthConditionComponentView.fxml"));
                 //load view
-                Parent root = loader.load();
+                TitledPane root = loader.load();
                 //get the controller
                 HealthConditionComponentController controller = loader.getController();
                 //set title of pane
                 controller.setTitle(condition.toString());
                 //can I access it like this to get the citizen selected ?
 
+                if (condition.getHeader() != null) {
+                    TitledPane headerRoot = FXMLLoader.load(getClass().getResource("/fs3/gui/view/TitledPaneHeader.fxml"));
+                    headerRoot.setText(condition.getHeader());
+                    accHealthConditions.getPanes().add(headerRoot);
+                }
 
-                accHealthConditions.getPanes().add((TitledPane) root);
+                accHealthConditions.getPanes().add(root);
                 conditionControllerMap.put(condition, controller);
             }
 

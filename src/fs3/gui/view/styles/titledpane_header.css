@@ -1,0 +1,4 @@
+.titled-pane > .title > .text {
+    -fx-font-size: 18pt;
+    -fx-font-weight: bold;
+}

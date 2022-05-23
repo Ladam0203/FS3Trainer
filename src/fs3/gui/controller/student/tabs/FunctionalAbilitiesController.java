@@ -34,6 +34,13 @@ public class FunctionalAbilitiesController implements Initializable {
                 Parent root = loader.load();
                 FunctionalAbilityComponentController controller = loader.getController();
                 controller.setTitle(condition.toString());
+
+                if (condition.getHeader() != null) {
+                    TitledPane headerRoot = FXMLLoader.load(getClass().getResource("/fs3/gui/view/TitledPaneHeader.fxml"));
+                    headerRoot.setText(condition.getHeader());
+                    accFunctionalAbilities.getPanes().add(headerRoot);
+                }
+
                 accFunctionalAbilities.getPanes().add((TitledPane) root);
                 functionControllerMap.put(condition, controller);
             }
