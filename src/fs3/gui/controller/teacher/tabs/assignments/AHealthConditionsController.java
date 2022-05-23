@@ -15,6 +15,7 @@ import javafx.scene.control.TitledPane;
 import java.net.URL;
 import java.util.EnumMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class AHealthConditionsController implements Initializable {
@@ -28,7 +29,9 @@ public class AHealthConditionsController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         try {
             citizenInstanceModel = CitizenInstanceModel.getInstance();
+
             //add all health condition panes
+            String header = null;
             for (HealthCondition condition :
                     HealthCondition.values()) {
                 //create new loader to get the controller
@@ -40,6 +43,14 @@ public class AHealthConditionsController implements Initializable {
                 //set title of pane
                 controller.setTitle(condition.toString());
                 //can I access it like this to get the citizen selected ?
+
+                if (!Objects.equals(header, condition.getMain()) && condition.getMain() != null) {
+                    header = condition.getMain();
+
+                    TitledPane headerRoot = FXMLLoader.load(getClass().getResource("/fs3/gui/view/TitledPaneHeader.fxml"));
+                    headerRoot.setText(condition.getMain());
+                    accHealthConditions.getPanes().add(headerRoot);
+                }
 
                 accHealthConditions.getPanes().add((TitledPane) root);
                 conditionControllerMap.put(condition, controller);

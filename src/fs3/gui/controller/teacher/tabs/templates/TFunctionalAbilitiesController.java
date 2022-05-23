@@ -14,6 +14,7 @@ import javafx.scene.control.TitledPane;
 import java.net.URL;
 import java.util.EnumMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class TFunctionalAbilitiesController implements Initializable {
@@ -28,12 +29,23 @@ public class TFunctionalAbilitiesController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         try {
             citizenTemplateModel = CitizenTemplateModel.getInstance();
+
             //add all functional abilities panes
+            String header = null;
             for (FunctionalAbility condition : FunctionalAbility.values()) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fs3/gui/view/teacher/tabs/templates/FunctionalAbilityComponentView.fxml"));
                 Parent root = loader.load();
                 TFunctionalAbilityComponentController controller = loader.getController();
                 controller.setTitle(condition.toString());
+
+                if (!Objects.equals(header, condition.getMain()) && condition.getMain() != null) {
+                    header = condition.getMain();
+
+                    TitledPane headerRoot = FXMLLoader.load(getClass().getResource("/fs3/gui/view/TitledPaneHeader.fxml"));
+                    headerRoot.setText(condition.getMain());
+                    accFunctionalAbilities.getPanes().add(headerRoot);
+                }
+
                 accFunctionalAbilities.getPanes().add((TitledPane) root);
                 functionControllerMap.put(condition, controller);
             }

@@ -15,6 +15,7 @@ import javafx.scene.control.TitledPane;
 import java.net.URL;
 import java.util.EnumMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class THealthConditionsController implements Initializable {
@@ -29,7 +30,9 @@ public class THealthConditionsController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         try {
             citizenTemplateModel = CitizenTemplateModel.getInstance();
+
             //add all health condition panes
+            String header = null;
             for (HealthCondition condition :
                     HealthCondition.values()) {
                 //create new loader to get the controller
@@ -38,6 +41,15 @@ public class THealthConditionsController implements Initializable {
                 Parent root = loader.load();
                 //get the controller
                 THealthConditionComponentController controller = loader.getController();
+
+                if (!Objects.equals(header, condition.getMain()) && condition.getMain() != null) {
+                    header = condition.getMain();
+
+                    TitledPane headerRoot = FXMLLoader.load(getClass().getResource("/fs3/gui/view/TitledPaneHeader.fxml"));
+                    headerRoot.setText(condition.getMain());
+                    accHealthConditions.getPanes().add(headerRoot);
+                }
+
                 //set title of pane
                 controller.setTitle(condition.toString());
                 accHealthConditions.getPanes().add((TitledPane) root);
