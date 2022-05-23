@@ -61,10 +61,10 @@ public class TemplatesController implements Initializable {
             MenuItem createInstance = new MenuItem("Create instance");
             MenuItem newItem = new MenuItem("New template");
 
-            contextMenu.getItems().add(deleteItem);
+            contextMenu.getItems().add(newItem);
             contextMenu.getItems().add(copyTemplateItem);
             contextMenu.getItems().add(createInstance);
-            contextMenu.getItems().add(newItem);
+            contextMenu.getItems().add(deleteItem);
 
             ltvCitizenTemplates.setContextMenu(contextMenu);
 
