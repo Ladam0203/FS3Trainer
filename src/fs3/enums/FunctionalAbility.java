@@ -2,8 +2,8 @@ package fs3.enums;
 
 public enum FunctionalAbility {
     BATHING("Bathing header", "Bathing"),
-    GOING_TO_THE_BATHROOM(null, "Going to the bathroom"),
-    BODY_CARE(null, "Body care"),
+    GOING_TO_THE_BATHROOM("Bathing header", "Going to the bathroom"),
+    BODY_CARE("Bathing header", "Body care"),
     UNDRESSING_AND_DRESSING("Another header", "Undressing and dressing"),
     EATING(null, "Eating"),
     DRINKING(null, "Drinking"),
@@ -33,29 +33,29 @@ public enum FunctionalAbility {
     ABILITY_TO_WORK(null, "Ability to work");
 
 
-    private String name;
-    private String header;
+    private String main;
+    private String sub;
 
-    FunctionalAbility(String header, String name) {
-        this.header = header;
-        this.name = name;
+    FunctionalAbility(String main, String sub) {
+        this.main = main;
+        this.sub = sub;
     }
 
     @Override
     public String toString() {
-        return name;
+        return sub;
     }
 
     public static FunctionalAbility fromString(String functionalAbility) {
         for (FunctionalAbility fa : FunctionalAbility.values()) {
-            if (fa.name.equals(functionalAbility)) {
+            if (fa.sub.equals(functionalAbility)) {
                 return fa;
             }
         }
         throw new IllegalArgumentException("Functional ability " + functionalAbility + " could not be parsed");
     }
 
-    public String getHeader() {
-        return header;
+    public String getMain() {
+        return main;
     }
 }

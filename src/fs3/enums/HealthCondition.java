@@ -47,17 +47,17 @@ public enum HealthCondition {
     STOMACH_AND_INTESTINAL_PROBLEMS(null, "Stomach and intestinal problems"),
     PROBLEMS_WITH_LIQUID_FROM_THE_DRAIN(null, "Problems with liquid from the drain");
 
-    private String name;
-    private String header;
+    private String main;
+    private String sub;
 
-    HealthCondition(String header, String name) {
-        this.header = header;
-        this.name = name;
+    HealthCondition(String main, String sub) {
+        this.main = main;
+        this.sub = sub;
     }
 
     public static HealthCondition fromString(String healthCondition) {
         for (HealthCondition hc : HealthCondition.values()) {
-            if (hc.name.equals(healthCondition)) {
+            if (hc.sub.equals(healthCondition)) {
                 return hc;
             }
         }
@@ -66,10 +66,10 @@ public enum HealthCondition {
 
     @Override
     public String toString() {
-        return name;
+        return sub;
     }
 
-    public String getHeader(){
-        return header;
+    public String getMain(){
+        return main;
     }
 }
