@@ -43,7 +43,7 @@ public class HealthConditionsController implements Initializable {
 
                 if (!Objects.equals(header, condition.getMain()) && condition.getMain() != null) {
                     header = condition.getMain();
-                    
+
                     TitledPane headerRoot = FXMLLoader.load(getClass().getResource("/fs3/gui/view/TitledPaneHeader.fxml"));
                     headerRoot.setText(condition.getMain());
                     accHealthConditions.getPanes().add(headerRoot);
