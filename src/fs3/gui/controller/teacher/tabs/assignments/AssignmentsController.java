@@ -51,7 +51,7 @@ public class AssignmentsController implements Initializable {
             citizenModel.setSelectedCitizenInstance(citizen);
             if (mouseEvent.getButton().equals(MouseButton.SECONDARY)) {
                 ContextMenu contextMenuAssignments = new ContextMenu();
-                MenuItem deleteItem = new MenuItem("Delete!");
+                MenuItem deleteItem = new MenuItem("Delete");
                 contextMenuAssignments.getItems().add(deleteItem);
                 ltvAssignments.setContextMenu(contextMenuAssignments);
                 contextMenuAssignments.show(ltvAssignments.getPlaceholder(), mouseEvent.getX(), mouseEvent.getY());

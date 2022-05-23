@@ -74,7 +74,7 @@ public class TemplatesController implements Initializable {
                 try {
                     citizenTemplateModel.deleteCitizenTemplate();
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    PopUp.showError("Couldn't delete citizen template!", e);
                 }
             });
 
@@ -83,8 +83,7 @@ public class TemplatesController implements Initializable {
                 try {
                     citizenTemplateModel.createCitizenTemplate(copiedCitizenTemplate);
                 } catch (Exception e) {
-                    PopUp.showError("Cannot copy citizen template!");
-                    e.printStackTrace();
+                    PopUp.showError("Couldn't copy citizen template!", e);
                 }
             });
 
@@ -94,8 +93,7 @@ public class TemplatesController implements Initializable {
                 try {
                     citizenInstanceModel.createCitizenInstance(citizenInstance);
                 } catch (Exception e) {
-                    PopUp.showError("Cannot create Citizen from template!");
-                    e.printStackTrace();
+                    PopUp.showError("Cannot create Citizen from template!", e);
                 }
             });
 
@@ -106,7 +104,7 @@ public class TemplatesController implements Initializable {
                     try {
                         citizenTemplateModel.createCitizenTemplate(response);
                     } catch (Exception e) {
-                        e.printStackTrace();
+                        PopUp.showError("Couldn't create citizen template!", e);
                     }
                 });
             });
