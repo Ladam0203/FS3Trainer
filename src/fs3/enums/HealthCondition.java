@@ -1,7 +1,7 @@
 package fs3.enums;
 
 public enum HealthCondition {
-    //TODO: Extend with all subcategories of health conditions
+    //TODO: Extend with all subcategories of health conditionss
     PROBLEMS_WITH_PERSONAL_CARE("Functional level", "Problems with personal care"),
     PROBLEMS_WITH_DAILY_ACTIVITIES("Functional level", "Problems with daily activities"),
     PROBLEMS_WITH_MOBILITY_AND_MOVEMENT("Body movement", "Problems with mobility and movement"),
