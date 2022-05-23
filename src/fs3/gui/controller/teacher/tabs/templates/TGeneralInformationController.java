@@ -75,6 +75,7 @@ public class TGeneralInformationController implements Initializable {
                     txaCoping.setText(generalInformation.getCoping());
                     txaMotivation.setText(generalInformation.getMotivation());
                     txaResources.setText(generalInformation.getResources());
+                    System.out.println(generalInformation.getRoles());
                     txaRoles.setText(generalInformation.getRoles());
                     txaHabits.setText(generalInformation.getHabits());
                     txaEducationAndJobs.setText(generalInformation.getEducationAndJobs());
@@ -84,6 +85,7 @@ public class TGeneralInformationController implements Initializable {
                     txaHomeLayout.setText(generalInformation.getHomeLayout());
                     txaNetwork.setText(generalInformation.getNetwork());
                 } else {
+                    System.out.println("General information is null");
                     for (TextArea textArea : textAreaList) {
                         textArea.setText("");
                     }
@@ -118,8 +120,7 @@ public class TGeneralInformationController implements Initializable {
         try {
             citizenTemplateModel.updateSelectedCitizenTemplate(selectedCitizenTemplate);
         } catch (Exception e) {
-            PopUp.showError("Cannot update template!");
-            e.printStackTrace();
+            PopUp.showError("Cannot update template!", e);
         }
     }
 

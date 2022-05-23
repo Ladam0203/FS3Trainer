@@ -45,7 +45,6 @@ public class TFunctionalAbilitiesController implements Initializable {
             if (newValue == null) {
                 return;
             }
-            System.out.println("SETTING");
             for (Map.Entry<FunctionalAbility, TFunctionalAbilityComponentController> entry : functionControllerMap.entrySet()) {
                 FunctionalAbilityData functionalAbilityData = newValue.getFunctionalAbilities().get(entry.getKey());
                 if (functionalAbilityData != null) {

@@ -78,7 +78,6 @@ public class TFunctionalAbilityComponentController implements Initializable {
     }
 
     private void changePictogram(ImageView img, LimitationLevel limitationLevel) {
-        System.out.println(limitationLevel);
         if (limitationLevel == null || limitationLevel == LimitationLevel.NOT_RELEVANT) {
             img.setImage(null);
             return;
@@ -123,7 +122,6 @@ public class TFunctionalAbilityComponentController implements Initializable {
     }
 
     public void setFields(FunctionalAbilityData functionalAbilityData) {
-        System.out.println(functionalAbilityData);
         cmbCurrentLimitationLevel.getSelectionModel().select(functionalAbilityData.getCurrentLimitationLevel());
         cmbExpectedLimitationLevel.getSelectionModel().select(functionalAbilityData.getExpectedLimitationLevel());
         dtpFollowUpDate.setValue(functionalAbilityData.getFollowUpDate());

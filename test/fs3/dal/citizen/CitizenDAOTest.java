@@ -88,4 +88,10 @@ public class CitizenDAOTest {
         }
     }
 
+    @Test
+    void loadRasmus() throws Exception {
+        CitizenDAO citizenDAO = new CitizenDAO();
+        CitizenInstance citizen = (CitizenInstance) citizenDAO.read(75);
+        Assertions.assertEquals("Software developer at Team RAM", citizen.getGeneralInformation().getRoles());
+    }
 }
