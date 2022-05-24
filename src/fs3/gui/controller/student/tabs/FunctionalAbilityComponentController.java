@@ -48,6 +48,11 @@ public class FunctionalAbilityComponentController implements Initializable {
     private ToggleGroup isRelevantGroup;
     private List<Image> limitationImages;
 
+    LimitationLevel currentLimitationLevel;
+    LimitationLevel expectedLimitationLevel;
+    List<ImageView> currentImages;
+    List<ImageView> expectedImages;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
@@ -55,19 +60,13 @@ public class FunctionalAbilityComponentController implements Initializable {
         } catch (Exception e) {
             PopUp.showError("Couldn't initialize functional ability component!", e);
         }
-        cmbCurrentLimitationLevel.getItems().addAll(LimitationLevel.values());
-        cmbExpectedLimitationLevel.getItems().addAll(LimitationLevel.values());
+
         cmbPerformanceLevel.getItems().addAll(Performance.values());
         cmbPerceivedLimitationLevel.getItems().addAll(PerceivedLimitationLevel.values());
+
         cmbCurrentLimitationLevel.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> changeState(newValue));
 
-        cmbCurrentLimitationLevel.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            changePictogram(imgCurrent, newValue);
-        });
-        cmbExpectedLimitationLevel.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            changePictogram(imgExpected, newValue);
-        });
-
+        //this loads with each component, maybe not the best solution...
         limitationImages = List.of(
                 new Image(getClass().getResource("../../../view/resources/0.png").toExternalForm()),
                 new Image(getClass().getResource("../../../view/resources/1.png").toExternalForm()),
@@ -75,16 +74,28 @@ public class FunctionalAbilityComponentController implements Initializable {
                 new Image(getClass().getResource("../../../view/resources/3.png").toExternalForm()),
                 new Image(getClass().getResource("../../../view/resources/4.png").toExternalForm())
         );
-        //set opacity of current limitation level image
-        imgCurrent.setOpacity(0.5);
-    }
 
-    private void changePictogram(ImageView img, LimitationLevel limitationLevel) {
-        if (limitationLevel == null || limitationLevel == LimitationLevel.NOT_RELEVANT) {
-            img.setImage(null);
-            return;
+        isRelevantGroup = new ToggleGroup();
+        rdbRelevant.setToggleGroup(isRelevantGroup);
+        rdbNotRelevant.setToggleGroup(isRelevantGroup);
+
+        isRelevantGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
+            if (isRelevantGroup.getSelectedToggle() != null) {
+                if (isRelevantGroup.getSelectedToggle().equals(rdbRelevant)) {
+                    disableFields(false);
+                }
+                else if (isRelevantGroup.getSelectedToggle().equals(rdbNotRelevant)) {
+                    disableFields(true);
+                }
+            }
+        });
+
+        currentImages = List.of(imgCurrentNo, imgCurrentSlight, imgCurrentModerate, imgCurrentSevere, imgCurrentTotal);
+        expectedImages = List.of(imgExpectedNo, imgExpectedSlight, imgExpectedModerate, imgExpectedSevere, imgExpectedTotal);
+        for (int i = 0; i < 4; i++) {
+            currentImages.get(i).setImage(limitationImages.get(i));
+            expectedImages.get(i).setImage(limitationImages.get(i));
         }
-        img.setImage(limitationImages.get(limitationLevel.ordinal()));
     }
 
     public void setTitle(String title) {
@@ -92,10 +103,7 @@ public class FunctionalAbilityComponentController implements Initializable {
     }
 
     public void clearFields() {
-        imgCurrent.setImage(null);
-        imgExpected.setImage(null);
-        cmbCurrentLimitationLevel.getSelectionModel().clearSelection();
-        cmbExpectedLimitationLevel.getSelectionModel().clearSelection();
+        clearOpacity();
         dtpFollowUpDate.getEditor().clear();
         txaProfessionalNote.clear();
         txaObservationNote.clear();
@@ -104,17 +112,12 @@ public class FunctionalAbilityComponentController implements Initializable {
         txaCitizenRequest.clear();
     }
 
-    private void changeState(LimitationLevel newValue) {
-        disableFields(newValue == LimitationLevel.NOT_RELEVANT);
-    }
-
     private void disableFields(boolean disable) {
         if (disable) {
             imgExpected.setImage(null);
         } else {
             changePictogram(imgExpected, cmbExpectedLimitationLevel.getSelectionModel().getSelectedItem());
         }
-        cmbExpectedLimitationLevel.setDisable(disable);
         dtpFollowUpDate.setDisable(disable);
         txaProfessionalNote.setDisable(disable);
         txaObservationNote.setDisable(disable);
@@ -236,5 +239,20 @@ public class FunctionalAbilityComponentController implements Initializable {
             PopUp.showError("Select PerceivedLimitationLevel");
         }
         return false;
+    }
+
+    private void clearOpacity() {
+        currentImages.forEach(imageView -> imageView.setOpacity(0));
+        currentImages.forEach(imageView -> imageView.setOpacity(0));
+    }
+
+    private void makeAllOpaque() {
+        currentImages.forEach(imageView -> imageView.setOpacity(0.5));
+        currentImages.forEach(imageView -> imageView.setOpacity(0.5));
+    }
+
+    private void makeOpaqueInExcept(List<ImageView> images, ImageView imageView) {
+        images.forEach(image -> image.setOpacity(0.5));
+        imageView.setOpacity(0);
     }
 }
