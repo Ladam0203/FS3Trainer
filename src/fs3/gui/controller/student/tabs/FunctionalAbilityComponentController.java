@@ -10,10 +10,7 @@ import fs3.gui.model.CitizenInstanceModel;
 import fs3.util.PopUp;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TitledPane;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -26,11 +23,13 @@ public class FunctionalAbilityComponentController implements Initializable {
     @FXML
     private TitledPane ttpRoot;
     @FXML
-    private ComboBox<LimitationLevel> cmbCurrentLimitationLevel;
+    private Label lblIsRelevant;
     @FXML
-    private ComboBox<LimitationLevel> cmbExpectedLimitationLevel;
+    private RadioButton rdbRelevant, rdbNotRelevant;
     @FXML
-    private ImageView imgCurrent, imgExpected;
+    private ImageView imgCurrentNo, imgCurrentSlight, imgCurrentModerate, imgCurrentSevere, imgCurrentTotal;
+    @FXML
+    private ImageView imgExpectedNo, imgExpectedSlight, imgExpectedModerate, imgExpectedSevere, imgExpectedTotal;
     @FXML
     private DatePicker dtpFollowUpDate;
     @FXML
@@ -46,6 +45,7 @@ public class FunctionalAbilityComponentController implements Initializable {
 
     private CitizenInstanceModel citizenInstanceModel;
 
+    private ToggleGroup isRelevantGroup;
     private List<Image> limitationImages;
 
     @Override
@@ -75,6 +75,8 @@ public class FunctionalAbilityComponentController implements Initializable {
                 new Image(getClass().getResource("../../../view/resources/3.png").toExternalForm()),
                 new Image(getClass().getResource("../../../view/resources/4.png").toExternalForm())
         );
+        //set opacity of current limitation level image
+        imgCurrent.setOpacity(0.5);
     }
 
     private void changePictogram(ImageView img, LimitationLevel limitationLevel) {

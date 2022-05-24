@@ -6,41 +6,42 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<TitledPane fx:id="ttpRoot" alignment="TOP_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefWidth="750.0" stylesheets="@../../styles/common.css" text="Functional ability" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.student.tabs.FunctionalAbilityComponentController">
+<TitledPane fx:id="ttpRoot" alignment="TOP_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefWidth="750.0" stylesheets="@../../styles/common.css" text="Functional ability" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.student.tabs.FunctionalAbilityComponentController">
     <content>
         <VBox spacing="10.0">
             <children>
-            <HBox spacing="10.0">
+            <HBox prefHeight="50.0" prefWidth="200.0">
                <children>
-                  <BorderPane HBox.hgrow="NEVER">
-                     <center>
-                        <ComboBox fx:id="cmbCurrentLimitationLevel" minWidth="-Infinity" prefWidth="300.0" />
-                     </center>
-                     <top>
-                        <Label styleClass="fs3-text" text="Current limitation level: " BorderPane.alignment="CENTER_LEFT" />
-                     </top>
-                  </BorderPane>
-                  <ImageView fx:id="imgCurrent" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" />
+                  <Label fx:id="lblIsRelevant" styleClass="fs3-text" text="Is functional ability relevant?" />
+                  <RadioButton fx:id="rdbRelevant" mnemonicParsing="false" styleClass="fs3-text" text="Yes" />
+                  <RadioButton fx:id="rdbNotRelevant" mnemonicParsing="false" styleClass="fs3-text" text="No" />
                </children>
             </HBox>
+            <Label styleClass="fs3-text" text="Current limitation level: " />
             <HBox spacing="10.0">
                <children>
-                  <BorderPane HBox.hgrow="NEVER">
-                     <center>
-                        <ComboBox fx:id="cmbExpectedLimitationLevel" minWidth="-Infinity" prefWidth="300.0" />
-                     </center>
-                     <top>
-                        <Label styleClass="fs3-text" text="Expected limitation level:" BorderPane.alignment="CENTER_LEFT" />
-                     </top>
-                  </BorderPane>
-                  <ImageView fx:id="imgExpected" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" />
+                  <ImageView fx:id="imgCurrentNo" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" />
+                  <ImageView fx:id="imgCurrentSlight" fitHeight="80.0" fitWidth="80.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" />
+                  <ImageView fx:id="imgCurrentModerate" fitHeight="80.0" fitWidth="80.0" layoutX="100.0" layoutY="10.0" pickOnBounds="true" />
+                  <ImageView fx:id="imgCurrentSevere" fitHeight="80.0" fitWidth="80.0" layoutX="191.0" layoutY="10.0" pickOnBounds="true" />
+                  <ImageView fx:id="imgCurrentTotal" fitHeight="80.0" fitWidth="80.0" layoutX="281.0" layoutY="10.0" pickOnBounds="true" />
+               </children>
+            </HBox>
+            <Label styleClass="fs3-text" text="Expected limitation level:" />
+            <HBox spacing="10.0">
+               <children>
+                  <ImageView fx:id="imgExpectedNo" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" />
+                  <ImageView fx:id="imgExpectedSlight" fitHeight="80.0" fitWidth="80.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" />
+                  <ImageView fx:id="imgExpectedModerate" fitHeight="80.0" fitWidth="80.0" layoutX="100.0" layoutY="10.0" pickOnBounds="true" />
+                  <ImageView fx:id="imgExpectedSevere" fitHeight="80.0" fitWidth="80.0" layoutX="191.0" layoutY="10.0" pickOnBounds="true" />
+                  <ImageView fx:id="imgExpectedTotal" fitHeight="80.0" fitWidth="80.0" layoutX="281.0" layoutY="10.0" pickOnBounds="true" />
                </children>
             </HBox>
                 <VBox spacing="10.0">
