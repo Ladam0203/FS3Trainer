@@ -68,8 +68,8 @@ public abstract class Citizen {
     }
 
     @Override
-    public String toString(){
-        return this.getPersonalInformation().getName() + " (" + this.id.get() + ")";
+    public String toString() {
+        return String.format("[%d]: %s (%d)", getId(), getPersonalInformation().getName(), getPersonalInformation().getAge());
     }
 
     @Override

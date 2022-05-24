@@ -12,7 +12,7 @@ public class CitizenInstance extends Citizen {
         super();
     }
 
-    //sort of similiar to a copy constructor but taking a template
+    //sort of similar to a copy constructor but taking a template
     public CitizenInstance(CitizenTemplate citizenTemplate) {
         super();
         this.setPersonalInformation(citizenTemplate.getPersonalInformation() == null ? null : new PersonalInformation(citizenTemplate.getPersonalInformation()));

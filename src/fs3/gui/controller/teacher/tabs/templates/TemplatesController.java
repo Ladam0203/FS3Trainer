@@ -2,7 +2,7 @@ package fs3.gui.controller.teacher.tabs.templates;
 
 import fs3.be.CitizenInstance;
 import fs3.be.CitizenTemplate;
-import fs3.gui.controller.teacher.tabs.templates.dialog.NewCitizenTemplateDialog;
+import fs3.gui.controller.teacher.tabs.templates.dialog.CitizenTemplateDialog;
 import fs3.gui.model.CitizenInstanceModel;
 import fs3.gui.model.CitizenTemplateModel;
 import fs3.util.PopUp;
@@ -97,7 +97,7 @@ public class TemplatesController implements Initializable {
             });
 
             newItem.setOnAction(event -> {
-                NewCitizenTemplateDialog dialog = new NewCitizenTemplateDialog();
+                CitizenTemplateDialog dialog = new CitizenTemplateDialog();
                 Optional<CitizenTemplate> result = dialog.showAndWait();
                 result.ifPresent(response -> {
                     try {
