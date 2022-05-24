@@ -8,11 +8,13 @@ import fs3.enums.PerceivedLimitationLevel;
 import fs3.enums.Performance;
 import fs3.gui.model.CitizenInstanceModel;
 import fs3.util.PopUp;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -45,8 +47,7 @@ public class FunctionalAbilityComponentController implements Initializable {
 
     private CitizenInstanceModel citizenInstanceModel;
 
-    private ToggleGroup isRelevantGroup;
-    private List<Image> limitationImages;
+    private ToggleGroup tggRelevant;
 
     LimitationLevel currentLimitationLevel;
     LimitationLevel expectedLimitationLevel;
@@ -64,10 +65,7 @@ public class FunctionalAbilityComponentController implements Initializable {
         cmbPerformanceLevel.getItems().addAll(Performance.values());
         cmbPerceivedLimitationLevel.getItems().addAll(PerceivedLimitationLevel.values());
 
-        cmbCurrentLimitationLevel.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> changeState(newValue));
-
-        //this loads with each component, maybe not the best solution...
-        limitationImages = List.of(
+        List<Image> limitationImages = List.of(
                 new Image(getClass().getResource("../../../view/resources/0.png").toExternalForm()),
                 new Image(getClass().getResource("../../../view/resources/1.png").toExternalForm()),
                 new Image(getClass().getResource("../../../view/resources/2.png").toExternalForm()),
@@ -75,16 +73,16 @@ public class FunctionalAbilityComponentController implements Initializable {
                 new Image(getClass().getResource("../../../view/resources/4.png").toExternalForm())
         );
 
-        isRelevantGroup = new ToggleGroup();
-        rdbRelevant.setToggleGroup(isRelevantGroup);
-        rdbNotRelevant.setToggleGroup(isRelevantGroup);
+        tggRelevant = new ToggleGroup();
+        rdbRelevant.setToggleGroup(tggRelevant);
+        rdbNotRelevant.setToggleGroup(tggRelevant);
 
-        isRelevantGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
-            if (isRelevantGroup.getSelectedToggle() != null) {
-                if (isRelevantGroup.getSelectedToggle().equals(rdbRelevant)) {
+        tggRelevant.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
+            if (tggRelevant.getSelectedToggle() != null) {
+                if (tggRelevant.getSelectedToggle().equals(rdbRelevant)) {
                     disableFields(false);
                 }
-                else if (isRelevantGroup.getSelectedToggle().equals(rdbNotRelevant)) {
+                else if (tggRelevant.getSelectedToggle().equals(rdbNotRelevant)) {
                     disableFields(true);
                 }
             }
@@ -103,6 +101,9 @@ public class FunctionalAbilityComponentController implements Initializable {
     }
 
     public void clearFields() {
+        tggRelevant.selectToggle(null);
+        currentLimitationLevel = null;
+        expectedLimitationLevel = null;
         clearOpacity();
         dtpFollowUpDate.getEditor().clear();
         txaProfessionalNote.clear();
@@ -114,10 +115,13 @@ public class FunctionalAbilityComponentController implements Initializable {
 
     private void disableFields(boolean disable) {
         if (disable) {
-            imgExpected.setImage(null);
+            makeAllOpaque();
         } else {
-            changePictogram(imgExpected, cmbExpectedLimitationLevel.getSelectionModel().getSelectedItem());
+            makeOpaqueInExcept(currentImages, currentImages.get(currentLimitationLevel.ordinal()));
+            makeOpaqueInExcept(expectedImages, expectedImages.get(expectedLimitationLevel.ordinal()));
         }
+        currentImages.forEach(image -> image.setDisable(disable));
+        expectedImages.forEach(image -> image.setDisable(disable));
         dtpFollowUpDate.setDisable(disable);
         txaProfessionalNote.setDisable(disable);
         txaObservationNote.setDisable(disable);
@@ -127,8 +131,13 @@ public class FunctionalAbilityComponentController implements Initializable {
     }
 
     public void setFields(FunctionalAbilityData functionalAbilityData) {
-        cmbCurrentLimitationLevel.getSelectionModel().select(functionalAbilityData.getCurrentLimitationLevel());
-        cmbExpectedLimitationLevel.getSelectionModel().select(functionalAbilityData.getExpectedLimitationLevel());
+        currentLimitationLevel = functionalAbilityData.getCurrentLimitationLevel();
+        expectedLimitationLevel = functionalAbilityData.getExpectedLimitationLevel();
+        if (functionalAbilityData.getCurrentLimitationLevel() == LimitationLevel.NOT_RELEVANT) {
+            tggRelevant.selectToggle(rdbNotRelevant);
+        } else {
+            tggRelevant.selectToggle(rdbRelevant);
+        }
         dtpFollowUpDate.setValue(functionalAbilityData.getFollowUpDate());
         txaProfessionalNote.setText(functionalAbilityData.getProfessionalNote());
         txaObservationNote.setText(functionalAbilityData.getObservationNote());
@@ -137,23 +146,20 @@ public class FunctionalAbilityComponentController implements Initializable {
         txaCitizenRequest.setText(functionalAbilityData.getCitizenRequest());
     }
 
+
     @FXML
     private void handleSave() {
         CitizenInstance citizenInstance = citizenInstanceModel.getSelectedCitizenInstance();
         if (areFieldsFilled()) {
             FunctionalAbility functionalAbility = FunctionalAbility.fromString(ttpRoot.getText());
             FunctionalAbilityData functionalAbilityData = new FunctionalAbilityData();
-            functionalAbilityData.setCurrentLimitationLevel(cmbCurrentLimitationLevel.getSelectionModel().getSelectedItem());
-            if (cmbCurrentLimitationLevel.getSelectionModel().getSelectedItem() == LimitationLevel.NOT_RELEVANT) { //sync model with db
-                cmbExpectedLimitationLevel.getSelectionModel().clearSelection();
-                dtpFollowUpDate.getEditor().clear();
-                txaProfessionalNote.clear();
-                txaObservationNote.clear();
-                cmbPerformanceLevel.getSelectionModel().clearSelection();
-                cmbPerceivedLimitationLevel.getSelectionModel().clearSelection();
-                txaCitizenRequest.clear();
+            functionalAbilityData.setCurrentLimitationLevel(tggRelevant.getSelectedToggle().equals(rdbRelevant) ? currentLimitationLevel : LimitationLevel.NOT_RELEVANT);
+            if (currentLimitationLevel == LimitationLevel.NOT_RELEVANT) { //sync model with db
+                clearFields();
+                makeAllOpaque();
+                expectedLimitationLevel = null;
             }
-            functionalAbilityData.setExpectedLimitationLevel(cmbExpectedLimitationLevel.getSelectionModel().getSelectedItem());
+            functionalAbilityData.setExpectedLimitationLevel(expectedLimitationLevel);
             functionalAbilityData.setFollowUpDate(dtpFollowUpDate.getValue());
             functionalAbilityData.setProfessionalNote(txaProfessionalNote.getText());
             functionalAbilityData.setObservationNote(txaObservationNote.getText());
@@ -171,11 +177,26 @@ public class FunctionalAbilityComponentController implements Initializable {
 
     }
 
+    //event handler for image button
+    @FXML
+    private void handleSelectCurrent(MouseEvent event) {
+        ImageView selected = (ImageView) event.getSource();
+        currentLimitationLevel = LimitationLevel.fromInt(currentImages.indexOf(selected));
+        makeOpaqueInExcept(currentImages, selected);
+    }
+
+    @FXML
+    private void handleSelectExpected(MouseEvent event) {
+        ImageView selected = (ImageView) event.getSource();
+        expectedLimitationLevel = LimitationLevel.fromInt(expectedImages.indexOf(selected));
+        makeOpaqueInExcept(expectedImages, selected);
+    }
+
     private boolean areFieldsFilled() {
         if (!isCitizenSelected() || !isCurrentLimitationLevelSelected()) {
             return false;
         }
-        if (!cmbCurrentLimitationLevel.getSelectionModel().getSelectedItem().equals(LimitationLevel.NOT_RELEVANT)) {
+        if (!currentLimitationLevel.equals(LimitationLevel.NOT_RELEVANT)) {
             if (!isExpectedLimitationLevelSelected() || !isDateValid() || !isPerformanceLevelSelected() || !isPerceivedLimitationLevelSelected()) {
                 return false;
             }
@@ -193,7 +214,7 @@ public class FunctionalAbilityComponentController implements Initializable {
     }
 
     private boolean isCurrentLimitationLevelSelected() {
-        if (cmbCurrentLimitationLevel.getSelectionModel().getSelectedItem() != null) {
+        if (currentLimitationLevel != null) {
             return true;
         } else {
             PopUp.showError("Select current limitation level!");
@@ -202,7 +223,7 @@ public class FunctionalAbilityComponentController implements Initializable {
     }
 
     private boolean isExpectedLimitationLevelSelected() {
-        if (cmbExpectedLimitationLevel.getSelectionModel().getSelectedItem() != null) {
+        if (expectedLimitationLevel != null) {
             return true;
         } else {
             PopUp.showError("Select expected limitation level!");
@@ -242,17 +263,22 @@ public class FunctionalAbilityComponentController implements Initializable {
     }
 
     private void clearOpacity() {
-        currentImages.forEach(imageView -> imageView.setOpacity(0));
-        currentImages.forEach(imageView -> imageView.setOpacity(0));
+        currentImages.forEach(imageView -> imageView.setOpacity(1));
+        expectedImages.forEach(imageView -> imageView.setOpacity(1));
     }
 
     private void makeAllOpaque() {
         currentImages.forEach(imageView -> imageView.setOpacity(0.5));
-        currentImages.forEach(imageView -> imageView.setOpacity(0.5));
+        expectedImages.forEach(imageView -> imageView.setOpacity(0.5));
     }
 
     private void makeOpaqueInExcept(List<ImageView> images, ImageView imageView) {
-        images.forEach(image -> image.setOpacity(0.5));
-        imageView.setOpacity(0);
+        images.forEach(img -> {
+            if (img != imageView) {
+                img.setOpacity(0.5);
+            } else {
+                img.setOpacity(1);
+            }
+        });
     }
 }
