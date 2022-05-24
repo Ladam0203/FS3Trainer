@@ -28,6 +28,8 @@ public class TemplatesController implements Initializable {
     @FXML
     private TextField txfFilterTemplates;
 
+    private ContextMenu contextMenu;
+
     private FilteredList<CitizenTemplate> citizenTemplateFilteredList;
 
     private CitizenTemplateModel citizenTemplateModel;
@@ -43,6 +45,73 @@ public class TemplatesController implements Initializable {
         }
         citizenTemplateFilteredList = new FilteredList<>(citizenTemplateModel.getObservableCitizenTemplates());
         ltvCitizenTemplates.setItems(citizenTemplateFilteredList);
+
+        contextMenu = new ContextMenu();
+        MenuItem newItem = new MenuItem("New template...");
+        MenuItem editItem = new MenuItem("Edit template...");
+        MenuItem copyTemplateItem = new MenuItem("Create copy");
+        MenuItem createInstance = new MenuItem("Create assignment");
+        MenuItem deleteItem = new MenuItem("Delete");
+
+        contextMenu.getItems().add(newItem);
+        contextMenu.getItems().add(editItem);
+        contextMenu.getItems().add(copyTemplateItem);
+        contextMenu.getItems().add(createInstance);
+        contextMenu.getItems().add(deleteItem);
+
+        ltvCitizenTemplates.setContextMenu(contextMenu);
+
+        deleteItem.setOnAction(event -> {
+            try {
+                citizenTemplateModel.deleteCitizenTemplate();
+            } catch (Exception e) {
+                PopUp.showError("Couldn't delete citizen template!", e);
+            }
+        });
+
+        copyTemplateItem.setOnAction(event -> {
+            CitizenTemplate copiedCitizenTemplate = new CitizenTemplate(citizenTemplateModel.getSelectedCitizenTemplate());
+            try {
+                citizenTemplateModel.createCitizenTemplate(copiedCitizenTemplate);
+            } catch (Exception e) {
+                PopUp.showError("Couldn't copy citizen template!", e);
+            }
+        });
+
+        createInstance.setOnAction(event -> {
+            CitizenTemplate citizenTemplateInstance = citizenTemplateModel.getSelectedCitizenTemplate();
+            CitizenInstance citizenInstance = new CitizenInstance(citizenTemplateInstance);
+            try {
+                citizenInstanceModel.createCitizenInstance(citizenInstance);
+            } catch (Exception e) {
+                PopUp.showError("Couldn't create assignment from template!", e);
+            }
+        });
+
+        newItem.setOnAction(event -> {
+            CitizenTemplateDialog dialog = new CitizenTemplateDialog();
+            Optional<CitizenTemplate> result = dialog.showAndWait();
+            result.ifPresent(response -> {
+                try {
+                    citizenTemplateModel.createCitizenTemplate(response);
+                } catch (Exception e) {
+                    PopUp.showError("Couldn't create citizen template!", e);
+                }
+            });
+        });
+
+        editItem.setOnAction(event -> {
+            CitizenTemplateDialog dialog = new CitizenTemplateDialog();
+            dialog.passCitizenTemplate(citizenTemplateModel.getSelectedCitizenTemplate());
+            Optional<CitizenTemplate> result = dialog.showAndWait();
+            result.ifPresent(response -> {
+                try {
+                    citizenTemplateModel.updateCitizenTemplate(response);
+                } catch (Exception e) {
+                    PopUp.showError("Couldn't update citizen template!", e);
+                }
+            });
+        });
     }
 
     @FXML
@@ -51,62 +120,8 @@ public class TemplatesController implements Initializable {
         if (citizenTemplate != null) {
             citizenTemplateModel.setSelectedCitizenTemplate(citizenTemplate);
         }
-
         if (mouseEvent.getButton().equals(MouseButton.SECONDARY)) {
-
-            ContextMenu contextMenu = new ContextMenu();
-            MenuItem deleteItem = new MenuItem("Delete");
-            MenuItem copyTemplateItem = new MenuItem("Copy template");
-            MenuItem createInstance = new MenuItem("Create instance");
-            MenuItem newItem = new MenuItem("New template");
-
-            contextMenu.getItems().add(newItem);
-            contextMenu.getItems().add(copyTemplateItem);
-            contextMenu.getItems().add(createInstance);
-            contextMenu.getItems().add(deleteItem);
-
-            ltvCitizenTemplates.setContextMenu(contextMenu);
-
             contextMenu.show(ltvCitizenTemplates.getPlaceholder(), mouseEvent.getX(), mouseEvent.getY());
-
-            deleteItem.setOnAction(event -> {
-                try {
-                    citizenTemplateModel.deleteCitizenTemplate();
-                } catch (Exception e) {
-                    PopUp.showError("Couldn't delete citizen template!", e);
-                }
-            });
-
-            copyTemplateItem.setOnAction(event -> {
-                CitizenTemplate copiedCitizenTemplate = new CitizenTemplate(citizenTemplateModel.getSelectedCitizenTemplate());
-                try {
-                    citizenTemplateModel.createCitizenTemplate(copiedCitizenTemplate);
-                } catch (Exception e) {
-                    PopUp.showError("Couldn't copy citizen template!", e);
-                }
-            });
-
-            createInstance.setOnAction(event -> {
-                CitizenTemplate citizenTemplateInstance = citizenTemplateModel.getSelectedCitizenTemplate();
-                CitizenInstance citizenInstance = new CitizenInstance(citizenTemplateInstance);
-                try {
-                    citizenInstanceModel.createCitizenInstance(citizenInstance);
-                } catch (Exception e) {
-                    PopUp.showError("Cannot create Citizen from template!", e);
-                }
-            });
-
-            newItem.setOnAction(event -> {
-                CitizenTemplateDialog dialog = new CitizenTemplateDialog();
-                Optional<CitizenTemplate> result = dialog.showAndWait();
-                result.ifPresent(response -> {
-                    try {
-                        citizenTemplateModel.createCitizenTemplate(response);
-                    } catch (Exception e) {
-                        PopUp.showError("Couldn't create citizen template!", e);
-                    }
-                });
-            });
         }
     }
 

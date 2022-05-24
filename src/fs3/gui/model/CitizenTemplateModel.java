@@ -46,7 +46,7 @@ public class CitizenTemplateModel {
 
     }
 
-    public void updateSelectedCitizenTemplate(CitizenTemplate citizenTemplate) throws Exception {
+    public void updateCitizenTemplate(CitizenTemplate citizenTemplate) throws Exception {
         citizenLogic.updateCitizenTemplate(citizenTemplate);
         observableCitizenTemplates.set(observableCitizenTemplates.indexOf(citizenTemplate), citizenTemplate);
     }

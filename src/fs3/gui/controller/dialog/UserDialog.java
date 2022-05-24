@@ -53,7 +53,6 @@ public abstract class UserDialog<T extends User> extends Dialog<T> {
 
     /* Load the user to the dialog */
     public void passUser(T selected){
-        this.setTitle("Edit " + userClassName);
         controller.passUser(selected);
     }
 }

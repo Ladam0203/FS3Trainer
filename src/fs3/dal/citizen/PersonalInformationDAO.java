@@ -16,7 +16,7 @@ public class PersonalInformationDAO {
 
     private String read = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ?";
     private String create = "INSERT INTO " + tableName + " VALUES (?, ?, ?)";
-    private String update = "UPDATE " + tableName + " SET " + columns[1] + " = ? " + columns[2] + " = ? WHERE " + columns[0] + " = ?";
+    private String update = "UPDATE " + tableName + " SET " + columns[1] + " = ?, " + columns[2] + " = ? WHERE " + columns[0] + " = ?";
 
     public PersonalInformation read(Citizen citizen) throws Exception {
         PersonalInformation personalInformation = null;

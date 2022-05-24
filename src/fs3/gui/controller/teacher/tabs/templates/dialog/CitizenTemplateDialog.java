@@ -38,12 +38,7 @@ public class CitizenTemplateDialog extends Dialog<CitizenTemplate> {
             });
             this.setResultConverter(buttonType -> {
                 if(buttonType.equals(ButtonType.APPLY)){
-                    CitizenTemplate newCitizenTemplate = new CitizenTemplate();
-                    PersonalInformation personalInformation = new PersonalInformation();
-                    personalInformation.setName(controller.getName());
-                    personalInformation.setAge(controller.getAge());
-                    newCitizenTemplate.setPersonalInformation(personalInformation);
-                    return newCitizenTemplate;
+                    return controller.constructCitizenTemplate();
                 }
                 return null;
             });
@@ -51,5 +46,9 @@ public class CitizenTemplateDialog extends Dialog<CitizenTemplate> {
         } catch (Exception e) {
             PopUp.showError("Couldn't load the citizen template dialog!", e);
         }
+    }
+
+    public void passCitizenTemplate(CitizenTemplate citizenTemplate){
+        controller.passCitizenTemplate(citizenTemplate);
     }
 }

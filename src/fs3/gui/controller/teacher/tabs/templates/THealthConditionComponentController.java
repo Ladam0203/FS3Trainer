@@ -1,13 +1,10 @@
 package fs3.gui.controller.teacher.tabs.templates;
 
-import fs3.be.Citizen;
-import fs3.be.CitizenInstance;
 import fs3.be.CitizenTemplate;
 import fs3.be.HealthConditionData;
 import fs3.enums.ExpectedLevel;
 import fs3.enums.HealthCondition;
 import fs3.enums.HealthConditionState;
-import fs3.gui.model.CitizenInstanceModel;
 import fs3.gui.model.CitizenTemplateModel;
 import fs3.util.PopUp;
 import javafx.event.ActionEvent;
@@ -121,7 +118,7 @@ public class THealthConditionComponentController implements Initializable {
             citizenTemplate.getHealthConditions().put(healthCondition, healthConditionData);
 
             try {
-                citizenTemplateModel.updateSelectedCitizenTemplate(citizenTemplate);
+                citizenTemplateModel.updateCitizenTemplate(citizenTemplate);
             } catch (Exception e) {
                 e.printStackTrace();
                 //TODO: handle gracefully
