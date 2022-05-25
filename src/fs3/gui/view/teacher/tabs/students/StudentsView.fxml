@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox minWidth="-Infinity" prefHeight="500.0" prefWidth="1200.0" stylesheets="@../../../styles/common.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.teacher.tabs.students.StudentsController">
+<VBox minWidth="-Infinity" prefHeight="500.0" prefWidth="1200.0" stylesheets="@../../../styles/common.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.teacher.tabs.students.StudentsController">
    <children>
       <Pane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="55.0" style="-fx-background-color: #22577A;" VBox.vgrow="NEVER">
          <children>
@@ -27,7 +27,7 @@
       </Pane>
       <HBox VBox.vgrow="ALWAYS">
          <children>
-            <VBox maxHeight="1.7976931348623157E308" styleClass="right-border" HBox.hgrow="NEVER">
+            <VBox maxHeight="1.7976931348623157E308" prefWidth="300.0" styleClass="right-border" HBox.hgrow="NEVER">
                <children>
                   <Label alignment="CENTER" maxWidth="1.7976931348623157E308" style="-fx-text-fill: #F7F8F9; -fx-background-color: #1e4c6b;" styleClass="fs3-headline" text="Students" VBox.vgrow="NEVER">
                      <padding>
@@ -37,7 +37,7 @@
                   <ListView fx:id="ltvStudents" onMouseClicked="#handleSelectStudent" VBox.vgrow="ALWAYS" />
                   <HBox style="-fx-background-color: #1e4c6b;" VBox.vgrow="NEVER">
                      <children>
-                        <TextField fx:id="txfFilterStudents" onKeyTyped="#handleFilterStudents" HBox.hgrow="ALWAYS" promptText="Filter"/>
+                        <TextField fx:id="txfFilterStudents" onKeyTyped="#handleFilterStudents" promptText="Filter" HBox.hgrow="ALWAYS" />
                      </children>
                      <padding>
                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
