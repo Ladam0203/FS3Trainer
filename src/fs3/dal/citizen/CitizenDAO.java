@@ -24,7 +24,7 @@ public class CitizenDAO {
     private final FunctionalAbilityDAO functionalAbilityDAO = new FunctionalAbilityDAO();
 
     private String tableName = "Citizens";
-    private String[] columns = {"id", "isTemplate"};
+    private String[] columns = {"id", "isTemplate", "schoolId"};
 
     private String select = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ?";
     private String insert = "INSERT INTO " + tableName + " " + "VALUES (?, ?)";
