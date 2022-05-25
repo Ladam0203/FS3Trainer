@@ -30,7 +30,7 @@ public abstract class UserDialog<T extends User> extends Dialog<T> {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
             loader.setController(controller);
             DialogPane dp = loader.load();
-            this.setTitle("New " + userClassName);
+            this.setTitle(userClassName);
             this.setDialogPane(dp);
             final Button btApply = (Button) dp.lookupButton(ButtonType.APPLY);
             btApply.addEventFilter(ActionEvent.ACTION, event -> {
@@ -53,7 +53,6 @@ public abstract class UserDialog<T extends User> extends Dialog<T> {
 
     /* Load the user to the dialog */
     public void passUser(T selected){
-        this.setTitle("Edit " + userClassName);
         controller.passUser(selected);
     }
 }

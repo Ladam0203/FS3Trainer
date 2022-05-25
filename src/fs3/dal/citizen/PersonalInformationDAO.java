@@ -12,11 +12,11 @@ import java.sql.ResultSet;
 
 public class PersonalInformationDAO {
     private String tableName = "PersonalInformations";
-    private String[] columns = {"citizenId", "name"};
+    private String[] columns = {"citizenId", "name", "age"};
 
     private String read = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ?";
-    private String create = "INSERT INTO " + tableName + " VALUES (?, ?)";
-    private String update = "UPDATE " + tableName + " SET " + columns[1] + " = ? WHERE " + columns[0] + " = ?";
+    private String create = "INSERT INTO " + tableName + " VALUES (?, ?, ?)";
+    private String update = "UPDATE " + tableName + " SET " + columns[1] + " = ?, " + columns[2] + " = ? WHERE " + columns[0] + " = ?";
 
     public PersonalInformation read(Citizen citizen) throws Exception {
         PersonalInformation personalInformation = null;
@@ -43,6 +43,7 @@ public class PersonalInformationDAO {
             PreparedStatement ps = con.prepareStatement(create);
             ps.setInt(1, citizen.getId());
             ps.setString(2, citizen.getPersonalInformation().getName());
+            ps.setInt(3, citizen.getPersonalInformation().getAge());
 
             ps.executeUpdate();
         } finally {
@@ -55,8 +56,9 @@ public class PersonalInformationDAO {
         try (Connection con = cm.getConnection()) {
             PreparedStatement ps = con.prepareStatement(update);
             ps.setString(1, citizen.getPersonalInformation().getName());
+            ps.setInt(2, citizen.getPersonalInformation().getAge());
 
-            ps.setInt(2, citizen.getId());
+            ps.setInt(3, citizen.getId());
 
             ps.executeUpdate();
         } finally {
@@ -67,6 +69,7 @@ public class PersonalInformationDAO {
     public PersonalInformation constructObject(ResultSet rs) throws Exception {
         PersonalInformation personalInformation = new PersonalInformation();
         personalInformation.setName(rs.getString(columns[1]));
+        personalInformation.setAge(rs.getInt(columns[2]));
         return personalInformation;
     }
 }
