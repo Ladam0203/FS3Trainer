@@ -4,6 +4,7 @@ import com.microsoft.sqlserver.jdbc.SQLServerException;
 import fs3.be.Citizen;
 import fs3.be.CitizenInstance;
 import fs3.be.CitizenTemplate;
+import fs3.be.School;
 import fs3.dal.ConnectionManager;
 import fs3.dal.ConnectionManagerPool;
 import fs3.dal.school.SchoolDAO;
@@ -29,12 +30,22 @@ public class CitizenDAO {
     private String select = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ?";
     private String insert = "INSERT INTO " + tableName + " " + "VALUES (?, ?)";
     private String readAllInstances = "SELECT * FROM " + tableName + " WHERE " + columns[1] + " = 0";
+    private String readAllInstancesFrom = "SELECT * FROM " + tableName + " WHERE " + columns[1] + " = 0 AND " + columns[2] + " = ?";
     private String readAllTemplates = "SELECT * FROM " + tableName + " WHERE " + columns[1] + " = 1";
+    private String readAllTemplatesFrom = "SELECT * FROM " + tableName + " WHERE " + columns[1] + " = 1 AND " + columns[2] + " = ?";
     private String delete = "DELETE FROM " + tableName + " WHERE " + columns[0] + " = ?";
 
     private SchoolDAO schoolDAO = new SchoolDAO();
 
     private ExecutorService subExecutor;
+
+    public List<CitizenTemplate> readAllCitizenTemplatesFrom(School school) throws Exception {
+        return readAllFrom(readAllTemplatesFrom, school).stream().map(c -> (CitizenTemplate) c).collect(Collectors.toList());
+    }
+
+    public List<CitizenInstance> readAllCitizenInstancesFrom(School school) throws Exception {
+        return readAllFrom(readAllInstancesFrom, school).stream().map(c -> (CitizenInstance) c).collect(Collectors.toList());
+    }
 
     public List<CitizenTemplate> readAllCitizenTemplates() throws Exception {
         return readAll(readAllTemplates).stream().map(c -> (CitizenTemplate) c).collect(Collectors.toList());
@@ -65,6 +76,25 @@ public class CitizenDAO {
         ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
         try (Connection con = cm.getConnection()) {
             PreparedStatement ps = con.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                citizens.add(constructCitizen(rs));
+            }
+        } finally {
+            ConnectionManagerPool.getInstance().returnConnectionManager(cm);
+        }
+
+        return citizens;
+    }
+
+    private List<Citizen> readAllFrom(String query, School school) throws Exception {
+        List<Citizen> citizens = new ArrayList<>();
+
+        ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
+        try (Connection con = cm.getConnection()) {
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setInt(1, school.getId());
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {

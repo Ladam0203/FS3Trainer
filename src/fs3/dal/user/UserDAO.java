@@ -1,9 +1,6 @@
 package fs3.dal.user;
 
-import fs3.be.Admin;
-import fs3.be.Student;
-import fs3.be.Teacher;
-import fs3.be.User;
+import fs3.be.*;
 import fs3.dal.ConnectionManager;
 import fs3.dal.ConnectionManagerPool;
 import fs3.enums.UserRole;
@@ -31,6 +28,23 @@ public class UserDAO {
     private String insert = "INSERT INTO " + tableName + " (" + columns[1] + ", " + columns[2] + ", " + columns[3] + ") VALUES (?, ?, ?)";
     private String update = "UPDATE " + tableName + " SET " + columns[1] + " = ?, " + columns[2] + " = ? WHERE " + columns[0] + " = ?";
     private String delete = "DELETE FROM " + tableName + " WHERE " + columns[0] + " = ?";
+
+    public List<Student> readAllStudentsFrom(School school) throws Exception {
+        List<Student> students = new ArrayList<>();
+        ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
+        try (Connection con = cm.getConnection()) {
+            PreparedStatement ps = con.prepareStatement(selectStudents);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Student student = (Student) constructUser(rs);
+                studentDAO.set(student);
+                students.add(student);
+            }
+        } finally {
+            ConnectionManagerPool.getInstance().returnConnectionManager(cm);
+        }
+        return students;
+    }
 
     public List<Student> readAllStudents() throws Exception {
         return readAllSubUsers(studentDAO, selectStudents);
