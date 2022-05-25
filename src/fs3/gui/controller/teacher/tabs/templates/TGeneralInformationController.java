@@ -116,7 +116,7 @@ public class TGeneralInformationController implements Initializable {
         newGeneralInformation.setNetwork(txaNetwork.getText());
         selectedCitizenTemplate.setGeneralInformation(newGeneralInformation);
         try {
-            citizenTemplateModel.updateSelectedCitizenTemplate(selectedCitizenTemplate);
+            citizenTemplateModel.updateCitizenTemplate(selectedCitizenTemplate);
         } catch (Exception e) {
             PopUp.showError("Cannot update template!", e);
         }

@@ -158,7 +158,7 @@ public class TFunctionalAbilityComponentController implements Initializable {
 
             citizenTemplate.getFunctionalAbilities().put(functionalAbility, functionalAbilityData);
             try {
-                citizenTemplateModel.updateSelectedCitizenTemplate(citizenTemplate);
+                citizenTemplateModel.updateCitizenTemplate(citizenTemplate);
             } catch (Exception e) {
                 e.printStackTrace();
                 //TODO: handle gracefully
