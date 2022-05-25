@@ -16,9 +16,10 @@ import java.util.ResourceBundle;
 
 public class GeneralInformationController implements Initializable {
     @FXML
-    private TextArea txaCoping, txaMotivation, txaResources, txaRoles, txaHabits, txaEducationAndJobs, txaLifeStory, txaHealthInformation, txaEquipmentAids, txaHomeLayout, txaNetwork;
-    @FXML
-    private Label lblName;
+    private TextArea txaCoping, txaMotivation, txaResources,
+            txaRoles, txaHabits, txaEducationAndJobs,
+            txaLifeStory, txaHealthInformation, txaEquipmentAids,
+            txaHomeLayout, txaNetwork;
 
     private CitizenInstanceModel citizenInstanceModel;
 
@@ -48,7 +49,6 @@ public class GeneralInformationController implements Initializable {
         citizenInstanceModel.getSelectedCitizenProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 PersonalInformation personalInformation = newValue.getPersonalInformation();
-                lblName.setText(personalInformation.getName());
 
                 GeneralInformation generalInformation = newValue.getGeneralInformation();
                 if (generalInformation != null) {

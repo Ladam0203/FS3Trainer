@@ -18,29 +18,10 @@ import java.util.ResourceBundle;
 
 public class TGeneralInformationController implements Initializable {
     @FXML
-    private TextField txfCitizenName;
-    @FXML
-    private TextArea txaCoping;
-    @FXML
-    private TextArea txaMotivation;
-    @FXML
-    private TextArea txaResources;
-    @FXML
-    private TextArea txaRoles;
-    @FXML
-    private TextArea txaHabits;
-    @FXML
-    private TextArea txaEducationAndJobs;
-    @FXML
-    private TextArea txaLifeStory;
-    @FXML
-    private TextArea txaHealthInformation;
-    @FXML
-    private TextArea txaEquipmentAids;
-    @FXML
-    private TextArea txaHomeLayout;
-    @FXML
-    private TextArea txaNetwork;
+    private TextArea txaCoping, txaMotivation, txaResources,
+            txaRoles, txaHabits, txaEducationAndJobs,
+            txaLifeStory, txaHealthInformation, txaEquipmentAids,
+            txaHomeLayout, txaNetwork;
 
     private List<TextArea> textAreaList;
     private CitizenTemplateModel citizenTemplateModel;
@@ -68,7 +49,6 @@ public class TGeneralInformationController implements Initializable {
         citizenTemplateModel.getSelectedCitizenTemplateProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 PersonalInformation personalInformation = newValue.getPersonalInformation();
-                txfCitizenName.setText(personalInformation.getName());
 
                 GeneralInformation generalInformation = newValue.getGeneralInformation();
                 if (generalInformation != null) {
@@ -102,7 +82,6 @@ public class TGeneralInformationController implements Initializable {
             PopUp.showError("Select template!");
         }
         GeneralInformation newGeneralInformation = new GeneralInformation();
-        selectedCitizenTemplate.getPersonalInformation().setName(txfCitizenName.getText());
         newGeneralInformation.setCoping(txaCoping.getText());
         newGeneralInformation.setMotivation(txaMotivation.getText());
         newGeneralInformation.setResources(txaResources.getText());
