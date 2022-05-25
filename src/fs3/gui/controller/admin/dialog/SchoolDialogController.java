@@ -1,4 +1,4 @@
-package fs3.gui.view.admin.SchoolDialog;
+package fs3.gui.controller.admin.dialog;
 
 import fs3.be.School;
 import javafx.fxml.FXML;

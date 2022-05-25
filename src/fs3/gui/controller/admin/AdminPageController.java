@@ -1,9 +1,12 @@
 package fs3.gui.controller.admin;
 
-
 import fs3.be.School;
+import fs3.be.Teacher;
+import fs3.gui.controller.admin.dialog.SchoolDialog;
+import fs3.gui.controller.admin.dialog.TeacherDialog;
+import fs3.gui.controller.dialog.UserDialog;
 import fs3.gui.model.SchoolModel;
-import fs3.gui.view.admin.SchoolDialog.SchoolDialog;
+import fs3.gui.model.TeacherModel;
 import fs3.util.PopUp;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,9 +24,13 @@ import java.util.ResourceBundle;
 public class AdminPageController implements Initializable {
 
     @FXML
+    private ListView<Teacher> ltvTeachers;
+
+    @FXML
     private ListView<School> ltvSchools;
 
     private SchoolModel schoolModel;
+    private TeacherModel teacherModel;
 
     private ContextMenu contextMenu;
     private MenuItem newItem;
@@ -35,7 +42,13 @@ public class AdminPageController implements Initializable {
         schoolModel = new SchoolModel();
         ltvSchools.setItems(schoolModel.getAllSchools());
 
-        //setting up context Menu
+        teacherModel = TeacherModel.getInstance();
+        ltvTeachers.setItems(teacherModel.getObservableTeachers());
+
+        setupContextMenu();
+    }
+
+    private void setupContextMenu() {
         contextMenu = new ContextMenu();
         newItem = new MenuItem();
         editItem = new MenuItem();
@@ -44,28 +57,33 @@ public class AdminPageController implements Initializable {
         contextMenu.getItems().add(newItem);
         contextMenu.getItems().add(editItem);
         contextMenu.getItems().add(deleteItem);
+
+        ltvTeachers.setContextMenu(contextMenu);
+        ltvSchools.setContextMenu(contextMenu);
     }
 
     @FXML
     private void handleSelectSchool(MouseEvent mouseEvent) {
-    School selected = ltvSchools.getSelectionModel().getSelectedItem();
+        School selected = ltvSchools.getSelectionModel().getSelectedItem();
         if (selected == null) {
             return;
         }
+
+        //TODO: filter teachers from selected school
+
         if (mouseEvent.getButton().equals(MouseButton.SECONDARY)) {
             newItem.setText("New School");
             editItem.setText("Edit School");
             deleteItem.setText("Delete School");
 
-            ltvSchools.setContextMenu(contextMenu);
             contextMenu.show(ltvSchools.getPlaceholder(), mouseEvent.getX(), mouseEvent.getY());
 
             newItem.setOnAction(event -> {
-                newSchool();
+                newSchoolDialog();
             });
 
             editItem.setOnAction(event -> {
-                editSchool();
+                editSchoolDialog();
             });
 
             deleteItem.setOnAction(event -> {
@@ -76,20 +94,20 @@ public class AdminPageController implements Initializable {
 
     @FXML
     private void handleNewSchool(ActionEvent event) {
-        newSchool();
+        newSchoolDialog();
     }
 
     @FXML
     private void handleEditSchool(ActionEvent event) {
-        editSchool();
+        editSchoolDialog();
     }
 
     @FXML
-        private void handleDeleteSchool(ActionEvent event) {
+    private void handleDeleteSchool(ActionEvent event) {
         deleteSchool();
     }
 
-    private void newSchool(){
+    private void newSchoolDialog() {
         SchoolDialog dialog = new SchoolDialog();
         Optional<School> result = dialog.showAndWait();
         result.ifPresent(response -> {
@@ -101,9 +119,9 @@ public class AdminPageController implements Initializable {
         });
     }
 
-    private void editSchool(){
+    private void editSchoolDialog() {
         School school = ltvSchools.getSelectionModel().getSelectedItem();
-        if(school != null) {
+        if (school != null) {
             SchoolDialog dialog = new SchoolDialog();
             dialog.passSchool(school);
             Optional<School> result = dialog.showAndWait();
@@ -117,7 +135,7 @@ public class AdminPageController implements Initializable {
         }
     }
 
-    private void deleteSchool(){
+    private void deleteSchool() {
         School school = ltvSchools.getSelectionModel().getSelectedItem();
         if (school != null) {
             try {
@@ -125,6 +143,89 @@ public class AdminPageController implements Initializable {
             } catch (Exception e) {
                 PopUp.showError("Cannot delete school", e);
             }
+        }
+    }
+
+    @FXML
+    private void handleSelectTeacher(MouseEvent mouseEvent) {
+        if (mouseEvent.getButton().equals(MouseButton.SECONDARY)) {
+            newItem.setText("New Teacher");
+            editItem.setText("Edit Teacher");
+            deleteItem.setText("Delete Teacher");
+
+            contextMenu.show(ltvTeachers.getPlaceholder(), mouseEvent.getX(), mouseEvent.getY());
+
+            newItem.setOnAction(event -> {
+                newTeacherDialog();
+            });
+
+            editItem.setOnAction(event -> {
+                editTeacherDialog();
+            });
+
+            deleteItem.setOnAction(event -> {
+                deleteTeacher();
+            });
+        }
+    }
+
+    @FXML
+    private void handleNewTeacher(ActionEvent event) {
+        newTeacherDialog();
+    }
+
+    @FXML
+    private void handleEditTeacher(ActionEvent event) {
+        editTeacherDialog();
+    }
+
+    @FXML
+    private void handleDeleteTeacher(ActionEvent event) {
+        deleteTeacher();
+    }
+
+    private void newTeacherDialog() {
+        UserDialog<Teacher> dialog = new TeacherDialog();
+        Optional<Teacher> result = dialog.showAndWait();
+        result.ifPresent(response -> {
+            try {
+                //pass the new created teacher to teacher model
+                teacherModel.createTeacher(response);
+            } catch (Exception e) {
+                PopUp.showError("Couldn't create new teacher!", e);
+            }
+        });
+    }
+
+    private void editTeacherDialog() {
+        Teacher selected = ltvTeachers.getSelectionModel().getSelectedItem();
+        if (selected != null) {
+            UserDialog<Teacher> dialog = new TeacherDialog();
+            dialog.passUser(selected);
+            Optional<Teacher> result = dialog.showAndWait();
+            result.ifPresent(response -> {
+                try {
+                    //update teacher info
+                    teacherModel.updateTeacher(response);
+                } catch (Exception e) {
+                    PopUp.showError("Couldn't edit teacher!", e);
+                }
+            });
+        } else {
+            PopUp.showError("Please select a teacher to edit first!");
+        }
+    }
+
+    private void deleteTeacher() {
+        Teacher selected = ltvTeachers.getSelectionModel().getSelectedItem();
+        if (selected != null) {
+            try {
+                teacherModel.deleteTeacher(selected);
+            } catch (Exception e) {
+                PopUp.showError("Couldn't delete teacher!", e);
+            }
+        } else {
+            PopUp.showError("Please select a teacher to delete first");
         }
     }
 }
