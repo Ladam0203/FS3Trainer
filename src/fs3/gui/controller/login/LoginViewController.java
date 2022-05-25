@@ -5,6 +5,7 @@ import fs3.be.Student;
 import fs3.be.Teacher;
 import fs3.be.User;
 import fs3.gui.model.LoginModel;
+import fs3.gui.model.StudentModel;
 import fs3.util.PopUp;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -42,6 +43,19 @@ public class LoginViewController {
                 boolean isStudent = loggedUser.getClass().equals(Student.class);
                 boolean isTeacher = loggedUser.getClass().equals(Teacher.class);
                 boolean isAdmin = loggedUser.getClass().equals(Admin.class);
+
+                if (isStudent) {
+                    if (((Student) loggedUser).getSchool() == null) {
+                        PopUp.showError("You are not assigned to any school! Contact your administrator.");
+                        return;
+                    }
+                }
+                if (isTeacher) {
+                    if (((Teacher) loggedUser).getSchool() == null) {
+                        PopUp.showError("You are not assigned to any school! Contact your administrator.");
+                        return;
+                    }
+                }
 
                 Parent root = isStudent ? FXMLLoader.load(getClass().getResource("../../view/student/StudentPageView.fxml"))
                         : isTeacher ? FXMLLoader.load(getClass().getResource("../../view/teacher/TeacherPageView.fxml"))

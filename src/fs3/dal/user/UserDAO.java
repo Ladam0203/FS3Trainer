@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class UserDAO {
     private final SubUserDAO<Student> studentDAO = new StudentDAO();
@@ -38,7 +39,9 @@ public class UserDAO {
             while (rs.next()) {
                 Student student = (Student) constructUser(rs);
                 studentDAO.set(student);
-                students.add(student);
+                if (school.equals(student.getSchool())) {
+                    students.add(student);
+                }
             }
         } finally {
             ConnectionManagerPool.getInstance().returnConnectionManager(cm);

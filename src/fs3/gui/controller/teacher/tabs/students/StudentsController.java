@@ -36,30 +36,30 @@ public class StudentsController implements Initializable {
     @FXML
     private ListView<Student> ltvStudents;
 
+    private LoginModel loginModel;
     private StudentModel studentModel;
     private CitizenInstanceModel instanceModel;
-    private LoginModel loginModel;
 
-    FilteredList<CitizenInstance> availableCitizens;
-    FilteredList<Student> studentFilteredList;
+    private FilteredList<CitizenInstance> availableCitizens;
+    private FilteredList<Student> studentFilteredList;
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            studentModel = StudentModel.getInstance();
-            instanceModel = CitizenInstanceModel.getInstance();
             loginModel = LoginModel.getInstance();
+            studentModel = StudentModel.getInstance(((Teacher)loginModel.getLoggedUser()).getSchool());
+            instanceModel = CitizenInstanceModel.getInstance();
 
             studentFilteredList = new FilteredList<>(studentModel.getObservableStudents());
             studentFilteredList.setPredicate(null);
             ltvStudents.setItems(studentFilteredList);
+
             availableCitizens = new FilteredList<>(instanceModel.getObservableCitizens());
             availableCitizens.setPredicate(null);
             ltvAvailableAssignments.setItems(availableCitizens);
         } catch (Exception e) {
-            PopUp.showError("Cannot load students!");
-            e.printStackTrace();
+            PopUp.showError("Cannot load students!", e);
         }
 
     }

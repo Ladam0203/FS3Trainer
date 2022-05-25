@@ -75,6 +75,7 @@ class UserDAOTest {
     }
 
     @Test
+    @Disabled
     void updateTeacher() throws Exception {
         UserDAO userDAO = new UserDAO();
         List<Teacher> teachers = userDAO.readAllTeachers();
@@ -86,6 +87,28 @@ class UserDAOTest {
         teacher.setSchool(schools.get(0));
 
         userDAO.update(teacher);
+    }
+
+    @Test
+    @Disabled
+    void loadTeaches() throws Exception {
+        UserDAO userDAO = new UserDAO();
+        List<Teacher> teachers = userDAO.readAllTeachers();
+
+        for (Teacher teacher : teachers) {
+            System.out.println(teacher.getId());
+            System.out.println(teacher.getName());
+            System.out.println(teacher.getSchool());
+        }
+    }
+
+    @Test
+    void readAllStudentsFromSchool() throws Exception {
+        UserDAO userDAO = new UserDAO();
+        SchoolDAO schoolDAO = new SchoolDAO();
+
+        List<Student> students = userDAO.readAllStudentsFrom(schoolDAO.readAll().get(0));
+        assertEquals(2, students.size());
     }
 
 }
