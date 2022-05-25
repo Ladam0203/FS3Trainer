@@ -1,4 +1,4 @@
-package fs3.gui.view.admin.SchoolDialog;
+package fs3.gui.controller.admin.dialog;
 
 import fs3.be.School;
 import fs3.util.PopUp;
@@ -9,8 +9,6 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.DialogPane;
 
-import java.io.IOException;
-
 
 public class SchoolDialog extends Dialog<School> {
     private SchoolDialogController controller;
@@ -18,7 +16,7 @@ public class SchoolDialog extends Dialog<School> {
     public SchoolDialog(){
         super();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fs3/gui/view/admin/SchoolDialog/SchoolDialog.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fs3/gui/view/admin/dialog/SchoolDialog.fxml"));
             DialogPane dp = loader.load();
             controller = loader.getController();
             this.setTitle("School");
