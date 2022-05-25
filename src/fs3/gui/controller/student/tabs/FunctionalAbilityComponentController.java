@@ -90,7 +90,7 @@ public class FunctionalAbilityComponentController implements Initializable {
 
         currentImages = List.of(imgCurrentNo, imgCurrentSlight, imgCurrentModerate, imgCurrentSevere, imgCurrentTotal);
         expectedImages = List.of(imgExpectedNo, imgExpectedSlight, imgExpectedModerate, imgExpectedSevere, imgExpectedTotal);
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 5; i++) {
             currentImages.get(i).setImage(limitationImages.get(i));
             expectedImages.get(i).setImage(limitationImages.get(i));
         }
@@ -117,8 +117,10 @@ public class FunctionalAbilityComponentController implements Initializable {
         if (disable) {
             makeAllOpaque();
         } else {
-            makeOpaqueInExcept(currentImages, currentImages.get(currentLimitationLevel.ordinal()));
-            makeOpaqueInExcept(expectedImages, expectedImages.get(expectedLimitationLevel.ordinal()));
+            if (currentLimitationLevel != null)
+                makeOpaqueInExcept(currentImages, currentImages.get(currentLimitationLevel.ordinal()));
+            if (expectedLimitationLevel != null)
+                makeOpaqueInExcept(expectedImages, expectedImages.get(expectedLimitationLevel.ordinal()));
         }
         currentImages.forEach(image -> image.setDisable(disable));
         expectedImages.forEach(image -> image.setDisable(disable));
@@ -180,16 +182,22 @@ public class FunctionalAbilityComponentController implements Initializable {
     //event handler for image button
     @FXML
     private void handleSelectCurrent(MouseEvent event) {
-        ImageView selected = (ImageView) event.getSource();
-        currentLimitationLevel = LimitationLevel.fromInt(currentImages.indexOf(selected));
-        makeOpaqueInExcept(currentImages, selected);
+        if (tggRelevant.getSelectedToggle() != null)
+        {
+            ImageView selected = (ImageView) event.getSource();
+            currentLimitationLevel = LimitationLevel.fromInt(currentImages.indexOf(selected));
+            makeOpaqueInExcept(currentImages, selected);
+        }
     }
 
     @FXML
     private void handleSelectExpected(MouseEvent event) {
-        ImageView selected = (ImageView) event.getSource();
-        expectedLimitationLevel = LimitationLevel.fromInt(expectedImages.indexOf(selected));
-        makeOpaqueInExcept(expectedImages, selected);
+        if (tggRelevant.getSelectedToggle() != null)
+        {
+            ImageView selected = (ImageView) event.getSource();
+            expectedLimitationLevel = LimitationLevel.fromInt(expectedImages.indexOf(selected));
+            makeOpaqueInExcept(expectedImages, selected);
+        }
     }
 
     private boolean areFieldsFilled() {
