@@ -16,10 +16,10 @@ public class SchoolDAO {
     private String[] columns = {"id", "name"};
 
     private String selectAll = "SELECT * FROM " + tableName;
-    private String selectById = "SELECT * FROM " + tableName + " WHERE id = ?";
-    private String insert = "INSERT INTO " + tableName + " (name) VALUES (?)";
-    private String update = "UPDATE " + tableName + " SET name = ? WHERE id = ?";
-    private String delete = "DELETE FROM " + tableName + " WHERE id = ?";
+    private String selectById = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ?";
+    private String insert = "INSERT INTO " + tableName + " (" + columns[1] + ") VALUES (?)";
+    private String update = "UPDATE " + tableName + " SET " + columns[1] + " = ? WHERE " + columns[0] + " = ?";
+    private String delete = "DELETE FROM " + tableName + " WHERE " + columns[0] + " = ?";
 
     public List<School> readAll() throws Exception {
         List<School> schools = new ArrayList<>();
@@ -35,6 +35,63 @@ public class SchoolDAO {
             ConnectionManagerPool.getInstance().returnConnectionManager(cm);
         }
         return schools;
+    }
+
+    public School read(int id) throws Exception {
+        School school = null;
+        ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
+        try (Connection con = cm.getConnection()) {
+            PreparedStatement ps = con.prepareStatement(selectById);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                school = construct(rs);
+            }
+        } finally {
+            ConnectionManagerPool.getInstance().returnConnectionManager(cm);
+        }
+        return school;
+    }
+
+    public School create(School school) throws Exception {
+        ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
+        try (Connection con = cm.getConnection()) {
+            PreparedStatement ps = con.prepareStatement(insert, PreparedStatement.RETURN_GENERATED_KEYS);
+            ps.setString(1, school.getName());
+            ps.executeUpdate();
+
+            ResultSet rs = ps.getGeneratedKeys();
+            if (rs.next()) {
+                school.setId(rs.getInt(1));
+            }
+        } finally {
+            ConnectionManagerPool.getInstance().returnConnectionManager(cm);
+        }
+        return school;
+    }
+
+    public void update(School school) throws Exception {
+        ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
+        try (Connection con = cm.getConnection()) {
+            PreparedStatement ps = con.prepareStatement(update);
+            ps.setString(1, school.getName());
+            ps.setInt(2, school.getId());
+            ps.executeUpdate();
+        } finally {
+            ConnectionManagerPool.getInstance().returnConnectionManager(cm);
+        }
+    }
+
+    public void delete(School school) throws Exception {
+        ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
+        try (Connection con = cm.getConnection()) {
+            PreparedStatement ps = con.prepareStatement(delete);
+            ps.setInt(1, school.getId());
+            ps.executeUpdate();
+        } finally {
+            ConnectionManagerPool.getInstance().returnConnectionManager(cm);
+        }
     }
 
     private School construct(ResultSet rs) throws Exception {

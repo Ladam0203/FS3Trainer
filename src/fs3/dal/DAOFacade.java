@@ -87,4 +87,19 @@ public class DAOFacade implements IDAOFacade {
     public List<School> readAllSchools() throws Exception {
         return schoolDAO.readAll();
     }
+
+    @Override
+    public void updateSchool(School school) throws Exception {
+        schoolDAO.update(school);
+    }
+
+    @Override
+    public void deleteSchool(School school) throws Exception {
+        schoolDAO.delete(school);
+    }
+
+    @Override
+    public School createSchool(School school) throws Exception {
+        return schoolDAO.create(school);
+    }
 }

@@ -18,4 +18,7 @@ public interface IDAOFacade {
     List<Admin> readAllAdmins() throws Exception;
     User createUser(User user) throws Exception;
     List<School> readAllSchools() throws Exception;
+    void updateSchool(School school) throws Exception;
+    void deleteSchool(School school) throws Exception;
+    School createSchool(School school) throws Exception;
 }
