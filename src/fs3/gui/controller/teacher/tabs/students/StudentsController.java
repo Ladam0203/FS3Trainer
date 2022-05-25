@@ -2,9 +2,11 @@ package fs3.gui.controller.teacher.tabs.students;
 
 import fs3.be.CitizenInstance;
 import fs3.be.Student;
+import fs3.be.Teacher;
 import fs3.gui.controller.dialog.UserDialog;
 import fs3.gui.controller.teacher.tabs.students.dialog.StudentDialog;
 import fs3.gui.model.CitizenInstanceModel;
+import fs3.gui.model.LoginModel;
 import fs3.gui.model.StudentModel;
 import fs3.util.PopUp;
 import javafx.collections.FXCollections;
@@ -34,9 +36,9 @@ public class StudentsController implements Initializable {
     @FXML
     private ListView<Student> ltvStudents;
 
-
     private StudentModel studentModel;
     private CitizenInstanceModel instanceModel;
+    private LoginModel loginModel;
 
     FilteredList<CitizenInstance> availableCitizens;
     FilteredList<Student> studentFilteredList;
@@ -47,6 +49,7 @@ public class StudentsController implements Initializable {
         try {
             studentModel = StudentModel.getInstance();
             instanceModel = CitizenInstanceModel.getInstance();
+            loginModel = LoginModel.getInstance();
 
             studentFilteredList = new FilteredList<>(studentModel.getObservableStudents());
             studentFilteredList.setPredicate(null);
@@ -122,7 +125,7 @@ public class StudentsController implements Initializable {
                 Optional<Student> result = dialog.showAndWait();
                 result.ifPresent(response -> {
                     try {
-                        //pass the new created student to student model
+                        response.setSchool(((Teacher)loginModel.getLoggedUser()).getSchool());
                         studentModel.createStudent(response);
                     } catch (Exception e) {
                         PopUp.showError("Cannot create new student!");

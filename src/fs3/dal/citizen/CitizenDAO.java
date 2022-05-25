@@ -6,13 +6,11 @@ import fs3.be.CitizenInstance;
 import fs3.be.CitizenTemplate;
 import fs3.dal.ConnectionManager;
 import fs3.dal.ConnectionManagerPool;
+import fs3.dal.school.SchoolDAO;
 
 import javax.sql.rowset.CachedRowSet;
 import javax.sql.rowset.RowSetProvider;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -25,16 +23,18 @@ public class CitizenDAO {
     private final HealthConditionDAO healthConditionDAO = new HealthConditionDAO();
     private final FunctionalAbilityDAO functionalAbilityDAO = new FunctionalAbilityDAO();
 
-    private ExecutorService subExecutor;
-
     private String tableName = "Citizens";
     private String[] columns = {"id", "isTemplate"};
 
     private String select = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ?";
-    private String insert = "INSERT INTO " + tableName + " " + "VALUES (?)";
+    private String insert = "INSERT INTO " + tableName + " " + "VALUES (?, ?)";
     private String readAllInstances = "SELECT * FROM " + tableName + " WHERE " + columns[1] + " = 0";
     private String readAllTemplates = "SELECT * FROM " + tableName + " WHERE " + columns[1] + " = 1";
     private String delete = "DELETE FROM " + tableName + " WHERE " + columns[0] + " = ?";
+
+    private SchoolDAO schoolDAO = new SchoolDAO();
+
+    private ExecutorService subExecutor;
 
     public List<CitizenTemplate> readAllCitizenTemplates() throws Exception {
         return readAll(readAllTemplates).stream().map(c -> (CitizenTemplate) c).collect(Collectors.toList());
@@ -82,6 +82,11 @@ public class CitizenDAO {
         try (Connection con = cm.getConnection()) {
             PreparedStatement ps = con.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
             ps.setBoolean(1, CitizenTemplate.class.equals(citizen.getClass()));
+            if (citizen.getSchool() != null) {
+                ps.setInt(2, citizen.getSchool().getId());
+            } else {
+                ps.setNull(2, Types.INTEGER);
+            }
             ps.executeUpdate();
 
             ResultSet rs = ps.getGeneratedKeys();
@@ -128,6 +133,7 @@ public class CitizenDAO {
         return citizen;
     }
 
+    //doesn't take into account the school as it is never updated on a citizen
     public void update(Citizen citizen) throws Exception {
         subExecutor = Executors.newFixedThreadPool(4);
         List<Future<Exception>> futures = new ArrayList<>();
@@ -177,8 +183,8 @@ public class CitizenDAO {
 
     private Citizen constructCitizen(ResultSet rs) throws Exception {
         Citizen citizen = CitizenFactory.createCitizen(rs.getBoolean(columns[1]));
-        int citizenId = rs.getInt(columns[0]);
-        citizen.setId(citizenId);
+        citizen.setId(rs.getInt(columns[0]));
+        citizen.setSchool(schoolDAO.read(rs.getInt(columns[2])));
 
         subExecutor = Executors.newFixedThreadPool(4);
         List<Future<Exception>> futures = new ArrayList<>();
