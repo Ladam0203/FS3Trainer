@@ -1,5 +1,6 @@
 package fs3.gui.controller.admin;
 
+import fs3.be.CitizenInstance;
 import fs3.be.School;
 import fs3.be.Teacher;
 import fs3.gui.controller.admin.dialog.SchoolDialog;
@@ -8,6 +9,8 @@ import fs3.gui.controller.dialog.UserDialog;
 import fs3.gui.model.SchoolModel;
 import fs3.gui.model.TeacherModel;
 import fs3.util.PopUp;
+import javafx.collections.FXCollections;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -20,6 +23,7 @@ import javafx.scene.input.MouseEvent;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 
 public class AdminPageController implements Initializable {
 
@@ -37,13 +41,18 @@ public class AdminPageController implements Initializable {
     private MenuItem editItem;
     private MenuItem deleteItem;
 
+    private FilteredList<Teacher> teachersInSchool;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         schoolModel = new SchoolModel();
         ltvSchools.setItems(schoolModel.getAllSchools());
 
         teacherModel = TeacherModel.getInstance();
-        ltvTeachers.setItems(teacherModel.getObservableTeachers());
+
+        teachersInSchool = new FilteredList<>(teacherModel.getObservableTeachers());
+        teachersInSchool.setPredicate(null);
+        ltvTeachers.setItems(teachersInSchool);
 
         setupContextMenu();
     }
@@ -65,11 +74,10 @@ public class AdminPageController implements Initializable {
     @FXML
     private void handleSelectSchool(MouseEvent mouseEvent) {
         School selected = ltvSchools.getSelectionModel().getSelectedItem();
-        if (selected == null) {
-            return;
-        }
 
-        //TODO: filter teachers from selected school
+        if (selected != null) {
+            filterTeachersInSchool(selected);
+        }
 
         if (mouseEvent.getButton().equals(MouseButton.SECONDARY)) {
             newItem.setText("New School");
@@ -90,6 +98,14 @@ public class AdminPageController implements Initializable {
                 deleteSchool();
             });
         }
+    }
+
+    private void filterTeachersInSchool(School selected) {
+        teachersInSchool.setPredicate(teacher -> {
+            if(teacher.getSchool() == null)
+                return false;
+            return teacher.getSchool().equals(selected);
+        });
     }
 
     @FXML

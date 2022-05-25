@@ -5,6 +5,8 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+import java.util.Objects;
+
 public class School {
     private IntegerProperty id;
     private StringProperty name;
@@ -48,5 +50,18 @@ public class School {
     @Override
     public String toString() {
         return getName();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null)
+            return false;
+
+        if (getClass() != obj.getClass())
+            return false;
+
+        final School other = (School) obj;
+
+        return Objects.equals(getId(), other.getId());
     }
 }

@@ -40,8 +40,8 @@ public class StudentsController implements Initializable {
     private CitizenInstanceModel instanceModel;
     private LoginModel loginModel;
 
-    FilteredList<CitizenInstance> availableCitizens;
-    FilteredList<Student> studentFilteredList;
+    private FilteredList<CitizenInstance> availableCitizens;
+    private FilteredList<Student> studentFilteredList;
 
 
     @Override
@@ -54,6 +54,7 @@ public class StudentsController implements Initializable {
             studentFilteredList = new FilteredList<>(studentModel.getObservableStudents());
             studentFilteredList.setPredicate(null);
             ltvStudents.setItems(studentFilteredList);
+
             availableCitizens = new FilteredList<>(instanceModel.getObservableCitizens());
             availableCitizens.setPredicate(null);
             ltvAvailableAssignments.setItems(availableCitizens);
