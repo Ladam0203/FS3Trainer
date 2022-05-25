@@ -24,6 +24,12 @@ public class TeacherManagementController implements Initializable {
 
     private TeacherModel teacherModel;
 
+    //setting up context Menu
+    private ContextMenu contextMenu;
+    private MenuItem newItem;
+    private MenuItem editItem;
+    private MenuItem deleteItem;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         teacherModel = TeacherModel.getInstance();
@@ -37,14 +43,9 @@ public class TeacherManagementController implements Initializable {
             return;
         }
         if (mouseEvent.getButton().equals(MouseButton.SECONDARY)) {
-            ContextMenu contextMenu = new ContextMenu();
-            MenuItem newItem = new MenuItem("New Teacher");
-            MenuItem editItem = new MenuItem("Edit Teacher");
-            MenuItem deleteItem = new MenuItem("Delete Teacher");
-
-            contextMenu.getItems().add(newItem);
-            contextMenu.getItems().add(editItem);
-            contextMenu.getItems().add(deleteItem);
+            deleteItem.setText("Delete Teacher");
+            editItem.setText("Edit Teacher");
+            newItem.setText("New Teacher");
 
             ltvTeachers.setContextMenu(contextMenu);
             contextMenu.show(ltvTeachers.getPlaceholder(), mouseEvent.getX(), mouseEvent.getY());
