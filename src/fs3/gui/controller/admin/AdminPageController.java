@@ -3,15 +3,6 @@ package fs3.gui.controller.admin;
 
 import fs3.be.School;
 import fs3.gui.model.SchoolModel;
-
-import fs3.be.CitizenTemplate;
-import fs3.be.School;
-import fs3.be.Teacher;
-import fs3.gui.controller.admin.dialog.TeacherDialog;
-import fs3.gui.controller.dialog.UserDialog;
-import fs3.gui.controller.teacher.tabs.templates.dialog.CitizenTemplateDialog;
-import fs3.gui.model.SchoolModel;
-import fs3.gui.model.TeacherModel;
 import fs3.gui.view.admin.SchoolDialog.SchoolDialog;
 import fs3.util.PopUp;
 import javafx.event.ActionEvent;
@@ -92,7 +83,7 @@ public class AdminPageController implements Initializable {
     }
 
     @FXML
-    private void handleDeleteSchool(ActionEvent event) {
+        private void handleDeleteSchool(ActionEvent event) {
         deleteSchool();
     }
 

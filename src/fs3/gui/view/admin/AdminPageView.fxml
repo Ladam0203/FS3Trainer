@@ -36,9 +36,9 @@
                         <ListView fx:id="ltvSchools" onMouseClicked="#handleSelectSchool" VBox.vgrow="ALWAYS" />
                         <ButtonBar prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #1e4c6b;" VBox.vgrow="NEVER">
                             <buttons>
-                                <Button mnemonicParsing="false" text="New..." />
-                                <Button mnemonicParsing="false" text="Edit" />
-                                <Button layoutX="267.0" layoutY="10.0" mnemonicParsing="false" text="Delete" />
+                                <Button mnemonicParsing="false" onAction="#handleNewSchool" text="New..." />
+                                <Button mnemonicParsing="false" onAction="#handleEditSchool" text="Edit" />
+                                <Button layoutX="267.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleDeleteSchool" text="Delete" />
                             </buttons>
                             <padding>
                                 <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
