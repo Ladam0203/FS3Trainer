@@ -41,9 +41,9 @@ public class TemplatesController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
+            loginModel = LoginModel.getInstance();
             citizenTemplateModel = CitizenTemplateModel.getInstance();
             citizenInstanceModel = CitizenInstanceModel.getInstance();
-            loginModel = LoginModel.getInstance();
         } catch (Exception e) {
             e.printStackTrace();
         }

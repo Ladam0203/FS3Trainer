@@ -2,7 +2,9 @@ package fs3.gui.controller.teacher.tabs.assignments;
 
 import fs3.be.CitizenInstance;
 import fs3.be.Student;
+import fs3.be.Teacher;
 import fs3.gui.model.CitizenInstanceModel;
+import fs3.gui.model.LoginModel;
 import fs3.gui.model.StudentModel;
 import fs3.util.PopUp;
 import javafx.collections.transformation.FilteredList;
@@ -26,8 +28,10 @@ public class AssignmentsController implements Initializable {
     @FXML
     private ListView<CitizenInstance> ltvAssignments;
 
+    private LoginModel loginModel;
     private CitizenInstanceModel citizenModel;
     private StudentModel studentModel;
+
     private FilteredList<CitizenInstance> citizenInstanceFilteredList;
 
 
@@ -35,7 +39,8 @@ public class AssignmentsController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         try {
             citizenModel = CitizenInstanceModel.getInstance();
-            studentModel = StudentModel.getInstance();
+            loginModel = LoginModel.getInstance();
+            studentModel = StudentModel.getInstance(((Teacher)loginModel.getLoggedUser()).getSchool());
         } catch (Exception e) {
             e.printStackTrace();
             PopUp.showError("Failed to initalize Citizen Instance Model");
