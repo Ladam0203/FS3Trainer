@@ -102,4 +102,19 @@ public class DAOFacade implements IDAOFacade {
     public School createSchool(School school) throws Exception {
         return schoolDAO.create(school);
     }
+
+    @Override
+    public List<CitizenInstance> readAllCizizenInstancesFrom(School school) throws Exception {
+        return citizenDAO.readAllCitizenInstancesFrom(school);
+    }
+
+    @Override
+    public List<CitizenTemplate> readAllCitizenTemplatesFrom(School school) throws Exception {
+        return citizenDAO.readAllCitizenTemplatesFrom(school);
+    }
+
+    @Override
+    public List<Student> readAllStudentsFrom(School school) throws Exception {
+        return userDAO.readAllStudentsFrom(school);
+    }
 }
