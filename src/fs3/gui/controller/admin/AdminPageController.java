@@ -3,6 +3,7 @@ package fs3.gui.controller.admin;
 import fs3.be.Teacher;
 import fs3.gui.controller.admin.dialog.TeacherDialog;
 import fs3.gui.controller.dialog.UserDialog;
+import fs3.gui.model.SchoolModel;
 import fs3.gui.model.TeacherModel;
 import fs3.util.PopUp;
 import javafx.fxml.FXML;
@@ -24,11 +25,14 @@ public class AdminPageController implements Initializable {
     private ListView ltvSchools;
 
     private TeacherModel teacherModel;
+    private SchoolModel schoolModel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         teacherModel = TeacherModel.getInstance();
+        schoolModel = new SchoolModel();
         ltvTeachers.setItems(teacherModel.getObservableTeachers());
+        ltvSchools.setItems(schoolModel.getAllSchools());
     }
 
     @FXML

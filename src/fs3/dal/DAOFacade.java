@@ -2,6 +2,7 @@ package fs3.dal;
 
 import fs3.be.*;
 import fs3.dal.citizen.CitizenDAO;
+import fs3.dal.school.SchoolDAO;
 import fs3.dal.user.UserDAO;
 
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
 public class DAOFacade implements IDAOFacade {
     CitizenDAO citizenDAO = new CitizenDAO();
     UserDAO userDAO = new UserDAO();
+    SchoolDAO schoolDAO = new SchoolDAO();
 
     @Override
     public void updateCitizen(Citizen citizen) throws Exception {
@@ -79,5 +81,25 @@ public class DAOFacade implements IDAOFacade {
     @Override
     public User createUser(User user) throws Exception {
         return userDAO.create(user);
+    }
+
+    @Override
+    public List<School> readAllSchools() throws Exception {
+        return schoolDAO.readAll();
+    }
+
+    @Override
+    public void updateSchool(School school) throws Exception {
+        schoolDAO.update(school);
+    }
+
+    @Override
+    public void deleteSchool(School school) throws Exception {
+        schoolDAO.delete(school);
+    }
+
+    @Override
+    public School createSchool(School school) throws Exception {
+        return schoolDAO.create(school);
     }
 }
