@@ -46,8 +46,7 @@ public abstract class UserDialog<T extends User> extends Dialog<T> {
                 return null;
             });
         } catch (Exception e) {
-            e.printStackTrace();
-            PopUp.showError("Error loading dialog");
+            PopUp.showError("Error loading dialog", e);
         }
     }
 
