@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1200.0" stylesheets="@../../../styles/common.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.teacher.tabs.templates.TemplatesController">
+<HBox minHeight="-Infinity" minWidth="-Infinity" stylesheets="@../../../styles/common.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.teacher.tabs.templates.TemplatesController">
    <children>
       <VBox minWidth="-Infinity" prefWidth="300.0" styleClass="right-border" HBox.hgrow="NEVER">
          <children>
@@ -35,7 +35,7 @@
             <ListView fx:id="ltvCitizenTemplates" onMouseClicked="#handleSelectCitizen" VBox.vgrow="ALWAYS" />
             <HBox style="-fx-background-color: #1e4c6b;">
                <children>
-                  <TextField fx:id="txfFilterTemplates" onKeyTyped="#handleFilterTemplates" HBox.hgrow="ALWAYS" promptText="Filter" />
+                  <TextField fx:id="txfFilterTemplates" onKeyTyped="#handleFilterTemplates" promptText="Filter" HBox.hgrow="ALWAYS" />
                </children>
                <VBox.margin>
                   <Insets />
