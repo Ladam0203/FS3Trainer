@@ -54,9 +54,14 @@ public class School {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj == null) return false;
-        if (getClass() != obj.getClass()) return false;
+        if (obj == null)
+            return false;
+
+        if (getClass() != obj.getClass())
+            return false;
+
         final School other = (School) obj;
+
         return Objects.equals(getId(), other.getId());
     }
 }
