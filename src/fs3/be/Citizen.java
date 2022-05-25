@@ -18,6 +18,7 @@ public abstract class Citizen {
     private ObjectProperty<GeneralInformation> generalInformation;
     private HashMap<HealthCondition, HealthConditionData> healthConditions;
     private HashMap<FunctionalAbility, FunctionalAbilityData> functionalAbilities;
+    private ObjectProperty<School> school;
 
     protected Citizen() {
         id = new SimpleIntegerProperty();
@@ -25,6 +26,7 @@ public abstract class Citizen {
         generalInformation = new SimpleObjectProperty<>();
         healthConditions = new HashMap<>();
         functionalAbilities = new HashMap<>();
+        school = new SimpleObjectProperty<>();
     }
 
     public void setId(int id) {
@@ -85,5 +87,13 @@ public abstract class Citizen {
             return false;
         }
         return true;
+    }
+
+    public School getSchool() {
+        return school.get();
+    }
+
+    public void setSchool(School school) {
+        this.school.set(school);
     }
 }

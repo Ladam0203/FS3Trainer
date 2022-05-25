@@ -2,9 +2,11 @@ package fs3.gui.controller.teacher.tabs.templates;
 
 import fs3.be.CitizenInstance;
 import fs3.be.CitizenTemplate;
+import fs3.be.Teacher;
 import fs3.gui.controller.teacher.tabs.templates.dialog.CitizenTemplateDialog;
 import fs3.gui.model.CitizenInstanceModel;
 import fs3.gui.model.CitizenTemplateModel;
+import fs3.gui.model.LoginModel;
 import fs3.util.PopUp;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
@@ -32,6 +34,7 @@ public class TemplatesController implements Initializable {
 
     private FilteredList<CitizenTemplate> citizenTemplateFilteredList;
 
+    private LoginModel loginModel;
     private CitizenTemplateModel citizenTemplateModel;
     private CitizenInstanceModel citizenInstanceModel;
 
@@ -40,6 +43,7 @@ public class TemplatesController implements Initializable {
         try {
             citizenTemplateModel = CitizenTemplateModel.getInstance();
             citizenInstanceModel = CitizenInstanceModel.getInstance();
+            loginModel = LoginModel.getInstance();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -93,6 +97,7 @@ public class TemplatesController implements Initializable {
             Optional<CitizenTemplate> result = dialog.showAndWait();
             result.ifPresent(response -> {
                 try {
+                    response.setSchool(((Teacher)loginModel.getLoggedUser()).getSchool());
                     citizenTemplateModel.createCitizenTemplate(response);
                 } catch (Exception e) {
                     PopUp.showError("Couldn't create citizen template!", e);
