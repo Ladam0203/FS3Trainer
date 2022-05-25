@@ -14,6 +14,12 @@ public class School {
         this.name = new SimpleStringProperty();
     }
 
+    //copy constructror
+    public School(School other) {
+        this.id = new SimpleIntegerProperty(other.getId());
+        this.name = new SimpleStringProperty(other.getName());
+    }
+
     public int getId() {
         return id.get();
     }
