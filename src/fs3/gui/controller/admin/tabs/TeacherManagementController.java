@@ -24,7 +24,6 @@ public class TeacherManagementController implements Initializable {
 
     private TeacherModel teacherModel;
 
-    //setting up context Menu
     private ContextMenu contextMenu;
     private MenuItem newItem;
     private MenuItem editItem;
@@ -34,65 +33,96 @@ public class TeacherManagementController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         teacherModel = TeacherModel.getInstance();
         ltvTeachers.setItems(teacherModel.getObservableTeachers());
+
+        setupContextMenu();
+    }
+
+    private void setupContextMenu() {
+        contextMenu = new ContextMenu();
+        newItem = new MenuItem("New Teacher");
+        editItem = new MenuItem("Edit Teacher");
+        deleteItem = new MenuItem("Delete Teacher");
+
+        contextMenu.getItems().add(newItem);
+        contextMenu.getItems().add(editItem);
+        contextMenu.getItems().add(deleteItem);
+
+        ltvTeachers.setContextMenu(contextMenu);
     }
 
     @FXML
     private void handleSelectTeacher(MouseEvent mouseEvent) {
-        Teacher selected = ltvTeachers.getSelectionModel().getSelectedItem();
-        if (selected == null) {
-            return;
-        }
         if (mouseEvent.getButton().equals(MouseButton.SECONDARY)) {
-            deleteItem.setText("Delete Teacher");
-            editItem.setText("Edit Teacher");
-            newItem.setText("New Teacher");
-
-            ltvTeachers.setContextMenu(contextMenu);
             contextMenu.show(ltvTeachers.getPlaceholder(), mouseEvent.getX(), mouseEvent.getY());
 
             newItem.setOnAction(event -> {
-                UserDialog<Teacher> dialog = new TeacherDialog();
-                Optional<Teacher> result = dialog.showAndWait();
-                result.ifPresent(response -> {
-                    try {
-                        //pass the new created teacher to teacher model
-                        teacherModel.createTeacher(response);
-                    } catch (Exception e) {
-                        PopUp.showError("Couldn't create new teacher!", e);
-                    }
-                });
+                newTeacherDialog();
             });
 
             editItem.setOnAction(event -> {
-                UserDialog<Teacher> dialog = new TeacherDialog();
-                dialog.passUser(selected);
-                Optional<Teacher> result = dialog.showAndWait();
-                result.ifPresent(response -> {
-                    try {
-                        //update teacher info
-                        teacherModel.updateTeacher(response);
-                    } catch (Exception e) {
-                        PopUp.showError("Couldn't edit teacher!", e);
-                    }
-                });
+                editTeacherDialog();
             });
 
             deleteItem.setOnAction(event -> {
+                deleteTeacher();
+            });
+        }
+    }
+
+    private void newTeacherDialog() {
+        UserDialog<Teacher> dialog = new TeacherDialog();
+        Optional<Teacher> result = dialog.showAndWait();
+        result.ifPresent(response -> {
+            try {
+                //pass the new created teacher to teacher model
+                teacherModel.createTeacher(response);
+            } catch (Exception e) {
+                PopUp.showError("Couldn't create new teacher!", e);
+            }
+        });
+    }
+
+    private void editTeacherDialog() {
+        Teacher selected = ltvTeachers.getSelectionModel().getSelectedItem();
+        if(selected != null){
+            UserDialog<Teacher> dialog = new TeacherDialog();
+            dialog.passUser(selected);
+            Optional<Teacher> result = dialog.showAndWait();
+            result.ifPresent(response -> {
                 try {
-                    teacherModel.deleteTeacher(selected);
+                    //update teacher info
+                    teacherModel.updateTeacher(response);
                 } catch (Exception e) {
-                    PopUp.showError("Couldn't delete teacher!", e);
+                    PopUp.showError("Couldn't edit teacher!", e);
                 }
             });
+        } else {
+         PopUp.showError("Please select a teacher to edit first!");
+        }
+    }
+
+    private void deleteTeacher() {
+        Teacher selected = ltvTeachers.getSelectionModel().getSelectedItem();
+        if(selected != null){
+            try {
+                teacherModel.deleteTeacher(selected);
+            } catch (Exception e) {
+                PopUp.showError("Couldn't delete teacher!", e);
+            }
+        } else {
+            PopUp.showError("Please select a teacher to delete first");
         }
     }
 
     public void handleNewTeacher(ActionEvent event) {
+        newTeacherDialog();
     }
 
     public void handleEditTeacher(ActionEvent event) {
+        editTeacherDialog();
     }
 
     public void handleDeleteTeacher(ActionEvent event) {
+        deleteTeacher();
     }
 }

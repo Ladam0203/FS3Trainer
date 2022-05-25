@@ -25,7 +25,6 @@ public class AdminPageController implements Initializable {
 
     private SchoolModel schoolModel;
 
-    //setting up context Menu
     private ContextMenu contextMenu;
     private MenuItem newItem;
     private MenuItem editItem;
@@ -35,6 +34,8 @@ public class AdminPageController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         schoolModel = new SchoolModel();
         ltvSchools.setItems(schoolModel.getAllSchools());
+
+        //setting up context Menu
         contextMenu = new ContextMenu();
         newItem = new MenuItem();
         editItem = new MenuItem();
@@ -52,9 +53,10 @@ public class AdminPageController implements Initializable {
             return;
         }
         if (mouseEvent.getButton().equals(MouseButton.SECONDARY)) {
-            deleteItem.setText("Delete School");
-            editItem.setText("Edit School");
             newItem.setText("New School");
+            editItem.setText("Edit School");
+            deleteItem.setText("Delete School");
+
             ltvSchools.setContextMenu(contextMenu);
             contextMenu.show(ltvSchools.getPlaceholder(), mouseEvent.getX(), mouseEvent.getY());
 
