@@ -28,4 +28,21 @@ public class SchoolModel {
         return observableSchools;
     }
 
+    public void updateSchool(School school) throws Exception {
+        schoolLogic.updateSchool(school);
+        observableSchools.set(observableSchools.indexOf(school), school);
+    }
+
+    public void deleteSchool(School school) throws Exception {
+        schoolLogic.deleteSchool(school);
+        observableSchools.remove(school);
+    }
+
+    public void createSchool(School school) throws Exception{
+        School created = schoolLogic.createSchool(school);
+        if(created != null) {
+            observableSchools.add(created);
+        }
+    }
+
 }
