@@ -30,23 +30,10 @@ public class UserDAO {
     private String update = "UPDATE " + tableName + " SET " + columns[1] + " = ?, " + columns[2] + " = ? WHERE " + columns[0] + " = ?";
     private String delete = "DELETE FROM " + tableName + " WHERE " + columns[0] + " = ?";
 
+    //this is not a tiny bit more efficient that just getting all of the students
+    //TODO: if there is time, make a different query with a join
     public List<Student> readAllStudentsFrom(School school) throws Exception {
-        List<Student> students = new ArrayList<>();
-        ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();
-        try (Connection con = cm.getConnection()) {
-            PreparedStatement ps = con.prepareStatement(selectStudents);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                Student student = (Student) constructUser(rs);
-                studentDAO.set(student);
-                if (school.equals(student.getSchool())) {
-                    students.add(student);
-                }
-            }
-        } finally {
-            ConnectionManagerPool.getInstance().returnConnectionManager(cm);
-        }
-        return students;
+        return readAllSubUsers(studentDAO, selectStudents).stream().filter(student -> student.getSchool().equals(school)).collect(java.util.stream.Collectors.toList());
     }
 
     public List<Student> readAllStudents() throws Exception {
@@ -130,7 +117,6 @@ public class UserDAO {
         } else if (Admin.class.equals(user.getClass())) {
             adminDAO.update((Admin) user);
         }
-        //TODO: implement admin
     }
 
     public User create(User user) throws Exception {
