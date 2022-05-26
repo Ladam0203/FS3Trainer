@@ -98,12 +98,9 @@ public class FunctionalAbilityComponentController implements Initializable {
         makeAllOpaque();
     }
 
-    public void setTitle(String title) {
-        ttpRoot.setText(title);
-    }
-
-    public void setLabel(String functionalAbility) {
-        lblIsRelevant.setText("Is " + functionalAbility + " relevant?");
+    public void setFunctionalAbilityString(String functionalAbilityString) {
+        ttpRoot.setText(functionalAbilityString);
+        lblIsRelevant.setText("Is " + functionalAbilityString.toLowerCase() + " relevant?");
     }
 
     public void clearFields() {
@@ -291,18 +288,18 @@ public class FunctionalAbilityComponentController implements Initializable {
     }
 
     private void makeAllHalfOpaqueIn(List<ImageView> images) {
-        images.forEach(imageView -> imageView.setOpacity(0.7));
+        images.forEach(imageView -> imageView.setOpacity(0.3));
     }
 
     private void makeAllOpaque() {
-        currentImages.forEach(imageView -> imageView.setOpacity(0.5));
-        expectedImages.forEach(imageView -> imageView.setOpacity(0.5));
+        currentImages.forEach(imageView -> imageView.setOpacity(0.3));
+        expectedImages.forEach(imageView -> imageView.setOpacity(0.3));
     }
 
     private void makeOpaqueInExcept(List<ImageView> images, ImageView imageView) {
         images.forEach(img -> {
             if (img != imageView) {
-                img.setOpacity(0.7);
+                img.setOpacity(0.6);
             } else {
                 img.setOpacity(1);
             }
