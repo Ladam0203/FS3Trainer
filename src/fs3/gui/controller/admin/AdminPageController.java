@@ -203,6 +203,7 @@ public class AdminPageController implements Initializable {
 
     private void newTeacherDialog() {
         UserDialog<Teacher> dialog = new TeacherDialog();
+
         Optional<Teacher> result = dialog.showAndWait();
         result.ifPresent(response -> {
             try {
