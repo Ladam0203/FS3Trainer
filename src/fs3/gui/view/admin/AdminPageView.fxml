@@ -7,8 +7,10 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #1e4c6b;" stylesheets="@../styles/common.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.admin.AdminPageController">
@@ -22,9 +24,37 @@
             </ImageView>
          </children>
       </Pane>
-        <HBox VBox.vgrow="ALWAYS">
-            <children>
-                <VBox minWidth="-Infinity" prefWidth="300.0" styleClass="right-border" HBox.hgrow="NEVER">
+      <GridPane hgap="150.0" VBox.vgrow="ALWAYS">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <VBox minWidth="-Infinity" prefWidth="300.0" styleClass="right-border">
+               <children>
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" style="-fx-text-fill: #F7F8F9; -fx-background-color: #1e4c6b;" styleClass="fs3-headline" text="Admins">
+                     <padding>
+                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                     </padding>
+                  </Label>
+                  <ListView fx:id="ltvAdmins" onMouseClicked="#handleSelectAdmin" VBox.vgrow="ALWAYS" />
+                  <ButtonBar prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #1e4c6b;" VBox.vgrow="NEVER">
+                     <buttons>
+                        <Button mnemonicParsing="false" onAction="#handleNewAdmin" text="New..." />
+                        <Button mnemonicParsing="false" onAction="#handleEditAdmin" text="Edit" />
+                        <Button layoutX="267.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleDeleteAdmin" text="Delete" />
+                     </buttons>
+                     <padding>
+                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                     </padding>
+                  </ButtonBar>
+               </children>
+            </VBox>
+                <VBox minWidth="-Infinity" prefWidth="300.0" styleClass="right-border" GridPane.columnIndex="1">
                     <children>
                         <Label alignment="CENTER" maxWidth="1.7976931348623157E308" style="-fx-text-fill: #F7F8F9; -fx-background-color: #1e4c6b;" styleClass="fs3-headline" text="Schools">
                             <padding>
@@ -44,10 +74,9 @@
                         </ButtonBar>
                     </children>
                 </VBox>
-            <Pane prefHeight="200.0" prefWidth="120.0" styleClass="right-border" />
-            <VBox minWidth="-Infinity" prefWidth="300.0" styleClass="right-border" HBox.hgrow="NEVER">
+            <VBox minWidth="-Infinity" prefWidth="300.0" styleClass="right-border" GridPane.columnIndex="2">
                <children>
-                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" style="-fx-text-fill: #F7F8F9; -fx-background-color: #1e4c6b;" styleClass="fs3-headline" text="Teacher list" VBox.vgrow="NEVER">
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" style="-fx-text-fill: #F7F8F9; -fx-background-color: #1e4c6b;" styleClass="fs3-headline" text="Teachers" VBox.vgrow="NEVER">
                      <padding>
                         <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                      </padding>
@@ -65,7 +94,7 @@
                   </ButtonBar>
                </children>
             </VBox>
-            </children>
-        </HBox>
+         </children>
+      </GridPane>
     </children>
 </VBox>
