@@ -30,4 +30,9 @@ public class AdminModel {
         userLogic.updateUser(admin);
         observableAdmins.set(observableAdmins.indexOf(admin), admin);
     }
+
+    public void deleteAdmin(Admin admin) throws Exception {
+        userLogic.deleteUser(admin);
+        observableAdmins.remove(admin);
+    }
 }

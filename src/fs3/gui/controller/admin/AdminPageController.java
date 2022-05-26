@@ -1,7 +1,6 @@
 package fs3.gui.controller.admin;
 
 import fs3.be.Admin;
-import fs3.be.CitizenInstance;
 import fs3.be.School;
 import fs3.be.Teacher;
 import fs3.gui.controller.admin.dialog.AdminDialog;
@@ -12,7 +11,6 @@ import fs3.gui.model.AdminModel;
 import fs3.gui.model.SchoolModel;
 import fs3.gui.model.TeacherModel;
 import fs3.util.PopUp;
-import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,7 +24,6 @@ import javafx.scene.input.MouseEvent;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.function.Predicate;
 
 public class AdminPageController implements Initializable {
     @FXML
@@ -54,7 +51,7 @@ public class AdminPageController implements Initializable {
             adminModel = new AdminModel();
             schoolModel = new SchoolModel();
         } catch (Exception e) {
-           PopUp.showError("Cannot load", e);
+            PopUp.showError("Cannot load", e);
         }
         ltvSchools.setItems(schoolModel.getAllSchools());
         ltvAdmins.setItems(adminModel.getAllAdmin());
@@ -63,7 +60,6 @@ public class AdminPageController implements Initializable {
         teachersInSchool = new FilteredList<>(teacherModel.getObservableTeachers());
         teachersInSchool.setPredicate(null);
         ltvTeachers.setItems(teachersInSchool);
-
 
 
         setupContextMenu();
@@ -115,7 +111,7 @@ public class AdminPageController implements Initializable {
 
     private void filterTeachersInSchool(School selected) {
         teachersInSchool.setPredicate(teacher -> {
-            if(teacher.getSchool() == null)
+            if (teacher.getSchool() == null)
                 return false;
             return teacher.getSchool().equals(selected);
         });
@@ -258,7 +254,8 @@ public class AdminPageController implements Initializable {
         }
     }
 
-    public void handleSelectAdmin(MouseEvent mouseEvent) {
+    @FXML
+    private void handleSelectAdmin(MouseEvent mouseEvent) {
         if (mouseEvent.getButton().equals(MouseButton.SECONDARY)) {
             newItem.setText("New Admin");
             editItem.setText("Edit Admin");
@@ -269,27 +266,31 @@ public class AdminPageController implements Initializable {
             newItem.setOnAction(event -> {
                 newAdminDialog();
             });
-
             editItem.setOnAction(event -> {
                 editAdminDialog();
             });
-
             deleteItem.setOnAction(event -> {
-
+                deleteAdmin();
             });
         }
     }
 
-    public void handleNewAdmin(ActionEvent event) {
+    @FXML
+    private void handleNewAdmin(ActionEvent event) {
+        newAdminDialog();
     }
 
-    public void handleEditAdmin(ActionEvent event) {
+    @FXML
+    private void handleEditAdmin(ActionEvent event) {
+        editAdminDialog();
     }
 
-    public void handleDeleteAdmin(ActionEvent event) {
+    @FXML
+    private void handleDeleteAdmin(ActionEvent event) {
+        deleteAdmin();
     }
 
-    private void newAdminDialog(){
+    private void newAdminDialog() {
         UserDialog<Admin> dialog = new AdminDialog();
 
         Optional<Admin> result = dialog.showAndWait();
@@ -303,7 +304,7 @@ public class AdminPageController implements Initializable {
         });
     }
 
-    private void editAdminDialog(){
+    private void editAdminDialog() {
         Admin selected = ltvAdmins.getSelectionModel().getSelectedItem();
         if (selected != null) {
             UserDialog<Admin> dialog = new AdminDialog();
@@ -318,6 +319,19 @@ public class AdminPageController implements Initializable {
             });
         } else {
             PopUp.showError("Please select an admin to edit first!");
+        }
+    }
+
+    private void deleteAdmin() {
+        Admin selected = ltvAdmins.getSelectionModel().getSelectedItem();
+        if (selected != null) {
+            try {
+                adminModel.deleteAdmin(selected);
+            } catch (Exception e) {
+                PopUp.showError("Couldn't delete admin!", e);
+            }
+        } else {
+            PopUp.showError("Please select an admin to delete first");
         }
     }
 }
