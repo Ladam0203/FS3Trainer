@@ -24,7 +24,7 @@ public abstract class UserDialog<T extends User> extends Dialog<T> {
         load();
     }
 
-    /* Load the dialog view with the values specified in the controller */
+    /* Load the dialog view with the values specified in the controller. */
     private void load() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
@@ -33,7 +33,7 @@ public abstract class UserDialog<T extends User> extends Dialog<T> {
             this.setTitle(userClassName);
             this.setDialogPane(dp);
             final Button btApply = (Button) dp.lookupButton(ButtonType.APPLY);
-            btApply.addEventFilter(ActionEvent.ACTION, event -> {
+            btApply.addEventFilter(ActionEvent.ACTION, event -> { //This keeps the Dialog open, if the provided data is not valid.
                 if (!controller.isValid()) {
                     event.consume();
                 }
