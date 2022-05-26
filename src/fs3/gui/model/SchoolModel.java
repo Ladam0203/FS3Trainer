@@ -10,13 +10,9 @@ public class SchoolModel {
     private SchoolLogic schoolLogic;
     private ObservableList<School> observableSchools;
 
-    public SchoolModel(){
+    public SchoolModel() throws Exception {
         schoolLogic = new SchoolLogic();
-        try {
             readAllSchools();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     public ObservableList<School> readAllSchools() throws Exception {

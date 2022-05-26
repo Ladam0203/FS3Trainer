@@ -4,6 +4,7 @@ import fs3.be.School;
 import fs3.be.Teacher;
 import fs3.gui.controller.dialog.UserDialogController;
 import fs3.gui.model.SchoolModel;
+import fs3.util.PopUp;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -24,8 +25,12 @@ public class TeacherDialogController extends UserDialogController<Teacher>  impl
 
   @Override
     public void initialize(URL location, ResourceBundle resources) {
-        schoolModel = new SchoolModel();
-        System.out.println(schoolModel.getAllSchools());
+      try {
+          schoolModel = new SchoolModel();
+      } catch (Exception e) {
+          PopUp.showError("Cannot load", e);
+      }
+      System.out.println(schoolModel.getAllSchools());
         cmbSchool.getItems().addAll(schoolModel.getAllSchools());
     }
 

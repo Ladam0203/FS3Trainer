@@ -1,9 +1,6 @@
 package fs3.bll;
 
-import fs3.be.School;
-import fs3.be.Student;
-import fs3.be.Teacher;
-import fs3.be.User;
+import fs3.be.*;
 import fs3.dal.DAOFacade;
 import fs3.dal.IDAOFacade;
 
@@ -43,5 +40,9 @@ public class UserLogic {
 
     public List<Student> readAllStudentsFrom(School school) throws Exception {
         return daoFacade.readAllStudentsFrom(school);
+    }
+
+    public List<Admin> readAllAdmins() throws Exception {
+        return daoFacade.readAllAdmins();
     }
 }

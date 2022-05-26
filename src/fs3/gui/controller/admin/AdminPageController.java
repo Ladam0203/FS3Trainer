@@ -6,6 +6,7 @@ import fs3.be.Teacher;
 import fs3.gui.controller.admin.dialog.SchoolDialog;
 import fs3.gui.controller.admin.dialog.TeacherDialog;
 import fs3.gui.controller.dialog.UserDialog;
+import fs3.gui.model.AdminModel;
 import fs3.gui.model.SchoolModel;
 import fs3.gui.model.TeacherModel;
 import fs3.util.PopUp;
@@ -26,8 +27,8 @@ import java.util.ResourceBundle;
 import java.util.function.Predicate;
 
 public class AdminPageController implements Initializable {
-
-    public ListView ltvAdmins;
+    @FXML
+    private ListView ltvAdmins;
     @FXML
     private ListView<Teacher> ltvTeachers;
 
@@ -36,6 +37,7 @@ public class AdminPageController implements Initializable {
 
     private SchoolModel schoolModel;
     private TeacherModel teacherModel;
+    private AdminModel adminModel;
 
     private ContextMenu contextMenu;
     private MenuItem newItem;
@@ -46,14 +48,21 @@ public class AdminPageController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        schoolModel = new SchoolModel();
+        try {
+            adminModel = new AdminModel();
+            schoolModel = new SchoolModel();
+        } catch (Exception e) {
+           PopUp.showError("Cannot load", e);
+        }
         ltvSchools.setItems(schoolModel.getAllSchools());
-
+        ltvAdmins.setItems(adminModel.getAllAdmin());
         teacherModel = TeacherModel.getInstance();
 
         teachersInSchool = new FilteredList<>(teacherModel.getObservableTeachers());
         teachersInSchool.setPredicate(null);
         ltvTeachers.setItems(teachersInSchool);
+
+
 
         setupContextMenu();
     }
