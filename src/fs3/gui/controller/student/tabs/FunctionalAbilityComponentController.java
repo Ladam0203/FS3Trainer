@@ -102,12 +102,16 @@ public class FunctionalAbilityComponentController implements Initializable {
         ttpRoot.setText(title);
     }
 
+    public void setLabel(String functionalAbility) {
+        lblIsRelevant.setText("Is " + functionalAbility + " relevant?");
+    }
+
     public void clearFields() {
         tggRelevant.selectToggle(null);
         currentLimitationLevel = null;
         expectedLimitationLevel = null;
         makeAllOpaque();
-        dtpFollowUpDate.getEditor().clear();
+        dtpFollowUpDate.setValue(null);
         txaProfessionalNote.clear();
         txaObservationNote.clear();
         cmbPerformanceLevel.getSelectionModel().clearSelection();
@@ -119,9 +123,9 @@ public class FunctionalAbilityComponentController implements Initializable {
         if (disable) {
             makeAllOpaque();
         } else {
-            if (currentLimitationLevel != null)
+            if (currentLimitationLevel != null && currentLimitationLevel != LimitationLevel.NOT_RELEVANT) {
                 makeOpaqueInExcept(currentImages, currentImages.get(currentLimitationLevel.ordinal()));
-            else {
+            } else {
                 makeAllHalfOpaqueIn(currentImages);
             }
             if (expectedLimitationLevel != null)
@@ -160,28 +164,35 @@ public class FunctionalAbilityComponentController implements Initializable {
     @FXML
     private void handleSave() {
         CitizenInstance citizenInstance = citizenInstanceModel.getSelectedCitizenInstance();
-        if (areFieldsFilled()) {
-            FunctionalAbility functionalAbility = FunctionalAbility.fromString(ttpRoot.getText());
-            FunctionalAbilityData functionalAbilityData = new FunctionalAbilityData();
-            functionalAbilityData.setCurrentLimitationLevel(tggRelevant.getSelectedToggle().equals(rdbRelevant) ? currentLimitationLevel : LimitationLevel.NOT_RELEVANT);
-            if (currentLimitationLevel == LimitationLevel.NOT_RELEVANT) { //sync model with db
-                clearFields();
-                makeAllOpaque();
-            }
-            functionalAbilityData.setExpectedLimitationLevel(expectedLimitationLevel);
-            functionalAbilityData.setFollowUpDate(dtpFollowUpDate.getValue());
-            functionalAbilityData.setProfessionalNote(txaProfessionalNote.getText());
-            functionalAbilityData.setObservationNote(txaObservationNote.getText());
-            functionalAbilityData.setPerformance(cmbPerformanceLevel.getSelectionModel().getSelectedItem());
-            functionalAbilityData.setPerceivedLimitationLevel(cmbPerceivedLimitationLevel.getSelectionModel().getSelectedItem());
-            functionalAbilityData.setCitizenRequest(txaCitizenRequest.getText());
+        currentLimitationLevel = tggRelevant.getSelectedToggle().equals(rdbRelevant) ? currentLimitationLevel : LimitationLevel.NOT_RELEVANT;
+        if (!areFieldsFilled()) {
+            return;
+        }
+        if (currentLimitationLevel.equals(LimitationLevel.NOT_RELEVANT)) { //sync model with db
+            expectedLimitationLevel = null;
+            dtpFollowUpDate.setValue(null);
+            txaProfessionalNote.clear();
+            txaObservationNote.clear();
+            cmbPerformanceLevel.getSelectionModel().clearSelection();
+            cmbPerceivedLimitationLevel.getSelectionModel().clearSelection();
+            txaCitizenRequest.clear();
+        }
+        FunctionalAbility functionalAbility = FunctionalAbility.fromString(ttpRoot.getText());
+        FunctionalAbilityData functionalAbilityData = new FunctionalAbilityData();
+        functionalAbilityData.setCurrentLimitationLevel(currentLimitationLevel);
+        functionalAbilityData.setExpectedLimitationLevel(expectedLimitationLevel);
+        functionalAbilityData.setFollowUpDate(dtpFollowUpDate.getValue());
+        functionalAbilityData.setProfessionalNote(txaProfessionalNote.getText());
+        functionalAbilityData.setObservationNote(txaObservationNote.getText());
+        functionalAbilityData.setPerformance(cmbPerformanceLevel.getSelectionModel().getSelectedItem());
+        functionalAbilityData.setPerceivedLimitationLevel(cmbPerceivedLimitationLevel.getSelectionModel().getSelectedItem());
+        functionalAbilityData.setCitizenRequest(txaCitizenRequest.getText());
 
-            citizenInstance.getFunctionalAbilities().put(functionalAbility, functionalAbilityData);
-            try {
-                citizenInstanceModel.updateSelectedCitizen();
-            } catch (Exception e) {
-                PopUp.showError("Couldn't save citizen!", e);
-            }
+        citizenInstance.getFunctionalAbilities().put(functionalAbility, functionalAbilityData);
+        try {
+            citizenInstanceModel.updateSelectedCitizen();
+        } catch (Exception e) {
+            PopUp.showError("Couldn't save citizen!", e);
         }
 
     }
