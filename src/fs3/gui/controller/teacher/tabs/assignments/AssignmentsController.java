@@ -28,7 +28,6 @@ public class AssignmentsController implements Initializable {
     @FXML
     private ListView<CitizenInstance> ltvAssignments;
 
-    private LoginModel loginModel;
     private CitizenInstanceModel citizenModel;
     private StudentModel studentModel;
 
@@ -39,11 +38,9 @@ public class AssignmentsController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         try {
             citizenModel = CitizenInstanceModel.getInstance();
-            loginModel = LoginModel.getInstance();
-            studentModel = StudentModel.getInstance(((Teacher)loginModel.getLoggedUser()).getSchool());
+            studentModel = StudentModel.getInstance();
         } catch (Exception e) {
-            e.printStackTrace();
-            PopUp.showError("Failed to initalize Citizen Instance Model");
+            PopUp.showError("Failed to initalize Citizen Instance Model", e);
         }
         citizenInstanceFilteredList = new FilteredList<>(citizenModel.getObservableCitizens());
         ltvAssignments.setItems(citizenInstanceFilteredList);

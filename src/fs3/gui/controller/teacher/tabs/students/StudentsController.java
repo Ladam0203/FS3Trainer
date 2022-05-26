@@ -48,7 +48,7 @@ public class StudentsController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         try {
             loginModel = LoginModel.getInstance();
-            studentModel = StudentModel.getInstance(((Teacher)loginModel.getLoggedUser()).getSchool());
+            studentModel = StudentModel.getInstance();
             instanceModel = CitizenInstanceModel.getInstance();
 
             studentFilteredList = new FilteredList<>(studentModel.getObservableStudents());

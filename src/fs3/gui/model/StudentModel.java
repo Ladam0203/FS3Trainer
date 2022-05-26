@@ -27,7 +27,6 @@ public class StudentModel {
     }
 
     public static StudentModel getInstance(School school) throws Exception {
-        System.out.println("request for school: " + school.getName());
         return instance == null ? instance = new StudentModel(school) : instance;
     }
 

@@ -21,7 +21,7 @@ public interface IDAOFacade {
     void updateSchool(School school) throws Exception;
     void deleteSchool(School school) throws Exception;
     School createSchool(School school) throws Exception;
-    List<CitizenInstance> readAllCizizenInstancesFrom(School school) throws Exception;
+    List<CitizenInstance> readAllCitizenInstancesFrom(School school) throws Exception;
     List<CitizenTemplate> readAllCitizenTemplatesFrom(School school) throws Exception;
     List<Student> readAllStudentsFrom(School school) throws Exception;
 }

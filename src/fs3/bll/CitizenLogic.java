@@ -3,6 +3,7 @@ package fs3.bll;
 import fs3.be.Citizen;
 import fs3.be.CitizenInstance;
 import fs3.be.CitizenTemplate;
+import fs3.be.School;
 import fs3.dal.DAOFacade;
 import fs3.dal.IDAOFacade;
 
@@ -43,5 +44,13 @@ public class CitizenLogic {
 
     public void deleteCitizen(Citizen citizen) throws Exception {
         daoFacade.deleteCitizen(citizen);
+    }
+
+    public List<CitizenInstance> readAllCitizenInstancesFrom(School school) throws Exception {
+        return daoFacade.readAllCitizenInstancesFrom(school);
+    }
+
+    public List<CitizenTemplate> readAllCitizenTemplatesFrom(School school) throws Exception {
+        return daoFacade.readAllCitizenTemplatesFrom(school);
     }
 }

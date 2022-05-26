@@ -1,6 +1,7 @@
 package fs3.gui.model;
 
 import fs3.be.CitizenInstance;
+import fs3.be.School;
 import fs3.bll.CitizenLogic;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -20,8 +21,18 @@ public class CitizenInstanceModel {
         selectedCitizenInstance = new SimpleObjectProperty<>();
     }
 
+    private CitizenInstanceModel(School school) throws Exception {
+        citizenLogic = new CitizenLogic();
+        observableCitizensInstances = FXCollections.observableList(citizenLogic.readAllCitizenInstancesFrom(school));
+        selectedCitizenInstance = new SimpleObjectProperty<>();
+    }
+
     public static CitizenInstanceModel getInstance() throws Exception {
         return instance == null ? instance = new CitizenInstanceModel() : instance;
+    }
+
+    public static CitizenInstanceModel getInstance(School school) throws Exception {
+        return instance == null ? instance = new CitizenInstanceModel(school) : instance;
     }
 
     public ObservableList<CitizenInstance> getObservableCitizens() {
