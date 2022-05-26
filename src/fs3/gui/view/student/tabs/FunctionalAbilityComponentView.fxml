@@ -27,21 +27,21 @@
             <Label styleClass="fs3-text" text="Current limitation level: " />
             <HBox spacing="10.0">
                <children>
-                  <ImageView fx:id="imgCurrentNo" fitHeight="80.0" fitWidth="80.0" onMouseClicked="#handleSelectCurrent" pickOnBounds="true" />
-                  <ImageView fx:id="imgCurrentSlight" fitHeight="80.0" fitWidth="80.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#handleSelectCurrent" pickOnBounds="true" />
-                  <ImageView fx:id="imgCurrentModerate" fitHeight="80.0" fitWidth="80.0" layoutX="100.0" layoutY="10.0" onMouseClicked="#handleSelectCurrent" pickOnBounds="true" />
-                  <ImageView fx:id="imgCurrentSevere" fitHeight="80.0" fitWidth="80.0" layoutX="191.0" layoutY="10.0" onMouseClicked="#handleSelectCurrent" pickOnBounds="true" />
-                  <ImageView fx:id="imgCurrentTotal" fitHeight="80.0" fitWidth="80.0" layoutX="281.0" layoutY="10.0" onMouseClicked="#handleSelectCurrent" pickOnBounds="true" />
+                  <ImageView fx:id="imgCurrentNo" fitHeight="80.0" fitWidth="80.0" onMouseClicked="#handleSelectLimitationLevel" pickOnBounds="true" />
+                  <ImageView fx:id="imgCurrentSlight" fitHeight="80.0" fitWidth="80.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#handleSelectLimitationLevel" pickOnBounds="true" />
+                  <ImageView fx:id="imgCurrentModerate" fitHeight="80.0" fitWidth="80.0" layoutX="100.0" layoutY="10.0" onMouseClicked="#handleSelectLimitationLevel" pickOnBounds="true" />
+                  <ImageView fx:id="imgCurrentSevere" fitHeight="80.0" fitWidth="80.0" layoutX="191.0" layoutY="10.0" onMouseClicked="#handleSelectLimitationLevel" pickOnBounds="true" />
+                  <ImageView fx:id="imgCurrentTotal" fitHeight="80.0" fitWidth="80.0" layoutX="281.0" layoutY="10.0" onMouseClicked="#handleSelectLimitationLevel" pickOnBounds="true" />
                </children>
             </HBox>
             <Label styleClass="fs3-text" text="Expected limitation level:" />
             <HBox spacing="10.0">
                <children>
-                  <ImageView fx:id="imgExpectedNo" fitHeight="80.0" fitWidth="80.0" onMouseClicked="#handleSelectExpected" pickOnBounds="true" />
-                  <ImageView fx:id="imgExpectedSlight" fitHeight="80.0" fitWidth="80.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#handleSelectExpected" pickOnBounds="true" />
-                  <ImageView fx:id="imgExpectedModerate" fitHeight="80.0" fitWidth="80.0" layoutX="100.0" layoutY="10.0" onMouseClicked="#handleSelectExpected" pickOnBounds="true" />
-                  <ImageView fx:id="imgExpectedSevere" fitHeight="80.0" fitWidth="80.0" layoutX="191.0" layoutY="10.0" onMouseClicked="#handleSelectExpected" pickOnBounds="true" />
-                  <ImageView fx:id="imgExpectedTotal" fitHeight="80.0" fitWidth="80.0" layoutX="281.0" layoutY="10.0" onMouseClicked="#handleSelectExpected" pickOnBounds="true" />
+                  <ImageView fx:id="imgExpectedNo" fitHeight="80.0" fitWidth="80.0" onMouseClicked="#handleSelectLimitationLevel" pickOnBounds="true" />
+                  <ImageView fx:id="imgExpectedSlight" fitHeight="80.0" fitWidth="80.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#handleSelectLimitationLevel" pickOnBounds="true" />
+                  <ImageView fx:id="imgExpectedModerate" fitHeight="80.0" fitWidth="80.0" layoutX="100.0" layoutY="10.0" onMouseClicked="#handleSelectLimitationLevel" pickOnBounds="true" />
+                  <ImageView fx:id="imgExpectedSevere" fitHeight="80.0" fitWidth="80.0" layoutX="191.0" layoutY="10.0" onMouseClicked="#handleSelectLimitationLevel" pickOnBounds="true" />
+                  <ImageView fx:id="imgExpectedTotal" fitHeight="80.0" fitWidth="80.0" layoutX="281.0" layoutY="10.0" onMouseClicked="#handleSelectLimitationLevel" pickOnBounds="true" />
                </children>
             </HBox>
                 <VBox spacing="10.0">
