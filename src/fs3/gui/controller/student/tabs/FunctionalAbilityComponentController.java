@@ -94,6 +94,8 @@ public class FunctionalAbilityComponentController implements Initializable {
             currentImages.get(i).setImage(limitationImages.get(i));
             expectedImages.get(i).setImage(limitationImages.get(i));
         }
+
+        makeAllOpaque();
     }
 
     public void setTitle(String title) {
@@ -104,7 +106,7 @@ public class FunctionalAbilityComponentController implements Initializable {
         tggRelevant.selectToggle(null);
         currentLimitationLevel = null;
         expectedLimitationLevel = null;
-        clearOpacity();
+        makeAllOpaque();
         dtpFollowUpDate.getEditor().clear();
         txaProfessionalNote.clear();
         txaObservationNote.clear();
@@ -119,8 +121,14 @@ public class FunctionalAbilityComponentController implements Initializable {
         } else {
             if (currentLimitationLevel != null)
                 makeOpaqueInExcept(currentImages, currentImages.get(currentLimitationLevel.ordinal()));
+            else {
+                makeAllHalfOpaqueIn(currentImages);
+            }
             if (expectedLimitationLevel != null)
                 makeOpaqueInExcept(expectedImages, expectedImages.get(expectedLimitationLevel.ordinal()));
+            else {
+                makeAllHalfOpaqueIn(expectedImages);
+            }
         }
         currentImages.forEach(image -> image.setDisable(disable));
         expectedImages.forEach(image -> image.setDisable(disable));
@@ -159,7 +167,6 @@ public class FunctionalAbilityComponentController implements Initializable {
             if (currentLimitationLevel == LimitationLevel.NOT_RELEVANT) { //sync model with db
                 clearFields();
                 makeAllOpaque();
-                expectedLimitationLevel = null;
             }
             functionalAbilityData.setExpectedLimitationLevel(expectedLimitationLevel);
             functionalAbilityData.setFollowUpDate(dtpFollowUpDate.getValue());
@@ -270,9 +277,8 @@ public class FunctionalAbilityComponentController implements Initializable {
         return false;
     }
 
-    private void clearOpacity() {
-        currentImages.forEach(imageView -> imageView.setOpacity(1));
-        expectedImages.forEach(imageView -> imageView.setOpacity(1));
+    private void makeAllHalfOpaqueIn(List<ImageView> images) {
+        images.forEach(imageView -> imageView.setOpacity(0.7));
     }
 
     private void makeAllOpaque() {
@@ -283,7 +289,7 @@ public class FunctionalAbilityComponentController implements Initializable {
     private void makeOpaqueInExcept(List<ImageView> images, ImageView imageView) {
         images.forEach(img -> {
             if (img != imageView) {
-                img.setOpacity(0.5);
+                img.setOpacity(0.7);
             } else {
                 img.setOpacity(1);
             }
