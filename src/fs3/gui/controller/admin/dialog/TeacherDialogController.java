@@ -58,17 +58,12 @@ public class TeacherDialogController extends UserDialogController<Teacher>  impl
 
     @Override
     public boolean isValid() {
-        if (txfName.getText().isEmpty()) {
-            return false;
-        }
-        if (txfUsername.getText().isEmpty()) {
-            return false;
-        }
-        if (txfPassword.getText().isEmpty()) {
-            return false;
-        }
-        if(cmbSchool.getValue() == null){
-            return false;
+        if (txfName.getText().isEmpty()     ||
+            txfUsername.getText().isEmpty() ||
+            txfPassword.getText().isEmpty() ||
+            cmbSchool.getValue() == null    ){
+                PopUp.showError("Please fill in all mandatory fields! (*)");
+                return false;
         }
         return true;
     }

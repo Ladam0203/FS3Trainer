@@ -2,6 +2,7 @@ package fs3.gui.controller.admin.dialog;
 
 import fs3.be.Admin;
 import fs3.gui.controller.dialog.UserDialogController;
+import fs3.util.PopUp;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
@@ -32,14 +33,11 @@ public class AdminDialogController extends UserDialogController<Admin> {
 
     @Override
     public boolean isValid() {
-        if (txfName.getText().isEmpty()) {
-            return false;
-        }
-        if (txfUsername.getText().isEmpty()) {
-            return false;
-        }
-        if (txfPassword.getText().isEmpty()) {
-            return false;
+        if (txfName.getText().isEmpty()     ||
+            txfPassword.getText().isEmpty() ||
+            txfName.getText().isEmpty()     ){
+                PopUp.showError("Please fill in all mandatory fields! (*)");
+                return false;
         }
         return true;
     }

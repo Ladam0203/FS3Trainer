@@ -36,7 +36,6 @@ public abstract class UserDialog<T extends User> extends Dialog<T> {
             btApply.addEventFilter(ActionEvent.ACTION, event -> {
                 if (!controller.isValid()) {
                     event.consume();
-                    PopUp.showError("Please fill in all mandatory fields! (*)");
                 }
             });
             this.setResultConverter(buttonType -> {
