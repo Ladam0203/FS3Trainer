@@ -151,6 +151,8 @@ public class FunctionalAbilityComponentController implements Initializable {
             tggRelevant.selectToggle(rdbNotRelevant);
         } else {
             tggRelevant.selectToggle(rdbRelevant);
+            makeOpaqueInExcept(currentImages, currentImages.get(currentLimitationLevel.ordinal()));
+            makeOpaqueInExcept(expectedImages, expectedImages.get(expectedLimitationLevel.ordinal()));
         }
         dtpFollowUpDate.setValue(functionalAbilityData.getFollowUpDate());
         txaProfessionalNote.setText(functionalAbilityData.getProfessionalNote());
