@@ -45,4 +45,5 @@ public class UserLogic {
     public List<Admin> readAllAdmins() throws Exception {
         return daoFacade.readAllAdmins();
     }
+
 }

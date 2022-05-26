@@ -1,8 +1,10 @@
 package fs3.gui.controller.admin;
 
+import fs3.be.Admin;
 import fs3.be.CitizenInstance;
 import fs3.be.School;
 import fs3.be.Teacher;
+import fs3.gui.controller.admin.dialog.AdminDialog;
 import fs3.gui.controller.admin.dialog.SchoolDialog;
 import fs3.gui.controller.admin.dialog.TeacherDialog;
 import fs3.gui.controller.dialog.UserDialog;
@@ -28,7 +30,7 @@ import java.util.function.Predicate;
 
 public class AdminPageController implements Initializable {
     @FXML
-    private ListView ltvAdmins;
+    private ListView<Admin> ltvAdmins;
     @FXML
     private ListView<Teacher> ltvTeachers;
 
@@ -79,6 +81,7 @@ public class AdminPageController implements Initializable {
 
         ltvTeachers.setContextMenu(contextMenu);
         ltvSchools.setContextMenu(contextMenu);
+        ltvAdmins.setContextMenu(contextMenu);
     }
 
     @FXML
@@ -212,7 +215,6 @@ public class AdminPageController implements Initializable {
 
     private void newTeacherDialog() {
         UserDialog<Teacher> dialog = new TeacherDialog();
-
         Optional<Teacher> result = dialog.showAndWait();
         result.ifPresent(response -> {
             try {
@@ -257,6 +259,25 @@ public class AdminPageController implements Initializable {
     }
 
     public void handleSelectAdmin(MouseEvent mouseEvent) {
+        if (mouseEvent.getButton().equals(MouseButton.SECONDARY)) {
+            newItem.setText("New Admin");
+            editItem.setText("Edit Admin");
+            deleteItem.setText("Delete Admin");
+
+            contextMenu.show(ltvAdmins.getPlaceholder(), mouseEvent.getX(), mouseEvent.getY());
+
+            newItem.setOnAction(event -> {
+                newAdminDialog();
+            });
+
+            editItem.setOnAction(event -> {
+                editAdminDialog();
+            });
+
+            deleteItem.setOnAction(event -> {
+
+            });
+        }
     }
 
     public void handleNewAdmin(ActionEvent event) {
@@ -266,5 +287,37 @@ public class AdminPageController implements Initializable {
     }
 
     public void handleDeleteAdmin(ActionEvent event) {
+    }
+
+    private void newAdminDialog(){
+        UserDialog<Admin> dialog = new AdminDialog();
+
+        Optional<Admin> result = dialog.showAndWait();
+        result.ifPresent(response -> {
+            try {
+                //pass the new created admin to admin model
+                adminModel.createAdmin(response);
+            } catch (Exception e) {
+                PopUp.showError("Couldn't create new admin!", e);
+            }
+        });
+    }
+
+    private void editAdminDialog(){
+        Admin selected = ltvAdmins.getSelectionModel().getSelectedItem();
+        if (selected != null) {
+            UserDialog<Admin> dialog = new AdminDialog();
+            dialog.passUser(selected);
+            Optional<Admin> result = dialog.showAndWait();
+            result.ifPresent(response -> {
+                try {
+                    adminModel.updateAdmin(response);
+                } catch (Exception e) {
+                    PopUp.showError("Couldn't edit admin!", e);
+                }
+            });
+        } else {
+            PopUp.showError("Please select an admin to edit first!");
+        }
     }
 }

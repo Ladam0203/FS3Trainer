@@ -18,4 +18,16 @@ public class AdminModel {
     public ObservableList<Admin> getAllAdmin(){
         return observableAdmins;
     }
+
+    public void createAdmin(Admin admin) throws Exception {
+        Admin created = (Admin)userLogic.createUser(admin);
+        if(created != null){
+            observableAdmins.add(created);
+        }
+    }
+
+    public void updateAdmin(Admin admin) throws Exception {
+        userLogic.updateUser(admin);
+        observableAdmins.set(observableAdmins.indexOf(admin), admin);
+    }
 }
