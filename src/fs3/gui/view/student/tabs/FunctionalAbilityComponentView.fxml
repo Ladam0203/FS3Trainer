@@ -9,54 +9,107 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<TitledPane fx:id="ttpRoot" alignment="TOP_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefWidth="750.0" stylesheets="@../../styles/common.css" text="Functional ability" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.student.tabs.FunctionalAbilityComponentController">
+<TitledPane fx:id="ttpRoot" alignment="TOP_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefWidth="750.0" stylesheets="@../../styles/common.css" text="Functional ability" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.student.tabs.FunctionalAbilityComponentController">
     <content>
         <VBox spacing="10.0">
             <children>
-            <HBox prefHeight="50.0" prefWidth="200.0">
+            <HBox prefHeight="50.0" prefWidth="200.0" spacing="16.0">
                <children>
                   <Label fx:id="lblIsRelevant" styleClass="fs3-text" text="Is functional ability relevant?" />
                   <RadioButton fx:id="rdbRelevant" mnemonicParsing="false" styleClass="fs3-text" text="Yes" />
                   <RadioButton fx:id="rdbNotRelevant" mnemonicParsing="false" styleClass="fs3-text" text="No" />
                </children>
             </HBox>
-            <Label styleClass="fs3-text" text="Current limitation level: " />
-            <HBox spacing="10.0">
+            <VBox>
                <children>
-                  <ImageView fx:id="imgCurrentNo" fitHeight="80.0" fitWidth="80.0" onMouseClicked="#handleSelectLimitationLevel" pickOnBounds="true" />
-                  <ImageView fx:id="imgCurrentSlight" fitHeight="80.0" fitWidth="80.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#handleSelectLimitationLevel" pickOnBounds="true" />
-                  <ImageView fx:id="imgCurrentModerate" fitHeight="80.0" fitWidth="80.0" layoutX="100.0" layoutY="10.0" onMouseClicked="#handleSelectLimitationLevel" pickOnBounds="true" />
-                  <ImageView fx:id="imgCurrentSevere" fitHeight="80.0" fitWidth="80.0" layoutX="191.0" layoutY="10.0" onMouseClicked="#handleSelectLimitationLevel" pickOnBounds="true" />
-                  <ImageView fx:id="imgCurrentTotal" fitHeight="80.0" fitWidth="80.0" layoutX="281.0" layoutY="10.0" onMouseClicked="#handleSelectLimitationLevel" pickOnBounds="true" />
+                  <Label styleClass="fs3-text" text="Current limitation level: " />
+                  <HBox spacing="20.0">
+                     <children>
+                        <ImageView fx:id="imgCurrentNo" fitHeight="100.0" onMouseClicked="#handleSelectLimitationLevel" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resources/0.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="imgCurrentSlight" fitHeight="100.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#handleSelectLimitationLevel" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resources/1.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="imgCurrentModerate" fitHeight="100.0" layoutX="100.0" layoutY="10.0" onMouseClicked="#handleSelectLimitationLevel" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resources/2.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="imgCurrentSevere" fitHeight="100.0" layoutX="191.0" layoutY="10.0" onMouseClicked="#handleSelectLimitationLevel" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resources/3.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="imgCurrentTotal" fitHeight="100.0" layoutX="281.0" layoutY="10.0" onMouseClicked="#handleSelectLimitationLevel" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resources/4.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
                </children>
-            </HBox>
-            <Label styleClass="fs3-text" text="Expected limitation level:" />
-            <HBox spacing="10.0">
+            </VBox>
+            <VBox>
                <children>
-                  <ImageView fx:id="imgExpectedNo" fitHeight="80.0" fitWidth="80.0" onMouseClicked="#handleSelectLimitationLevel" pickOnBounds="true" />
-                  <ImageView fx:id="imgExpectedSlight" fitHeight="80.0" fitWidth="80.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#handleSelectLimitationLevel" pickOnBounds="true" />
-                  <ImageView fx:id="imgExpectedModerate" fitHeight="80.0" fitWidth="80.0" layoutX="100.0" layoutY="10.0" onMouseClicked="#handleSelectLimitationLevel" pickOnBounds="true" />
-                  <ImageView fx:id="imgExpectedSevere" fitHeight="80.0" fitWidth="80.0" layoutX="191.0" layoutY="10.0" onMouseClicked="#handleSelectLimitationLevel" pickOnBounds="true" />
-                  <ImageView fx:id="imgExpectedTotal" fitHeight="80.0" fitWidth="80.0" layoutX="281.0" layoutY="10.0" onMouseClicked="#handleSelectLimitationLevel" pickOnBounds="true" />
+                  <Label styleClass="fs3-text" text="Expected limitation level:" />
+                  <HBox spacing="20.0">
+                     <children>
+                        <ImageView fx:id="imgExpectedNo" fitHeight="100.0" onMouseClicked="#handleSelectLimitationLevel" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resources/0.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="imgExpectedSlight" fitHeight="100.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#handleSelectLimitationLevel" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resources/1.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="imgExpectedModerate" fitHeight="100.0" layoutX="100.0" layoutY="10.0" onMouseClicked="#handleSelectLimitationLevel" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resources/2.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="imgExpectedSevere" fitHeight="100.0" layoutX="191.0" layoutY="10.0" onMouseClicked="#handleSelectLimitationLevel" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resources/3.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="imgExpectedTotal" fitHeight="100.0" layoutX="281.0" layoutY="10.0" onMouseClicked="#handleSelectLimitationLevel" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../resources/4.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
                </children>
-            </HBox>
-                <VBox spacing="10.0">
-                    <children>
+            </VBox>
+            <VBox spacing="2.0">
+               <children>
                   <Label styleClass="fs3-text" text="Professional note:" />
-                        <TextArea fx:id="txaProfessionalNote" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" VBox.vgrow="SOMETIMES" />
+                        <TextArea fx:id="txaProfessionalNote" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" />
+               </children>
+            </VBox>
+            <VBox spacing="2.0">
+               <children>
                   <Label styleClass="fs3-text" text="Observation notes:" />
-                        <TextArea fx:id="txaObservationNote" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="200.0" VBox.vgrow="SOMETIMES" />
-                    </children>
-                </VBox>
+                        <TextArea fx:id="txaObservationNote" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="200.0" />
+               </children>
+            </VBox>
                 <VBox spacing="10.0" VBox.vgrow="NEVER">
                     <children>
                         <HBox spacing="10.0">
                             <children>
-                        <VBox maxWidth="300.0" HBox.hgrow="ALWAYS">
+                        <VBox maxWidth="300.0" spacing="2.0" HBox.hgrow="ALWAYS">
                            <children>
                               <Label styleClass="fs3-text" text="Performance level:" VBox.vgrow="ALWAYS" />
                                       <ComboBox fx:id="cmbPerformanceLevel" maxWidth="300.0" minWidth="-Infinity" VBox.vgrow="ALWAYS" />
@@ -70,7 +123,7 @@
                         </VBox>
                             </children>
                         </HBox>
-                  <VBox prefHeight="200.0" prefWidth="100.0">
+                  <VBox prefHeight="200.0" prefWidth="100.0" spacing="2.0">
                      <children>
                         <Label styleClass="fs3-text" text="Citizen request:" />
                               <TextArea fx:id="txaCitizenRequest" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" VBox.vgrow="SOMETIMES" />
@@ -80,7 +133,7 @@
                 </VBox>
                   <HBox spacing="10.0" VBox.vgrow="NEVER">
                       <children>
-                  <VBox prefWidth="100.0" HBox.hgrow="ALWAYS">
+                  <VBox prefWidth="100.0" spacing="2.0" HBox.hgrow="ALWAYS">
                      <children>
                         <Label styleClass="fs3-text" text="Follow up date:" VBox.vgrow="ALWAYS" />
                                 <DatePicker fx:id="dtpFollowUpDate" maxWidth="300.0" minWidth="-Infinity" />

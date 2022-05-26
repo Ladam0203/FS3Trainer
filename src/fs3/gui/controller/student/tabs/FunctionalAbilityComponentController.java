@@ -65,14 +65,6 @@ public class FunctionalAbilityComponentController implements Initializable {
         cmbPerformanceLevel.getItems().addAll(Performance.values());
         cmbPerceivedLimitationLevel.getItems().addAll(PerceivedLimitationLevel.values());
 
-        List<Image> limitationImages = List.of(
-                new Image(getClass().getResource("../../../view/resources/0.png").toExternalForm()),
-                new Image(getClass().getResource("../../../view/resources/1.png").toExternalForm()),
-                new Image(getClass().getResource("../../../view/resources/2.png").toExternalForm()),
-                new Image(getClass().getResource("../../../view/resources/3.png").toExternalForm()),
-                new Image(getClass().getResource("../../../view/resources/4.png").toExternalForm())
-        );
-
         tggRelevant = new ToggleGroup();
         rdbRelevant.setToggleGroup(tggRelevant);
         rdbNotRelevant.setToggleGroup(tggRelevant);
@@ -90,11 +82,6 @@ public class FunctionalAbilityComponentController implements Initializable {
 
         currentImages = List.of(imgCurrentNo, imgCurrentSlight, imgCurrentModerate, imgCurrentSevere, imgCurrentTotal);
         expectedImages = List.of(imgExpectedNo, imgExpectedSlight, imgExpectedModerate, imgExpectedSevere, imgExpectedTotal);
-        //TODO: REMOVE IF THEY ARE SET IN THE VIEW
-        for (int i = 0; i < 5; i++) {
-            currentImages.get(i).setImage(limitationImages.get(i));
-            expectedImages.get(i).setImage(limitationImages.get(i));
-        }
 
         makeAllOpaque();
     }
