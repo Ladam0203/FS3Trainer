@@ -5,13 +5,10 @@ import fs3.enums.LimitationLevel;
 import fs3.enums.PerceivedLimitationLevel;
 import fs3.enums.Performance;
 import fs3.gui.model.CitizenInstanceModel;
+import fs3.util.PopUp;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TitledPane;
-import javafx.scene.image.Image;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 
 import java.net.URL;
@@ -22,11 +19,13 @@ public class AFunctionalAbilityComponentController implements Initializable {
     @FXML
     private TitledPane ttpRoot;
     @FXML
-    private ComboBox<LimitationLevel> cmbCurrentLimitationLevel;
+    private Label lblIsRelevant;
     @FXML
-    private ComboBox<LimitationLevel> cmbExpectedLimitationLevel;
+    private RadioButton rdbRelevant, rdbNotRelevant;
     @FXML
-    private ImageView imgCurrent, imgExpected;
+    private ImageView imgCurrentNo, imgCurrentSlight, imgCurrentModerate, imgCurrentSevere, imgCurrentTotal;
+    @FXML
+    private ImageView imgExpectedNo, imgExpectedSlight, imgExpectedModerate, imgExpectedSevere, imgExpectedTotal;
     @FXML
     private DatePicker dtpFollowUpDate;
     @FXML
@@ -40,59 +39,85 @@ public class AFunctionalAbilityComponentController implements Initializable {
     @FXML
     private TextArea txaCitizenRequest;
 
-    private List<Image> limitationImages;
+    private CitizenInstanceModel citizenInstanceModel;
+
+    private ToggleGroup tggRelevant;
+
+    private LimitationLevel currentLimitationLevel;
+    private LimitationLevel expectedLimitationLevel;
+    private List<ImageView> currentImages;
+    private List<ImageView> expectedImages;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        cmbCurrentLimitationLevel.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            changePictogram(imgCurrent, newValue);
-        });
-        cmbExpectedLimitationLevel.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            changePictogram(imgExpected, newValue);
-        });
-
-        limitationImages = List.of(
-                new Image(getClass().getResource("../../../../view/resources/0.png").toExternalForm()),
-                new Image(getClass().getResource("../../../../view/resources/1.png").toExternalForm()),
-                new Image(getClass().getResource("../../../../view/resources/2.png").toExternalForm()),
-                new Image(getClass().getResource("../../../../view/resources/3.png").toExternalForm()),
-                new Image(getClass().getResource("../../../../view/resources/4.png").toExternalForm())
-        );
-    }
-
-    private void changePictogram(ImageView img, LimitationLevel limitationLevel) {
-        if (limitationLevel == null || limitationLevel == LimitationLevel.NOT_RELEVANT) {
-            img.setImage(null);
-            return;
+        try {
+            citizenInstanceModel = CitizenInstanceModel.getInstance();
+        } catch (Exception e) {
+            PopUp.showError("Couldn't initialize functional ability component!", e);
         }
-        img.setImage(limitationImages.get(limitationLevel.ordinal()));
+
+        tggRelevant = new ToggleGroup();
+        rdbRelevant.setToggleGroup(tggRelevant);
+        rdbNotRelevant.setToggleGroup(tggRelevant);
+
+        dtpFollowUpDate.setDisable(true);
+        dtpFollowUpDate.setStyle("-fx-opacity: 1");
+        dtpFollowUpDate.getEditor().setStyle("-fx-opacity: 1");
+
+        currentImages = List.of(imgCurrentNo, imgCurrentSlight, imgCurrentModerate, imgCurrentSevere, imgCurrentTotal);
+        expectedImages = List.of(imgExpectedNo, imgExpectedSlight, imgExpectedModerate, imgExpectedSevere, imgExpectedTotal);
+
+        makeAllOpaque();
     }
 
-    public void setTitle(String title) {
-        ttpRoot.setText(title);
+    public void setFunctionalAbilityString(String functionalAbilityString) {
+        ttpRoot.setText(functionalAbilityString);
+        lblIsRelevant.setText("Is " + functionalAbilityString.toLowerCase() + " relevant?");
     }
 
     public void clearFields() {
-        imgCurrent.setImage(null);
-        imgExpected.setImage(null);
-        cmbCurrentLimitationLevel.getSelectionModel().select(null);
-        cmbExpectedLimitationLevel.getSelectionModel().select(null);
-        dtpFollowUpDate.getEditor().clear();
+        tggRelevant.selectToggle(null);
+        currentLimitationLevel = null;
+        expectedLimitationLevel = null;
+        makeAllOpaque();
+        dtpFollowUpDate.setValue(null);
         txaProfessionalNote.clear();
         txaObservationNote.clear();
-        cmbPerformanceLevel.getSelectionModel().select(null);
-        cmbPerceivedLimitationLevel.getSelectionModel().select(null);
+        cmbPerformanceLevel.setValue(null);
+        cmbPerceivedLimitationLevel.setValue(null);
         txaCitizenRequest.clear();
     }
 
     public void setFields(FunctionalAbilityData functionalAbilityData) {
-        cmbCurrentLimitationLevel.getSelectionModel().select(functionalAbilityData.getCurrentLimitationLevel());
-        cmbExpectedLimitationLevel.getSelectionModel().select(functionalAbilityData.getExpectedLimitationLevel());
+        currentLimitationLevel = functionalAbilityData.getCurrentLimitationLevel();
+        expectedLimitationLevel = functionalAbilityData.getExpectedLimitationLevel();
+        if (functionalAbilityData.getCurrentLimitationLevel() == LimitationLevel.NOT_RELEVANT) {
+            tggRelevant.selectToggle(rdbNotRelevant);
+        } else {
+            tggRelevant.selectToggle(rdbRelevant);
+            makeOpaqueInExcept(currentImages, currentImages.get(currentLimitationLevel.ordinal()));
+            makeOpaqueInExcept(expectedImages, expectedImages.get(expectedLimitationLevel.ordinal()));
+        }
         dtpFollowUpDate.setValue(functionalAbilityData.getFollowUpDate());
         txaProfessionalNote.setText(functionalAbilityData.getProfessionalNote());
         txaObservationNote.setText(functionalAbilityData.getObservationNote());
-        cmbPerformanceLevel.getSelectionModel().select(functionalAbilityData.getPerformance());
-        cmbPerceivedLimitationLevel.getSelectionModel().select(functionalAbilityData.getPerceivedLimitationLevel());
+        cmbPerformanceLevel.setValue(functionalAbilityData.getPerformance());
+        cmbPerceivedLimitationLevel.setValue(functionalAbilityData.getPerceivedLimitationLevel());
         txaCitizenRequest.setText(functionalAbilityData.getCitizenRequest());
+    }
+
+    private void makeAllOpaque() {
+        currentImages.forEach(imageView -> imageView.setOpacity(0.3));
+        expectedImages.forEach(imageView -> imageView.setOpacity(0.3));
+    }
+
+    private void makeOpaqueInExcept(List<ImageView> images, ImageView imageView) {
+        images.forEach(img -> {
+            if (img != imageView) {
+                img.setOpacity(0.6);
+            } else {
+                img.setOpacity(1);
+            }
+        });
     }
 }

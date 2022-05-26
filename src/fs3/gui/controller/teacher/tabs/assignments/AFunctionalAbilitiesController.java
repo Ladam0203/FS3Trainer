@@ -36,7 +36,7 @@ public class AFunctionalAbilitiesController implements Initializable {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fs3/gui/view/teacher/tabs/assignments/FunctionalAbilityComponentView.fxml"));
                 Parent root = loader.load();
                 AFunctionalAbilityComponentController controller = loader.getController();
-                controller.setTitle(condition.toString());
+                controller.setFunctionalAbilityString(condition.toString());
 
                 if (!Objects.equals(header, condition.getMain()) && condition.getMain() != null) {
                     header = condition.getMain();

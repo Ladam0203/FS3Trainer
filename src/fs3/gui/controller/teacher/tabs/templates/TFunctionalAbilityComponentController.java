@@ -1,16 +1,13 @@
 package fs3.gui.controller.teacher.tabs.templates;
 
-import fs3.be.CitizenInstance;
 import fs3.be.CitizenTemplate;
 import fs3.be.FunctionalAbilityData;
 import fs3.enums.FunctionalAbility;
 import fs3.enums.LimitationLevel;
 import fs3.enums.PerceivedLimitationLevel;
 import fs3.enums.Performance;
-import fs3.gui.model.CitizenInstanceModel;
 import fs3.gui.model.CitizenTemplateModel;
 import fs3.util.PopUp;
-
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -50,10 +47,10 @@ public class TFunctionalAbilityComponentController implements Initializable {
 
     private ToggleGroup tggRelevant;
 
-    LimitationLevel currentLimitationLevel;
-    LimitationLevel expectedLimitationLevel;
-    List<ImageView> currentImages;
-    List<ImageView> expectedImages;
+    private LimitationLevel currentLimitationLevel;
+    private LimitationLevel expectedLimitationLevel;
+    private List<ImageView> currentImages;
+    private List<ImageView> expectedImages;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
