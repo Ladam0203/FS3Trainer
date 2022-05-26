@@ -27,6 +27,7 @@ import java.util.function.Predicate;
 
 public class AdminPageController implements Initializable {
 
+    public ListView ltvAdmins;
     @FXML
     private ListView<Teacher> ltvTeachers;
 
@@ -243,5 +244,17 @@ public class AdminPageController implements Initializable {
         } else {
             PopUp.showError("Please select a teacher to delete first");
         }
+    }
+
+    public void handleSelectAdmin(MouseEvent mouseEvent) {
+    }
+
+    public void handleNewAdmin(ActionEvent event) {
+    }
+
+    public void handleEditAdmin(ActionEvent event) {
+    }
+
+    public void handleDeleteAdmin(ActionEvent event) {
     }
 }
