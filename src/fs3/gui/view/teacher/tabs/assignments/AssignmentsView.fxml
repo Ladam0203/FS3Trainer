@@ -8,11 +8,12 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1200.0" stylesheets="@../../../styles/common.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.teacher.tabs.assignments.AssignmentsController">
+<HBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1200.0" stylesheets="@../../../styles/common.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.teacher.tabs.assignments.AssignmentsController">
     <children>
         <VBox minWidth="-Infinity" prefWidth="300.0" styleClass="right-border">
             <children>
@@ -39,7 +40,7 @@
                   <Insets />
                </VBox.margin>
                <children>
-                  <TextField fx:id="txfFilterAssignments" onKeyTyped="#handleFilterAssignments" HBox.hgrow="ALWAYS" promptText="Filter" />
+                  <TextField fx:id="txfFilterAssignments" onKeyTyped="#handleFilterAssignments" promptText="Filter" HBox.hgrow="ALWAYS" />
                </children>
                <padding>
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
@@ -47,7 +48,7 @@
             </HBox>
             </children>
         </VBox>
-        <TabPane tabClosingPolicy="UNAVAILABLE" tabMinHeight="40.0" tabMinWidth="200.0" HBox.hgrow="ALWAYS">
+        <TabPane tabClosingPolicy="UNAVAILABLE" tabMinHeight="40.0" tabMinWidth="150.0" HBox.hgrow="ALWAYS">
             <tabs>
                 <Tab text="General information">
                     <fx:include source="GeneralInformationView.fxml" />
@@ -60,6 +61,11 @@
                     <fx:include source="FunctionalAbilitiesView.fxml" />
 
                 </Tab>
+            <Tab text="Medicine list">
+              <content>
+                  <fx:include source="MedicineListView.fxml" />
+              </content>
+            </Tab>
             </tabs>
         </TabPane>
     </children>
