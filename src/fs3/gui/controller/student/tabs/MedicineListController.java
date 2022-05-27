@@ -23,9 +23,14 @@ public class MedicineListController implements Initializable {
         } catch (Exception e) {
             PopUp.showError("Cannot load citizen instance model", e);
         }
+
+        citizenInstanceModel.getSelectedCitizenProperty().addListener(
+                (observable, oldValue, newValue) ->  txaMedicine.setText(newValue.getMedicineList())
+        );
     }
 
-    public void handleSave(ActionEvent event) {
+    @FXML
+    private void handleSave(ActionEvent event) {
         CitizenInstance selected = citizenInstanceModel.getSelectedCitizenInstance();
         if(selected == null){
             return;
