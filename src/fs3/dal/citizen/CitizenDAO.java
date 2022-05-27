@@ -23,6 +23,7 @@ public class CitizenDAO {
     private final GeneralInformationDAO generalInformationDAO = new GeneralInformationDAO();
     private final HealthConditionDAO healthConditionDAO = new HealthConditionDAO();
     private final FunctionalAbilityDAO functionalAbilityDAO = new FunctionalAbilityDAO();
+    private final MedicineListDAO medicineListDAO = new MedicineListDAO();
 
     private String tableName = "Citizens";
     private String[] columns = {"id", "isTemplate", "schoolId"};
@@ -126,7 +127,7 @@ public class CitizenDAO {
         } finally {
             ConnectionManagerPool.getInstance().returnConnectionManager(cm);
         }
-        subExecutor = Executors.newFixedThreadPool(4);
+        subExecutor = Executors.newFixedThreadPool(5);
         List<Future<Exception>> futures = new ArrayList<>();
         futures.add(subExecutor.submit(new ExceptionCallable() {
             @Override
@@ -152,6 +153,12 @@ public class CitizenDAO {
                 functionalAbilityDAO.create(citizen);
             }
         }));
+        futures.add(subExecutor.submit(new ExceptionCallable() {
+            @Override
+            void doTask() throws Exception {
+                medicineListDAO.create(citizen);
+            }
+        }));
 
         subExecutor.shutdown();
         for (Future<Exception> future : futures) {
@@ -165,7 +172,7 @@ public class CitizenDAO {
 
     //doesn't take into account the school as it is never updated on a citizen
     public void update(Citizen citizen) throws Exception {
-        subExecutor = Executors.newFixedThreadPool(4);
+        subExecutor = Executors.newFixedThreadPool(5);
         List<Future<Exception>> futures = new ArrayList<>();
         futures.add(subExecutor.submit(new ExceptionCallable() {
             @Override
@@ -189,6 +196,12 @@ public class CitizenDAO {
             @Override
             void doTask() throws Exception {
                 functionalAbilityDAO.update(citizen);
+            }
+        }));
+        futures.add(subExecutor.submit(new ExceptionCallable() {
+            @Override
+            void doTask() throws Exception {
+                medicineListDAO.update(citizen);
             }
         }));
 
@@ -216,7 +229,7 @@ public class CitizenDAO {
         citizen.setId(rs.getInt(columns[0]));
         citizen.setSchool(schoolDAO.read(rs.getInt(columns[2])));
 
-        subExecutor = Executors.newFixedThreadPool(4);
+        subExecutor = Executors.newFixedThreadPool(5);
         List<Future<Exception>> futures = new ArrayList<>();
         futures.add(subExecutor.submit(new ExceptionCallable() {
             @Override
@@ -240,6 +253,12 @@ public class CitizenDAO {
             @Override
             void doTask() throws Exception {
                 citizen.setFunctionalAbilities(functionalAbilityDAO.read(citizen));
+            }
+        }));
+        futures.add(subExecutor.submit(new ExceptionCallable() {
+            @Override
+            void doTask() throws Exception {
+                citizen.setMedicineList(medicineListDAO.read(citizen));
             }
         }));
 

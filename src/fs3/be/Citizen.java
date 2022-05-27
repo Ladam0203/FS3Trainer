@@ -2,10 +2,7 @@ package fs3.be;
 
 import fs3.enums.FunctionalAbility;
 import fs3.enums.HealthCondition;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.*;
 
 import java.io.Serializable;
 import java.util.EnumMap;
@@ -18,6 +15,7 @@ public abstract class Citizen {
     private ObjectProperty<GeneralInformation> generalInformation;
     private HashMap<HealthCondition, HealthConditionData> healthConditions;
     private HashMap<FunctionalAbility, FunctionalAbilityData> functionalAbilities;
+    private StringProperty medicineList;
     private ObjectProperty<School> school;
 
     protected Citizen() {
@@ -26,6 +24,7 @@ public abstract class Citizen {
         generalInformation = new SimpleObjectProperty<>();
         healthConditions = new HashMap<>();
         functionalAbilities = new HashMap<>();
+        medicineList = new SimpleStringProperty();
         school = new SimpleObjectProperty<>();
     }
 
@@ -69,6 +68,26 @@ public abstract class Citizen {
         this.functionalAbilities = functionalAbilities;
     }
 
+    public String getMedicineList() {
+        return medicineList.get();
+    }
+
+    public void setMedicineList(String medicineList) {
+        this.medicineList.set(medicineList);
+    }
+
+    public void setMedicineListProperty(SimpleStringProperty medicineListProperty) {
+        this.medicineList = medicineListProperty;
+    }
+
+    public School getSchool() {
+        return school.get();
+    }
+
+    public void setSchool(School school) {
+        this.school.set(school);
+    }
+
     @Override
     public String toString() {
         return String.format("[%d]: %s (%d)", getId(), getPersonalInformation().getName(), getPersonalInformation().getAge());
@@ -87,13 +106,5 @@ public abstract class Citizen {
             return false;
         }
         return true;
-    }
-
-    public School getSchool() {
-        return school.get();
-    }
-
-    public void setSchool(School school) {
-        this.school.set(school);
     }
 }
