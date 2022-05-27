@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 
 public class MedicineListDAO {
     private String tableName = "medicineLists";
-    private String[] columns = {"id", "medicineList"};
+    private String[] columns = {"citizenId", "medicineList"};
 
     private String select = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ?";
     private String insert = "INSERT INTO " + tableName + " " + "VALUES (?, ?)";

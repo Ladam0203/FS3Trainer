@@ -89,6 +89,7 @@ public class CitizenDAOTest {
     }
 
     @Test
+    @Disabled
     void update() throws Exception {
         CitizenDAO citizenDAO = new CitizenDAO();
         CitizenTemplate citizen = citizenDAO.readAllCitizenTemplates().get(5);;
@@ -99,5 +100,14 @@ public class CitizenDAOTest {
 
         citizen = citizenDAO.readAllCitizenTemplates().get(5);
         Assertions.assertEquals("He won't", citizen.getGeneralInformation().getCoping());
+    }
+
+    @Test
+    void medicineList() throws Exception {
+        CitizenDAO citizenDAO = new CitizenDAO();
+        CitizenInstance citizen = citizenDAO.readAllCitizenInstances().get(0);
+        citizen.setMedicineList("test");
+
+        citizenDAO.create(citizen);
     }
 }
