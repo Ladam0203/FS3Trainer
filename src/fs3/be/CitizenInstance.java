@@ -3,6 +3,7 @@ package fs3.be;
 import fs3.enums.FunctionalAbility;
 import fs3.enums.HealthCondition;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 
 import java.util.Map;
 import java.util.Objects;
@@ -23,6 +24,7 @@ public class CitizenInstance extends Citizen {
         for (Map.Entry<FunctionalAbility, FunctionalAbilityData> entry : citizenTemplate.getFunctionalAbilities().entrySet()) {
             this.getFunctionalAbilities().put(entry.getKey(), new FunctionalAbilityData(entry.getValue()));
         }
+        this.setMedicineListProperty(new SimpleStringProperty(citizenTemplate.getMedicineList()));
         this.setSchool(citizenTemplate.getSchool() == null ? null : new School(citizenTemplate.getSchool()));
     }
 
@@ -40,5 +42,4 @@ public class CitizenInstance extends Citizen {
         }
         return true;
     }
-
 }
