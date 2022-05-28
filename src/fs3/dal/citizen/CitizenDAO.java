@@ -1,16 +1,11 @@
 package fs3.dal.citizen;
 
-import com.microsoft.sqlserver.jdbc.SQLServerException;
 import fs3.be.*;
 import fs3.dal.ConnectionManager;
 import fs3.dal.ConnectionManagerPool;
 import fs3.dal.school.SchoolDAO;
-import fs3.enums.ObservationType;
 
-import javax.sql.rowset.CachedRowSet;
-import javax.sql.rowset.RowSetProvider;
 import java.sql.*;
-import java.time.LocalDateTime;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -260,12 +255,6 @@ public class CitizenDAO {
                 citizen.setMedicineList(medicineListDAO.read(citizen));
             }
         }));
-
-        //mock observation
-        Observations obs = new Observations();
-        Observation<BloodPressure> o = new Observation<BloodPressure>(ObservationType.BLOOD_PRESSURE, LocalDateTime.now(), new BloodPressure(120, 80));
-        obs.addBloodPressure(o);
-        citizen.setObservations(obs);
 
 
         subExecutor.shutdown();
