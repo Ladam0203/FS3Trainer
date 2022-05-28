@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ButtonType?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+
+
+<DialogPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: #1e4c6b;" stylesheets="@../styles/common.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <content>
+      <VBox spacing="20.0">
+         <children>
+            <VBox spacing="12.0">
+               <children>
+                  <Label styleClass="fs3-text" text="Date*" />
+                  <DatePicker maxWidth="350.0" prefWidth="280.0" />
+                  <Label styleClass="fs3-text" text="Time*" />
+                  <TextField maxWidth="350.0" prefWidth="280.0" />
+                  <Label styleClass="fs3-text" text="Measurement*" />
+                  <TextField maxWidth="350.0" prefWidth="280.0" />
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </content>
+   <buttonTypes>
+      <ButtonType fx:constant="CANCEL" />
+      <ButtonType fx:constant="APPLY" />
+   </buttonTypes>
+   <padding>
+      <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+   </padding>
+</DialogPane>
