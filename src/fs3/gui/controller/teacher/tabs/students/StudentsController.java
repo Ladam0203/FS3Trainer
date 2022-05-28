@@ -3,7 +3,7 @@ package fs3.gui.controller.teacher.tabs.students;
 import fs3.be.CitizenInstance;
 import fs3.be.Student;
 import fs3.be.Teacher;
-import fs3.gui.controller.dialog.UserDialog;
+import fs3.gui.controller.dialog.CUDialog;
 import fs3.gui.controller.teacher.tabs.students.dialog.StudentDialog;
 import fs3.gui.model.CitizenInstanceModel;
 import fs3.gui.model.LoginModel;
@@ -121,7 +121,7 @@ public class StudentsController implements Initializable {
             contextMenu.show(ltvStudents.getPlaceholder(), mouseEvent.getX(), mouseEvent.getY());
 
             newItem.setOnAction(event -> {
-                UserDialog<Student> dialog = new StudentDialog();
+                CUDialog<Student> dialog = new StudentDialog();
                 Optional<Student> result = dialog.showAndWait();
                 result.ifPresent(response -> {
                     try {
@@ -135,8 +135,8 @@ public class StudentsController implements Initializable {
             });
 
             editItem.setOnAction(event -> {
-                UserDialog<Student> dialog = new StudentDialog();
-                dialog.passUser(selected);
+                CUDialog<Student> dialog = new StudentDialog();
+                dialog.passObject(selected);
                 Optional<Student> result = dialog.showAndWait();
                 result.ifPresent(response -> {
                     try {

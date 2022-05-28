@@ -2,7 +2,7 @@ package fs3.gui.controller.admin.tabs;
 
 import fs3.be.Teacher;
 import fs3.gui.controller.admin.dialog.TeacherDialog;
-import fs3.gui.controller.dialog.UserDialog;
+import fs3.gui.controller.dialog.CUDialog;
 import fs3.gui.model.TeacherModel;
 import fs3.util.PopUp;
 import javafx.event.ActionEvent;
@@ -70,7 +70,7 @@ public class TeacherManagementController implements Initializable {
     }
 
     private void newTeacherDialog() {
-        UserDialog<Teacher> dialog = new TeacherDialog();
+        CUDialog<Teacher> dialog = new TeacherDialog();
         Optional<Teacher> result = dialog.showAndWait();
         result.ifPresent(response -> {
             try {
@@ -85,8 +85,8 @@ public class TeacherManagementController implements Initializable {
     private void editTeacherDialog() {
         Teacher selected = ltvTeachers.getSelectionModel().getSelectedItem();
         if(selected != null){
-            UserDialog<Teacher> dialog = new TeacherDialog();
-            dialog.passUser(selected);
+            CUDialog<Teacher> dialog = new TeacherDialog();
+            dialog.passObject(selected);
             Optional<Teacher> result = dialog.showAndWait();
             result.ifPresent(response -> {
                 try {

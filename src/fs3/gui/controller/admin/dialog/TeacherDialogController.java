@@ -2,11 +2,9 @@ package fs3.gui.controller.admin.dialog;
 
 import fs3.be.School;
 import fs3.be.Teacher;
-import fs3.gui.controller.dialog.UserDialogController;
+import fs3.gui.controller.dialog.CUDialogController;
 import fs3.gui.model.SchoolModel;
 import fs3.util.PopUp;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
@@ -15,7 +13,7 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import java.util.*;
 
-public class TeacherDialogController extends UserDialogController<Teacher>  implements Initializable {
+public class TeacherDialogController extends CUDialogController<Teacher> implements Initializable {
     @FXML
     protected TextField txfName, txfUsername, txfPassword;
     @FXML
@@ -35,7 +33,7 @@ public class TeacherDialogController extends UserDialogController<Teacher>  impl
     }
 
     @Override
-    public Teacher constructEmptyUser() {
+    public Teacher constructEmptyObject() {
         return new Teacher("", "");
     }
 
@@ -48,12 +46,12 @@ public class TeacherDialogController extends UserDialogController<Teacher>  impl
     }
 
     @Override
-    public Teacher constructUser() {
-        getUser().setName(txfName.getText());
-        getUser().setUsername(txfUsername.getText());
-        getUser().setPassword(txfPassword.getText());
-        getUser().setSchool(cmbSchool.getSelectionModel().getSelectedItem());
-        return getUser();
+    public Teacher constructObject() {
+        getObject().setName(txfName.getText());
+        getObject().setUsername(txfUsername.getText());
+        getObject().setPassword(txfPassword.getText());
+        getObject().setSchool(cmbSchool.getSelectionModel().getSelectedItem());
+        return getObject();
     }
 
     @Override
