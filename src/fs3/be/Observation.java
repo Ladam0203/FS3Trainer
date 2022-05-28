@@ -11,6 +11,12 @@ public class Observation<T> {
     private ObjectProperty<LocalDateTime> timestamp;
     private ObjectProperty<T> measurement;
 
+    public Observation() {
+        this.type = new SimpleObjectProperty<>();
+        this.timestamp = new SimpleObjectProperty<>();
+        this.measurement = new SimpleObjectProperty<>();
+    }
+
     public Observation(ObservationType type, LocalDateTime timestamp, T measurement) {
         this.type = new SimpleObjectProperty<>(type);
         this.timestamp = new SimpleObjectProperty<>(timestamp);
