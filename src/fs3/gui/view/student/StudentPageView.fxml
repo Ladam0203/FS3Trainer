@@ -48,9 +48,6 @@
                         <Tab closable="false" text="Functional ablities">
                             <fx:include source="tabs/FunctionalAbilitiesView.fxml" />
                         </Tab>
-                        <Tab closable="false" text="Observations">
-                            <fx:include source="tabs/ObservationsView.fxml" />
-                        </Tab>
                         <Tab text="Medicine list">
                             <fx:include source="tabs/MedicineListView.fxml" />
                         </Tab>
