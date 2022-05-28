@@ -1,17 +1,17 @@
 package fs3.gui.controller.teacher.tabs.students.dialog;
 
 import fs3.be.Student;
-import fs3.gui.controller.dialog.UserDialogController;
+import fs3.gui.controller.dialog.CUDialogController;
 import fs3.util.PopUp;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
-public class StudentDialogController extends UserDialogController<Student> {
+public class StudentDialogController extends CUDialogController<Student> {
     @FXML
     protected TextField txfName, txfUsername, txfPassword;
 
     @Override
-    public Student constructEmptyUser() {
+    public Student constructEmptyObject() {
         return new Student("", "");
     }
 
@@ -23,11 +23,11 @@ public class StudentDialogController extends UserDialogController<Student> {
     }
 
     @Override
-    public Student constructUser() {
-        getUser().setName(txfName.getText());
-        getUser().setUsername(txfUsername.getText());
-        getUser().setPassword(txfPassword.getText());
-        return getUser();
+    public Student constructObject() {
+        getObject().setName(txfName.getText());
+        getObject().setUsername(txfUsername.getText());
+        getObject().setPassword(txfPassword.getText());
+        return getObject();
     }
 
     @Override

@@ -1,17 +1,17 @@
 package fs3.gui.controller.admin.dialog;
 
 import fs3.be.Admin;
-import fs3.gui.controller.dialog.UserDialogController;
+import fs3.gui.controller.dialog.CUDialogController;
 import fs3.util.PopUp;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
-public class AdminDialogController extends UserDialogController<Admin> {
+public class AdminDialogController extends CUDialogController<Admin> {
     @FXML
     protected TextField txfName, txfUsername, txfPassword;
 
     @Override
-    public Admin constructEmptyUser() {
+    public Admin constructEmptyObject() {
         return new Admin("", "");
     }
 
@@ -24,11 +24,11 @@ public class AdminDialogController extends UserDialogController<Admin> {
     }
 
     @Override
-    public Admin constructUser() {
-        getUser().setName(txfName.getText());
-        getUser().setPassword(txfPassword.getText());
-        getUser().setUsername(txfUsername.getText());
-        return getUser();
+    public Admin constructObject() {
+        getObject().setName(txfName.getText());
+        getObject().setPassword(txfPassword.getText());
+        getObject().setUsername(txfUsername.getText());
+        return getObject();
     }
 
     @Override

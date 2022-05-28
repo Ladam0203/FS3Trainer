@@ -45,9 +45,8 @@
 .tab:selected {
     -fx-outer-border: #deaa88;
     -fx-body-color: #22577A;
-    -fx-background-color:
-            -fx-outer-border,
-            -fx-body-color;
+    -fx-background-color: -fx-outer-border,
+    -fx-body-color;
     -fx-background-insets: 0 0 0 0, 0 0 3 0;
 }
 
@@ -167,52 +166,45 @@
     -fx-text-fill: #F7F8F9;
 }
 
-.combo-box .list-cell
-{
+.combo-box .list-cell {
     -fx-background: #F7F8F9;
     -fx-background-color: transparent;
     -fx-text-fill: #000;
     -fx-padding: 4 4 4 8;
 }
 
-.combo-box-popup .list-view
-{
+.combo-box-popup .list-view {
     -fx-background-color: #F7F8F9, #F7F8F9;
     -fx-background-insets: 0, 1;
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 8, 0.0 , 0 , 0 );
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 8, 0.0, 0, 0);
 }
 
-.combo-box-popup .list-view .list-cell
-{
+.combo-box-popup .list-view .list-cell {
     -fx-padding: 4 0 4 5;
 
     /* No alternate highlighting */
     -fx-background-color: #F7F8F9;
 }
 
-.combo-box-popup .list-view .list-cell:filled:selected, .combo-box-popup .list-view .list-cell:filled:selected:hover
-{
+.combo-box-popup .list-view .list-cell:filled:selected, .combo-box-popup .list-view .list-cell:filled:selected:hover {
     -fx-background: transparent;
     -fx-background-color: #deaa88;
     -fx-text-fill: #000;
 }
 
-.combo-box-popup .list-view .list-cell:filled:hover
-{
+.combo-box-popup .list-view .list-cell:filled:hover {
     -fx-background-color: #F7F8F9;
     -fx-text-fill: #000;
 }
 
-.combo-box-base
-{
+.combo-box-base {
     -fx-background-color: #F7F8F9, #F7F8F9, #F7F8F9, #F7F8F9;
     -fx-background-radius: 5, 5, 4, 3;
     -fx-background-insets: 0 0 -1 0, 0, 1, 2;
     -fx-padding: 0;
 }
 
-.combo-box-base:hover
-{
+.combo-box-base:hover {
     -fx-color: -fx-hover-base;
 }
 
@@ -238,4 +230,54 @@
 .fs3-text {
     -fx-text-fill: #F7F8F9;
     -fx-font-size: 20;
+}
+
+.table-view {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header-background .filler {
+    -fx-background-color: transparent;
+}
+
+.table-view .corner {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #F7F8F9;
+    -fx-background-radius: 0 0 0 0;
+    -fx-background-insets: 0 0 0 0;
+    -fx-padding: 0 0 4px 0;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+}
+
+.table-view .table-cell {
+    -fx-border-color: transparent;
+    -fx-padding: 5;
+}
+
+.table-row-cell {
+    -fx-text-background-color: #FFF;
+    -fx-background-color: transparent;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #deaa88;
+}
+
+.table-row-cell:even {
+    -fx-background-color: derive(#1e4c6b, 10%);
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #deaa88;
+    -fx-text-background-color: #000;
+}
+
+.axis {
+    -fx-tick-label-fill: #FFF;
 }
