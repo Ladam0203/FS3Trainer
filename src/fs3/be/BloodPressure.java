@@ -40,4 +40,12 @@ public class BloodPressure {
     public void setDiastolic(int diastolic) {
         this.diastolic.set(diastolic);
     }
+
+    public static BloodPressure fromString(String s) {
+        String[] parts = s.split("/");
+        BloodPressure bp = new BloodPressure();
+        bp.setSystolic(Integer.parseInt(parts[0]));
+        bp.setDiastolic(Integer.parseInt(parts[1]));
+        return bp;
+    }
 }

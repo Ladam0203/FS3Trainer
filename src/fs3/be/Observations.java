@@ -5,12 +5,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Observations {
-    private HashMap<LocalDateTime, BloodPressure> bloodPressure;
-    private HashMap<LocalDateTime, Integer> hearthRate;
-    private HashMap<LocalDateTime, Double> oxygen;
+    private HashMap<LocalDateTime, BloodPressure> bloodPressure; //systolic, diastolic
+    private HashMap<LocalDateTime, Integer> hearthRate; //bpm
+    private HashMap<LocalDateTime, Double> oxygen; //%
     private HashMap<LocalDateTime, Integer> bloodSugar; //mg/dL
-    private HashMap<LocalDateTime, Integer> temperature;
-    private HashMap<LocalDateTime, Double> weight;
+    private HashMap<LocalDateTime, Integer> temperature; //°C
+    private HashMap<LocalDateTime, Double> weight; //kg
 
     public Observations() {
         this.bloodPressure = new HashMap<>();
