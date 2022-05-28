@@ -16,6 +16,7 @@ public abstract class Citizen {
     private HashMap<HealthCondition, HealthConditionData> healthConditions;
     private HashMap<FunctionalAbility, FunctionalAbilityData> functionalAbilities;
     private StringProperty medicineList;
+    private ObjectProperty<Observations> observations;
     private ObjectProperty<School> school;
 
     protected Citizen() {
@@ -25,6 +26,7 @@ public abstract class Citizen {
         healthConditions = new HashMap<>();
         functionalAbilities = new HashMap<>();
         medicineList = new SimpleStringProperty();
+        observations = new SimpleObjectProperty<>();
         school = new SimpleObjectProperty<>();
     }
 
@@ -78,6 +80,14 @@ public abstract class Citizen {
 
     public void setMedicineListProperty(SimpleStringProperty medicineListProperty) {
         this.medicineList = medicineListProperty;
+    }
+
+    public Observations getObservations() {
+        return observations.get();
+    }
+
+    public void setObservations(Observations observations) {
+        this.observations.set(observations);
     }
 
     public School getSchool() {
