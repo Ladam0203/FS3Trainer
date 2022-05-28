@@ -1,5 +1,6 @@
 package fs3.be;
 
+import fs3.enums.ObservationType;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
@@ -11,18 +12,17 @@ class CitizenInstanceTest {
     void createBasedOnTemplate() {
         CitizenTemplate ct = new CitizenTemplate();
         Observations o = new Observations();
-        BloodPressure bp = new BloodPressure();
-        bp.setSystolic(120);
-        bp.setDiastolic(80);
-        LocalDateTime now = LocalDateTime.now();
-        o.getBloodPressure().put(now, bp);
+
+        Observation<BloodPressure> bp = new Observation<>(ObservationType.BLOOD_PRESSURE, LocalDateTime.now(), new BloodPressure(120, 80));
+
+        o.getBloodPressure().add(bp);
 
         ct.setObservations(o);
 
         CitizenInstance ci = new CitizenInstance(ct);
 
-        ct.getObservations().getBloodPressure().get(now).setSystolic(90);
+        ct.getObservations().getBloodPressure().get(0).getMeasurement().setSystolic(100);
 
-        assertEquals(120, ci.getObservations().getBloodPressure().get(now).getSystolic());
+        assertEquals(120, ci.getObservations().getBloodPressure().get(0).getMeasurement().getSystolic());
     }
 }

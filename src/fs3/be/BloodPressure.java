@@ -12,6 +12,11 @@ public class BloodPressure {
         this.diastolic = new SimpleIntegerProperty();
     }
 
+    public BloodPressure(Integer systolic, Integer diastolic) {
+        this.systolic = new SimpleIntegerProperty(systolic);
+        this.diastolic = new SimpleIntegerProperty(diastolic);
+    }
+
     public BloodPressure(BloodPressure other) {
         this.systolic = new SimpleIntegerProperty(other.systolic.get());
         this.diastolic = new SimpleIntegerProperty(other.diastolic.get());
