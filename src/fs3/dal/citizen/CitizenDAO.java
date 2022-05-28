@@ -260,11 +260,11 @@ public class CitizenDAO {
                 citizen.setMedicineList(medicineListDAO.read(citizen));
             }
         }));
-        
+
         //mock observation
         Observations obs = new Observations();
         Observation<BloodPressure> o = new Observation<BloodPressure>(ObservationType.BLOOD_PRESSURE, LocalDateTime.now(), new BloodPressure(120, 80));
-        obs.getBloodPressure().add(o);
+        obs.addBloodPressure(o);
         citizen.setObservations(obs);
 
 
