@@ -2,12 +2,8 @@ package fs3.be;
 
 import fs3.enums.FunctionalAbility;
 import fs3.enums.HealthCondition;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-import java.io.*;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 

@@ -15,10 +15,6 @@ public class Admin extends User {
         return name.get();
     }
 
-    public StringProperty nameProperty() {
-        return name;
-    }
-
     public void setName(String name) {
         this.name.set(name);
     }

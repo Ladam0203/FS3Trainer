@@ -24,17 +24,8 @@ public class Student extends User {
         return name.get();
     }
 
-    public StringProperty nameProperty() {
-        return name;
-    }
-
     public void setName(String name) {
         this.name.set(name);
-    }
-
-    @Override
-    public String toString() {
-        return getName() + " (" + getUsername() + ")";
     }
 
     public List<CitizenInstance> getAssignedCitizens() {
@@ -45,15 +36,16 @@ public class Student extends User {
         assignedCitizens.add(citizenInstance);
     }
 
-    public void removeCitizen(CitizenInstance citizenInstance) {
-        assignedCitizens.remove(citizenInstance);
-    }
-
     public School getSchool() {
         return school.get();
     }
 
     public void setSchool(School school) {
         this.school.set(school);
+    }
+
+    @Override
+    public String toString() {
+        return getName() + " (" + getUsername() + ")";
     }
 }

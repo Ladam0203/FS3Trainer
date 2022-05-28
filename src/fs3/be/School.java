@@ -26,21 +26,12 @@ public class School {
         return id.get();
     }
 
-    public IntegerProperty idProperty() {
-        return id;
-    }
-
     public void setId(int id) {
         this.id.set(id);
     }
 
-
     public String getName() {
         return name.get();
-    }
-
-    public StringProperty nameProperty() {
-        return name;
     }
 
     public void setName(String name) {

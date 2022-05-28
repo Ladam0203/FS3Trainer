@@ -4,8 +4,6 @@ import fs3.enums.FunctionalAbility;
 import fs3.enums.HealthCondition;
 import javafx.beans.property.*;
 
-import java.io.Serializable;
-import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Objects;
 

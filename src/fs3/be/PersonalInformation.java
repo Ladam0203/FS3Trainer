@@ -24,20 +24,12 @@ public class PersonalInformation {
         return name.get();
     }
 
-    public StringProperty nameProperty() {
-        return name;
-    }
-
     public void setName(String name) {
         this.name.set(name);
     }
 
     public int getAge() {
         return age.get();
-    }
-
-    public IntegerProperty ageProperty() {
-        return age;
     }
 
     public void setAge(int age) {
