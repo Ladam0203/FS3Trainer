@@ -5,14 +5,17 @@ public enum ExpectedLevel {
     UNCHANGED("Unchanged"),
     DISAPPEAR("Disappear");
 
-    private String name;
+    private final String name;
+
     ExpectedLevel(String name) {
         this.name = name;
     }
+
     @Override
     public String toString() {
         return name;
     }
+
     public static ExpectedLevel fromString(String expectedLevel) {
         for (ExpectedLevel el : ExpectedLevel.values()) {
             if (el.name.equals(expectedLevel)) {

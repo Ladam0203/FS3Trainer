@@ -202,9 +202,7 @@ public class TFunctionalAbilityComponentController implements Initializable {
             return false;
         }
         if (!currentLimitationLevel.equals(LimitationLevel.NOT_RELEVANT)) {
-            if (!isExpectedLimitationLevelSelected() || !isDateValid() || !isPerformanceLevelSelected() || !isPerceivedLimitationLevelSelected()) {
-                return false;
-            }
+            return isExpectedLimitationLevelSelected() && isDateValid() && isPerformanceLevelSelected() && isPerceivedLimitationLevelSelected();
         }
         return true;
     }

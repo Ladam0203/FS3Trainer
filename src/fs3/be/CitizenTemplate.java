@@ -36,9 +36,6 @@ public class CitizenTemplate extends Citizen {
             return false;
         }
         final CitizenTemplate other = (CitizenTemplate) obj;
-        if (!Objects.equals(super.getId(), other.getId())) {
-            return false;
-        }
-        return true;
+        return Objects.equals(super.getId(), other.getId());
     }
 }

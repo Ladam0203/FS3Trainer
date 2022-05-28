@@ -11,9 +11,9 @@ import javafx.scene.control.DialogPane;
 /* Generalized version of dialog for the users (Admin, Teacher, Student) */
 public abstract class CUDialog<T> extends Dialog<T> {
 
-    private CUDialogController<T> controller;
-    private String fxmlFile;
-    private String objectClassName;
+    private final CUDialogController<T> controller;
+    private final String fxmlFile;
+    private final String objectClassName;
 
     /* Implementation has to provide the following: */
     public CUDialog(CUDialogController<T> controller, String fxmlFile, String objectClassName) {
@@ -49,7 +49,7 @@ public abstract class CUDialog<T> extends Dialog<T> {
     }
 
     /* Load the user to the dialog */
-    public void passObject(T object){
+    public void passObject(T object) {
         controller.passObject(object);
     }
 }

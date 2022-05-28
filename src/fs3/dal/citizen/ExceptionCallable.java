@@ -7,8 +7,7 @@ public abstract class ExceptionCallable implements Callable<Exception> {
     public Exception call() {
         try {
             doTask();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             return e;
         }
         return null;

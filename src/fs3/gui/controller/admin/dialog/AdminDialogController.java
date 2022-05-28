@@ -33,11 +33,11 @@ public class AdminDialogController extends CUDialogController<Admin> {
 
     @Override
     public boolean isValid() {
-        if (txfName.getText().isEmpty()     ||
-            txfPassword.getText().isEmpty() ||
-            txfName.getText().isEmpty()     ){
-                PopUp.showError("Please fill in all mandatory fields! (*)");
-                return false;
+        if (txfName.getText().isEmpty() ||
+                txfPassword.getText().isEmpty() ||
+                txfName.getText().isEmpty()) {
+            PopUp.showError("Please fill in all mandatory fields! (*)");
+            return false;
         }
         return true;
     }

@@ -6,8 +6,8 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class PersonalInformation {
-    private StringProperty name;
-    private IntegerProperty age;
+    private final StringProperty name;
+    private final IntegerProperty age;
 
     public PersonalInformation() {
         name = new SimpleStringProperty();

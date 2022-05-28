@@ -8,28 +8,29 @@ import fs3.dal.ConnectionManagerPool;
 import fs3.dal.citizen.CitizenDAO;
 import fs3.dal.school.SchoolDAO;
 
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Types;
 
 public class StudentDAO implements SubUserDAO<Student> {
-    private CitizenDAO citizenDAO = new CitizenDAO();
+    private final CitizenDAO citizenDAO = new CitizenDAO();
 
-    private String tableName = "Students";
-    private String juntionTableName = "StudentsCitizenInstances";
+    private final String tableName = "Students";
+    private final String juntionTableName = "StudentsCitizenInstances";
 
-    private String[] columns = {"userId", "name", "schoolId"};
-    private String[] junctionColumns = {"studentId", "citizenInstanceId"};
+    private final String[] columns = {"userId", "name", "schoolId"};
+    private final String[] junctionColumns = {"studentId", "citizenInstanceId"};
 
-    private String select = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ?";
-    private String insert = "INSERT INTO " + tableName + " VALUES (?, ?, ?)";
-    private String update = "UPDATE " + tableName + " SET " + columns[1] + " = ? WHERE " + columns[0] + " = ?";
+    private final String select = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ?";
+    private final String insert = "INSERT INTO " + tableName + " VALUES (?, ?, ?)";
+    private final String update = "UPDATE " + tableName + " SET " + columns[1] + " = ? WHERE " + columns[0] + " = ?";
 
-    private String selectJunction = "SELECT * FROM " + juntionTableName + " WHERE " + junctionColumns[0] + " = ?";
-    private String deleteLinks = "DELETE FROM " + juntionTableName + " WHERE " + junctionColumns[0] + " = ?";
-    private String insertLinks = "INSERT INTO " + juntionTableName + " (" + junctionColumns[0] + ", " + junctionColumns[1] + ") VALUES (?, ?)";
+    private final String selectJunction = "SELECT * FROM " + juntionTableName + " WHERE " + junctionColumns[0] + " = ?";
+    private final String deleteLinks = "DELETE FROM " + juntionTableName + " WHERE " + junctionColumns[0] + " = ?";
+    private final String insertLinks = "INSERT INTO " + juntionTableName + " (" + junctionColumns[0] + ", " + junctionColumns[1] + ") VALUES (?, ?)";
 
-    private SchoolDAO schoolDAO = new SchoolDAO();
+    private final SchoolDAO schoolDAO = new SchoolDAO();
 
     public void set(User user) throws Exception {
         ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();

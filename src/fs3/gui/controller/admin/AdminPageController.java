@@ -292,7 +292,6 @@ public class AdminPageController implements Initializable {
 
     private void newAdminDialog() {
         CUDialog<Admin> dialog = new AdminDialog();
-
         Optional<Admin> result = dialog.showAndWait();
         result.ifPresent(response -> {
             try {

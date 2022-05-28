@@ -1,6 +1,5 @@
 package fs3.dal.school;
 
-import fs3.be.Admin;
 import fs3.be.School;
 import fs3.dal.ConnectionManager;
 import fs3.dal.ConnectionManagerPool;
@@ -12,14 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SchoolDAO {
-    private String tableName = "Schools";
-    private String[] columns = {"id", "name"};
+    private final String tableName = "Schools";
+    private final String[] columns = {"id", "name"};
 
-    private String selectAll = "SELECT * FROM " + tableName;
-    private String selectById = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ?";
-    private String insert = "INSERT INTO " + tableName + " (" + columns[1] + ") VALUES (?)";
-    private String update = "UPDATE " + tableName + " SET " + columns[1] + " = ? WHERE " + columns[0] + " = ?";
-    private String delete = "DELETE FROM " + tableName + " WHERE " + columns[0] + " = ?";
+    private final String selectAll = "SELECT * FROM " + tableName;
+    private final String selectById = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ?";
+    private final String insert = "INSERT INTO " + tableName + " (" + columns[1] + ") VALUES (?)";
+    private final String update = "UPDATE " + tableName + " SET " + columns[1] + " = ? WHERE " + columns[0] + " = ?";
+    private final String delete = "DELETE FROM " + tableName + " WHERE " + columns[0] + " = ?";
 
     public List<School> readAll() throws Exception {
         List<School> schools = new ArrayList<>();

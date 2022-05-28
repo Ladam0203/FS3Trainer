@@ -1,10 +1,7 @@
 package fs3.gui.controller.teacher.tabs.assignments;
 
 import fs3.be.CitizenInstance;
-import fs3.be.Student;
-import fs3.be.Teacher;
 import fs3.gui.model.CitizenInstanceModel;
-import fs3.gui.model.LoginModel;
 import fs3.gui.model.StudentModel;
 import fs3.util.PopUp;
 import javafx.collections.transformation.FilteredList;

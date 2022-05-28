@@ -1,7 +1,6 @@
 package fs3.dal.citizen;
 
 import fs3.be.Citizen;
-import fs3.be.CitizenTemplate;
 import fs3.be.PersonalInformation;
 import fs3.dal.ConnectionManager;
 import fs3.dal.ConnectionManagerPool;
@@ -11,12 +10,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class PersonalInformationDAO {
-    private String tableName = "PersonalInformations";
-    private String[] columns = {"citizenId", "name", "age"};
+    private final String tableName = "PersonalInformations";
+    private final String[] columns = {"citizenId", "name", "age"};
 
-    private String read = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ?";
-    private String create = "INSERT INTO " + tableName + " VALUES (?, ?, ?)";
-    private String update = "UPDATE " + tableName + " SET " + columns[1] + " = ?, " + columns[2] + " = ? WHERE " + columns[0] + " = ?";
+    private final String read = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ?";
+    private final String create = "INSERT INTO " + tableName + " VALUES (?, ?, ?)";
+    private final String update = "UPDATE " + tableName + " SET " + columns[1] + " = ?, " + columns[2] + " = ? WHERE " + columns[0] + " = ?";
 
     public PersonalInformation read(Citizen citizen) throws Exception {
         PersonalInformation personalInformation = null;

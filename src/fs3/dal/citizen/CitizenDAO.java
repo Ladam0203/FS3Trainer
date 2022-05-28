@@ -1,12 +1,16 @@
 package fs3.dal.citizen;
 
-import fs3.be.*;
+import fs3.be.Citizen;
+import fs3.be.CitizenInstance;
+import fs3.be.CitizenTemplate;
+import fs3.be.School;
 import fs3.dal.ConnectionManager;
 import fs3.dal.ConnectionManagerPool;
 import fs3.dal.school.SchoolDAO;
 
 import java.sql.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -19,18 +23,18 @@ public class CitizenDAO {
     private final FunctionalAbilityDAO functionalAbilityDAO = new FunctionalAbilityDAO();
     private final MedicineListDAO medicineListDAO = new MedicineListDAO();
 
-    private String tableName = "Citizens";
-    private String[] columns = {"id", "isTemplate", "schoolId"};
+    private final String tableName = "Citizens";
+    private final String[] columns = {"id", "isTemplate", "schoolId"};
 
-    private String select = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ?";
-    private String insert = "INSERT INTO " + tableName + " " + "VALUES (?, ?)";
-    private String readAllInstances = "SELECT * FROM " + tableName + " WHERE " + columns[1] + " = 0";
-    private String readAllInstancesFrom = "SELECT * FROM " + tableName + " WHERE " + columns[1] + " = 0 AND " + columns[2] + " = ?";
-    private String readAllTemplates = "SELECT * FROM " + tableName + " WHERE " + columns[1] + " = 1";
-    private String readAllTemplatesFrom = "SELECT * FROM " + tableName + " WHERE " + columns[1] + " = 1 AND " + columns[2] + " = ?";
-    private String delete = "DELETE FROM " + tableName + " WHERE " + columns[0] + " = ?";
+    private final String select = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ?";
+    private final String insert = "INSERT INTO " + tableName + " " + "VALUES (?, ?)";
+    private final String readAllInstances = "SELECT * FROM " + tableName + " WHERE " + columns[1] + " = 0";
+    private final String readAllInstancesFrom = "SELECT * FROM " + tableName + " WHERE " + columns[1] + " = 0 AND " + columns[2] + " = ?";
+    private final String readAllTemplates = "SELECT * FROM " + tableName + " WHERE " + columns[1] + " = 1";
+    private final String readAllTemplatesFrom = "SELECT * FROM " + tableName + " WHERE " + columns[1] + " = 1 AND " + columns[2] + " = ?";
+    private final String delete = "DELETE FROM " + tableName + " WHERE " + columns[0] + " = ?";
 
-    private SchoolDAO schoolDAO = new SchoolDAO();
+    private final SchoolDAO schoolDAO = new SchoolDAO();
 
     private ExecutorService subExecutor;
 

@@ -8,8 +8,8 @@ public enum LimitationLevel {
     TOTAL_LIMITATION("Extreme limitation", 4),
     NOT_RELEVANT("Not relevant", 9);
 
-    private String name;
-    private int value;
+    private final String name;
+    private final int value;
 
     LimitationLevel(String name, int value) {
         this.name = name;
@@ -31,6 +31,6 @@ public enum LimitationLevel {
                 return l;
             }
         }
-        throw new IllegalArgumentException("Limitiation level + " + value + " could not be parsed");
+        throw new IllegalArgumentException("Limitation level + " + value + " could not be parsed");
     }
 }

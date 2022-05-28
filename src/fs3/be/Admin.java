@@ -4,7 +4,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class Admin extends User {
-    private StringProperty name;
+    private final StringProperty name;
 
     public Admin(String username, String password) {
         super(username, password);

@@ -10,13 +10,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class GeneralInformationDAO {
-    private String tableName = "GeneralInformations";
-    private String[] columns = {"citizenId", "coping", "motivation", "resources", "roles", "habits", "educationAndJobs", "lifeStory", "healthInformation", "equipmentAids", "homeLayout", "network"};
+    private final String tableName = "GeneralInformations";
+    private final String[] columns = {"citizenId", "coping", "motivation", "resources", "roles", "habits", "educationAndJobs", "lifeStory", "healthInformation", "equipmentAids", "homeLayout", "network"};
 
-    private String read = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ?";
-    private String update = "UPDATE " + tableName + " SET " + columns[1] + " = ?, " + columns[2] + " = ?, " + columns[3] + " = ?, " + columns[4] + " = ?, " + columns[5] + " = ?, " + columns[6] + " = ?, " + columns[7] + " = ?, " + columns[8] + " = ?, " + columns[9] + " = ?, " + columns[10] + " = ?, " + columns[11] + " = ? WHERE " + columns[0] + " = ?";
-    private String insert = "INSERT INTO " + tableName + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    private String selectGeneralInformation = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ?";
+    private final String read = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ?";
+    private final String update = "UPDATE " + tableName + " SET " + columns[1] + " = ?, " + columns[2] + " = ?, " + columns[3] + " = ?, " + columns[4] + " = ?, " + columns[5] + " = ?, " + columns[6] + " = ?, " + columns[7] + " = ?, " + columns[8] + " = ?, " + columns[9] + " = ?, " + columns[10] + " = ?, " + columns[11] + " = ? WHERE " + columns[0] + " = ?";
+    private final String insert = "INSERT INTO " + tableName + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    private final String selectGeneralInformation = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ?";
 
     public GeneralInformation read(Citizen citizen) throws Exception {
         GeneralInformation generalInformation = null;

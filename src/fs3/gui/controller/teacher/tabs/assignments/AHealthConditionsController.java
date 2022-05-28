@@ -2,7 +2,6 @@ package fs3.gui.controller.teacher.tabs.assignments;
 
 import fs3.be.HealthConditionData;
 import fs3.enums.HealthCondition;
-import fs3.gui.controller.student.tabs.HealthConditionComponentController;
 import fs3.gui.model.CitizenInstanceModel;
 import fs3.util.PopUp;
 import javafx.fxml.FXML;
@@ -23,7 +22,7 @@ public class AHealthConditionsController implements Initializable {
     private Accordion accHealthConditions;
     private CitizenInstanceModel citizenInstanceModel;
 
-    private EnumMap<HealthCondition, AHealthConditionComponentController> conditionControllerMap = new EnumMap<>(HealthCondition.class);
+    private final EnumMap<HealthCondition, AHealthConditionComponentController> conditionControllerMap = new EnumMap<>(HealthCondition.class);
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -69,8 +68,7 @@ public class AHealthConditionsController implements Initializable {
                             entry.getValue().setDtpFollowUpDate(healthConditionData.getFollowUpDate());
                             entry.getValue().setCurrentAssessment(healthConditionData.getCurrentAssessment());
                             entry.getValue().setObservationNote(healthConditionData.getObservationNote());
-                        }
-                        else {
+                        } else {
                             entry.getValue().clearFields();
                         }
                     }

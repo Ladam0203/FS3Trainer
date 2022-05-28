@@ -8,11 +8,9 @@ import fs3.enums.PerceivedLimitationLevel;
 import fs3.enums.Performance;
 import fs3.gui.model.CitizenInstanceModel;
 import fs3.util.PopUp;
-
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
@@ -73,8 +71,7 @@ public class FunctionalAbilityComponentController implements Initializable {
             if (tggRelevant.getSelectedToggle() != null) {
                 if (tggRelevant.getSelectedToggle().equals(rdbRelevant)) {
                     disableFields(false);
-                }
-                else if (tggRelevant.getSelectedToggle().equals(rdbNotRelevant)) {
+                } else if (tggRelevant.getSelectedToggle().equals(rdbNotRelevant)) {
                     disableFields(true);
                 }
             }
@@ -187,12 +184,10 @@ public class FunctionalAbilityComponentController implements Initializable {
     //event handler for image button
     @FXML
     private void handleSelectLimitationLevel(MouseEvent event) {
-        if (tggRelevant.getSelectedToggle() != null)
-        {
+        if (tggRelevant.getSelectedToggle() != null) {
             ImageView selected = (ImageView) event.getSource();
 
-            if (currentImages.contains(selected))
-            {
+            if (currentImages.contains(selected)) {
                 currentLimitationLevel = LimitationLevel.fromInt(currentImages.indexOf(selected));
                 makeOpaqueInExcept(currentImages, selected);
             } else if (expectedImages.contains(selected)) {
@@ -207,9 +202,7 @@ public class FunctionalAbilityComponentController implements Initializable {
             return false;
         }
         if (!currentLimitationLevel.equals(LimitationLevel.NOT_RELEVANT)) {
-            if (!isExpectedLimitationLevelSelected() || !isDateValid() || !isPerformanceLevelSelected() || !isPerceivedLimitationLevelSelected()) {
-                return false;
-            }
+            return isExpectedLimitationLevelSelected() && isDateValid() && isPerformanceLevelSelected() && isPerceivedLimitationLevelSelected();
         }
         return true;
     }

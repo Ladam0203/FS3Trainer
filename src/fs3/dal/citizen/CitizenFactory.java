@@ -5,7 +5,7 @@ import fs3.be.CitizenInstance;
 import fs3.be.CitizenTemplate;
 
 public class CitizenFactory {
-    public static Citizen createCitizen(boolean isTemplate){
+    public static Citizen createCitizen(boolean isTemplate) {
         return isTemplate ? new CitizenTemplate() : new CitizenInstance();
     }
 }

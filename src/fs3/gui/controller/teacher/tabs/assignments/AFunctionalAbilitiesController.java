@@ -2,7 +2,6 @@ package fs3.gui.controller.teacher.tabs.assignments;
 
 import fs3.be.FunctionalAbilityData;
 import fs3.enums.FunctionalAbility;
-import fs3.gui.controller.student.tabs.FunctionalAbilityComponentController;
 import fs3.gui.model.CitizenInstanceModel;
 import fs3.util.PopUp;
 import javafx.fxml.FXML;
@@ -22,9 +21,10 @@ public class AFunctionalAbilitiesController implements Initializable {
     @FXML
     private Accordion accFunctionalAbilities;
 
-    private EnumMap<FunctionalAbility, AFunctionalAbilityComponentController> functionControllerMap = new EnumMap<>(FunctionalAbility.class);
+    private final EnumMap<FunctionalAbility, AFunctionalAbilityComponentController> functionControllerMap = new EnumMap<>(FunctionalAbility.class);
 
     private CitizenInstanceModel citizenInstanceModel;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
@@ -32,7 +32,7 @@ public class AFunctionalAbilitiesController implements Initializable {
 
             //add all functional abilities panes
             String header = null;
-            for(FunctionalAbility condition : FunctionalAbility.values()){
+            for (FunctionalAbility condition : FunctionalAbility.values()) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fs3/gui/view/teacher/tabs/assignments/FunctionalAbilityComponentView.fxml"));
                 Parent root = loader.load();
                 AFunctionalAbilityComponentController controller = loader.getController();

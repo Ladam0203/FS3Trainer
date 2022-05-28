@@ -4,17 +4,17 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class GeneralInformation {
-    private StringProperty coping;
-    private StringProperty motivation;
-    private StringProperty resources;
-    private StringProperty roles;
-    private StringProperty habits;
-    private StringProperty educationAndJobs;
-    private StringProperty lifeStory;
-    private StringProperty healthInformation;
-    private StringProperty equipmentAids;
-    private StringProperty homeLayout;
-    private StringProperty network;
+    private final StringProperty coping;
+    private final StringProperty motivation;
+    private final StringProperty resources;
+    private final StringProperty roles;
+    private final StringProperty habits;
+    private final StringProperty educationAndJobs;
+    private final StringProperty lifeStory;
+    private final StringProperty healthInformation;
+    private final StringProperty equipmentAids;
+    private final StringProperty homeLayout;
+    private final StringProperty network;
 
     public GeneralInformation() {
         this.coping = new SimpleStringProperty();
@@ -45,9 +45,13 @@ public class GeneralInformation {
         this.network = new SimpleStringProperty(other.getNetwork());
     }
 
-    public String getCoping() {return coping.get();}
+    public String getCoping() {
+        return coping.get();
+    }
 
-    public void setCoping(String coping) {this.coping.set(coping);}
+    public void setCoping(String coping) {
+        this.coping.set(coping);
+    }
 
     public String getMotivation() {
         return motivation.get();

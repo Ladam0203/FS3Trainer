@@ -1,18 +1,17 @@
 package fs3.gui.model;
 
-import com.sun.source.tree.Scope;
 import fs3.be.School;
 import fs3.bll.SchoolLogic;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class SchoolModel {
-    private SchoolLogic schoolLogic;
+    private final SchoolLogic schoolLogic;
     private ObservableList<School> observableSchools;
 
     public SchoolModel() throws Exception {
         schoolLogic = new SchoolLogic();
-            readAllSchools();
+        readAllSchools();
     }
 
     public ObservableList<School> readAllSchools() throws Exception {
@@ -20,7 +19,7 @@ public class SchoolModel {
         return observableSchools;
     }
 
-    public ObservableList<School> getAllSchools(){
+    public ObservableList<School> getAllSchools() {
         return observableSchools;
     }
 
@@ -34,9 +33,9 @@ public class SchoolModel {
         observableSchools.remove(school);
     }
 
-    public void createSchool(School school) throws Exception{
+    public void createSchool(School school) throws Exception {
         School created = schoolLogic.createSchool(school);
-        if(created != null) {
+        if (created != null) {
             observableSchools.add(created);
         }
     }

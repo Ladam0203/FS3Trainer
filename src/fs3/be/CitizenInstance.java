@@ -36,9 +36,6 @@ public class CitizenInstance extends Citizen {
             return false;
         }
         final CitizenInstance other = (CitizenInstance) obj;
-        if (!Objects.equals(super.getId(), other.getId())) {
-            return false;
-        }
-        return true;
+        return Objects.equals(super.getId(), other.getId());
     }
 }

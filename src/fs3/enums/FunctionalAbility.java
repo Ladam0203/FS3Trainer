@@ -33,8 +33,8 @@ public enum FunctionalAbility {
     ABILITY_TO_WORK("Participation in society", "Ability to work");
 
 
-    private String main;
-    private String sub;
+    private final String main;
+    private final String sub;
 
     FunctionalAbility(String main, String sub) {
         this.main = main;

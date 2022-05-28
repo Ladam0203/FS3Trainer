@@ -9,12 +9,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class MedicineListDAO {
-    private String tableName = "medicineLists";
-    private String[] columns = {"citizenId", "medicineList"};
+    private final String tableName = "medicineLists";
+    private final String[] columns = {"citizenId", "medicineList"};
 
-    private String select = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ?";
-    private String insert = "INSERT INTO " + tableName + " " + "VALUES (?, ?)";
-    private String update = "UPDATE " + tableName + " SET " + columns[1] + " = ? WHERE " + columns[0] + " = ?";
+    private final String select = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ?";
+    private final String insert = "INSERT INTO " + tableName + " " + "VALUES (?, ?)";
+    private final String update = "UPDATE " + tableName + " SET " + columns[1] + " = ? WHERE " + columns[0] + " = ?";
 
     public String read(Citizen citizen) throws Exception {
         String medicineList = null;

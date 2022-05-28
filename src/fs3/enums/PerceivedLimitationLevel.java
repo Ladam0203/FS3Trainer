@@ -4,7 +4,8 @@ public enum PerceivedLimitationLevel {
     EXPERIENCES_LIMITATION("Experiences limitation"),
     DOES_NOT_EXPERIENCE_LIMITATION("Does not experience limitation");
 
-    private String name;
+    private final String name;
+
     PerceivedLimitationLevel(String name) {
         this.name = name;
     }
@@ -13,12 +14,13 @@ public enum PerceivedLimitationLevel {
     public String toString() {
         return name;
     }
+
     public static PerceivedLimitationLevel fromString(String perceivedLimitationLevel) {
-            for (PerceivedLimitationLevel b : PerceivedLimitationLevel.values()) {
-                if (b.name.equals(perceivedLimitationLevel)) {
-                    return b;
-                }
+        for (PerceivedLimitationLevel b : PerceivedLimitationLevel.values()) {
+            if (b.name.equals(perceivedLimitationLevel)) {
+                return b;
             }
+        }
         throw new IllegalArgumentException("Perceived limitation level " + perceivedLimitationLevel + " could not be parsed");
     }
 }

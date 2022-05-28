@@ -6,8 +6,8 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class Teacher extends User {
-    private StringProperty name;
-    private ObjectProperty<School> school;
+    private final StringProperty name;
+    private final ObjectProperty<School> school;
 
     public Teacher(String username, String password) {
         super(username, password);

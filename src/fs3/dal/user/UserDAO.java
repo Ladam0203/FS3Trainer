@@ -4,7 +4,6 @@ import fs3.be.*;
 import fs3.dal.ConnectionManager;
 import fs3.dal.ConnectionManagerPool;
 import fs3.enums.UserRole;
-import jdk.jshell.spi.ExecutionControl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,23 +11,22 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class UserDAO {
     private final SubUserDAO<Student> studentDAO = new StudentDAO();
     private final SubUserDAO<Teacher> teacherDAO = new TeacherDAO();
     private final SubUserDAO<Admin> adminDAO = new AdminDAO();
 
-    private String tableName = "Users";
-    private String[] columns = {"id", "username", "password", "roleId"};
+    private final String tableName = "Users";
+    private final String[] columns = {"id", "username", "password", "roleId"};
 
-    private String select = "SELECT * FROM " + tableName + " WHERE " + columns[1] + " = ? AND " + columns[2] + " = ?";
-    private String selectStudents = "SELECT * FROM " + tableName + " WHERE " + columns[3] + " = " + UserRole.STUDENT.getId();
-    private String selectTeachers = "SELECT * FROM " + tableName + " WHERE " + columns[3] + " = " + UserRole.TEACHER.getId();
-    private String selectAdmins = "SELECT * FROM " + tableName + " WHERE " + columns[3] + " = " + UserRole.ADMIN.getId();
-    private String insert = "INSERT INTO " + tableName + " (" + columns[1] + ", " + columns[2] + ", " + columns[3] + ") VALUES (?, ?, ?)";
-    private String update = "UPDATE " + tableName + " SET " + columns[1] + " = ?, " + columns[2] + " = ? WHERE " + columns[0] + " = ?";
-    private String delete = "DELETE FROM " + tableName + " WHERE " + columns[0] + " = ?";
+    private final String select = "SELECT * FROM " + tableName + " WHERE " + columns[1] + " = ? AND " + columns[2] + " = ?";
+    private final String selectStudents = "SELECT * FROM " + tableName + " WHERE " + columns[3] + " = " + UserRole.STUDENT.getId();
+    private final String selectTeachers = "SELECT * FROM " + tableName + " WHERE " + columns[3] + " = " + UserRole.TEACHER.getId();
+    private final String selectAdmins = "SELECT * FROM " + tableName + " WHERE " + columns[3] + " = " + UserRole.ADMIN.getId();
+    private final String insert = "INSERT INTO " + tableName + " (" + columns[1] + ", " + columns[2] + ", " + columns[3] + ") VALUES (?, ?, ?)";
+    private final String update = "UPDATE " + tableName + " SET " + columns[1] + " = ?, " + columns[2] + " = ? WHERE " + columns[0] + " = ?";
+    private final String delete = "DELETE FROM " + tableName + " WHERE " + columns[0] + " = ?";
 
     //this is not a tiny bit more efficient that just getting all of the students
     //TODO: if there is time, make a different query with a join
@@ -76,17 +74,15 @@ public class UserDAO {
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 user = constructUser(rs);
-            }
-            else {
+            } else {
                 return null;
             }
 
             if (Student.class.equals(user.getClass())) {
                 studentDAO.set(user);
-            }
-            else if (Teacher.class.equals(user.getClass())) {
+            } else if (Teacher.class.equals(user.getClass())) {
                 teacherDAO.set(user);
-            } else  if (Admin.class.equals(user.getClass())) {
+            } else if (Admin.class.equals(user.getClass())) {
                 adminDAO.set(user);
             }
 
@@ -111,8 +107,7 @@ public class UserDAO {
         }
         if (Student.class.equals(user.getClass())) {
             studentDAO.update((Student) user);
-        }
-        else if (Teacher.class.equals(user.getClass())) {
+        } else if (Teacher.class.equals(user.getClass())) {
             teacherDAO.update((Teacher) user);
         } else if (Admin.class.equals(user.getClass())) {
             adminDAO.update((Admin) user);
@@ -143,8 +138,7 @@ public class UserDAO {
         }
         if (Student.class.equals(user.getClass())) {
             studentDAO.create((Student) user);
-        }
-        else if (Teacher.class.equals(user.getClass())) {
+        } else if (Teacher.class.equals(user.getClass())) {
             teacherDAO.create((Teacher) user);
         } else if (Admin.class.equals(user.getClass())) {
             adminDAO.create((Admin) user);

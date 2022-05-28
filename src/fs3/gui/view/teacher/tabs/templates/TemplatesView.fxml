@@ -1,73 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.*?>
+<HBox minHeight="-Infinity" minWidth="-Infinity" prefWidth="1300.0" stylesheets="@../../../styles/common.css"
+      xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="fs3.gui.controller.teacher.tabs.templates.TemplatesController">
+    <children>
+        <VBox minWidth="-Infinity" prefWidth="300.0" styleClass="right-border" HBox.hgrow="NEVER">
+            <children>
+                <Pane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="55.0"
+                      style="-fx-background-color: #22577A;" VBox.vgrow="NEVER">
+                    <children>
+                        <ImageView fitWidth="80.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../resources/login_logo.png"/>
+                            </image>
+                        </ImageView>
+                    </children>
+                    <VBox.margin>
+                        <Insets/>
+                    </VBox.margin>
+                </Pane>
+                <Label alignment="CENTER" maxWidth="1.7976931348623157E308"
+                       style="-fx-text-fill: #F7F8F9; -fx-background-color: #1e4c6b;" styleClass="fs3-headline"
+                       text="Templates">
+                    <padding>
+                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0"/>
+                    </padding>
+                </Label>
+                <ListView fx:id="ltvCitizenTemplates" onMouseClicked="#handleSelectCitizen" VBox.vgrow="ALWAYS"/>
+                <HBox style="-fx-background-color: #1e4c6b;">
+                    <children>
+                        <TextField fx:id="txfFilterTemplates" onKeyTyped="#handleFilterTemplates" promptText="Filter"
+                                   HBox.hgrow="ALWAYS"/>
+                    </children>
+                    <VBox.margin>
+                        <Insets/>
+                    </VBox.margin>
+                    <padding>
+                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0"/>
+                    </padding>
+                </HBox>
+            </children>
+        </VBox>
+        <TabPane tabClosingPolicy="UNAVAILABLE" tabMinHeight="40.0" tabMinWidth="180.0" HBox.hgrow="ALWAYS">
+            <tabs>
+                <Tab closable="false" text="General information">
+                    <fx:include source="GeneralInformationView.fxml"/>
+                </Tab>
+                <Tab closable="false" text="Health conditions">
+                    <content>
+                        <fx:include source="HealthConditionsView.fxml"/>
 
-<HBox minHeight="-Infinity" minWidth="-Infinity" prefWidth="1300.0" stylesheets="@../../../styles/common.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.teacher.tabs.templates.TemplatesController">
-   <children>
-      <VBox minWidth="-Infinity" prefWidth="300.0" styleClass="right-border" HBox.hgrow="NEVER">
-         <children>
-            <Pane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="55.0" style="-fx-background-color: #22577A;" VBox.vgrow="NEVER">
-               <children>
-                  <ImageView fitWidth="80.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../resources/login_logo.png" />
-                     </image>
-                  </ImageView>
-               </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin></Pane>
-            <Label alignment="CENTER" maxWidth="1.7976931348623157E308" style="-fx-text-fill: #F7F8F9; -fx-background-color: #1e4c6b;" styleClass="fs3-headline" text="Templates">
-               <padding>
-                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-               </padding>
-            </Label>
-            <ListView fx:id="ltvCitizenTemplates" onMouseClicked="#handleSelectCitizen" VBox.vgrow="ALWAYS" />
-            <HBox style="-fx-background-color: #1e4c6b;">
-               <children>
-                  <TextField fx:id="txfFilterTemplates" onKeyTyped="#handleFilterTemplates" promptText="Filter" HBox.hgrow="ALWAYS" />
-               </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-               <padding>
-                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-               </padding>
-            </HBox>
-         </children>
-      </VBox>
-      <TabPane tabClosingPolicy="UNAVAILABLE" tabMinHeight="40.0" tabMinWidth="180.0" HBox.hgrow="ALWAYS">
-        <tabs>
-          <Tab closable="false" text="General information">
-              <fx:include source="GeneralInformationView.fxml" />
-          </Tab>
-          <Tab closable="false" text="Health conditions">
-            <content>
-                <fx:include source="HealthConditionsView.fxml" />
-
-            </content>
-          </Tab>
-            <Tab closable="false" text="Functional abilities">
-               <content>
-                   <fx:include source="FunctionalAbilitiesView.fxml" />
-               </content>
-            </Tab>
-            <Tab text="Medicine list">
-              <content>
-                  <fx:include source="MedicineListView.fxml" />
-              </content>
-            </Tab>
-        </tabs>
-      </TabPane>
-   </children>
+                    </content>
+                </Tab>
+                <Tab closable="false" text="Functional abilities">
+                    <content>
+                        <fx:include source="FunctionalAbilitiesView.fxml"/>
+                    </content>
+                </Tab>
+                <Tab text="Medicine list">
+                    <content>
+                        <fx:include source="MedicineListView.fxml"/>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
 </HBox>

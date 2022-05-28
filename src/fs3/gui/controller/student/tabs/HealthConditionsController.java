@@ -21,7 +21,7 @@ public class HealthConditionsController implements Initializable {
     private Accordion accHealthConditions;
     private CitizenInstanceModel citizenInstanceModel;
 
-    private EnumMap<HealthCondition, HealthConditionComponentController> conditionControllerMap = new EnumMap<>(HealthCondition.class);
+    private final EnumMap<HealthCondition, HealthConditionComponentController> conditionControllerMap = new EnumMap<>(HealthCondition.class);
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

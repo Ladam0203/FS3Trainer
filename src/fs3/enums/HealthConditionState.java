@@ -5,7 +5,8 @@ public enum HealthConditionState {
     POTENTIAL("Potential"),
     ACTIVE("Active");
 
-    private String name;
+    private final String name;
+
     HealthConditionState(String healthConditionState) {
         this.name = healthConditionState;
     }
@@ -14,11 +15,12 @@ public enum HealthConditionState {
     public String toString() {
         return name;
     }
+
     public static HealthConditionState fromString(String healthConditionState) {
-            for (HealthConditionState hcs : HealthConditionState.values()) {
-                if (hcs.name.equals(healthConditionState)) {
-                    return hcs;
-                }
+        for (HealthConditionState hcs : HealthConditionState.values()) {
+            if (hcs.name.equals(healthConditionState)) {
+                return hcs;
+            }
         }
         throw new IllegalArgumentException("Health condition state " + healthConditionState + " cannot be parsed");
     }

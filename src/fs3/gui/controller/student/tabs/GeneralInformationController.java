@@ -6,7 +6,6 @@ import fs3.gui.model.CitizenInstanceModel;
 import fs3.util.PopUp;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 
 import java.net.URL;

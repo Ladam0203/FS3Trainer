@@ -1,7 +1,6 @@
 package fs3.gui.controller.teacher.tabs.templates;
 
 import fs3.be.CitizenTemplate;
-import fs3.gui.model.CitizenInstanceModel;
 import fs3.gui.model.CitizenTemplateModel;
 import fs3.util.PopUp;
 import javafx.event.ActionEvent;
@@ -34,7 +33,7 @@ public class TMedicineListController implements Initializable {
     @FXML
     private void handleSave(ActionEvent event) {
         CitizenTemplate selected = citizenTemplateModel.getSelectedCitizenTemplate();
-        if(selected == null){
+        if (selected == null) {
             return;
         }
         selected.setMedicineList(txaMedicine.getText());

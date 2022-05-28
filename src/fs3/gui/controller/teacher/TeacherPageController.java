@@ -7,10 +7,6 @@ import fs3.gui.model.CitizenTemplateModel;
 import fs3.gui.model.LoginModel;
 import fs3.gui.model.StudentModel;
 import fs3.util.PopUp;
-import javafx.fxml.Initializable;
-
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class TeacherPageController {
     public TeacherPageController() {

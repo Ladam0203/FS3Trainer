@@ -6,7 +6,7 @@ import fs3.bll.UserLogic;
 public class LoginModel {
     private static LoginModel instance;
 
-    private UserLogic userLogic;
+    private final UserLogic userLogic;
 
     private User loggedUser;
 

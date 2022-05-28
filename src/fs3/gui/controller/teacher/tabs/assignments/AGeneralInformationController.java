@@ -6,7 +6,6 @@ import fs3.gui.model.CitizenInstanceModel;
 import fs3.util.PopUp;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 
 import java.net.URL;
@@ -62,8 +61,7 @@ public class AGeneralInformationController implements Initializable {
                     txaEquipmentAids.setText(generalInformation.getEquipmentAids());
                     txaHomeLayout.setText(generalInformation.getHomeLayout());
                     txaNetwork.setText(generalInformation.getNetwork());
-                }
-                else {
+                } else {
                     clearFields();
                 }
             }

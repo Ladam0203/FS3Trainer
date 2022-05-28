@@ -48,7 +48,7 @@ public class AHealthConditionComponentController {
         txaObservationNote.setText(note);
     }
 
-    public void setDtpFollowUpDate(LocalDate date){
+    public void setDtpFollowUpDate(LocalDate date) {
         dtpFollowUpDate.setValue(date);
     }
 

@@ -11,9 +11,9 @@ import javafx.collections.ObservableList;
 public class CitizenInstanceModel {
     private static CitizenInstanceModel instance;
 
-    private CitizenLogic citizenLogic;
-    private ObservableList<CitizenInstance> observableCitizensInstances;
-    private ObjectProperty<CitizenInstance> selectedCitizenInstance;
+    private final CitizenLogic citizenLogic;
+    private final ObservableList<CitizenInstance> observableCitizensInstances;
+    private final ObjectProperty<CitizenInstance> selectedCitizenInstance;
 
     private CitizenInstanceModel() throws Exception {
         citizenLogic = new CitizenLogic();
