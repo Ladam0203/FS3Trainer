@@ -27,7 +27,6 @@ public class CitizenTemplate extends Citizen {
         for (Map.Entry<FunctionalAbility, FunctionalAbilityData> entry : other.getFunctionalAbilities().entrySet()) {
             this.getFunctionalAbilities().put(entry.getKey(), new FunctionalAbilityData(entry.getValue()));
         }
-        this.setObservations(other.getObservations() == null ? null : new Observations(other.getObservations()));
         this.setMedicineListProperty(new SimpleStringProperty(other.getMedicineList()));
         this.setSchool(other.getSchool() == null ? null : new School(other.getSchool()));
     }

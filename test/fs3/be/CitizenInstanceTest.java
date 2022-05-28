@@ -2,27 +2,20 @@ package fs3.be;
 
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDateTime;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class CitizenInstanceTest {
     @Test
     void createBasedOnTemplate() {
         CitizenTemplate ct = new CitizenTemplate();
-        Observations o = new Observations();
-        BloodPressure bp = new BloodPressure();
-        bp.setSystolic(120);
-        bp.setDiastolic(80);
-        LocalDateTime now = LocalDateTime.now();
-        o.getBloodPressure().put(now, bp);
-
-        ct.setObservations(o);
+        PersonalInformation pi = new PersonalInformation();
+        pi.setName("John");
+        ct.setPersonalInformation(pi);
 
         CitizenInstance ci = new CitizenInstance(ct);
 
-        ct.getObservations().getBloodPressure().get(now).setSystolic(90);
+        ct.getPersonalInformation().setName("Peter");
 
-        assertEquals(120, ci.getObservations().getBloodPressure().get(now).getSystolic());
+        assertEquals("John", ci.getPersonalInformation().getName());
     }
 }
