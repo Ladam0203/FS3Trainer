@@ -6,7 +6,7 @@ import fs3.be.Teacher;
 import fs3.gui.controller.admin.dialog.AdminDialog;
 import fs3.gui.controller.admin.dialog.SchoolDialog;
 import fs3.gui.controller.admin.dialog.TeacherDialog;
-import fs3.gui.controller.dialog.UserDialog;
+import fs3.gui.controller.dialog.CUDialog;
 import fs3.gui.model.AdminModel;
 import fs3.gui.model.SchoolModel;
 import fs3.gui.model.TeacherModel;
@@ -210,7 +210,7 @@ public class AdminPageController implements Initializable {
     }
 
     private void newTeacherDialog() {
-        UserDialog<Teacher> dialog = new TeacherDialog();
+        CUDialog<Teacher> dialog = new TeacherDialog();
         Optional<Teacher> result = dialog.showAndWait();
         result.ifPresent(response -> {
             try {
@@ -225,8 +225,8 @@ public class AdminPageController implements Initializable {
     private void editTeacherDialog() {
         Teacher selected = ltvTeachers.getSelectionModel().getSelectedItem();
         if (selected != null) {
-            UserDialog<Teacher> dialog = new TeacherDialog();
-            dialog.passUser(selected);
+            CUDialog<Teacher> dialog = new TeacherDialog();
+            dialog.passObject(selected);
             Optional<Teacher> result = dialog.showAndWait();
             result.ifPresent(response -> {
                 try {
@@ -291,7 +291,7 @@ public class AdminPageController implements Initializable {
     }
 
     private void newAdminDialog() {
-        UserDialog<Admin> dialog = new AdminDialog();
+        CUDialog<Admin> dialog = new AdminDialog();
 
         Optional<Admin> result = dialog.showAndWait();
         result.ifPresent(response -> {
@@ -307,8 +307,8 @@ public class AdminPageController implements Initializable {
     private void editAdminDialog() {
         Admin selected = ltvAdmins.getSelectionModel().getSelectedItem();
         if (selected != null) {
-            UserDialog<Admin> dialog = new AdminDialog();
-            dialog.passUser(selected);
+            CUDialog<Admin> dialog = new AdminDialog();
+            dialog.passObject(selected);
             Optional<Admin> result = dialog.showAndWait();
             result.ifPresent(response -> {
                 try {
