@@ -48,4 +48,9 @@ public class BloodPressure {
         bp.setDiastolic(Integer.parseInt(parts[1]));
         return bp;
     }
+
+    @Override
+    public String toString() {
+        return systolic.get() + "/" + diastolic.get();
+    }
 }
