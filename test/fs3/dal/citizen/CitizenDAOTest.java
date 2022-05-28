@@ -103,11 +103,20 @@ public class CitizenDAOTest {
     }
 
     @Test
+    @Disabled
     void medicineList() throws Exception {
         CitizenDAO citizenDAO = new CitizenDAO();
         CitizenInstance citizen = citizenDAO.readAllCitizenInstances().get(0);
         citizen.setMedicineList("test");
 
         citizenDAO.create(citizen);
+    }
+
+    @Test
+    void observations() throws Exception {
+        CitizenDAO citizenDAO = new CitizenDAO();
+        CitizenInstance citizen = citizenDAO.readAllCitizenInstances().get(0);
+
+        Assertions.assertEquals(120, citizen.getObservations().getBloodPressure().get(0).getMeasurement().getSystolic());
     }
 }

@@ -61,6 +61,10 @@ public class Observations {
         return bloodPressure;
     }
 
+    public void addBloodPressure(Observation<BloodPressure> obs) {
+        this.bloodPressure.add(obs);
+    }
+
     public void setBloodPressure(List<Observation<BloodPressure>> bloodPressure) {
         this.bloodPressure = bloodPressure;
     }
