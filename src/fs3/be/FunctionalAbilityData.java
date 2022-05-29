@@ -11,14 +11,14 @@ import javafx.beans.property.StringProperty;
 import java.time.LocalDate;
 
 public class FunctionalAbilityData {
-    ObjectProperty<LimitationLevel> currentLimitationLevel;
-    ObjectProperty<LimitationLevel> expectedLimitationLevel;
-    StringProperty professionalNote;
-    ObjectProperty<Performance> performance;
-    ObjectProperty<PerceivedLimitationLevel> perceivedLimitationLevel;
-    StringProperty citizenRequest;
-    ObjectProperty<LocalDate> followUpDate;
-    StringProperty observationNote;
+    private final ObjectProperty<LimitationLevel> currentLimitationLevel;
+    private final ObjectProperty<LimitationLevel> expectedLimitationLevel;
+    private final StringProperty professionalNote;
+    private final ObjectProperty<Performance> performance;
+    private final ObjectProperty<PerceivedLimitationLevel> perceivedLimitationLevel;
+    private final StringProperty citizenRequest;
+    private final ObjectProperty<LocalDate> followUpDate;
+    private final StringProperty observationNote;
 
     public FunctionalAbilityData() {
         currentLimitationLevel = new SimpleObjectProperty<>();
