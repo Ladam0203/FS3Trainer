@@ -26,7 +26,7 @@ class UserDAOTest {
 
     @Test
     @Disabled
-    void readStudents() throws Exception {
+    void readAllStudents() throws Exception {
         UserDAO userDAO = new UserDAO();
         Student student = userDAO.readAllStudents().get(0);
 
@@ -40,15 +40,6 @@ class UserDAOTest {
         Teacher teacher = userDAO.readAllTeachers().get(0);
 
         assertEquals("Jeppe", teacher.getName());
-    }
-
-    @Disabled
-    @Test
-    void readAllStudents() throws Exception {
-        UserDAO userDAO = new UserDAO();
-        Student student = userDAO.readAllStudents().get(0);
-
-        assertEquals("Milo", student.getName());
     }
 
     @Test
