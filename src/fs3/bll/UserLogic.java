@@ -4,13 +4,12 @@ import fs3.be.*;
 import fs3.dal.DAOFacade;
 import fs3.dal.IDAOFacade;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class UserLogic {
-    private IDAOFacade daoFacade;
+    private final IDAOFacade daoFacade;
 
-    public UserLogic(){
+    public UserLogic() {
         daoFacade = new DAOFacade();
     }
 

@@ -25,7 +25,7 @@ public class TeacherModel {
         return (instance == null) ? instance = new TeacherModel() : instance;
     }
 
-    /* Reads teacher from db and updates the observable lsit with it */
+    /* Reads teacher from db and updates the observable list with it */
     public List<Teacher> readAllTeachers() throws Exception {
         observableTeachers = FXCollections.observableList(userLogic.readAllTeachers());
         return userLogic.readAllTeachers();

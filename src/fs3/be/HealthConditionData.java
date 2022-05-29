@@ -7,16 +7,15 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 
 public class HealthConditionData {
-    private ObjectProperty<HealthConditionState> healthConditionState;
-    private StringProperty professionalNote;
-    private StringProperty currentAssessment;
-    private ObjectProperty<ExpectedLevel> expectedLevel;
-    private ObjectProperty<LocalDate> followUpDate;
-    private StringProperty observationNote;
+    private final ObjectProperty<HealthConditionState> healthConditionState;
+    private final StringProperty professionalNote;
+    private final StringProperty currentAssessment;
+    private final ObjectProperty<ExpectedLevel> expectedLevel;
+    private final ObjectProperty<LocalDate> followUpDate;
+    private final StringProperty observationNote;
 
     public HealthConditionData() {
         this.healthConditionState = new SimpleObjectProperty<>();

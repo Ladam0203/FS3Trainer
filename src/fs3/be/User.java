@@ -22,10 +22,6 @@ public abstract class User {
         return id.get();
     }
 
-    public IntegerProperty idProperty() {
-        return id;
-    }
-
     public void setId(int id) {
         this.id.set(id);
     }
@@ -34,20 +30,12 @@ public abstract class User {
         return username.get();
     }
 
-    public StringProperty usernameProperty() {
-        return username;
-    }
-
     public void setUsername(String username) {
         this.username.set(username);
     }
 
     public String getPassword() {
         return password.get();
-    }
-
-    public StringProperty passwordProperty() {
-        return password;
     }
 
     public void setPassword(String password) {
@@ -63,9 +51,6 @@ public abstract class User {
             return false;
         }
         final User other = (User) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.id, other.id);
     }
 }

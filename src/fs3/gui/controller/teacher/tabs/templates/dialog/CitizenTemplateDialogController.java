@@ -1,14 +1,9 @@
 package fs3.gui.controller.teacher.tabs.templates.dialog;
 
-import fs3.be.CitizenInstance;
 import fs3.be.CitizenTemplate;
 import fs3.be.PersonalInformation;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
-
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class CitizenTemplateDialogController {
     private CitizenTemplate template;
@@ -21,11 +16,11 @@ public class CitizenTemplateDialogController {
         template.setPersonalInformation(new PersonalInformation());
     }
 
-    public String getName(){
+    public String getName() {
         return txfName.getText();
     }
 
-    public int getAge(){
+    public int getAge() {
         return Integer.parseInt(txfAge.getText());
     }
 
@@ -33,10 +28,7 @@ public class CitizenTemplateDialogController {
         if (txfName.getText().isEmpty()) {
             return false;
         }
-        if (txfAge.getText().isEmpty()) {
-            return false;
-        }
-        return true;
+        return !txfAge.getText().isEmpty();
     }
 
     //check if age is a number greater than 0

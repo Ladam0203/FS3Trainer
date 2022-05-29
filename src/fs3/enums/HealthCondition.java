@@ -46,8 +46,8 @@ public enum HealthCondition {
     PROBLEMS_WITH_STOOL_INCONTINENCE("Secretion of bodily waste products", "Problems with stool incontinence"),
     STOMACH_AND_INTESTINAL_PROBLEMS("Secretion of bodily waste products", "Stomach and intestinal problems");
 
-    private String main;
-    private String sub;
+    private final String main;
+    private final String sub;
 
     HealthCondition(String main, String sub) {
         this.main = main;
@@ -68,7 +68,7 @@ public enum HealthCondition {
         return sub;
     }
 
-    public String getMain(){
+    public String getMain() {
         return main;
     }
 }

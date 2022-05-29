@@ -6,7 +6,8 @@
 <?import javafx.scene.layout.VBox?>
 <VBox prefHeight="600.0" prefWidth="900.0" spacing="8.0" style="-fx-background-color: #1e4c6b;"
       styleClass="right-border" stylesheets="@../../../styles/common.css" xmlns="http://javafx.com/javafx/18"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.teacher.tabs.assignments.AMedicineListController">
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="fs3.gui.controller.teacher.tabs.assignments.AMedicineListController">
     <children>
         <TextArea fx:id="txaMedicine" VBox.vgrow="ALWAYS"/>
     </children>

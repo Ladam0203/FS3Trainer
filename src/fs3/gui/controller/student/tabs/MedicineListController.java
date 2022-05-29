@@ -25,14 +25,14 @@ public class MedicineListController implements Initializable {
         }
 
         citizenInstanceModel.getSelectedCitizenProperty().addListener(
-                (observable, oldValue, newValue) ->  txaMedicine.setText(newValue.getMedicineList())
+                (observable, oldValue, newValue) -> txaMedicine.setText(newValue.getMedicineList())
         );
     }
 
     @FXML
     private void handleSave(ActionEvent event) {
         CitizenInstance selected = citizenInstanceModel.getSelectedCitizenInstance();
-        if(selected == null){
+        if (selected == null) {
             return;
         }
         selected.setMedicineList(txaMedicine.getText());

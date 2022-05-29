@@ -133,9 +133,7 @@ public class THealthConditionComponentController implements Initializable {
         }
         //fromString(cmbHealthConditionState.getSelectionModel().getSelectedItem().toString())
         if (!cmbHealthConditionState.getSelectionModel().getSelectedItem().equals(HealthConditionState.INACTIVE)) {
-            if (!isDateValid() || !isExpectedStateSelected() || !isCurrentAssessmentFilled()) {
-                return false;
-            }
+            return isDateValid() && isExpectedStateSelected() && isCurrentAssessmentFilled();
         }
         return true;
 
@@ -187,11 +185,7 @@ public class THealthConditionComponentController implements Initializable {
         if (txaCurrentAssessment.getText() == (null)) {
             PopUp.showError("Current assessment needs to be filled out!");
             return false;
-        } else if (!txaCurrentAssessment.getText().isEmpty()) {
-            return true;
-        }
-
-        return false;
+        } else return !txaCurrentAssessment.getText().isEmpty();
     }
 
     public void clearFields() {

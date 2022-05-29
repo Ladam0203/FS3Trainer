@@ -8,15 +8,15 @@ import javafx.beans.property.StringProperty;
 import java.util.Objects;
 
 public class School {
-    private IntegerProperty id;
-    private StringProperty name;
+    private final IntegerProperty id;
+    private final StringProperty name;
 
     public School() {
         this.id = new SimpleIntegerProperty();
         this.name = new SimpleStringProperty();
     }
 
-    //copy constructror
+    //copy constructor
     public School(School other) {
         this.id = new SimpleIntegerProperty(other.getId());
         this.name = new SimpleStringProperty(other.getName());
@@ -26,21 +26,12 @@ public class School {
         return id.get();
     }
 
-    public IntegerProperty idProperty() {
-        return id;
-    }
-
     public void setId(int id) {
         this.id.set(id);
     }
 
-
     public String getName() {
         return name.get();
-    }
-
-    public StringProperty nameProperty() {
-        return name;
     }
 
     public void setName(String name) {

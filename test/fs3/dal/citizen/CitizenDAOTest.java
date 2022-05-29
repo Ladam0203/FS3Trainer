@@ -111,4 +111,5 @@ public class CitizenDAOTest {
 
         citizenDAO.create(citizen);
     }
+
 }

@@ -3,14 +3,13 @@ package fs3.gui.model;
 import fs3.be.School;
 import fs3.be.Student;
 import fs3.bll.UserLogic;
-import fs3.util.PopUp;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class StudentModel {
     private static StudentModel instance;
-    private UserLogic userLogic;
-    private ObservableList<Student> observableStudents;
+    private final UserLogic userLogic;
+    private final ObservableList<Student> observableStudents;
 
     private StudentModel() throws Exception {
         userLogic = new UserLogic();

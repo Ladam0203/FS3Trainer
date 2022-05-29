@@ -1,7 +1,6 @@
 package fs3.gui.controller.teacher.tabs.templates.dialog;
 
 import fs3.be.CitizenTemplate;
-import fs3.be.PersonalInformation;
 import fs3.util.PopUp;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -37,7 +36,7 @@ public class CitizenTemplateDialog extends Dialog<CitizenTemplate> {
                 }
             });
             this.setResultConverter(buttonType -> {
-                if(buttonType.equals(ButtonType.APPLY)){
+                if (buttonType.equals(ButtonType.APPLY)) {
                     return controller.constructCitizenTemplate();
                 }
                 return null;
@@ -48,7 +47,7 @@ public class CitizenTemplateDialog extends Dialog<CitizenTemplate> {
         }
     }
 
-    public void passCitizenTemplate(CitizenTemplate citizenTemplate){
+    public void passCitizenTemplate(CitizenTemplate citizenTemplate) {
         controller.passCitizenTemplate(citizenTemplate);
     }
 }

@@ -125,7 +125,7 @@ public class StudentsController implements Initializable {
                 Optional<Student> result = dialog.showAndWait();
                 result.ifPresent(response -> {
                     try {
-                        response.setSchool(((Teacher)loginModel.getLoggedUser()).getSchool());
+                        response.setSchool(((Teacher) loginModel.getLoggedUser()).getSchool());
                         studentModel.createStudent(response);
                     } catch (Exception e) {
                         PopUp.showError("Cannot create new student!");

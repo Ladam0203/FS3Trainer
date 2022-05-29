@@ -10,12 +10,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class AdminDAO implements SubUserDAO<Admin> {
-    private String tableName = "Admins";
-    private String[] columns = {"userId", "name"};
+    private final String tableName = "Admins";
+    private final String[] columns = {"userId", "name"};
 
-    private String select = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ?";
-    private String insert = "INSERT INTO " + tableName + " (" + columns[0] + ", " + columns[1] + ") VALUES (?, ?)";
-    private String update = "UPDATE " + tableName + " SET " + columns[1] + " = ? WHERE " + columns[0] + " = ?";
+    private final String select = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ?";
+    private final String insert = "INSERT INTO " + tableName + " (" + columns[0] + ", " + columns[1] + ") VALUES (?, ?)";
+    private final String update = "UPDATE " + tableName + " SET " + columns[1] + " = ? WHERE " + columns[0] + " = ?";
 
     public void set(User user) throws Exception {
         ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();

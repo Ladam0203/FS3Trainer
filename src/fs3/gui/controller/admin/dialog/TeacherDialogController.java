@@ -11,7 +11,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
-import java.util.*;
+import java.util.ResourceBundle;
 
 public class TeacherDialogController extends CUDialogController<Teacher> implements Initializable {
     @FXML
@@ -21,14 +21,14 @@ public class TeacherDialogController extends CUDialogController<Teacher> impleme
 
     private SchoolModel schoolModel;
 
-  @Override
+    @Override
     public void initialize(URL location, ResourceBundle resources) {
-      try {
-          schoolModel = new SchoolModel();
-      } catch (Exception e) {
-          PopUp.showError("Cannot load", e);
-      }
-      System.out.println(schoolModel.getAllSchools());
+        try {
+            schoolModel = new SchoolModel();
+        } catch (Exception e) {
+            PopUp.showError("Cannot load", e);
+        }
+        System.out.println(schoolModel.getAllSchools());
         cmbSchool.getItems().addAll(schoolModel.getAllSchools());
     }
 
@@ -56,12 +56,12 @@ public class TeacherDialogController extends CUDialogController<Teacher> impleme
 
     @Override
     public boolean isValid() {
-        if (txfName.getText().isEmpty()     ||
-            txfUsername.getText().isEmpty() ||
-            txfPassword.getText().isEmpty() ||
-            cmbSchool.getValue() == null    ){
-                PopUp.showError("Please fill in all mandatory fields! (*)");
-                return false;
+        if (txfName.getText().isEmpty() ||
+                txfUsername.getText().isEmpty() ||
+                txfPassword.getText().isEmpty() ||
+                cmbSchool.getValue() == null) {
+            PopUp.showError("Please fill in all mandatory fields! (*)");
+            return false;
         }
         return true;
     }

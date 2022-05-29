@@ -16,22 +16,22 @@ public class CitizenLogic {
         daoFacade = new DAOFacade();
     }
 
-    public List<CitizenInstance> readAllCitizensInstances() throws Exception {
-        return daoFacade.readAllCitizenInstances();
-    }
-    //create citizen
 
-    public CitizenInstance createCitizenInstance(CitizenInstance citizen) throws Exception {
-        return (CitizenInstance) daoFacade.createCitizen(citizen);
-    }
-
-    //update citizen
     public void updateCitizen(Citizen citizen) throws Exception {
         daoFacade.updateCitizen(citizen);
     }
 
+    public void deleteCitizen(Citizen citizen) throws Exception {
+        daoFacade.deleteCitizen(citizen);
+    }
+
+    //Citizen template only methods
     public List<CitizenTemplate> readAllCitizenTemplates() throws Exception {
         return daoFacade.readAllCitizenTemplates();
+    }
+
+    public List<CitizenTemplate> readAllCitizenTemplatesFrom(School school) throws Exception {
+        return daoFacade.readAllCitizenTemplatesFrom(school);
     }
 
     public CitizenTemplate createCitizenTemplate(CitizenTemplate citizenTemplate) throws Exception {
@@ -42,15 +42,17 @@ public class CitizenLogic {
         daoFacade.updateCitizen(citizenTemplate);
     }
 
-    public void deleteCitizen(Citizen citizen) throws Exception {
-        daoFacade.deleteCitizen(citizen);
-    }
-
+    //Citizen Instances only methods
     public List<CitizenInstance> readAllCitizenInstancesFrom(School school) throws Exception {
         return daoFacade.readAllCitizenInstancesFrom(school);
     }
 
-    public List<CitizenTemplate> readAllCitizenTemplatesFrom(School school) throws Exception {
-        return daoFacade.readAllCitizenTemplatesFrom(school);
+    public List<CitizenInstance> readAllCitizensInstances() throws Exception {
+        return daoFacade.readAllCitizenInstances();
     }
+
+    public CitizenInstance createCitizenInstance(CitizenInstance citizen) throws Exception {
+        return (CitizenInstance) daoFacade.createCitizen(citizen);
+    }
+
 }

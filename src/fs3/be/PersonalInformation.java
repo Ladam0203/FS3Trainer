@@ -6,8 +6,8 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class PersonalInformation {
-    private StringProperty name;
-    private IntegerProperty age;
+    private final StringProperty name;
+    private final IntegerProperty age;
 
     public PersonalInformation() {
         name = new SimpleStringProperty();
@@ -24,20 +24,12 @@ public class PersonalInformation {
         return name.get();
     }
 
-    public StringProperty nameProperty() {
-        return name;
-    }
-
     public void setName(String name) {
         this.name.set(name);
     }
 
     public int getAge() {
         return age.get();
-    }
-
-    public IntegerProperty ageProperty() {
-        return age;
     }
 
     public void setAge(int age) {

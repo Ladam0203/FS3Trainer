@@ -97,7 +97,7 @@ public class TemplatesController implements Initializable {
             Optional<CitizenTemplate> result = dialog.showAndWait();
             result.ifPresent(response -> {
                 try {
-                    response.setSchool(((Teacher)loginModel.getLoggedUser()).getSchool());
+                    response.setSchool(((Teacher) loginModel.getLoggedUser()).getSchool());
                     citizenTemplateModel.createCitizenTemplate(response);
                 } catch (Exception e) {
                     PopUp.showError("Couldn't create citizen template!", e);

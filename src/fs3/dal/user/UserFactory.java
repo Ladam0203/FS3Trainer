@@ -5,7 +5,6 @@ import fs3.be.Student;
 import fs3.be.Teacher;
 import fs3.be.User;
 import fs3.enums.UserRole;
-import jdk.jshell.spi.ExecutionControl;
 
 public class UserFactory {
     public static User createUser(String username, String password, int roleId) {

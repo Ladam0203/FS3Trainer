@@ -5,7 +5,6 @@ import fs3.be.Student;
 import fs3.be.Teacher;
 import fs3.be.User;
 import fs3.gui.model.LoginModel;
-import fs3.gui.model.StudentModel;
 import fs3.util.PopUp;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,7 +21,7 @@ public class LoginViewController {
     private TextField txfUsername;
     @FXML
     private PasswordField psfPassword;
-    private LoginModel loginModel;
+    private final LoginModel loginModel;
 
     public LoginViewController() {
         loginModel = LoginModel.getInstance();

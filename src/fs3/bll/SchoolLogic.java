@@ -6,9 +6,9 @@ import fs3.dal.DAOFacade;
 import java.util.List;
 
 public class SchoolLogic {
-    private DAOFacade daoFacade;
+    private final DAOFacade daoFacade;
 
-    public SchoolLogic(){
+    public SchoolLogic() {
         daoFacade = new DAOFacade();
     }
 
@@ -20,11 +20,11 @@ public class SchoolLogic {
         daoFacade.updateSchool(school);
     }
 
-    public void deleteSchool(School school) throws Exception{
+    public void deleteSchool(School school) throws Exception {
         daoFacade.deleteSchool(school);
     }
 
     public School createSchool(School school) throws Exception {
-        return  daoFacade.createSchool(school);
+        return daoFacade.createSchool(school);
     }
 }

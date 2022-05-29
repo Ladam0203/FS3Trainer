@@ -21,7 +21,7 @@ public class TFunctionalAbilitiesController implements Initializable {
     @FXML
     private Accordion accFunctionalAbilities;
 
-    private EnumMap<FunctionalAbility, TFunctionalAbilityComponentController> functionControllerMap = new EnumMap<>(FunctionalAbility.class);
+    private final EnumMap<FunctionalAbility, TFunctionalAbilityComponentController> functionControllerMap = new EnumMap<>(FunctionalAbility.class);
 
     private CitizenTemplateModel citizenTemplateModel;
 

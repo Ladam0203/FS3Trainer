@@ -8,8 +8,12 @@ import fs3.enums.ExpectedLevel;
 import fs3.enums.HealthCondition;
 import fs3.enums.HealthConditionState;
 
-import java.sql.*;
-import java.util.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Types;
+import java.util.HashMap;
+import java.util.Map;
 
 public class HealthConditionDAO {
     private final String tableName = "HealthConditions";
@@ -102,8 +106,7 @@ public class HealthConditionDAO {
                     }
 
                     psUpdate.addBatch();
-                }
-                else { //responsible for creating new rows
+                } else { //responsible for creating new rows
                     psInsert.setInt(1, citizen.getId());
                     psInsert.setString(2, entry.getKey().toString());
                     psInsert.setString(3, healthConditionData.getHealthConditionState().toString());

@@ -2,7 +2,6 @@ package fs3.be;
 
 import fs3.enums.FunctionalAbility;
 import fs3.enums.HealthCondition;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 import java.util.Map;
@@ -37,9 +36,6 @@ public class CitizenInstance extends Citizen {
             return false;
         }
         final CitizenInstance other = (CitizenInstance) obj;
-        if (!Objects.equals(super.getId(), other.getId())) {
-            return false;
-        }
-        return true;
+        return Objects.equals(super.getId(), other.getId());
     }
 }

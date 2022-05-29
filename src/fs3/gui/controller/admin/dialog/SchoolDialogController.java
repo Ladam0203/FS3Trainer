@@ -10,24 +10,20 @@ public class SchoolDialogController {
 
     private School school;
 
-    public SchoolDialogController(){
+    public SchoolDialogController() {
         school = new School();
     }
 
-    public void setTxfSchoolName(String name){
-        txfSchoolName.setText(name);
-    }
-
-    public String getSchoolName(){
+    public String getSchoolName() {
         return txfSchoolName.getText();
     }
 
-    public void passSchool(School school){
+    public void passSchool(School school) {
         this.school = school;
         txfSchoolName.setText(school.getName());
     }
 
-    public School constructSchool(){
+    public School constructSchool() {
         school.setName(txfSchoolName.getText());
         return school;
     }

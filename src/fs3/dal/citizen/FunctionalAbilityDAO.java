@@ -55,8 +55,7 @@ public class FunctionalAbilityDAO {
                     ps.setNull(8, Types.NVARCHAR);
                     ps.setNull(9, Types.DATE);
                     ps.setNull(10, Types.NVARCHAR);
-                }
-                else //we can trust the UI that if the func ab is relevant, every data is provided
+                } else //we can trust the UI that if the func ab is relevant, every data is provided
                 {
                     ps.setInt(4, functionalAbilityData.getExpectedLimitationLevel().getValue());
                     ps.setString(5, functionalAbilityData.getProfessionalNote());
@@ -69,8 +68,7 @@ public class FunctionalAbilityDAO {
                 ps.addBatch();
             }
             ps.executeBatch();
-        }
-        finally {
+        } finally {
             ConnectionManagerPool.getInstance().returnConnectionManager(cm);
         }
     }
@@ -102,8 +100,7 @@ public class FunctionalAbilityDAO {
                         psUpdate.setNull(6, Types.NVARCHAR);
                         psUpdate.setNull(7, Types.DATE);
                         psUpdate.setNull(8, Types.NVARCHAR);
-                    }
-                    else //we can trust the UI that if the func ab is relevant, every data is provided
+                    } else //we can trust the UI that if the func ab is relevant, every data is provided
                     {
                         psUpdate.setInt(2, functionalAbilityData.getExpectedLimitationLevel().getValue());
                         psUpdate.setString(3, functionalAbilityData.getProfessionalNote());
@@ -118,8 +115,7 @@ public class FunctionalAbilityDAO {
                     psUpdate.setString(10, entry.getKey().toString());
 
                     psUpdate.addBatch();
-                }
-                else {
+                } else {
                     psInsert.setInt(1, citizen.getId());
                     psInsert.setString(2, entry.getKey().toString());
                     psInsert.setInt(3, functionalAbilityData.getCurrentLimitationLevel().getValue());
@@ -131,8 +127,7 @@ public class FunctionalAbilityDAO {
                         psInsert.setNull(8, Types.NVARCHAR);
                         psInsert.setNull(9, Types.DATE);
                         psInsert.setNull(10, Types.NVARCHAR);
-                    }
-                    else { //we can trust the UI that if the func ab is relevant, every data is provided
+                    } else { //we can trust the UI that if the func ab is relevant, every data is provided
                         psInsert.setInt(4, functionalAbilityData.getExpectedLimitationLevel().getValue());
                         psInsert.setString(5, functionalAbilityData.getProfessionalNote());
                         psInsert.setString(6, functionalAbilityData.getPerformance().toString());

@@ -13,7 +13,7 @@ import javafx.scene.control.DialogPane;
 public class SchoolDialog extends Dialog<School> {
     private SchoolDialogController controller;
 
-    public SchoolDialog(){
+    public SchoolDialog() {
         super();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fs3/gui/view/admin/dialog/SchoolDialog.fxml"));
@@ -23,24 +23,24 @@ public class SchoolDialog extends Dialog<School> {
             setDialogPane(dp);
             final Button btnApply = (Button) dp.lookupButton(ButtonType.APPLY);
             btnApply.addEventFilter(ActionEvent.ACTION, event -> {
-                if(controller.getSchoolName().isEmpty()){
+                if (controller.getSchoolName().isEmpty()) {
                     PopUp.showError("Enter the name!");
                     event.consume();
                     return;
                 }
-                this.setResultConverter(buttonType ->{
-                    if(buttonType.equals(ButtonType.APPLY)){
-                        return controller.constructSchool();
-                    }
-                    return null;
-                } );
+            });
+            this.setResultConverter(buttonType -> {
+                if (buttonType.equals(ButtonType.APPLY)) {
+                    return controller.constructSchool();
+                }
+                return null;
             });
         } catch (Exception e) {
             PopUp.showError("Couldn't load the school dialog!", e);
         }
     }
 
-    public void passSchool(School school){
+    public void passSchool(School school) {
         controller.passSchool(school);
     }
 }

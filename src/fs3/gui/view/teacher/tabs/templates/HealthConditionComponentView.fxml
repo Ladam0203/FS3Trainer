@@ -1,57 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonBar?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TitledPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-
-<TitledPane fx:id="ttpRoot" alignment="TOP_LEFT" animated="false" prefWidth="750.0" stylesheets="@../../../styles/common.css" text="Health condition" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fs3.gui.controller.teacher.tabs.templates.THealthConditionComponentController">
-  <content>
-      <VBox spacing="10.0">
-         <children>
-            <HBox maxWidth="1.7976931348623157E308" spacing="10.0" VBox.vgrow="NEVER">
-               <children>
-                  <VBox maxWidth="300.0" minWidth="-Infinity" prefWidth="200.0" HBox.hgrow="SOMETIMES">
-                     <children>
-                        <Label maxWidth="300.0" minWidth="-Infinity" prefWidth="200.0" styleClass="fs3-text" text="Health condition state:" />
-                        <ComboBox fx:id="cmbHealthConditionState" maxWidth="300.0" minWidth="-Infinity" prefWidth="200.0" />
-                     </children>
-                  </VBox>
-                  <VBox maxWidth="300.0" minWidth="-Infinity" prefWidth="200.0" HBox.hgrow="SOMETIMES">
-                     <children>
-                        <Label maxWidth="300.0" minWidth="-Infinity" prefWidth="200.0" styleClass="fs3-text" text="Follow up date:" VBox.vgrow="SOMETIMES" />
-                        <DatePicker fx:id="dtpFollowUpDate" maxWidth="300.0" minWidth="-Infinity" prefWidth="200.0" promptText="Follow up date" />
-                     </children>
-                  </VBox>
-                  <VBox maxWidth="300.0" minWidth="-Infinity" prefWidth="200.0" HBox.hgrow="SOMETIMES">
-                     <children>
-                        <Label maxWidth="300.0" minWidth="-Infinity" prefWidth="200.0" styleClass="fs3-text" text="Expected level:" />
-                        <ComboBox fx:id="cmbExpectedLevel" maxWidth="300.0" minWidth="-Infinity" prefWidth="200.0" />
-                     </children>
-                  </VBox>
-               </children>
-            </HBox>
-            <Label maxWidth="300.0" minWidth="-Infinity" prefWidth="200.0" styleClass="fs3-text" text="Professional note:" />
-            <TextArea fx:id="txaProfessionalNote" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" VBox.vgrow="SOMETIMES" />
-            <Label maxWidth="300.0" minWidth="-Infinity" prefWidth="200.0" styleClass="fs3-text" text="Current assessment:" />
-            <TextArea fx:id="txaCurrentAssessment" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" VBox.vgrow="SOMETIMES" />
-            <Label maxWidth="300.0" minWidth="-Infinity" prefWidth="200.0" styleClass="fs3-text" text="Observation Note:" />
-            <TextArea fx:id="txaObservationNote" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" VBox.vgrow="SOMETIMES" />
-            <ButtonBar prefWidth="200.0" VBox.vgrow="NEVER">
-              <buttons>
-                <Button mnemonicParsing="false" onAction="#handleSave" text="Save" />
-              </buttons>
-            </ButtonBar>
-         </children>
-      </VBox>
-  </content>
-   <padding>
-      <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
-   </padding>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<TitledPane fx:id="ttpRoot" alignment="TOP_LEFT" animated="false" prefWidth="750.0"
+            stylesheets="@../../../styles/common.css" text="Health condition" xmlns="http://javafx.com/javafx/16"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="fs3.gui.controller.teacher.tabs.templates.THealthConditionComponentController">
+    <content>
+        <VBox spacing="10.0">
+            <children>
+                <HBox maxWidth="1.7976931348623157E308" spacing="10.0" VBox.vgrow="NEVER">
+                    <children>
+                        <VBox maxWidth="300.0" minWidth="-Infinity" prefWidth="200.0" HBox.hgrow="SOMETIMES">
+                            <children>
+                                <Label maxWidth="300.0" minWidth="-Infinity" prefWidth="200.0" styleClass="fs3-text"
+                                       text="Health condition state:"/>
+                                <ComboBox fx:id="cmbHealthConditionState" maxWidth="300.0" minWidth="-Infinity"
+                                          prefWidth="200.0"/>
+                            </children>
+                        </VBox>
+                        <VBox maxWidth="300.0" minWidth="-Infinity" prefWidth="200.0" HBox.hgrow="SOMETIMES">
+                            <children>
+                                <Label maxWidth="300.0" minWidth="-Infinity" prefWidth="200.0" styleClass="fs3-text"
+                                       text="Follow up date:" VBox.vgrow="SOMETIMES"/>
+                                <DatePicker fx:id="dtpFollowUpDate" maxWidth="300.0" minWidth="-Infinity"
+                                            prefWidth="200.0" promptText="Follow up date"/>
+                            </children>
+                        </VBox>
+                        <VBox maxWidth="300.0" minWidth="-Infinity" prefWidth="200.0" HBox.hgrow="SOMETIMES">
+                            <children>
+                                <Label maxWidth="300.0" minWidth="-Infinity" prefWidth="200.0" styleClass="fs3-text"
+                                       text="Expected level:"/>
+                                <ComboBox fx:id="cmbExpectedLevel" maxWidth="300.0" minWidth="-Infinity"
+                                          prefWidth="200.0"/>
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+                <Label maxWidth="300.0" minWidth="-Infinity" prefWidth="200.0" styleClass="fs3-text"
+                       text="Professional note:"/>
+                <TextArea fx:id="txaProfessionalNote" maxHeight="1.7976931348623157E308"
+                          maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity"
+                          prefHeight="150.0" VBox.vgrow="SOMETIMES"/>
+                <Label maxWidth="300.0" minWidth="-Infinity" prefWidth="200.0" styleClass="fs3-text"
+                       text="Current assessment:"/>
+                <TextArea fx:id="txaCurrentAssessment" maxHeight="1.7976931348623157E308"
+                          maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity"
+                          prefHeight="150.0" VBox.vgrow="SOMETIMES"/>
+                <Label maxWidth="300.0" minWidth="-Infinity" prefWidth="200.0" styleClass="fs3-text"
+                       text="Observation Note:"/>
+                <TextArea fx:id="txaObservationNote" maxHeight="1.7976931348623157E308"
+                          maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity"
+                          prefHeight="150.0" VBox.vgrow="SOMETIMES"/>
+                <ButtonBar prefWidth="200.0" VBox.vgrow="NEVER">
+                    <buttons>
+                        <Button mnemonicParsing="false" onAction="#handleSave" text="Save"/>
+                    </buttons>
+                </ButtonBar>
+            </children>
+        </VBox>
+    </content>
+    <padding>
+        <Insets bottom="12.0" left="12.0" right="12.0" top="12.0"/>
+    </padding>
 </TitledPane>

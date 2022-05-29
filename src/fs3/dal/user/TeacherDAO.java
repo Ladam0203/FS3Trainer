@@ -1,7 +1,5 @@
 package fs3.dal.user;
 
-import fs3.be.School;
-import fs3.be.Student;
 import fs3.be.Teacher;
 import fs3.be.User;
 import fs3.dal.ConnectionManager;
@@ -13,14 +11,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class TeacherDAO implements SubUserDAO<Teacher> {
-    private String tableName = "Teachers";
-    private String[] columns = {"userId", "name", "schoolId"};
+    private final String tableName = "Teachers";
+    private final String[] columns = {"userId", "name", "schoolId"};
 
-    private String select = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ?";
-    private String insert = "INSERT INTO " + tableName + " (" + columns[0] + ", " + columns[1] + ", " + columns[2] +") VALUES (?, ?, ?)";
-    private String update = "UPDATE " + tableName + " SET " + columns[1] + " = ?, " + columns[2] + " = ?  WHERE " + columns[0] + " = ?";
+    private final String select = "SELECT * FROM " + tableName + " WHERE " + columns[0] + " = ?";
+    private final String insert = "INSERT INTO " + tableName + " (" + columns[0] + ", " + columns[1] + ", " + columns[2] + ") VALUES (?, ?, ?)";
+    private final String update = "UPDATE " + tableName + " SET " + columns[1] + " = ?, " + columns[2] + " = ?  WHERE " + columns[0] + " = ?";
 
-    private SchoolDAO schoolDAO = new SchoolDAO();
+    private final SchoolDAO schoolDAO = new SchoolDAO();
 
     public void set(User user) throws Exception {
         ConnectionManager cm = ConnectionManagerPool.getInstance().getConnectionManager();

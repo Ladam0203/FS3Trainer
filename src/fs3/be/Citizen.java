@@ -4,19 +4,17 @@ import fs3.enums.FunctionalAbility;
 import fs3.enums.HealthCondition;
 import javafx.beans.property.*;
 
-import java.io.Serializable;
-import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Objects;
 
 public abstract class Citizen {
-    private IntegerProperty id;
-    private ObjectProperty<PersonalInformation> personalInformation;
-    private ObjectProperty<GeneralInformation> generalInformation;
+    private final IntegerProperty id;
+    private final ObjectProperty<PersonalInformation> personalInformation;
+    private final ObjectProperty<GeneralInformation> generalInformation;
     private HashMap<HealthCondition, HealthConditionData> healthConditions;
     private HashMap<FunctionalAbility, FunctionalAbilityData> functionalAbilities;
     private StringProperty medicineList;
-    private ObjectProperty<School> school;
+    private final ObjectProperty<School> school;
 
     protected Citizen() {
         id = new SimpleIntegerProperty();
@@ -102,9 +100,6 @@ public abstract class Citizen {
             return false;
         }
         final Citizen other = (Citizen) obj;
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.id, other.id);
     }
 }

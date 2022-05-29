@@ -8,10 +8,9 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 
-public class FunctionalAbilityData{
+public class FunctionalAbilityData {
     ObjectProperty<LimitationLevel> currentLimitationLevel;
     ObjectProperty<LimitationLevel> expectedLimitationLevel;
     StringProperty professionalNote;
@@ -48,20 +47,12 @@ public class FunctionalAbilityData{
         return currentLimitationLevel.get();
     }
 
-    public ObjectProperty<LimitationLevel> currentLimitationLevelProperty() {
-        return currentLimitationLevel;
-    }
-
     public void setCurrentLimitationLevel(LimitationLevel currentLimitationLevel) {
         this.currentLimitationLevel.set(currentLimitationLevel);
     }
 
     public LimitationLevel getExpectedLimitationLevel() {
         return expectedLimitationLevel.get();
-    }
-
-    public ObjectProperty<LimitationLevel> expectedLimitationLevelProperty() {
-        return expectedLimitationLevel;
     }
 
     public void setExpectedLimitationLevel(LimitationLevel expectedLimitationLevel) {
@@ -72,9 +63,6 @@ public class FunctionalAbilityData{
         return professionalNote.get();
     }
 
-    public StringProperty professionalNoteProperty() {
-        return professionalNote;
-    }
 
     public void setProfessionalNote(String professionalNote) {
         this.professionalNote.set(professionalNote);
@@ -82,10 +70,6 @@ public class FunctionalAbilityData{
 
     public Performance getPerformance() {
         return performance.get();
-    }
-
-    public ObjectProperty<Performance> performanceProperty() {
-        return performance;
     }
 
     public void setPerformance(Performance performance) {
@@ -96,20 +80,12 @@ public class FunctionalAbilityData{
         return perceivedLimitationLevel.get();
     }
 
-    public ObjectProperty<PerceivedLimitationLevel> perceivedLimitationLevelProperty() {
-        return perceivedLimitationLevel;
-    }
-
     public void setPerceivedLimitationLevel(PerceivedLimitationLevel perceivedLimitationLevel) {
         this.perceivedLimitationLevel.set(perceivedLimitationLevel);
     }
 
     public String getCitizenRequest() {
         return citizenRequest.get();
-    }
-
-    public StringProperty citizenRequestProperty() {
-        return citizenRequest;
     }
 
     public void setCitizenRequest(String citizenRequest) {
@@ -120,20 +96,12 @@ public class FunctionalAbilityData{
         return followUpDate.get();
     }
 
-    public ObjectProperty<LocalDate> followUpDateProperty() {
-        return followUpDate;
-    }
-
     public void setFollowUpDate(LocalDate followUpDate) {
         this.followUpDate.set(followUpDate);
     }
 
     public String getObservationNote() {
         return observationNote.get();
-    }
-
-    public StringProperty observationNoteProperty() {
-        return observationNote;
     }
 
     public void setObservationNote(String observationNote) {
