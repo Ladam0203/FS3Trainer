@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Student extends User {
-    StringProperty name;
-    List<CitizenInstance> assignedCitizens;
-    ObjectProperty<School> school;
+    private StringProperty name;
+    private List<CitizenInstance> assignedCitizens;
+    private ObjectProperty<School> school;
 
     public Student(String username, String password) {
         super(username, password);
