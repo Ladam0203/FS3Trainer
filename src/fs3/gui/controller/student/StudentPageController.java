@@ -4,6 +4,7 @@ import fs3.be.CitizenInstance;
 import fs3.be.Student;
 import fs3.gui.model.CitizenInstanceModel;
 import fs3.gui.model.LoginModel;
+import fs3.util.PopUp;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -27,8 +28,7 @@ public class StudentPageController implements Initializable {
             LoginModel loginModel = LoginModel.getInstance();
             ltvAssignedCitizens.setItems(FXCollections.observableList(((Student) loginModel.getLoggedUser()).getAssignedCitizens()));
         } catch (Exception e) {
-            //TODO: handle exception gracefully
-            e.printStackTrace();
+            PopUp.showError("Cannot load, check your internet connection!" ,e);
         }
     }
 

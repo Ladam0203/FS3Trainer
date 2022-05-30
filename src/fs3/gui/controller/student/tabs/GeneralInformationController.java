@@ -47,8 +47,6 @@ public class GeneralInformationController implements Initializable {
 
         citizenInstanceModel.getSelectedCitizenProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
-                PersonalInformation personalInformation = newValue.getPersonalInformation();
-
                 GeneralInformation generalInformation = newValue.getGeneralInformation();
                 if (generalInformation != null) {
                     txaCoping.setText(generalInformation.getCoping());
